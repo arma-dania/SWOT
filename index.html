@@ -22,12 +22,12 @@ img{max-width:100%}
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
-.wrap{max-width:min(44rem, 100%);margin:0 auto;padding-inline:1.125rem;padding-block:1.5rem 4rem}
+.wrap{max-width:min(66rem, 100%);margin:0 auto;padding-inline:1.125rem;padding-block:1.5rem 4rem}
 h1,h2,h3,button,.ui{font-family:var(--display)}
 h1{font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.02em}
 h2{font-size:1.5rem;line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
 h3{font-size:1.0625rem;margin:0;font-weight:700}
-p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter; kolonnen er smal nok til cirka 85 tegn pr. linje */
+p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 .lead{color:var(--muted);font-size:1.1875rem}
 .head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;margin-bottom:1.5rem}
 .head > div:first-child{min-width:0;display:flex;flex-direction:column;gap:.75rem}
@@ -81,7 +81,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 /* på brede skærme bryder figuren ud af læsekolonnen, og forklaringen står til venstre for scenen */
 @media (min-width:64rem){
   .ov{display:grid;grid-template-columns:17.5rem minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"box stage" "ctl stage";gap:.8rem 1.1rem;align-items:start;
-    margin-inline:calc(50% - min(50vw - 1.5rem, 39rem))}
+    margin-inline:calc(50% - min(50vw - 1.5rem, 42rem))}
   .ov-box{min-height:0}
   .ov-ctl .nav{flex-wrap:wrap}
   .ov-dots{margin-left:0}
