@@ -160,7 +160,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .ov-dots button{width:1.75rem;height:1.75rem}
   .ov-box{min-height:9.5rem}
 }
-@media (prefers-reduced-motion:reduce){.ov-in-l,.ov-in-r,.ov-pop,.ov-draw,.ov-box.swap{animation:none}.ov-arr .shaft{animation:none}}
+/* animationen startes af brugeren selv og kører derfor også med reduceret bevægelse; kun den løbende pil stopper */
+@media (prefers-reduced-motion:reduce){.ov-arr .shaft{animation:none}}
 
 /* øvelser */
 .ex{background:var(--surface);border:1px solid var(--line);border-radius:.625rem;box-shadow:var(--shadow);padding:1.125rem 1.25rem;display:flex;flex-direction:column;gap:1rem}
@@ -556,7 +557,6 @@ a{color:var(--accent)}
         cards=[].slice.call(stage.querySelectorAll('.ov-card'));
     var NAME={s:'Styrker',w:'Svagheder',o:'Muligheder',t:'Trusler'};
     cards.forEach(function(c){c._home=c.parentNode;c._home.querySelector('.ov-slot').textContent=c.querySelector('small').textContent+' → '+NAME[c.dataset.to];});
-    var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
     var cur=0,timers=[],autoOn=false;
     function later(fn,ms){var id=setTimeout(fn,ms);timers.push(id);return id;}
     function stop(){timers.forEach(clearTimeout);timers=[];}
@@ -564,7 +564,6 @@ a{color:var(--accent)}
     function clean(el){el.classList.remove('ov-in-l','ov-in-r','ov-pop','ov-draw','fly','ov-hot');el.style.transform='';el.style.width='';el.style.transition='';el.style.opacity='';}
     /* FLIP: mål før og efter flytningen, og lad elementet glide fra den gamle til den nye plads */
     function flip(el,first,ms){
-      if(reduce)return;
       var last=el.getBoundingClientRect();
       el.style.transition='none';
       el.style.transform='translate('+(first.left-last.left)+'px,'+(first.top-last.top)+'px)';
@@ -608,12 +607,12 @@ a{color:var(--accent)}
       list.forEach(function(c,i){
         later(function(){
           var first=c.getBoundingClientRect(),cell=stage.querySelector('[data-cell="'+c.dataset.to+'"]');
-          sendCard(c);c.classList.add('fly');flip(c,first,reduce?0:950);
+          sendCard(c);c.classList.add('fly');flip(c,first,1000);
           later(function(){c.classList.remove('fly');},1000);
           cell.classList.add('ov-hot');later(function(){cell.classList.remove('ov-hot');},1100);
-        },delay+i*(reduce?0:1050));
+        },delay+i*1100);
       });
-      return delay+list.length*(reduce?0:1050);
+      return delay+list.length*1100;
     }
     /* afspil overgangen til trin n fra trin n-1 */
     function go(n){
@@ -645,7 +644,7 @@ a{color:var(--accent)}
       if(!autoOn)return;
       if(cur>=N){autoOff();return;}
       var dur=go(cur+1);
-      later(autoStep,dur+(reduce?3500:4200));
+      later(autoStep,dur+4200);
     }
     next.addEventListener('click',function(){
       autoOff();
