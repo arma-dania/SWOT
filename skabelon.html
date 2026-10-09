@@ -11,26 +11,27 @@ body{margin:0}
 [hidden]{display:none!important}
 /* Samme farver og typografi som SWOT-værkstedet. Hvert felt har sin farve, som går igen i kort, koder og spørgsmål. */
 :root{
-  --bg:#f2f6f5; --surface:#ffffff; --ink:#14211f; --muted:#566764; --line:#d3dedb;
-  --accent:#0f5c55; --on-accent:#ffffff;
-  --s:#1c7448; --w:#8f6210; --o:#275aa3; --t:#8a2f5c; --x:#566764;
+  --bg:#eceef1; --surface:#ffffff; --ink:#1b1f24; --muted:#5b636e; --line:#d5d9df;
+  --accent:#2b3a4a; --on-accent:#ffffff;
+  --s:#1d7a4a; --w:#946300; --o:#2a5ca8; --t:#952f60; --x:#5b636e;
   --bad:#b3261e;
+  --shadow:0 1px 2px rgba(16,24,40,.05),0 1px 3px rgba(16,24,40,.07);
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --body:"Newsreader",Georgia,"Times New Roman",serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0e1615; --surface:#162120; --ink:#e6eeec; --muted:#9aaca8; --line:#2b3a37;
-    --accent:#5cc4b6; --on-accent:#0e1615;
-    --s:#62c692; --w:#e0b352; --o:#7fb1f2; --t:#e384b3; --x:#9aaca8;
-    --bad:#f08a80; color-scheme:dark;
+    --bg:#17191c; --surface:#212429; --ink:#e8eaed; --muted:#a0a7b1; --line:#353a42;
+    --accent:#c9d3df; --on-accent:#17191c;
+    --s:#66c795; --w:#e0b352; --o:#86b4f0; --t:#e58ab6; --x:#a0a7b1;
+    --bad:#f08a80; --shadow:none; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0e1615; --surface:#162120; --ink:#e6eeec; --muted:#9aaca8; --line:#2b3a37;
-  --accent:#5cc4b6; --on-accent:#0e1615;
-  --s:#62c692; --w:#e0b352; --o:#7fb1f2; --t:#e384b3; --x:#9aaca8;
-  --bad:#f08a80; color-scheme:dark;
+  --bg:#17191c; --surface:#212429; --ink:#e8eaed; --muted:#a0a7b1; --line:#353a42;
+    --accent:#c9d3df; --on-accent:#17191c;
+    --s:#66c795; --w:#e0b352; --o:#86b4f0; --t:#e58ab6; --x:#a0a7b1;
+    --bad:#f08a80; --shadow:none; color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
@@ -57,7 +58,7 @@ button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-vis
 .tools{display:flex;flex-wrap:wrap;gap:.5rem}
 
 /* værktøjslinje med status */
-.status{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding-block:.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:center;font-family:var(--display);font-size:.875rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.status{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding-block:.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:center;font-family:var(--display);font-size:.875rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .status b{color:var(--ink)}
 .status .open b{color:var(--bad)}
 
@@ -68,7 +69,7 @@ textarea{font-family:var(--body);font-size:1.0625rem;line-height:1.45;resize:ver
 select{font-family:var(--display);font-size:.875rem;padding:.45rem .5rem}
 
 /* felter */
-.field{display:flex;flex-direction:column;gap:.75rem;padding:1rem;border-radius:.5rem;background:color-mix(in srgb,var(--c) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--surface))}
+.field{display:flex;flex-direction:column;gap:.75rem;padding:1rem;border-radius:.625rem;box-shadow:var(--shadow);background:color-mix(in srgb,var(--c) 6%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--surface))}
 .field > header{display:flex;flex-direction:column;gap:.2rem}
 .field > header h2{color:var(--c);display:flex;gap:.5rem;align-items:baseline}
 .field > header h2 span{font-size:.875rem;color:var(--muted);font-weight:500}
@@ -98,7 +99,7 @@ select{font-family:var(--display);font-size:.875rem;padding:.45rem .5rem}
 .okmsg{font-family:var(--display);font-size:.875rem;color:var(--s)}
 
 /* TOWS */
-.strat{background:var(--surface);border:1px solid var(--line);border-radius:.375rem;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.6rem}
+.strat{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:.5rem;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.6rem}
 .strat .top{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
 .strat .top select{width:auto}
 .refs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.25rem .75rem}
