@@ -168,8 +168,13 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .opts.short button{flex:1 1 8rem}
 .opts button:hover:not(:disabled){border-color:var(--accent)}
 .opts button:disabled{cursor:default;opacity:.6}
-.opts button.right{opacity:1;border-color:var(--s);background:color-mix(in srgb,var(--s) 15%,var(--surface));color:var(--s)}
-.opts button.wrong{opacity:1;border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface));color:var(--bad)}
+.opts button.right,#p-traening .opts button.right{opacity:1;border-color:var(--s);background:color-mix(in srgb,var(--s) 15%,var(--surface));color:var(--s)}
+/* hver træningsøvelse har sin egen farve på svarfelterne; farverne er valgt, så de ikke forveksles med S, W, O og T */
+#ex-sort{--ex:#0e7c86} #ex-err{--ex:#6a4c9c} #ex-prio{--ex:#b4532a}
+#p-traening .ex{border-top:4px solid var(--ex)}
+#p-traening .opts button{background:color-mix(in srgb,var(--ex) 15%,var(--surface));border-color:color-mix(in srgb,var(--ex) 40%,var(--surface))}
+#p-traening .opts button:hover:not(:disabled){border-color:var(--ex)}
+.opts button.wrong,#p-traening .opts button.wrong{opacity:1;border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface));color:var(--bad)}
 .fb{font-size:1.0625rem}
 .fb b{font-family:var(--display)}
 .fb .ok{color:var(--s)} .fb .no{color:var(--bad)}
