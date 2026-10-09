@@ -192,6 +192,14 @@ a{color:var(--accent)}
 .steps,.crit{margin:0;padding-left:1.4rem;display:flex;flex-direction:column;gap:.5rem;max-width:65ch}
 .steps li::marker{font-family:var(--display);font-weight:700;color:var(--accent)}
 .crit li::marker{color:var(--accent)}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.75rem}
+@media (max-width:40rem){.duo{grid-template-columns:1fr}}
+.duo-box{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:.625rem;box-shadow:var(--shadow);padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.6rem}
+.duo-box h3{color:var(--c)}
+.duo-box ul{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.45rem;font-size:1.0625rem;line-height:1.45}
+.duo-box li::marker{color:var(--c)}
+.duo-box li b{font-family:var(--display);font-size:.9375rem}
+.duo-foot{font-size:1rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.6rem}
 .tw{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:.375rem}
 .tw .h{font-family:var(--display);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;padding:.25rem}
 .tw .h b{font-size:1.25rem;letter-spacing:0;margin-right:.3rem;color:var(--c)}
@@ -348,8 +356,27 @@ a{color:var(--accent)}
     <section class="mod">
       <span class="n">7 · Faldgruber</span>
       <h2>Typiske fejl og kritikken af SWOT</h2>
-      <p>De fleste fejl i en SWOT falder i fire grupper. Punkterne er for vage og udokumenterede. Punkterne står i det forkerte felt, typisk fordi et eksternt forhold er skrevet som styrke, eller en intern svaghed som trussel. Handlinger er skrevet ind som muligheder. Og listen er uprioriteret, så det væsentlige drukner.</p>
-      <p>Modellen selv har også begrænsninger, som du skal kunne forholde dig kritisk til. Den giver et øjebliksbillede og bliver hurtigt forældet. Den er subjektiv, fordi den, der udfylder den, afgør, hvad der tæller som en styrke. Den viser ikke sammenhænge mellem felterne. Og den siger ikke, hvad virksomheden skal gøre. Dokumentation, sammenligning med konkurrenter og prioritering er måderne at imødegå kritikken på.</p>
+      <div class="duo">
+        <div class="duo-box" style="--c:var(--bad)">
+          <h3>Typiske fejl i en SWOT</h3>
+          <ul>
+            <li><b>Vage punkter.</b> Punkterne er upræcise og udokumenterede, fx «godt produkt».</li>
+            <li><b>Forkert felt.</b> Et eksternt forhold er skrevet som styrke, eller en intern svaghed som trussel.</li>
+            <li><b>Handlinger som muligheder.</b> «Vi kan åbne en webshop i Tyskland» er noget, virksomheden selv beslutter, ikke et forhold i omverdenen.</li>
+            <li><b>Ingen prioritering.</b> Listen er så lang, at det væsentlige drukner.</li>
+          </ul>
+        </div>
+        <div class="duo-box" style="--c:var(--accent)">
+          <h3>Kritikken af modellen</h3>
+          <ul>
+            <li><b>Øjebliksbillede.</b> Den viser situationen nu og bliver hurtigt forældet.</li>
+            <li><b>Subjektiv.</b> Den, der udfylder den, afgør, hvad der tæller som en styrke.</li>
+            <li><b>Ingen sammenhænge.</b> Den viser ikke, hvordan felterne påvirker hinanden.</li>
+            <li><b>Ingen handling.</b> Den siger ikke, hvad virksomheden skal gøre.</li>
+          </ul>
+          <p class="duo-foot">Kritikken imødegås med dokumentation, sammenligning med konkurrenter og prioritering, og med TOWS, som gør SWOT til strategi.</p>
+        </div>
+      </div>
     </section>
 
     <section class="mod">
