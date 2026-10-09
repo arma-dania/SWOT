@@ -10,6 +10,7 @@ Siderne er selvstændige filer uden byggetrin: `index.html` (værkstedet) og `sk
 - **Træning**: tre øvelser på den opdigtede case Cykelværket ApS (sortering, find fejlen, prioritering).
 - **Quiz**: 13 spørgsmål med forklaringer og resultat fordelt på emner.
 - **TOWS**: viden om de fire strategifelter (SO, ST, WO, WT), fremgangsmåde, kvalitet, valg og faldgruber; tre øvelser på Cykelværkets prioriterede SWOT (kombinér, hvilket felt, find fejlen) og en quiz med 13 spørgsmål.
+- **I timen**: ni klasseøvelser til sprint 2 (par og grupper) i fire dele, fra begreber til en prioriteret SW for Living Flowers. Hver øvelse kan foldes ud med formål, materialer, trin med minuttal, produkt og tip til underviseren. Tips skjules ved at sætte `VIS_TIPS = false` i scriptet i `index.html`.
 
 ## Skabelon med tjek
 

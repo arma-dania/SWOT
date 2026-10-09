@@ -222,6 +222,56 @@ a{color:var(--accent)}
 .swl ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.35rem;font-size:.9375rem;line-height:1.35}
 .swl li b{font-family:var(--display);color:var(--c);margin-right:.35rem}
 @media (max-width:34rem){.swl{grid-template-columns:1fr}}
+
+/* I timen: klasseøvelser som foldbare elementer. Kun eksisterende farve- og skriftvariabler. */
+.it-tools{display:flex;flex-wrap:wrap;gap:.5rem}
+.it-tools button{font-family:var(--display);font-size:.9375rem;font-weight:700;padding:.5rem .95rem;border-radius:.375rem;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.it-tools button:hover{border-color:var(--accent)}
+.it-plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}
+.it-plan > div{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:.5rem;padding:.65rem .8rem;display:flex;flex-direction:column;gap:.25rem;box-shadow:var(--shadow);min-width:0}
+.it-plan b{font-family:var(--display);font-size:.9375rem}
+.it-plan small,.it-meta{font-family:var(--display);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.it-plan span{font-size:.9375rem;line-height:1.35}
+@media (max-width:48rem){.it-plan{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.it-list{display:flex;flex-direction:column;gap:.5rem}
+.it{background:var(--surface);border:1px solid var(--line);border-radius:.625rem;box-shadow:var(--shadow);scroll-margin-top:4.5rem}
+.it[open]{border-color:color-mix(in srgb,var(--accent) 45%,var(--surface))}
+.it summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.25rem minmax(0,1fr) auto auto 1.25rem;gap:.75rem;align-items:center;padding:.8rem 1rem;font-family:var(--display)}
+.it summary::-webkit-details-marker{display:none}
+.it summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:.625rem}
+.it summary .no{width:2.25rem;height:2.25rem;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-variant-numeric:tabular-nums}
+.it summary .ti{font-weight:700;font-size:1.0625rem;line-height:1.25}
+.it summary .ti small{display:block;font-weight:500;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+.it summary .form{font-size:.8125rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;border:1px solid var(--accent);color:var(--accent)}
+.it summary .form.grp{background:var(--accent);color:var(--on-accent)}
+.it summary .tid{font-size:.9375rem;font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.it summary::after{content:"";width:.6rem;height:.6rem;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);justify-self:center;margin-top:-.3rem;transition:transform .2s ease}
+.it[open] summary::after{transform:rotate(225deg);margin-top:.3rem}
+.it-body{padding:0 1rem 1.1rem 4rem;display:flex;flex-direction:column;gap:.85rem;border-top:1px solid var(--line);padding-top:.9rem}
+.it-body h4{font-family:var(--display);font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin:0 0 .2rem}
+.it-body p{font-size:1.0625rem;line-height:1.5}
+.it-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.85rem}
+@media (max-width:48rem){.it-row{grid-template-columns:1fr}}
+.it-steps{margin:0;padding:0;list-style:none;counter-reset:trin;display:flex;flex-direction:column;gap:.45rem}
+.it-steps li{counter-increment:trin;display:grid;grid-template-columns:4.25rem 1.5rem minmax(0,1fr);gap:.5rem;align-items:baseline;font-size:1.0625rem;line-height:1.45}
+.it-steps li::before{content:counter(trin) ".";grid-column:2;grid-row:1;font-family:var(--display);font-weight:700;color:var(--accent)}
+.it-steps .min{grid-column:1;grid-row:1;font-family:var(--display);font-size:.875rem;font-variant-numeric:tabular-nums;color:var(--muted);text-align:right;white-space:nowrap}
+.it-steps .txt{grid-column:3}
+.it-links{display:flex;flex-wrap:wrap;gap:.4rem}
+.it-links a{font-family:var(--display);font-size:.875rem;padding:.25rem .65rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);background:var(--bg)}
+.it-links a:hover{border-color:var(--accent)}
+.it-tip{border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--surface));padding:.6rem .85rem;border-radius:0 .375rem .375rem 0}
+.it-see{font-family:var(--display);font-size:.9375rem}
+@media (max-width:40rem){
+  .it summary{grid-template-columns:2rem minmax(0,1fr) 1rem;row-gap:.35rem}
+  .it summary .no{width:2rem;height:2rem}
+  .it summary .form,.it summary .tid{grid-column:2;grid-row:2;justify-self:start}
+  .it summary .tid{margin-left:4.5rem}
+  .it summary::after{grid-column:3;grid-row:1}
+  .it-body{padding-left:1rem}
+  .it-steps li{grid-template-columns:3.5rem 1.25rem minmax(0,1fr)}
+}
+.tabs{overflow-x:auto;scrollbar-width:none}
 </style>
 </head>
 <body>
@@ -249,6 +299,7 @@ a{color:var(--accent)}
     <button role="tab" id="tab-traening" data-tab="traening" aria-selected="false">Træning</button>
     <button role="tab" id="tab-quiz" data-tab="quiz" aria-selected="false">Quiz</button>
     <button role="tab" id="tab-tows" data-tab="tows" aria-selected="false">TOWS</button>
+    <button role="tab" id="tab-i-timen" data-tab="i-timen" aria-selected="false">I timen</button>
   </nav>
 
   <!-- VIDEN -->
@@ -321,6 +372,7 @@ a{color:var(--accent)}
       <p>En styrke er ikke bare noget, virksomheden har eller er god til. Den er kun en styrke, hvis virksomheden gør det bedre end konkurrenterne, og hvis det betyder noget for kunderne. Hurtig levering er ikke en styrke, når alle i branchen leverer lige så hurtigt. Så er det en adgangsbillet til markedet. Tilsvarende er en svaghed et område, hvor virksomheden står ringere end konkurrenterne på noget, kunderne lægger vægt på, eller noget der hæmmer dens evne til at nå sine mål.</p>
       <p>Stoffet til S og W kommer fra de interne analyser. Værdikæden viser, hvilke aktiviteter der skaber værdi, og hvor der er spild. VIRO-analysen viser, hvilke ressourcer der er værdifulde, sjældne og svære at efterligne, og om organisationen udnytter dem. Regnskabsanalysen viser, om forretningsmodellen faktisk tjener penge, og hvor robust økonomien er. Forretningsmodellen og værditilbuddet viser, hvor godt virksomheden rammer kundernes behov.</p>
       <p>Hvert punkt bør derfor kunne føres tilbage til en bestemt analyse og en bestemt observation. Kan du ikke pege på, hvor et punkt kommer fra, er det et gæt.</p>
+      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="1">øvelse 1</a> og <a href="#i-timen" data-ex="2">øvelse 2</a> (begreber og felter).</p>
     </section>
 
     <section class="mod">
@@ -341,6 +393,7 @@ a{color:var(--accent)}
         <div class="pair"><div><small>Svagt</small>Stærk økonomi</div><div><small>Stærkt</small>Soliditetsgrad på 41 % mod 28 % i branchen, så virksomheden kan finansiere en udvidelse uden ny gæld</div></div>
       </div>
       <p>Punkterne skal desuden være få. En SWOT med femten styrker fortæller ikke, hvad der er vigtigt. Tre til fem punkter i hvert felt er nok, hvis de er de rigtige, og det kræver, at du prioriterer.</p>
+      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="3">øvelse 3</a> og <a href="#i-timen" data-ex="4">øvelse 4</a> (præcise og relative punkter).</p>
     </section>
 
     <section class="mod">
@@ -356,6 +409,7 @@ a{color:var(--accent)}
       <p>En svaghed på et område, kunderne er ligeglade med, behøver ingen indsats. En svaghed på et område, der afgør købet, skal først på listen.</p>
       <div id="mx-i"></div>
       <p>Vurderingerne er skøn, og derfor skal de begrundes. Skriv, hvad der taler for høj eller lav, og hvilken analyse du bygger på. Så kan andre efterprøve din prioritering.</p>
+      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="5">øvelse 5–8</a> (fra bruttoliste til prioriteret SW).</p>
     </section>
 
     <section class="mod">
@@ -548,6 +602,28 @@ a{color:var(--accent)}
       <div class="ex" id="tx-quiz"></div>
     </section>
   </main>
+
+  <!-- I TIMEN -->
+  <main class="panel" id="p-i-timen" role="tabpanel" hidden>
+    <section class="mod">
+      <span class="n">Klasseøvelser · sprint 2</span>
+      <h2>Øvelser til undervisningen</h2>
+      <p>Ni øvelser, der fører fra begreberne til en prioriteret SW for Living Flowers. Øvelserne bygger på hinanden i fire dele. Fold en øvelse ud for at se formål, materialer, trin og produkt.</p>
+      <div class="it-plan" id="it-plan"></div>
+      <div class="it-tools">
+        <button type="button" id="it-open">Fold alle ud</button>
+        <button type="button" id="it-close">Fold alle ind</button>
+      </div>
+    </section>
+    <section class="mod">
+      <h2>To og to</h2>
+      <div class="it-list" id="it-par"></div>
+    </section>
+    <section class="mod">
+      <h2>I grupper</h2>
+      <div class="it-list" id="it-grp"></div>
+    </section>
+  </main>
 </div>
 
 <script>
@@ -564,7 +640,7 @@ a{color:var(--accent)}
   }
   tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.tab,true);});});
   var h=(location.hash||'').slice(1);
-  if(['viden','traening','quiz','tows'].indexOf(h)>-1) show(h,false);
+  if(['viden','traening','quiz','tows','i-timen'].indexOf(h)>-1) show(h,false);
   [].forEach.call(document.querySelectorAll('[data-goto]'),function(a){
     a.addEventListener('click',function(e){e.preventDefault();show(a.dataset.goto,true);});
   });
@@ -953,6 +1029,156 @@ a{color:var(--accent)}
     {topic:'Valg',q:'Matricen giver ti strategier, men virksomheden har kun ressourcer til tre. Hvad gør den?',o:['Vælger de tre, der passer bedst til målene, ressourcerne og de vigtigste SWOT-punkter','Vælger én strategi fra hvert felt','Gennemfører alle ti lidt efter lidt','Vælger de tre billigste'],a:0,f:'Valget skal bygge på mål, ressourcer, prioritering og sammenhæng mellem strategierne, ikke på en fast fordeling.'},
     {topic:'Valg',q:'Hvilken kritik af TOWS er berettiget?',o:['Den kan kun bruges sammen med regnskabstal','Den kan aldrig bruges af små virksomheder','Den er ikke bedre end den SWOT, den bygger på, og den giver forslag, ikke beslutninger','Den ser kun på trusler'],a:2,f:'Vage punkter giver vage strategier, og valget kræver stadig en vurdering af mål og ressourcer.'}
   ],{});
+
+  /* ================= I TIMEN ================= */
+
+  /* Sæt til false, før siden deles med de studerende. Så skjules alle tips til underviseren. */
+  var VIS_TIPS=true;
+
+  var DELE=[
+    {id:'A',navn:'Begreberne',efter:'Efter Viden 1–3'},
+    {id:'B',navn:'Kvalitet',efter:'Efter Viden 5'},
+    {id:'C',navn:'Fra analyse til prioriteret SW',efter:'Efter Viden 6'},
+    {id:'D',navn:'Afslutning',efter:'Sidst i sprint 2'}
+  ];
+  /* Én post pr. øvelse. trin: [minuttal, tekst]. links: [tekst, mål], hvor mål er en fane eller en fil. */
+  var OVELSER=[
+    {n:1,del:'A',titel:'Forklar og gæt',type:'par',form:'Par',tid:8,kase:'Ingen',
+     formaal:'At kunne forklare SWOT-begreberne med egne ord.',
+     materialer:'Begrebsliste: styrke, svaghed, mulighed, trussel, internt forhold, eksternt forhold, kendt vigtighed, forventet vigtighed, præstation, sandsynlighed, konsekvens.',
+     trin:[['1 min','Parret deler begrebslisten, så hver har fem til seks begreber.'],
+           ['3 min','A forklarer sine begreber ét ad gangen uden at bruge selve ordet. B gætter.'],
+           ['3 min','Byt roller.'],
+           ['1 min','Notér det begreb, der var sværest at forklare.']],
+     produkt:'Ét begreb pr. par, som underviseren samler op på i plenum.',
+     tip:'Spørg tre par om deres sværeste begreb, og forklar kun dem.',
+     links:[['Viden: de to akser','viden']]},
+    {n:2,del:'A',titel:'Skriv en fælde',type:'par',form:'Par, derefter to par sammen',tid:15,kase:'Living Flowers',
+     formaal:'At kunne skelne mellem styrker og svagheder, mellem internt og eksternt og mellem forhold og handlinger.',
+     materialer:'Gruppens interne analyser af Living Flowers.',
+     trin:[['6 min','Parret skriver tre udsagn om Living Flowers, hver med angivet felt (S eller W). Ét af de tre skal være en fælde: en handling forklædt som styrke («Vi bør …»), et eksternt forhold skrevet som styrke eller svaghed, eller et vagt punkt.'],
+           ['5 min','Byt udsagn med naboparret. Find fælden, og skriv den rettede version.'],
+           ['4 min','De to par sammenligner. Blev fælden fundet, og er rettelsen korrekt?']],
+     produkt:'Tre udsagn og én rettet fælde pr. par.',
+     tip:'De bedste fælder kan lægges ind i sorteringsøvelsen på sitet.',
+     bygger:'Den digitale sorteringsøvelse under Træning',
+     links:[['Træning: Sortér udsagnene','traening']]},
+    {n:3,del:'B',titel:'Fra svagt til stærkt',type:'par',form:'Par',tid:20,kase:'Living Flowers',
+     formaal:'At gøre et punkt præcist, dokumenteret og sammenlignet.',
+     materialer:'Living Flowers’ regnskabsanalyse og de øvrige interne analyser. Tre vage punkter: «Godt brand», «Dårlig økonomi», «Stærk bæredygtighedsprofil».',
+     trin:[['2 min','Læs de tre punkter. Afgør for hvert, om I tror, det holder.'],
+           ['12 min','Skriv hvert punkt om, så det indeholder en konkret observation, et tal eller en kilde og en sammenligning (konkurrent, branche eller tidligere år). Holder punktet ikke, så skriv det, analysen faktisk viser.'],
+           ['6 min','Tilføj én «så hvad?»-sætning til hvert punkt: hvad betyder det for virksomhedens muligheder for at nå sine mål?']],
+     produkt:'Tre omskrevne punkter med konsekvenssætning.',
+     tip:'Tjek før timen, at de tre vage punkter passer til Living Flowers-casen. Mindst ét punkt skal bygge på regnskabet. Et punkt, der viser sig ikke at holde, er et godt resultat.',
+     links:[['Viden: et godt SWOT-punkt','viden'],['Træning: Find fejlen','traening']]},
+    {n:4,del:'B',titel:'Advokat og dommer',type:'par',form:'Par',tid:12,kase:'Living Flowers',
+     formaal:'At teste, om en styrke er relativ til konkurrenterne.',
+     materialer:'De interne analyser, parret selv har lavet.',
+     trin:[['1 min','Vælg fire styrker fra jeres analyser.'],
+           ['8 min','2 min pr. styrke. A argumenterer for, at forholdet er en styrke. B argumenterer imod: kan konkurrenterne det samme, og betyder det noget for kunderne? Byt roller ved hver ny styrke.'],
+           ['3 min','Afgør sammen for hver styrke: beholdes, omformuleres eller fjernes?']],
+     produkt:'Fire styrker med afgørelse og én linjes begrundelse.',
+     tip:'Øvelsen er VIRO-testen i samtaleform. Henvis til den, hvis et par går i stå.'},
+    {n:5,del:'C',titel:'Fra analyse til bruttoliste',type:'gruppe',form:'Gruppe (3-5)',tid:20,kase:'Living Flowers',
+     formaal:'At omsætte konklusionerne fra de interne analyser til styrker og svagheder med kilde.',
+     materialer:'Gruppens interne analyser: værdikæde, VIRO, regnskabsanalyse og forretningsmodel. Skabelonen på sitet eller et fælles dokument.',
+     trin:[['6 min','Hver studerende skriver de vigtigste konklusioner fra den analyse, vedkommende har ansvar for, som S- eller W-punkter. Hvert punkt får kilde og den observation, det bygger på.'],
+           ['8 min','Læs punkterne op på skift. Saml dem på én liste, og slå dubletter sammen.'],
+           ['4 min','Markér de punkter, hvor I er uenige om S eller W, eller om forholdet overhovedet er internt.'],
+           ['2 min','Nummerér listen.']],
+     produkt:'En nummereret bruttoliste over S og W med kilde for hvert punkt, typisk 12-15 punkter.',
+     tip:'Kan laves hjemme som forberedelse, hvis tiden er knap. Skabelonens tjek kan bruges som første filter.',
+     bygger:'De interne analyser fra sprint 2',
+     links:[['Skabelon med tjek','skabelon.html']]},
+    {n:6,del:'C',titel:'Sporbarhedstjek på tværs',type:'gruppe',form:'Gruppe, to grupper bytter',tid:20,kase:'Living Flowers',
+     formaal:'At sikre, at hvert punkt kan føres tilbage til en analyse.',
+     materialer:'Bruttolisten fra øvelse 5 med kilde for hvert punkt.',
+     trin:[['2 min','Byt bruttoliste med en anden gruppe.'],
+           ['10 min','Markér hvert punkt: grøn (navngiven analyse og konkret observation), gul (analysen er nævnt, observationen mangler) eller rød (påstand uden kilde).'],
+           ['5 min','Giv listen tilbage, og forklar de gule og røde markeringer.'],
+           ['3 min','Gruppen vælger de to punkter, den vil reparere først.']],
+     produkt:'En farvemarkeret bruttoliste og to punkter til forbedring.',
+     tip:'Bed om en optælling pr. gruppe (grøn/gul/rød), og vis fordelingen for holdet. Grupperne kan køre skabelonens tjek som selvtjek, før listerne byttes.',
+     bygger:'Øvelse 5',
+     links:[['Skabelon med tjek','skabelon.html']]},
+    {n:7,del:'C',titel:'Stille matrice',type:'gruppe',form:'Gruppe (3-5)',tid:25,kase:'Living Flowers',
+     formaal:'At prioritere styrker og svagheder efter vigtighed og præstation.',
+     materialer:'Bruttolisten fra øvelse 5, rettet efter øvelse 6. En tom 2x2-matrice pr. person (vigtighed lodret, præstation vandret).',
+     trin:[['3 min','Gennemgå listen, og ret eller fjern de punkter, der fik rød i øvelse 6.'],
+           ['7 min','Hver studerende placerer alle numre i sin egen matrice. Ingen snak.'],
+           ['3 min','Læg matricerne ved siden af hinanden. Markér de numre, gruppen har placeret forskelligt.'],
+           ['9 min','Diskutér kun de markerede punkter. Hvad bygger hver placering på, og er vigtigheden kendt eller forventet?'],
+           ['3 min','Tegn én fælles matrice.']],
+     produkt:'Én fælles matrice og en liste over de punkter, hvor dokumentationen mangler.',
+     tip:'Uenighed skyldes næsten altid manglende data om, hvad kunderne lægger vægt på. Lad grupperne notere det som et spørgsmål til sprint 3.',
+     bygger:'Øvelse 5 og 6',
+     links:[['Viden: prioritering','viden']]},
+    {n:8,del:'C',titel:'Fem pladser',type:'gruppe',form:'Gruppe (3-5)',tid:30,kase:'Living Flowers',
+     formaal:'At vælge og begrunde de vigtigste styrker og svagheder.',
+     materialer:'Den fælles matrice fra øvelse 7 og bruttolisten (12-15 punkter).',
+     trin:[['3 min','Tegn to kolonner med fem tomme pladser: fem til S og fem til W.'],
+           ['12 min','Fyld pladserne. Tag først punkter med høj vigtighed.'],
+           ['8 min','Skriv én sætning for hvert fravalgt punkt: hvorfor kom det ikke med? Henvis til placeringen i matricen.'],
+           ['7 min','Rangordn de valgte punkter fra 1 til 5 i hver kolonne, og skriv en «så hvad?»-sætning til nummer 1 i hver.']],
+     produkt:'En prioriteret SW med højst fem punkter i hver kolonne, rangordnet og begrundet.',
+     tip:'Dette er sprintets afleveringsprodukt. Punkter, der blev fravalgt på grund af manglende viden, føres videre som spørgsmål til sprint 3 og 4. Grupperne kan skrive SW ind i skabelonen og kopiere den som tekst til rapporten.',
+     bygger:'Øvelse 7',
+     links:[['Skabelon med tjek','skabelon.html']]},
+    {n:9,del:'D',titel:'Direktørens ti minutter',type:'gruppe',form:'To grupper sammen',tid:25,kase:'Living Flowers',
+     formaal:'At kunne forsvare en prioriteret SW mundtligt.',
+     materialer:'Den prioriterede SW fra øvelse 8.',
+     trin:[['3 min','Begge grupper forbereder en fremlæggelse på tre minutter.'],
+           ['3 min','Gruppe A fremlægger. Gruppe B er Living Flowers’ ledelse.'],
+           ['7 min','Ledelsen må kun stille to spørgsmål, så mange gange den vil: «Hvor ved I det fra?» og «Så hvad?»'],
+           ['10 min','Byt roller, og gentag trin 2 og 3.'],
+           ['2 min','Hver gruppe noterer det ene punkt, den ikke kunne forsvare.']],
+     produkt:'Ét punkt pr. gruppe, der skal styrkes eller fjernes.',
+     tip:'Kan bruges som mundtlig afslutning på sprint 2 i stedet for plenumfremlæggelse.',
+     bygger:'Øvelse 8'}
+  ];
+
+  (function(){
+    function blok(t,body){return '<div><h4>'+t+'</h4>'+body+'</div>';}
+    function link(l){
+      var file=/\.html$/.test(l[1]);
+      return '<a href="'+(file?l[1]:'#'+l[1])+'"'+(file?'':' data-tablink="'+l[1]+'"')+'>'+esc(l[0])+'</a>';
+    }
+    function card(o){
+      var d=DELE.filter(function(x){return x.id===o.del;})[0];
+      var h='<details class="it" id="ovelse-'+o.n+'"><summary>'+
+        '<span class="no">'+o.n+'</span>'+
+        '<span class="ti">'+esc(o.titel)+'<small>Del '+d.id+' · '+esc(d.navn)+'</small></span>'+
+        '<span class="form'+(o.type==='gruppe'?' grp':'')+'">'+(o.type==='gruppe'?'Gruppe':'Par')+'</span>'+
+        '<span class="tid">'+o.tid+' min</span></summary><div class="it-body">';
+      h+=blok('Formål','<p>'+esc(o.formaal)+'</p>');
+      h+='<div class="it-row">'+blok('Form','<p>'+esc(o.form)+'</p>')+blok('Case','<p>'+esc(o.kase)+'</p>')+blok('Bygger på','<p>'+esc(o.bygger||'Ingen')+'</p>')+'</div>';
+      h+=blok('Materialer','<p>'+esc(o.materialer)+'</p>');
+      h+=blok('Trin','<ol class="it-steps">'+o.trin.map(function(t){return '<li><span class="min">'+esc(t[0])+'</span><span class="txt">'+esc(t[1])+'</span></li>';}).join('')+'</ol>');
+      h+=blok('Produkt','<p>'+esc(o.produkt)+'</p>');
+      if(o.links&&o.links.length)h+=blok('På sitet','<div class="it-links">'+o.links.map(link).join('')+'</div>');
+      if(VIS_TIPS&&o.tip)h+='<div class="it-tip">'+blok('Tip til underviseren','<p>'+esc(o.tip)+'</p>')+'</div>';
+      return h+'</div></details>';
+    }
+    document.getElementById('it-par').innerHTML=OVELSER.filter(function(o){return o.type==='par';}).map(card).join('');
+    document.getElementById('it-grp').innerHTML=OVELSER.filter(function(o){return o.type==='gruppe';}).map(card).join('');
+    document.getElementById('it-plan').innerHTML=DELE.map(function(d){
+      var ov=OVELSER.filter(function(o){return o.del===d.id;}),min=ov.reduce(function(a,o){return a+o.tid;},0);
+      return '<div><small>Del '+d.id+' · '+d.efter+'</small><b>'+esc(d.navn)+'</b><span>Øvelse '+ov.map(function(o){return o.n;}).join(', ')+' · '+min+' min</span></div>';
+    }).join('');
+    var all=function(){return [].slice.call(document.querySelectorAll('#p-i-timen details.it'));};
+    document.getElementById('it-open').addEventListener('click',function(){all().forEach(function(d){d.open=true;});});
+    document.getElementById('it-close').addEventListener('click',function(){all().forEach(function(d){d.open=false;});});
+    /* links til andre faner fra øvelserne, og fra Viden til en bestemt øvelse */
+    document.addEventListener('click',function(e){
+      var a=e.target.closest('[data-tablink],[data-ex]');if(!a)return;
+      e.preventDefault();
+      if(a.dataset.tablink){show(a.dataset.tablink,true);return;}
+      show('i-timen',true);
+      var d=document.getElementById('ovelse-'+a.dataset.ex);
+      d.open=true;setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'start'});d.querySelector('summary').focus({preventScroll:true});},30);
+    });
+  })();
 })();
 </script>
 </body>
