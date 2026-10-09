@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SWOT-værkstedet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+html{color-scheme:light dark}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Layout: én læsekolonne med faste faner; de fire SWOT-felter har hver sin farve, som går igen i tekst, øvelser og matricer. */
+:root{
+  --bg:#f2f6f5; --surface:#ffffff; --ink:#14211f; --muted:#566764; --line:#d3dedb;
+  --accent:#0f5c55; --on-accent:#ffffff;
+  --s:#1c7448; --w:#8f6210; --o:#275aa3; --t:#8a2f5c; --x:#566764;
+  --bad:#b3261e;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1615; --surface:#162120; --ink:#e6eeec; --muted:#9aaca8; --line:#2b3a37;
+    --accent:#5cc4b6; --on-accent:#0e1615;
+    --s:#62c692; --w:#e0b352; --o:#7fb1f2; --t:#e384b3; --x:#9aaca8;
+    --bad:#f08a80; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1615; --surface:#162120; --ink:#e6eeec; --muted:#9aaca8; --line:#2b3a37;
+  --accent:#5cc4b6; --on-accent:#0e1615;
+  --s:#62c692; --w:#e0b352; --o:#7fb1f2; --t:#e384b3; --x:#9aaca8;
+  --bad:#f08a80; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
+.wrap{max-width:54rem;margin:0 auto;padding-inline:1.125rem;padding-block:1.5rem 4rem}
+h1,h2,h3,button,.ui{font-family:var(--display)}
+h1{font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.02em}
+h2{font-size:1.5rem;line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
+h3{font-size:1.0625rem;margin:0;font-weight:700}
+p{margin:0;max-width:65ch}
+.lead{color:var(--muted);font-size:1.1875rem}
+.head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;margin-bottom:1.5rem}
+.head > div{min-width:0;display:flex;flex-direction:column;gap:.75rem}
+@media (max-width:40rem){.head{grid-template-columns:1fr}}
+
+/* SWOT-kvadrant i hovedet */
+.quad{display:grid;grid-template-columns:auto 5.25rem 5.25rem;gap:.25rem;font-family:var(--display);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);align-items:center}
+.quad .col{text-align:center}
+.quad .cell{height:4.25rem;display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:.25rem;color:var(--c);background:color-mix(in srgb,var(--c) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 40%,var(--surface))}
+.quad .cell b{font-size:1.625rem;line-height:1;letter-spacing:0}
+.quad .cell span{font-size:.625rem;letter-spacing:.03em;text-transform:none}
+
+/* Faner */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:.25rem;padding-block:.5rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
+.tabs button{font-size:1rem;font-weight:500;padding:.5rem .9rem;border:0;border-radius:.375rem;background:transparent;color:var(--muted);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.panel{display:flex;flex-direction:column;gap:3rem}
+.mod{display:flex;flex-direction:column;gap:.9rem}
+.mod .n{font-family:var(--display);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.s{color:var(--s)} .w{color:var(--w)} .o{color:var(--o)} .t{color:var(--t)}
+.s,.w,.o,.t{font-weight:600}
+
+.note{border-left:3px solid var(--accent);padding:.25rem 0 .25rem 1rem;color:var(--muted);font-size:1.0625rem}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:1.125rem 1.25rem;display:flex;flex-direction:column;gap:.5rem}
+.case .tag{font-family:var(--display);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* sammenligning svag/stærk */
+.pairs{display:grid;gap:.5rem}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.pair > div{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:.375rem;padding:.6rem .8rem;font-size:1rem;line-height:1.4}
+.pair small{display:block;font-family:var(--display);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pair > div:last-child{border-color:color-mix(in srgb,var(--s) 55%,var(--surface))}
+@media (max-width:34rem){.pair{grid-template-columns:1fr}}
+
+/* matricer */
+.mx{display:flex;flex-direction:column;gap:.5rem}
+.mx .axis{font-family:var(--display);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.375rem}
+.mx .c{min-width:0;border-radius:.375rem;padding:.7rem .85rem;background:color-mix(in srgb,var(--c) calc(var(--k)*1%),var(--surface));border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface));font-size:.9375rem;line-height:1.4;display:flex;flex-direction:column;gap:.2rem}
+.mx .c small{font-family:var(--display);font-size:.6875rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.mx .c b{font-family:var(--display);font-size:1rem;color:var(--c)}
+.mx .c i{color:var(--muted)}
+@media (max-width:34rem){.mx .grid{grid-template-columns:1fr}}
+
+/* overbliksanimation */
+.ov{background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:1rem;display:flex;flex-direction:column;gap:.5rem;font-family:var(--display)}
+.ov-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr) minmax(0,1fr);gap:.5rem}
+.ov [data-s]{transition:opacity .5s ease,transform .5s ease,box-shadow .3s ease}
+.ov .dim{opacity:.14;transform:translateY(.375rem)}
+.ov .hot{box-shadow:0 0 0 2px var(--accent)}
+.ov small{font-size:.6875rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.ov-src{border:1px dashed var(--line);border-radius:.375rem;padding:.7rem .8rem;display:flex;flex-direction:column;gap:.3rem;font-size:.9375rem;line-height:1.25;position:relative}
+.ov-src::after{content:"→";position:absolute;right:-.55rem;top:50%;transform:translateY(-50%);background:var(--surface);color:var(--muted);font-size:.875rem;line-height:1}
+.ov-cell{border-radius:.375rem;padding:.7rem .8rem;display:flex;flex-direction:column;gap:.15rem;background:color-mix(in srgb,var(--c) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 40%,var(--surface));font-size:.875rem;line-height:1.3}
+.ov-cell b{font-size:2rem;line-height:1;color:var(--c)}
+.ov-cell strong{color:var(--c);font-size:1rem}
+.ov-step{border:1px solid var(--line);border-radius:.375rem;padding:.6rem .8rem;display:flex;flex-direction:column;gap:.15rem;font-size:.9375rem;line-height:1.35;background:var(--bg)}
+.ov-step::before{content:"↓";color:var(--muted);align-self:center;line-height:1;margin-top:-.2rem}
+.ov-ctl{display:flex;gap:1rem;align-items:center;margin-top:.5rem}
+.ov-ctl .go{flex:none}
+.ov-ctl p{font-family:var(--body);font-size:1.0625rem;line-height:1.4;min-height:2.8em;display:flex;align-items:center}
+@media (max-width:36rem){
+  .ov-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .ov-src{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;gap:.2rem .8rem}
+  .ov-src small{flex-basis:100%}
+  .ov-src::after{content:"↓";right:auto;left:50%;top:auto;bottom:-.6rem;transform:translateX(-50%)}
+  .ov-ctl{flex-direction:column;align-items:flex-start;gap:.5rem}
+}
+@media (prefers-reduced-motion:reduce){.ov [data-s]{transition:none}.ov .dim{transform:none}}
+
+/* øvelser */
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:.5rem;padding:1.125rem 1.25rem;display:flex;flex-direction:column;gap:1rem}
+.ex .bar{display:flex;justify-content:space-between;gap:1rem;font-family:var(--display);font-size:.8125rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.ex .ctx{font-family:var(--display);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--c,var(--muted))}
+.ex .q{font-size:1.25rem;line-height:1.4;max-width:60ch}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.opts button{flex:1 1 13rem;min-width:0;text-align:left;font-size:.9375rem;font-weight:500;line-height:1.3;padding:.7rem .85rem;border:1px solid var(--line);border-radius:.375rem;background:var(--bg);color:var(--ink);cursor:pointer}
+.opts.short button{flex:1 1 8rem}
+.opts button:hover:not(:disabled){border-color:var(--accent)}
+.opts button:disabled{cursor:default;opacity:.6}
+.opts button.right{opacity:1;border-color:var(--s);background:color-mix(in srgb,var(--s) 15%,var(--surface));color:var(--s)}
+.opts button.wrong{opacity:1;border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface));color:var(--bad)}
+.fb{font-size:1.0625rem}
+.fb b{font-family:var(--display)}
+.fb .ok{color:var(--s)} .fb .no{color:var(--bad)}
+.go{align-self:flex-start;font-size:1rem;font-weight:700;padding:.6rem 1.1rem;border:0;border-radius:.375rem;background:var(--accent);color:var(--on-accent);cursor:pointer}
+.score{font-family:var(--display);font-size:2.25rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.topics{display:grid;gap:.4rem;font-family:var(--display);font-size:.9375rem}
+.topics div{display:grid;grid-template-columns:9rem 1fr auto;gap:.75rem;align-items:center;font-variant-numeric:tabular-nums}
+.topics .track{height:.5rem;background:var(--line);border-radius:1rem;overflow:hidden}
+.topics .track span{display:block;height:100%;background:var(--accent)}
+@media (max-width:26rem){.topics div{grid-template-columns:6.5rem 1fr auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="head">
+    <div>
+      <h1>SWOT-værkstedet</h1>
+      <p class="lead">Viden, træning og quiz om SWOT-analysen. Brug siden, før du samler den interne analyse af Living Flowers.</p>
+    </div>
+    <div class="quad" aria-label="SWOT-modellens fire felter">
+      <span></span><span class="col">Positivt</span><span class="col">Negativt</span>
+      <span>Internt</span>
+      <div class="cell" style="--c:var(--s)"><b>S</b><span>Styrker</span></div>
+      <div class="cell" style="--c:var(--w)"><b>W</b><span>Svagheder</span></div>
+      <span>Eksternt</span>
+      <div class="cell" style="--c:var(--o)"><b>O</b><span>Muligheder</span></div>
+      <div class="cell" style="--c:var(--t)"><b>T</b><span>Trusler</span></div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-viden" data-tab="viden" aria-selected="true">Viden</button>
+    <button role="tab" id="tab-traening" data-tab="traening" aria-selected="false">Træning</button>
+    <button role="tab" id="tab-quiz" data-tab="quiz" aria-selected="false">Quiz</button>
+  </nav>
+
+  <!-- VIDEN -->
+  <main class="panel" id="p-viden" role="tabpanel">
+    <section class="mod">
+      <span class="n">1 · Formål</span>
+      <h2>SWOT er en opsamling, ikke en analyse</h2>
+      <p>SWOT-analysen producerer ikke selv ny viden. Den samler konklusionerne fra de analyser, du allerede har lavet, og stiller dem op, så de kan sammenlignes. De interne analyser munder ud i virksomhedens <span class="s">styrker</span> og <span class="w">svagheder</span>. De eksterne analyser munder ud i omverdenens <span class="o">muligheder</span> og <span class="t">trusler</span>.</p>
+      <p>Det er derfor SWOT ligger sidst i situationsanalysen. En SWOT, der er skrevet uden analyser bag, er en liste af meninger. En SWOT, der bygger på analyserne, er et beslutningsgrundlag: den viser, hvad virksomheden kan bygge på, hvad den skal rette op på, og hvad den skal reagere på i markedet.</p>
+      <p>Selve bogstaverne står for Strengths, Weaknesses, Opportunities og Threats. Modellen har to akser. Den ene skelner mellem det interne og det eksterne, den anden mellem det, der hjælper virksomheden mod sine mål, og det, der hæmmer den.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">Overblik</span>
+      <h2>Fra analyser til strategi</h2>
+      <div class="ov" id="ov">
+        <div class="ov-grid">
+          <div class="ov-src" data-s="1"><small>Interne analyser</small><span>Værdikæde</span><span>VIRO</span><span>Regnskabsanalyse</span><span>Forretningsmodel</span></div>
+          <div class="ov-cell" data-s="2" style="--c:var(--s)"><small>Internt · positivt</small><b>S</b><strong>Styrker</strong><span>Det, virksomheden gør bedre end konkurrenterne</span></div>
+          <div class="ov-cell" data-s="2" style="--c:var(--w)"><small>Internt · negativt</small><b>W</b><strong>Svagheder</strong><span>Det, virksomheden gør ringere end konkurrenterne</span></div>
+          <div class="ov-src" data-s="3"><small>Eksterne analyser</small><span>Omverden</span><span>Branche</span><span>Konkurrenter</span><span>Kunder</span></div>
+          <div class="ov-cell" data-s="4" style="--c:var(--o)"><small>Eksternt · positivt</small><b>O</b><strong>Muligheder</strong><span>Udviklinger, virksomheden kan udnytte</span></div>
+          <div class="ov-cell" data-s="4" style="--c:var(--t)"><small>Eksternt · negativt</small><b>T</b><strong>Trusler</strong><span>Udviklinger, der kan skade virksomheden</span></div>
+        </div>
+        <div class="ov-step" data-s="5"><small>Prioritering</small><span>S og W efter vigtighed og præstation. O og T efter sandsynlighed og konsekvens.</span></div>
+        <div class="ov-step" data-s="6"><small>Strategi</small><span>Felterne kombineres til strategier i TOWS-matricen.</span></div>
+        <div class="ov-ctl">
+          <button type="button" class="go" id="ov-play">Afspil</button>
+          <p id="ov-cap" aria-live="polite">Figuren viser hele forløbet. Tryk på Afspil for at se det trin for trin.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mod">
+      <span class="n">2 · De to akser</span>
+      <h2>Internt eller eksternt: kan virksomheden selv styre det?</h2>
+      <p>Det vigtigste skel i modellen er mellem internt og eksternt, og den enkleste test er kontrol. Et forhold er internt, hvis virksomheden selv kan ændre det gennem sine egne beslutninger: produkter, medarbejdere, økonomi, processer, brand og valg af leverandører. Et forhold er eksternt, hvis det findes, uanset hvad virksomheden gør: konjunkturer, lovgivning, teknologi, kundernes vaner og konkurrenternes træk.</p>
+      <p>Skellet har en konsekvens, som mange overser. Muligheder og trusler er forhold i omverdenen, ikke noget virksomheden gør. "Vi kan åbne en webshop i Tyskland" er en handling, som virksomheden selv bestemmer over, og den hører derfor ikke hjemme i SWOT. Muligheden er det forhold, der gør handlingen interessant, for eksempel at tyskernes køb af ladcykler på nettet vokser.</p>
+      <p>Det samme eksterne forhold kan være en mulighed for én virksomhed og en trussel for en anden. Skærpede miljøkrav er en trussel for den, der skal bygge sin produktion om, og en mulighed for den, der allerede lever op til kravene. Om et forhold er positivt eller negativt, afgøres altså af virksomhedens egne styrker og svagheder.</p>
+      <p>Til sidst handler SWOT om situationen nu og den udvikling, man kan se komme. Styrker og svagheder beskriver virksomheden, som den er i dag. Muligheder og trusler beskriver tendenser, der er i gang eller ventes.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">3 · Den interne side</span>
+      <h2>Styrker og svagheder er relative</h2>
+      <p>En styrke er ikke bare noget, virksomheden har eller er god til. Den er kun en styrke, hvis virksomheden gør det bedre end konkurrenterne, og hvis det betyder noget for kunderne. Hurtig levering er ikke en styrke, når alle i branchen leverer lige så hurtigt. Så er det en adgangsbillet til markedet. Tilsvarende er en svaghed et område, hvor virksomheden står ringere end konkurrenterne på noget, kunderne lægger vægt på, eller noget der hæmmer dens evne til at nå sine mål.</p>
+      <p>Stoffet til S og W kommer fra de interne analyser. Værdikæden viser, hvilke aktiviteter der skaber værdi, og hvor der er spild. VIRO-analysen viser, hvilke ressourcer der er værdifulde, sjældne og svære at efterligne, og om organisationen udnytter dem. Regnskabsanalysen viser, om forretningsmodellen faktisk tjener penge, og hvor robust økonomien er. Forretningsmodellen og værditilbuddet viser, hvor godt virksomheden rammer kundernes behov.</p>
+      <p>Hvert punkt bør derfor kunne føres tilbage til en bestemt analyse og en bestemt observation. Kan du ikke pege på, hvor et punkt kommer fra, er det et gæt.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">4 · Den eksterne side</span>
+      <h2>Muligheder og trusler kommer fra omverdenen</h2>
+      <p>En mulighed er en udvikling i omverdenen, som virksomheden kan udnytte til at skabe vækst eller indtjening. En trussel er en udvikling, der kan skade afsætning, indtjening eller position, hvis virksomheden ikke reagerer. Stoffet kommer fra analyser af den fjerne omverden, branchen, konkurrenterne og kunderne.</p>
+      <p>Det eksterne skal beskrives lige så konkret som det interne. "Konkurrence" er ikke en trussel, for konkurrence er der altid. "En tysk konkurrent åbner showroom i København til foråret" er en trussel, fordi den peger på en bestemt begivenhed med en bestemt konsekvens.</p>
+      <p class="note">På dette forløb arbejder I med den eksterne side i sprint 3 og 4. Her lærer I begreberne, så I ved, hvad I skal lede efter.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">5 · Kvalitet</span>
+      <h2>Hvad kendetegner et godt SWOT-punkt?</h2>
+      <p>Et godt punkt består tre prøver. Det er præcist, så en læser uden for gruppen forstår, hvad der menes. Det er dokumenteret, helst med et tal og en sammenligning med konkurrenter, branche eller tidligere år. Og det har en konsekvens: du kan svare på spørgsmålet "så hvad?" og forklare, hvad punktet betyder for virksomhedens muligheder for at nå sine mål.</p>
+      <div class="pairs">
+        <div class="pair"><div><small>Svagt</small>Godt produkt</div><div><small>Stærkt</small>Kunderne giver stellet 4,8 af 5 i holdbarhed, mod 4,1 og 4,3 hos de to nærmeste konkurrenter</div></div>
+        <div class="pair"><div><small>Svagt</small>Dårlig til markedsføring</div><div><small>Stærkt</small>Ingen medarbejder har ansvar for digital markedsføring, og webshoppen står for 12 % af omsætningen mod omkring 35 % hos konkurrenterne</div></div>
+        <div class="pair"><div><small>Svagt</small>Stærk økonomi</div><div><small>Stærkt</small>Soliditetsgrad på 41 % mod 28 % i branchen, så virksomheden kan finansiere en udvidelse uden ny gæld</div></div>
+      </div>
+      <p>Punkterne skal desuden være få. En SWOT med femten styrker fortæller ikke, hvad der er vigtigt. Tre til fem punkter i hvert felt er nok, hvis de er de rigtige, og det kræver, at du prioriterer.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">6 · Prioritering</span>
+      <h2>Prioritér punkterne i to matricer</h2>
+      <p>Ikke alle punkter vejer lige tungt. Prioriteringen sker ved at vurdere hvert punkt på to dimensioner og placere det i en 2x2-matrice. De eksterne forhold har deres matrice, og de interne har deres.</p>
+      <h3>Muligheder og trusler: sandsynlighed og konsekvens</h3>
+      <p>Muligheder og trusler er udviklinger i omverdenen, og ingen af dem er sikre. Hvert punkt vurderes derfor på, hvor sandsynligt det er, at det indtræffer, og hvor stor konsekvensen bliver for virksomheden, hvis det gør. For en mulighed er konsekvensen den gevinst, virksomheden kan hente. For en trussel er det den skade, den kan lide.</p>
+      <p>De to dimensioner skal holdes adskilt. Et forhold kan være meget omtalt og alligevel usandsynligt, og et usandsynligt forhold kan have så stor konsekvens, at virksomheden skal være forberedt. Konsekvensen afhænger desuden af virksomheden selv: et leveringsstop rammer hårdere, når der kun er én leverandør. Derfor skal S og W være på plads, før O og T kan prioriteres.</p>
+      <div id="mx-ot"></div>
+      <h3>Styrker og svagheder: vigtighed og præstation</h3>
+      <p>De interne forhold vurderes på, hvor vigtigt forholdet er for kunderne og for konkurrencen, og hvor godt virksomheden præsterer på det i forhold til konkurrenterne. Vigtigheden er kendt, når virksomheden har data om, hvad kunderne vælger efter, for eksempel fra en kundeundersøgelse. Ellers er den forventet, og så skal du skrive, hvad forventningen bygger på.</p>
+      <p>En svaghed på et område, kunderne er ligeglade med, behøver ingen indsats. En svaghed på et område, der afgør købet, skal først på listen.</p>
+      <div id="mx-i"></div>
+      <p>Vurderingerne er skøn, og derfor skal de begrundes. Skriv, hvad der taler for høj eller lav, og hvilken analyse du bygger på. Så kan andre efterprøve din prioritering.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">7 · Faldgruber</span>
+      <h2>Typiske fejl og kritikken af SWOT</h2>
+      <p>De fleste fejl i en SWOT falder i fire grupper. Punkterne er for vage og udokumenterede. Punkterne står i det forkerte felt, typisk fordi et eksternt forhold er skrevet som styrke, eller en intern svaghed som trussel. Handlinger er skrevet ind som muligheder. Og listen er uprioriteret, så det væsentlige drukner.</p>
+      <p>Modellen selv har også begrænsninger, som du skal kunne forholde dig kritisk til. Den giver et øjebliksbillede og bliver hurtigt forældet. Den er subjektiv, fordi den, der udfylder den, afgør, hvad der tæller som en styrke. Den viser ikke sammenhænge mellem felterne. Og den siger ikke, hvad virksomheden skal gøre. Dokumentation, sammenligning med konkurrenter og prioritering er måderne at imødegå kritikken på.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">8 · Videre</span>
+      <h2>Fra SWOT til strategi</h2>
+      <p>SWOT beskriver situationen. Næste skridt er at kombinere felterne og spørge, hvordan styrkerne kan bruges til at gribe mulighederne og afværge truslerne, og hvordan svaghederne kan udbedres. Det er TOWS-matricens opgave, og den vender vi tilbage til, når I har den eksterne analyse på plads efter sprint 3 og 4.</p>
+    </section>
+  </main>
+
+  <!-- TRÆNING -->
+  <main class="panel" id="p-traening" role="tabpanel" hidden>
+    <section class="case">
+      <span class="tag">Øvelsescase · opdigtet virksomhed</span>
+      <h2>Cykelværket ApS</h2>
+      <p>Cykelværket i Horsens udvikler og samler ladcykler med elmotor. Virksomheden har 24 ansatte og sælger gennem 38 forhandlere og sin egen webshop, som står for 12 % af omsætningen. Cyklerne er kendt for et holdbart stel og 10 års garanti. Motorer og batterier købes hos én leverandør i Taiwan. Der er ingen medarbejder med ansvar for digital markedsføring. København står for 40 % af salget.</p>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 1</span>
+      <h2>Sortér udsagnene</h2>
+      <p>Placér hvert udsagn om Cykelværket i det rigtige felt. Nogle udsagn hører slet ikke hjemme i en SWOT.</p>
+      <div class="ex" id="ex-sort"></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 2</span>
+      <h2>Find fejlen</h2>
+      <p>En gruppe har lavet en SWOT for Cykelværket. Vurdér hvert punkt i det felt, gruppen har placeret det i.</p>
+      <div class="ex" id="ex-err"></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 3</span>
+      <h2>Prioritér efter sandsynlighed</h2>
+      <p>Placér hver mulighed og trussel i matricen ud fra oplysningerne. Læs efter, hvad der siger noget om sandsynligheden for, at forholdet indtræffer, og hvad der siger noget om konsekvensen for virksomheden.</p>
+      <div class="ex" id="ex-prio"></div>
+    </section>
+  </main>
+
+  <!-- QUIZ -->
+  <main class="panel" id="p-quiz" role="tabpanel" hidden>
+    <section class="mod">
+      <span class="n">Test dig selv</span>
+      <h2>Quiz om SWOT</h2>
+      <p>13 spørgsmål. Du får en forklaring efter hvert svar og til sidst et resultat fordelt på emner, så du kan se, hvad du bør læse igen.</p>
+      <div class="ex" id="ex-quiz"></div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  /* ---------- faner ---------- */
+  var tabs=[].slice.call(document.querySelectorAll('.tabs button'));
+  function show(name,push){
+    tabs.forEach(function(b){
+      var on=b.dataset.tab===name;
+      b.setAttribute('aria-selected',on?'true':'false');
+      document.getElementById('p-'+b.dataset.tab).hidden=!on;
+    });
+    if(push){try{history.replaceState(null,'','#'+name);}catch(e){} window.scrollTo(0,0);}
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.tab,true);});});
+  var h=(location.hash||'').slice(1);
+  if(['viden','traening','quiz'].indexOf(h)>-1) show(h,false);
+
+  /* ---------- overbliksanimation ---------- */
+  (function(){
+    var caps=[
+      'De interne analyser undersøger virksomheden selv.',
+      'Konklusionerne samles som styrker og svagheder.',
+      'De eksterne analyser undersøger omverdenen.',
+      'Konklusionerne samles som muligheder og trusler.',
+      'Punkterne prioriteres, så kun de vigtigste står tilbage.',
+      'Den prioriterede SWOT er grundlaget for strategien.'
+    ];
+    var els=[].slice.call(document.querySelectorAll('#ov [data-s]')),
+        btn=document.getElementById('ov-play'),cap=document.getElementById('ov-cap'),timer=null;
+    function set(step){
+      els.forEach(function(e){var s=+e.dataset.s;e.classList.toggle('dim',step>0&&s>step);e.classList.toggle('hot',s===step);});
+    }
+    function run(step){
+      set(step);cap.textContent=step+' af '+caps.length+': '+caps[step-1];
+      timer=setTimeout(function(){
+        if(step<caps.length)run(step+1);
+        else{set(0);timer=null;btn.textContent='Afspil igen';cap.textContent='Analyserne samles i de fire felter, prioriteres og bruges til strategi.';}
+      },2800);
+    }
+    btn.addEventListener('click',function(){
+      if(timer)clearTimeout(timer);
+      btn.textContent='Forfra';run(1);
+    });
+  })();
+
+  /* ---------- matricer ---------- */
+  function matrix(id,color,yAxis,xAxis,cells){
+    var k=[26,14,14,5], html='<div class="mx" style="--c:var(--'+color+')"><span class="axis">'+yAxis+' × '+xAxis+'</span><div class="grid">';
+    cells.forEach(function(c,i){
+      html+='<div class="c" style="--k:'+k[i]+'"><small>'+c[0]+'</small><b>'+c[1]+'</b><span>'+c[2]+'</span><i>'+c[3]+'</i></div>';
+    });
+    document.getElementById(id).innerHTML=html+'</div></div>';
+  }
+  matrix('mx-ot','accent','Konsekvens for virksomheden','sandsynlighed for at indtræffe',[
+    ['Stor konsekvens · høj sandsynlighed','Højeste prioritet','Muligheden skal gribes, og truslen skal mødes med en konkret plan nu.','Eks.: erhvervsmarkedet vokser støt (mulighed). En konkurrent har annonceret et showroom på hovedmarkedet (trussel).'],
+    ['Stor konsekvens · lav sandsynlighed','Overvåg og vær forberedt','Hold øje med udviklingen, og hav en plan klar, hvis den indtræffer.','Eks.: en stor tysk kæde tager måske et dansk mærke ind (mulighed). Leveringsstop fra den eneste leverandør (trussel).'],
+    ['Lille konsekvens · høj sandsynlighed','Håndtér i driften','Kommer nok, men flytter ikke meget. Klares uden særlig indsats.','Eks.: kunder efterspørger tilbehør (mulighed). En varslet, mindre prisstigning på fragt (trussel).'],
+    ['Lille konsekvens · lav sandsynlighed','Se bort fra','Bruger opmærksomhed uden at betyde noget.','Eks.: en fjern trend uden betydning for kunderne.']
+  ]);
+  matrix('mx-i','s','Vigtighed','præstation',[
+    ['Høj vigtighed · høj præstation','Fasthold og brug','De styrker, strategien skal bygge på.','Eks.: holdbarhed og garanti.'],
+    ['Høj vigtighed · lav præstation','Sæt ind her','De svagheder, der skal udbedres først.','Eks.: leveringstid, hvis kunderne vælger efter den.'],
+    ['Lav vigtighed · høj præstation','Mulig overinvestering','Virksomheden er god til noget, kunderne ikke lægger vægt på.','Eks.: et meget stort farveudvalg.'],
+    ['Lav vigtighed · lav præstation','Lav prioritet','En svaghed, der ikke koster kunder.','Eks.: en enkel emballage.']
+  ]);
+
+  /* ---------- øvelsesmotor ---------- */
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function runner(el,src,cfg){
+    var items,i,score,byTopic;
+    function start(){items=cfg.shuffle?shuffle(src):src;i=0;score=0;byTopic={};draw();}
+    function draw(){
+      var it=items[i],opts=it.o||cfg.o;
+      var html='<div class="bar"><span>'+(i+1)+' af '+items.length+'</span><span>'+score+' rigtige</span></div>';
+      if(it.ctx) html+='<span class="ctx" style="--c:var(--'+(it.c||'x')+')">'+esc(it.ctx)+'</span>';
+      html+='<div class="q">'+esc(it.q)+'</div><div class="opts'+(cfg.short?' short':'')+'">';
+      opts.forEach(function(o,n){html+='<button type="button" data-n="'+n+'">'+esc(o)+'</button>';});
+      html+='</div><div class="fb" aria-live="polite"></div>';
+      el.innerHTML=html;
+      [].forEach.call(el.querySelectorAll('.opts button'),function(b){b.addEventListener('click',function(){answer(+b.dataset.n);});});
+    }
+    function answer(n){
+      var it=items[i],ok=n===it.a,bs=el.querySelectorAll('.opts button');
+      [].forEach.call(bs,function(b,k){b.disabled=true;if(k===it.a)b.className='right';else if(k===n)b.className='wrong';});
+      if(ok)score++;
+      if(it.topic){var t=byTopic[it.topic]||(byTopic[it.topic]=[0,0]);t[1]++;if(ok)t[0]++;}
+      el.querySelector('.bar span:last-child').textContent=score+' rigtige';
+      el.querySelector('.fb').innerHTML=(ok?'<b class="ok">Rigtigt.</b> ':'<b class="no">Ikke helt.</b> ')+esc(it.f);
+      var nx=document.createElement('button');nx.type='button';nx.className='go';
+      nx.textContent=i<items.length-1?'Næste':'Se resultat';
+      nx.addEventListener('click',function(){i++;if(i<items.length)draw();else done();});
+      el.appendChild(nx);nx.focus();
+    }
+    function done(){
+      var html='<div class="score">'+score+' / '+items.length+'</div>';
+      var keys=Object.keys(byTopic);
+      if(keys.length){
+        html+='<div class="topics">';
+        keys.forEach(function(k){var t=byTopic[k];html+='<div><span>'+esc(k)+'</span><span class="track"><span style="width:'+Math.round(100*t[0]/t[1])+'%"></span></span><span>'+t[0]+'/'+t[1]+'</span></div>';});
+        html+='</div><p class="fb">Læs de moduler igen under Viden, hvor du mangler rigtige svar.</p>';
+      }else{
+        html+='<p class="fb">'+(score===items.length?'Alt rigtigt.':'Prøv igen, og læs forklaringerne til dem, du missede.')+'</p>';
+      }
+      el.innerHTML=html;
+      var b=document.createElement('button');b.type='button';b.className='go';b.textContent='Prøv igen';b.addEventListener('click',start);el.appendChild(b);
+    }
+    start();
+  }
+
+  /* ---------- Øvelse 1: sortering ---------- */
+  var SW=['Styrke','Svaghed','Mulighed','Trussel','Hører ikke hjemme i SWOT'];
+  runner(document.getElementById('ex-sort'),[
+    {q:'Kunderne giver stellet 4,8 af 5 i holdbarhed. De to nærmeste konkurrenter ligger på 4,1 og 4,3.',a:0,f:'Internt og positivt: virksomhedens eget produkt er bedre end konkurrenternes på noget, kunderne lægger vægt på.'},
+    {q:'Alle motorer og batterier købes hos én leverandør i Taiwan.',a:1,f:'Valget af leverandører er virksomhedens eget, så afhængigheden er en intern svaghed. Truslen ville være den ydre begivenhed, der kan udløse et leveringsstop.'},
+    {q:'Flere kommuner indfører bilfrie zoner i midtbyen.',a:2,f:'Eksternt og positivt: virksomheden bestemmer ikke over det, og det øger behovet for ladcykler.'},
+    {q:'En tysk konkurrent åbner showroom i København til foråret.',a:3,f:'Eksternt og negativt: en konkurrents træk på virksomhedens største marked.'},
+    {q:'Vi bør åbne en webshop på det tyske marked.',a:4,f:'Det er en handling, virksomheden selv beslutter. SWOT beskriver situationen. Hvad der skal gøres, kommer bagefter.'},
+    {q:'Soliditetsgraden er 41 %. Branchens gennemsnit er 28 %.',a:0,f:'Internt og positivt, og dokumenteret med et tal og en sammenligning.'},
+    {q:'Renten på forbrugslån stiger, så færre finansierer dyre cykler.',a:3,f:'Renteniveauet ligger uden for virksomhedens kontrol og kan sænke efterspørgslen.'},
+    {q:'Virksomheden har ingen medarbejder med ansvar for digital markedsføring.',a:1,f:'Bemandingen er en intern beslutning, og manglen hæmmer salget.'},
+    {q:'Efterspørgslen efter ladcykler til erhverv vokser 15 % om året.',a:2,f:'En markedsudvikling i omverdenen, som virksomheden kan udnytte.'},
+    {q:'Vi har mulighed for at udvikle en billigere model.',a:4,f:'Fælden ligger i ordet "mulighed". Produktudvikling er virksomhedens egen beslutning og dermed en handling. En mulighed i SWOT er et forhold i omverdenen.'},
+    {q:'Prisen på aluminium er steget 18 % på et år.',a:3,f:'Råvarepriser bestemmes på markedet og presser virksomhedens omkostninger.'},
+    {q:'Leveringstiden er seks uger. Konkurrenterne leverer på to.',a:1,f:'Virksomhedens egen proces er ringere end konkurrenternes.'},
+    {q:'Garantien på 10 år er branchens længste.',a:0,f:'Virksomhedens eget tilbud er bedre end konkurrenternes.'},
+    {q:'Statens tilskud til elcykler til erhverv forlænges med tre år.',a:2,f:'En politisk beslutning i omverdenen, som gør virksomhedens produkt billigere for kunderne.'}
+  ],{o:SW,short:true,shuffle:true});
+
+  /* ---------- Øvelse 2: find fejlen ---------- */
+  var ER=['Punktet er i orden','For vagt eller udokumenteret','Står i det forkerte felt','Er en handling, ikke et forhold'];
+  runner(document.getElementById('ex-err'),[
+    {ctx:'Placeret som styrke',c:'s',q:'Godt produkt',a:1,f:'Godt på hvilken måde, og i forhold til hvem? Punktet mangler både præcision og sammenligning.'},
+    {ctx:'Placeret som styrke',c:'s',q:'Voksende marked for ladcykler til erhverv',a:2,f:'Markedets vækst er eksternt. Det er en mulighed, ikke en styrke.'},
+    {ctx:'Placeret som styrke',c:'s',q:'10 års garanti mod 2 til 5 år hos konkurrenterne',a:0,f:'Internt, præcist og sammenlignet med konkurrenterne.'},
+    {ctx:'Placeret som svaghed',c:'w',q:'Dårlig økonomi',a:1,f:'Hvilket nøgletal, og sammenlignet med hvad? Punktet er desuden i strid med casens oplysning om en soliditetsgrad over branchens.'},
+    {ctx:'Placeret som svaghed',c:'w',q:'Tysk konkurrent åbner showroom i København',a:2,f:'Konkurrentens træk er eksternt. Det er en trussel.'},
+    {ctx:'Placeret som svaghed',c:'w',q:'Webshoppen står for 12 % af omsætningen mod omkring 35 % hos konkurrenterne',a:0,f:'Internt, med tal og sammenligning.'},
+    {ctx:'Placeret som mulighed',c:'o',q:'Ansætte en medarbejder til digital markedsføring',a:3,f:'Det er noget, virksomheden kan beslutte at gøre. Den manglende kompetence er en svaghed, og ansættelsen er et muligt svar på den.'},
+    {ctx:'Placeret som mulighed',c:'o',q:'Bilfrie zoner i fire af de fem største byer inden 2028',a:0,f:'Eksternt, konkret og med en tydelig betydning for efterspørgslen.'},
+    {ctx:'Placeret som trussel',c:'t',q:'Afhængighed af én leverandør',a:2,f:'Afhængigheden er skabt af virksomhedens egne valg og er en svaghed. Truslen er den ydre begivenhed, for eksempel en handelskonflikt, der standser leverancerne.'},
+    {ctx:'Placeret som trussel',c:'t',q:'Konkurrence',a:1,f:'Konkurrence er der altid. Hvilken konkurrent, hvilket træk og hvilken konsekvens?'}
+  ],{o:ER});
+
+  /* ---------- Øvelse 3: prioritering ---------- */
+  var PR=['Stor konsekvens, høj sandsynlighed','Stor konsekvens, lav sandsynlighed','Lille konsekvens, høj sandsynlighed','Lille konsekvens, lav sandsynlighed'];
+  runner(document.getElementById('ex-prio'),[
+    {ctx:'Mulighed',c:'o',q:'Efterspørgslen fra erhvervskunder som bude og håndværkere er vokset 15 % om året tre år i træk, og statens tilskud er netop forlænget. Segmentet giver højt dækningsbidrag, og kunderne vælger efter holdbarhed.',a:0,f:'Væksten er dokumenteret over flere år og understøttet af tilskud, så sandsynligheden er høj. Gevinsten er stor, fordi segmentet er lønsomt og passer til virksomhedens styrke.'},
+    {ctx:'Mulighed',c:'o',q:'En tysk forhandlerkæde med 200 butikker har i et interview nævnt, at den måske vil tage et dansk ladcykelmærke ind. Der er ingen kontakt eller aftale. En aftale ville fordoble Cykelværkets omsætning.',a:1,f:'En fordobling af omsætningen er en stor konsekvens, men en løs bemærkning i et interview gør det ikke sandsynligt. Overvåg, og vær klar til at reagere.'},
+    {ctx:'Mulighed',c:'o',q:'Forhandlerne melder, at kunderne jævnligt spørger efter regnslag og reflekser til cyklerne. Varerne giver få kroner pr. ordre.',a:2,f:'Efterspørgslen er der allerede, så sandsynligheden er høj. Gevinsten pr. ordre er lille, så konsekvensen for virksomheden er begrænset.'},
+    {ctx:'Trussel',c:'t',q:'Den tyske konkurrent har underskrevet lejekontrakt og annonceret åbning af showroom i København. Byen står for 40 % af Cykelværkets salg.',a:0,f:'Åbningen er besluttet, og den rammer hovedmarkedet. Virksomheden skal have et svar klar nu.'},
+    {ctx:'Trussel',c:'t',q:'Et leveringsstop fra leverandøren i Taiwan ville standse produktionen helt. Leverandøren har leveret stabilt i ni år, og der er ingen aktuelle tegn på problemer.',a:1,f:'Konsekvensen ville være meget stor, men intet tyder på, at det sker. Overvåg, og hav en beredskabsplan, for eksempel en godkendt alternativ leverandør.'},
+    {ctx:'Trussel',c:'t',q:'Fragtfirmaet har varslet en prisstigning på 3 % fra januar. Fragt udgør under 2 % af virksomhedens omkostninger.',a:2,f:'Stigningen kommer med sikkerhed, men betyder næsten intet for resultatet. Den klares i den daglige drift.'}
+  ],{o:PR});
+
+  /* ---------- Quiz ---------- */
+  runner(document.getElementById('ex-quiz'),[
+    {topic:'Formål',q:'Hvad er SWOT-analysens rolle i situationsanalysen?',o:['Den erstatter de øvrige analyser','Den samler og prioriterer konklusionerne fra de interne og eksterne analyser','Den fastlægger virksomhedens strategi','Den beskriver virksomhedens historie'],a:1,f:'SWOT er en opsamling. Den bygger på analyserne og danner grundlag for strategien, men den er ingen af delene.'},
+    {topic:'Internt/eksternt',q:'Hvad afgør, om et forhold er internt?',o:['At virksomheden selv kan styre det','At det er positivt for virksomheden','At det fremgår af regnskabet','At det handler om fremtiden'],a:0,f:'Kontrol er testen. Det interne kan virksomheden ændre med egne beslutninger, det eksterne kan den kun reagere på.'},
+    {topic:'Internt/eksternt',q:'Folketinget vedtager en ny afgift på emballage. Hvor hører det hjemme for en producent, der bruger meget emballage?',o:['Styrke','Svaghed','Mulighed','Trussel'],a:3,f:'Lovgivningen ligger uden for virksomhedens kontrol og øger dens omkostninger.'},
+    {topic:'Kvalitet',q:'Hvilken formulering er den bedste styrke?',o:['Vi har dygtige medarbejdere','Stærkt brand','Kundetilfredshed på 87 % mod 74 % i branchen','Vi vil være markedsleder'],a:2,f:'Den er præcis og dokumenteret med et tal og en sammenligning. Den sidste er et mål, ikke en styrke.'},
+    {topic:'Internt/eksternt',q:'Hvorfor er "Vi kan ekspandere til Norge" ikke en mulighed i SWOT?',o:['Fordi Norge ligger uden for EU','Fordi det er en handling, virksomheden selv beslutter','Fordi muligheder kun må handle om hjemmemarkedet','Fordi det er en styrke'],a:1,f:'Muligheden er forholdet i omverdenen, for eksempel voksende efterspørgsel i Norge. Ekspansionen er et muligt svar på den.'},
+    {topic:'Kvalitet',q:'Hvad skal en styrke vurderes i forhold til?',o:['Virksomhedens egne ambitioner','Hvad ledelsen er mest stolt af','Sidste års budget','Konkurrenterne og det, kunderne lægger vægt på'],a:3,f:'En styrke er relativ. Den tæller kun, hvis virksomheden er bedre end konkurrenterne på noget, der betyder noget for kunderne.'},
+    {topic:'Prioritering',q:'En trussel har stor konsekvens og høj sandsynlighed for at indtræffe. Hvad gør virksomheden?',o:['Lægger en konkret plan og handler nu','Venter og ser, om den indtræffer','Flytter den til svagheder','Ser bort fra den'],a:0,f:'Trusler i det felt er de vigtigste. De kræver et svar, før de rammer.'},
+    {topic:'Prioritering',q:'Hvilke to dimensioner bruges til at prioritere muligheder og trusler?',o:['Vigtighed og præstation','Pris og kvalitet','Sandsynlighed for at indtræffe og konsekvens for virksomheden','Internt og eksternt'],a:2,f:'Hvor sandsynligt er det, at forholdet indtræffer, og hvor meget betyder det for virksomheden, hvis det gør? Vigtighed og præstation bruges til styrker og svagheder.'},
+    {topic:'Prioritering',q:'Et forhold har høj vigtighed for kunderne, men virksomheden præsterer dårligere end konkurrenterne. Hvad betyder det?',o:['Det er en styrke, der skal fastholdes','Det er en svaghed, der skal udbedres først','Det er en mulig overinvestering','Det har lav prioritet'],a:1,f:'Høj vigtighed og lav præstation er det felt, hvor en indsats giver mest.'},
+    {topic:'Formål',q:'Hvilken kritik af SWOT-modellen er berettiget?',o:['Den kan kun bruges af store virksomheder','Den kræver regnskabstal for mindst ti år','Den ser kun på interne forhold','Den giver et øjebliksbillede og bliver let en subjektiv, uprioriteret liste'],a:3,f:'Derfor skal punkterne dokumenteres, sammenlignes med konkurrenter og prioriteres.'},
+    {topic:'Internt/eksternt',q:'Kan det samme eksterne forhold være en mulighed for én virksomhed og en trussel for en anden?',o:['Ja, det afhænger af virksomhedens styrker og svagheder','Nej, et forhold er enten positivt eller negativt','Kun hvis virksomhederne er i forskellige lande','Kun for lovgivning'],a:0,f:'Skærpede miljøkrav rammer den, der skal bygge om, og gavner den, der allerede opfylder dem.'},
+    {topic:'Kvalitet',q:'Hvilke analyser leverer typisk stoffet til styrker og svagheder?',o:['PESTEL og Porters Five Forces','Konkurrent- og kundeanalyse','Værdikæde, VIRO og regnskabsanalyse','Markedsstørrelse og markedsvækst'],a:2,f:'De tre ser ind i virksomheden. De øvrige ser på omverdenen og leverer stof til muligheder og trusler.'},
+    {topic:'Prioritering',q:'En trussel er usandsynlig, men ville have stor konsekvens for virksomheden, hvis den indtraf. Hvad er det rigtige svar?',o:['Se bort fra den, fordi den er usandsynlig','Overvåg udviklingen, og hav en beredskabsplan klar','Behandl den som en svaghed','Brug alle ressourcer på at afværge den nu'],a:1,f:'Konsekvensen gør, at virksomheden skal være forberedt. Den lave sandsynlighed gør, at den ikke skal bruge alle kræfter på det nu.'}
+  ],{});
+})();
+</script>
+</body>
+</html>
