@@ -1,0 +1,10 @@
+# Statisk side uden byggetrin: Netlify udgiver filerne i roden, som de er.
+[build]
+  publish = "."
+  command = ""
+
+# HTML hentes altid frisk, så nye versioner slår igennem med det samme.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

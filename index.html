@@ -88,47 +88,58 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .mx .c i{color:var(--muted)}
 @media (max-width:34rem){.mx .grid{grid-template-columns:1fr}}
 
-/* overbliksanimation: analyserne fylder først, rykker til venstre, og fundene flyver ind i SWOT */
-.ov{background:var(--surface);border:1px solid var(--line);border-radius:.625rem;padding:1rem;display:flex;flex-direction:column;gap:.75rem;font-family:var(--display);box-shadow:var(--shadow);overflow:hidden}
-.ov-stage{display:grid;gap:.5rem;grid-template-columns:minmax(0,.95fr) 4.5rem minmax(0,1fr) minmax(0,1fr);
-  grid-template-areas:"note note note note" "isrc iarr s w" "esrc earr o t" "prio prio prio prio" "strat strat strat strat"}
+/* overbliksanimation: seks trin fra analyser til strategi. Konklusionerne er kort, som flyver fra analysen til SWOT-feltet. */
+.ov{background:var(--surface);border:1px solid var(--line);border-radius:.625rem;padding:1rem;display:flex;flex-direction:column;gap:.9rem;font-family:var(--display);box-shadow:var(--shadow);overflow:hidden}
 .ov small{font-size:.6875rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.ov-note{grid-area:note;background:color-mix(in srgb,var(--accent) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 22%,var(--surface));border-radius:.5rem;padding:.6rem .85rem;font-family:var(--body);font-size:1rem;line-height:1.4;display:flex;gap:.6rem;align-items:baseline}
-.ov-note b{font-family:var(--display);font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);flex:none}
-.ov-src{border:1.5px dashed color-mix(in srgb,var(--ink) 30%,var(--surface));border-radius:.5rem;padding:.7rem .8rem;display:flex;flex-direction:column;gap:.5rem;background:var(--bg);min-width:0;align-self:stretch}
+.ov-box{border-radius:.5rem;padding:.8rem 1rem;background:color-mix(in srgb,var(--accent) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,var(--surface));border-left:4px solid var(--accent);display:flex;flex-direction:column;gap:.3rem;min-height:7.25rem}
+.ov-box .lbl{font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.ov-box h3{font-size:1.125rem}
+.ov-box p{font-family:var(--body);font-size:1.0625rem;line-height:1.45}
+.ov-box.swap{animation:ov-pop .45s cubic-bezier(.2,.7,.2,1) both}
+.ov-ctl{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center}
+.ov-ctl .nav{display:flex;gap:.4rem}
+.ov-ctl button{font-size:.9375rem;font-weight:700;padding:.5rem .95rem;border-radius:.375rem;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.ov-ctl button.pri{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.ov-ctl button:disabled{opacity:.4;cursor:default}
+.ov-ctl button{white-space:nowrap}
+.ov-dots{display:flex;gap:.35rem;margin-left:auto}
+.ov-dots button{width:1.9rem;height:1.9rem;padding:0;border-radius:50%;font-size:.8125rem;font-weight:700;color:var(--muted);background:var(--surface)}
+.ov-dots button[aria-current="step"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.ov-dots button.done{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 40%,var(--surface))}
+.ov-stage{display:grid;gap:.5rem;grid-template-columns:minmax(0,.95fr) 4.5rem minmax(0,1fr) minmax(0,1fr);
+  grid-template-areas:"isrc iarr s w" "esrc earr o t" "prio prio prio prio" "strat strat strat strat"}
+.ov-src{border:1.5px dashed color-mix(in srgb,var(--ink) 30%,var(--surface));border-radius:.5rem;padding:.7rem .8rem;display:flex;flex-direction:column;gap:.45rem;background:var(--bg);min-width:0}
 .ov-src[data-side="int"]{grid-area:isrc} .ov-src[data-side="ext"]{grid-area:esrc}
 .ov-src > strong{font-size:1rem}
-.ov-src ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.4rem}
-.ov-src li{flex:1 1 9.5rem;min-width:0;display:flex;flex-direction:column;gap:.2rem;background:var(--surface);border:1px solid var(--line);border-radius:.375rem;padding:.4rem .55rem}
-.ov-src li > span{font-size:.8125rem;font-weight:700}
-.ov-chip{font-family:var(--body);font-size:.875rem;line-height:1.3;color:var(--ink)}
-.ov-src .ov-chip{transition:opacity .4s ease}
-.ov-src .ov-chip.sent{opacity:.42}
+.ov-src ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.45rem}
+.ov-src li{flex:1 1 9.5rem;min-width:0;display:flex;flex-direction:column}
+.ov-slot{display:none;border:1.5px dashed var(--line);border-radius:.25rem;padding:.45rem .6rem;font-size:.8125rem;color:var(--muted);flex:1;align-items:center}
+.ov-src li.sent .ov-slot{display:flex}
+.ov-card{background:var(--surface);border:1px solid color-mix(in srgb,var(--ink) 22%,var(--surface));border-radius:.25rem;padding:.45rem .6rem;display:flex;flex-direction:column;gap:.15rem;min-width:0;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.ov-card small{font-size:.625rem}
+.ov-card span{font-family:var(--body);font-size:.875rem;line-height:1.3}
+.ov-cell .ov-card{border-color:color-mix(in srgb,var(--c) 45%,var(--surface));border-left:4px solid var(--c)}
+.ov-card.fly{position:relative;z-index:5;box-shadow:0 10px 24px rgba(16,24,40,.22)}
 .ov-arr{display:flex;align-items:center;justify-content:center;min-width:0}
 .ov-arr[data-side="int"]{grid-area:iarr} .ov-arr[data-side="ext"]{grid-area:earr}
 .ov-arr svg{width:100%;height:3rem;overflow:visible}
 .ov-arr .shaft{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:6 6;animation:ov-march .7s linear infinite}
 .ov-arr .head{fill:var(--accent)}
-.ov-cell{border-radius:.5rem;padding:.65rem .75rem;display:flex;flex-direction:column;gap:.35rem;background:color-mix(in srgb,var(--c) 11%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 38%,var(--surface));font-size:.875rem;line-height:1.3;min-width:0}
+.ov-cell{border-radius:.5rem;padding:.65rem .75rem;display:flex;flex-direction:column;gap:.4rem;background:color-mix(in srgb,var(--c) 11%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 38%,var(--surface));min-width:0;transition:box-shadow .3s ease}
 .ov-cell header{display:flex;align-items:baseline;gap:.45rem}
 .ov-cell header b{font-size:1.75rem;line-height:1;color:var(--c)}
 .ov-cell header strong{color:var(--c);font-size:1rem}
-.ov-cell ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.35rem}
-.ov-cell li{background:var(--surface);border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface));border-left:3px solid var(--c);border-radius:.3rem;padding:.35rem .5rem;display:flex;flex-direction:column;gap:.1rem;min-width:0}
-.ov-cell li small{font-size:.625rem}
-.ov-fly{position:relative;z-index:4;box-shadow:0 6px 18px rgba(16,24,40,.18)}
-.ov-step{border:1px solid var(--line);border-radius:.5rem;padding:.6rem .8rem;display:flex;flex-direction:column;gap:.15rem;font-size:.9375rem;line-height:1.35;background:var(--bg)}
+.ov-cell .drop{display:flex;flex-direction:column;gap:.4rem}
+.ov-step{border:1px solid var(--line);border-radius:.5rem;padding:.6rem .8rem;display:flex;flex-direction:column;gap:.15rem;font-size:.9375rem;line-height:1.35;background:var(--bg);transition:box-shadow .3s ease}
 .ov-step[data-k="prio"]{grid-area:prio} .ov-step[data-k="strat"]{grid-area:strat}
 .ov-step::before{content:"↓";color:var(--muted);align-self:center;line-height:1;margin-top:-.2rem}
 .ov-hot{box-shadow:0 0 0 2px var(--accent)}
-.ov-ctl{display:flex;gap:1rem;align-items:center}
-.ov-ctl .go{flex:none}
-.ov-ctl p{font-family:var(--body);font-size:1.0625rem;line-height:1.4;min-height:2.8em;display:flex;align-items:center}
-/* intro: analyserne fylder hele bredden, resten er skjult */
-.ov-stage.intro{grid-template-areas:"note note note note" "isrc isrc isrc isrc" "esrc esrc esrc esrc"}
-.ov-stage.intro .ov-arr,.ov-stage.intro .ov-cell,.ov-stage.intro .ov-step,.ov-stage.pre .ov-step{display:none}
+/* tilstande */
+.ov-stage.intro{grid-template-areas:"isrc isrc isrc isrc" "esrc esrc esrc esrc"}
 .ov-stage.intro .ov-src{padding:1rem 1.1rem}
 .ov-stage.intro .ov-src > strong{font-size:1.25rem}
+.ov-stage.intro .ov-arr,.ov-stage.intro .ov-cell,.ov-stage.intro .ov-step{display:none}
+.ov-stage.no-prio .ov-step[data-k="prio"],.ov-stage.no-strat .ov-step[data-k="strat"]{display:none}
 .ov-in-l{animation:ov-in-l .8s cubic-bezier(.2,.7,.2,1) both}
 .ov-in-r{animation:ov-in-r .8s cubic-bezier(.2,.7,.2,1) both}
 .ov-pop{animation:ov-pop .55s cubic-bezier(.2,.7,.2,1) both}
@@ -140,13 +151,16 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @keyframes ov-march{to{stroke-dashoffset:-12}}
 @media (max-width:40rem){
   .ov-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-    grid-template-areas:"note note" "isrc isrc" "iarr iarr" "s w" "esrc esrc" "earr earr" "o t" "prio prio" "strat strat"}
-  .ov-stage.intro{grid-template-areas:"note note" "isrc isrc" "esrc esrc"}
+    grid-template-areas:"isrc isrc" "iarr iarr" "s w" "esrc esrc" "earr earr" "o t" "prio prio" "strat strat"}
+  .ov-stage.intro{grid-template-areas:"isrc isrc" "esrc esrc"}
   .ov-arr svg{width:3rem;height:3.25rem;transform:rotate(90deg)}
   .ov-draw{transform-origin:center top}
-  .ov-ctl{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .ov-dots{margin-left:0;width:100%}
+  .ov-ctl .nav button{padding:.45rem .65rem;font-size:.875rem}
+  .ov-dots button{width:1.75rem;height:1.75rem}
+  .ov-box{min-height:9.5rem}
 }
-@media (prefers-reduced-motion:reduce){.ov-in-l,.ov-in-r,.ov-pop,.ov-draw{animation:none}.ov-arr .shaft{animation:none}}
+@media (prefers-reduced-motion:reduce){.ov-in-l,.ov-in-r,.ov-pop,.ov-draw,.ov-box.swap{animation:none}.ov-arr .shaft{animation:none}}
 
 /* øvelser */
 .ex{background:var(--surface);border:1px solid var(--line);border-radius:.625rem;box-shadow:var(--shadow);padding:1.125rem 1.25rem;display:flex;flex-direction:column;gap:1rem}
@@ -242,32 +256,36 @@ a{color:var(--accent)}
       <span class="n">Overblik</span>
       <h2>Fra analyser til strategi</h2>
       <div class="ov" id="ov">
+        <div class="ov-box" id="ov-box" aria-live="polite"></div>
+        <div class="ov-ctl">
+          <div class="nav">
+            <button type="button" id="ov-prev">← Forrige</button>
+            <button type="button" class="pri" id="ov-next">Start</button>
+            <button type="button" id="ov-auto">Afspil alle</button>
+          </div>
+          <div class="ov-dots" id="ov-dots" aria-label="Trin"></div>
+        </div>
         <div class="ov-stage" id="ov-stage">
-          <div class="ov-note"><b>Rækkefølge</b><span>Først udarbejdes de interne og eksterne analyser. Derefter bruges deres konklusioner til at identificere virksomhedens styrker, svagheder, muligheder og trusler.</span></div>
           <div class="ov-src" data-side="int"><strong>Interne analyser</strong><small>Ser ind i virksomheden</small><ul>
-            <li><span>Værdikæde</span><span class="ov-chip" data-to="w">Leveringstid på 6 uger mod 2 hos konkurrenterne</span></li>
-            <li><span>VIRO</span><span class="ov-chip" data-to="s">10 års garanti, som er svær at efterligne</span></li>
-            <li><span>Regnskabsanalyse</span><span class="ov-chip" data-to="s">Soliditetsgrad 41 % mod 28 % i branchen</span></li>
-            <li><span>Forretningsmodel</span><span class="ov-chip" data-to="w">Webshoppen giver 12 % af omsætningen mod 35 %</span></li>
+            <li><div class="ov-card" data-to="w"><small>Værdikæde</small><span>Leveringstid på 6 uger mod 2 hos konkurrenterne</span></div><span class="ov-slot"></span></li>
+            <li><div class="ov-card" data-to="s"><small>VIRO</small><span>10 års garanti, som er svær at efterligne</span></div><span class="ov-slot"></span></li>
+            <li><div class="ov-card" data-to="s"><small>Regnskabsanalyse</small><span>Soliditetsgrad 41 % mod 28 % i branchen</span></div><span class="ov-slot"></span></li>
+            <li><div class="ov-card" data-to="w"><small>Forretningsmodel</small><span>Webshoppen giver 12 % af omsætningen mod 35 %</span></div><span class="ov-slot"></span></li>
           </ul></div>
           <div class="ov-arr" data-side="int" aria-hidden="true"><svg viewBox="0 0 52 24" preserveAspectRatio="xMidYMid meet"><path class="shaft" d="M3 12H38"/><path class="head" d="M36 3l14 9-14 9z"/></svg></div>
-          <div class="ov-cell" data-cell="s" style="--c:var(--s)"><header><b>S</b><strong>Styrker</strong></header><small>Internt · positivt</small><ul></ul></div>
-          <div class="ov-cell" data-cell="w" style="--c:var(--w)"><header><b>W</b><strong>Svagheder</strong></header><small>Internt · negativt</small><ul></ul></div>
+          <div class="ov-cell" data-cell="s" style="--c:var(--s)"><header><b>S</b><strong>Styrker</strong></header><small>Internt · positivt</small><div class="drop"></div></div>
+          <div class="ov-cell" data-cell="w" style="--c:var(--w)"><header><b>W</b><strong>Svagheder</strong></header><small>Internt · negativt</small><div class="drop"></div></div>
           <div class="ov-src" data-side="ext"><strong>Eksterne analyser</strong><small>Ser ud på omverdenen</small><ul>
-            <li><span>Omverden (PESTEL)</span><span class="ov-chip" data-to="o">Bilfrie zoner i fire af de fem største byer</span></li>
-            <li><span>Branche</span><span class="ov-chip" data-to="t">Aluminiumprisen er steget 18 % på et år</span></li>
-            <li><span>Konkurrenter</span><span class="ov-chip" data-to="t">Tysk konkurrent åbner showroom i København</span></li>
-            <li><span>Kunder og marked</span><span class="ov-chip" data-to="o">Erhvervskunders køb vokser 15 % om året</span></li>
+            <li><div class="ov-card" data-to="o"><small>Omverden (PESTEL)</small><span>Bilfrie zoner i fire af de fem største byer</span></div><span class="ov-slot"></span></li>
+            <li><div class="ov-card" data-to="t"><small>Branche</small><span>Aluminiumprisen er steget 18 % på et år</span></div><span class="ov-slot"></span></li>
+            <li><div class="ov-card" data-to="t"><small>Konkurrenter</small><span>Tysk konkurrent åbner showroom i København</span></div><span class="ov-slot"></span></li>
+            <li><div class="ov-card" data-to="o"><small>Kunder og marked</small><span>Erhvervskunders køb vokser 15 % om året</span></div><span class="ov-slot"></span></li>
           </ul></div>
           <div class="ov-arr" data-side="ext" aria-hidden="true"><svg viewBox="0 0 52 24" preserveAspectRatio="xMidYMid meet"><path class="shaft" d="M3 12H38"/><path class="head" d="M36 3l14 9-14 9z"/></svg></div>
-          <div class="ov-cell" data-cell="o" style="--c:var(--o)"><header><b>O</b><strong>Muligheder</strong></header><small>Eksternt · positivt</small><ul></ul></div>
-          <div class="ov-cell" data-cell="t" style="--c:var(--t)"><header><b>T</b><strong>Trusler</strong></header><small>Eksternt · negativt</small><ul></ul></div>
+          <div class="ov-cell" data-cell="o" style="--c:var(--o)"><header><b>O</b><strong>Muligheder</strong></header><small>Eksternt · positivt</small><div class="drop"></div></div>
+          <div class="ov-cell" data-cell="t" style="--c:var(--t)"><header><b>T</b><strong>Trusler</strong></header><small>Eksternt · negativt</small><div class="drop"></div></div>
           <div class="ov-step" data-k="prio"><small>Prioritering</small><span>S og W efter vigtighed og præstation. O og T efter sandsynlighed og konsekvens.</span></div>
           <div class="ov-step" data-k="strat"><small>Strategi</small><span>Felterne kombineres til strategier i TOWS-matricen.</span></div>
-        </div>
-        <div class="ov-ctl">
-          <button type="button" class="go" id="ov-play">Afspil</button>
-          <p id="ov-cap" aria-live="polite">Figuren viser hele forløbet med eksempler fra Cykelværket. Tryk på Afspil for at se det trin for trin.</p>
         </div>
       </div>
     </section>
@@ -521,97 +539,132 @@ a{color:var(--accent)}
 
   /* ---------- overbliksanimation ---------- */
   (function(){
-    var stage=document.getElementById('ov-stage'),btn=document.getElementById('ov-play'),cap=document.getElementById('ov-cap');
+    var STEPS=[
+      {t:'Overblik',h:'Fra analyser til strategi',p:'Figuren viser hele forløbet med eksempler fra Cykelværket. Tryk på Start for at gå det igennem trin for trin, eller på Afspil alle for at se det i ét stræk.'},
+      {t:'Trin 1 af 6',h:'Analyserne udarbejdes først',p:'Før der kan laves en SWOT, skal analyserne være lavet. De interne analyser ser ind i virksomheden: værdikæde, VIRO, regnskab og forretningsmodel. De eksterne ser ud på omverdenen: PESTEL, branche, konkurrenter og kunder. Hver analyse ender med konklusioner, her vist som kort.'},
+      {t:'Trin 2 af 6',h:'Konklusionerne skal bruges i SWOT',p:'Analyserne rykker til side. Pilene viser retningen: de interne analysers konklusioner bliver til styrker og svagheder, de eksterne analysers konklusioner bliver til muligheder og trusler.'},
+      {t:'Trin 3 af 6',h:'Interne konklusioner bliver til S og W',p:'Hvert kort placeres i det felt, det hører til. Er virksomheden bedre end konkurrenterne, er det en styrke. Er den ringere, er det en svaghed. Den tomme plads i analysen viser, hvor kortet kom fra.'},
+      {t:'Trin 4 af 6',h:'Eksterne konklusioner bliver til O og T',p:'De eksterne kort placeres på samme måde. En udvikling, virksomheden kan udnytte, er en mulighed. En udvikling, der kan skade den, er en trussel.'},
+      {t:'Trin 5 af 6',h:'Punkterne prioriteres',p:'Ikke alle punkter vejer lige meget. Styrker og svagheder vurderes på vigtighed for kunderne og præstation mod konkurrenterne. Muligheder og trusler vurderes på sandsynlighed og konsekvens. Kun de vigtigste går videre.'},
+      {t:'Trin 6 af 6',h:'Fra SWOT til strategi',p:'De prioriterede punkter kombineres i TOWS-matricen: styrker bruges til at gribe muligheder og afværge trusler, og svagheder udbedres. Se fanen TOWS.'}
+    ];
+    var N=STEPS.length-1;
+    var ov=document.getElementById('ov'),stage=document.getElementById('ov-stage'),box=document.getElementById('ov-box'),
+        prev=document.getElementById('ov-prev'),next=document.getElementById('ov-next'),auto=document.getElementById('ov-auto'),dots=document.getElementById('ov-dots');
     var srcs=[].slice.call(stage.querySelectorAll('.ov-src')),arrs=[].slice.call(stage.querySelectorAll('.ov-arr')),
-        cells=[].slice.call(stage.querySelectorAll('.ov-cell')),steps=[].slice.call(stage.querySelectorAll('.ov-step')),
-        chips=[].slice.call(stage.querySelectorAll('.ov-src .ov-chip'));
-    var NAME={s:'styrke',w:'svaghed',o:'mulighed',t:'trussel'};
+        cells=[].slice.call(stage.querySelectorAll('.ov-cell')),stepEls=[].slice.call(stage.querySelectorAll('.ov-step')),
+        cards=[].slice.call(stage.querySelectorAll('.ov-card'));
+    var NAME={s:'Styrker',w:'Svagheder',o:'Muligheder',t:'Trusler'};
+    cards.forEach(function(c){c._home=c.parentNode;c._home.querySelector('.ov-slot').textContent=c.querySelector('small').textContent+' → '+NAME[c.dataset.to];});
     var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var timers=[],run=0;
-    function later(fn,ms){timers.push(setTimeout(fn,ms));}
-    function clearAll(){timers.forEach(clearTimeout);timers=[];}
+    var cur=0,timers=[],autoOn=false;
+    function later(fn,ms){var id=setTimeout(fn,ms);timers.push(id);return id;}
+    function stop(){timers.forEach(clearTimeout);timers=[];}
     function anim(el,cls){el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);el.style.opacity='';}
-    function cellOf(k){return stage.querySelector('[data-cell="'+k+'"] ul');}
-    function srcName(chip){return chip.parentNode.firstElementChild.textContent;}
-    function copy(chip){
-      var li=document.createElement('li');
-      li.innerHTML='<small></small><span class="ov-chip"></span>';
-      li.firstChild.textContent=srcName(chip);li.lastChild.textContent=chip.textContent;
-      return li;
-    }
-    /* FLIP: mål før og efter en ændring, og lad elementet glide fra den gamle til den nye plads */
+    function clean(el){el.classList.remove('ov-in-l','ov-in-r','ov-pop','ov-draw','fly','ov-hot');el.style.transform='';el.style.width='';el.style.transition='';el.style.opacity='';}
+    /* FLIP: mål før og efter flytningen, og lad elementet glide fra den gamle til den nye plads */
     function flip(el,first,ms){
-      var last=el.getBoundingClientRect();
       if(reduce)return;
+      var last=el.getBoundingClientRect();
       el.style.transition='none';
       el.style.transform='translate('+(first.left-last.left)+'px,'+(first.top-last.top)+'px)';
       el.style.width=first.width+'px';
       void el.offsetWidth;
-      el.style.transition='transform '+ms+'ms cubic-bezier(.2,.7,.2,1),width '+ms+'ms cubic-bezier(.2,.7,.2,1)';
+      el.style.transition='transform '+ms+'ms cubic-bezier(.25,.8,.25,1),width '+ms+'ms cubic-bezier(.25,.8,.25,1)';
       el.style.transform='';el.style.width=last.width+'px';
       later(function(){el.style.transition='';el.style.width='';},ms+40);
     }
-    function reset(){
-      clearAll();
-      cells.forEach(function(c){c.querySelector('ul').innerHTML='';});
-      chips.forEach(function(c){c.classList.remove('sent');});
-      [].forEach.call(stage.querySelectorAll('.ov-hot'),function(e){e.classList.remove('ov-hot');});
-      srcs.concat(arrs,cells,steps).forEach(function(e){e.classList.remove('ov-in-l','ov-in-r','ov-pop','ov-draw');e.style.transform='';e.style.width='';e.style.transition='';e.style.opacity='';});
+    function sendCard(c){
+      var li=c._home;li.style.minHeight=li.offsetHeight+'px';li.classList.add('sent');
+      stage.querySelector('[data-cell="'+c.dataset.to+'"] .drop').appendChild(c);
     }
-    function finalState(){
-      reset();stage.classList.remove('intro','pre');
-      chips.forEach(function(c){c.classList.add('sent');cellOf(c.dataset.to).appendChild(copy(c));});
+    function homeCard(c){c._home.classList.remove('sent');c._home.style.minHeight='';c._home.insertBefore(c,c._home.firstChild);}
+    function isInt(c){return c.dataset.to==='s'||c.dataset.to==='w';}
+
+    /* slutbilledet for et trin, uden animation */
+    function state(n){
+      stop();
+      srcs.concat(arrs,cells,stepEls,cards).forEach(clean);
+      var fin=n===0;
+      stage.classList.toggle('intro',n===1);
+      stage.classList.toggle('no-prio',!fin&&n<5);
+      stage.classList.toggle('no-strat',!fin&&n<6);
+      cards.forEach(function(c){
+        var out=fin||n>=4||(n===3&&isInt(c));
+        if(out)sendCard(c);else homeCard(c);
+      });
+      if(n===5)stepEls[0].classList.add('ov-hot');
+      if(n===6)stepEls[1].classList.add('ov-hot');
     }
-    function play(){
-      reset();run++;
-      var me=run;
-      btn.textContent='Forfra';
-      /* 1: analyserne flyver ind og fylder hele bredden */
-      stage.classList.add('intro','pre');
-      anim(srcs[0],'ov-in-l');later(function(){anim(srcs[1],'ov-in-r');},250);
-      cap.textContent='1 af 4: Først udarbejdes analyserne. De interne ser ind i virksomheden, de eksterne ud på omverdenen.';
-      /* 2: analyserne rykker til venstre, og pilene peger mod SWOT */
-      later(function(){
-        if(me!==run)return;
+    function showText(n){
+      var s=STEPS[n];
+      box.innerHTML='<span class="lbl">'+s.t+'</span><h3>'+s.h+'</h3><p>'+s.p+'</p>';
+      anim(box,'swap');
+      prev.disabled=n<=1;
+      next.textContent=n===0?'Start':(n===N?'Afslut':'Næste →');
+      [].forEach.call(dots.children,function(d,i){var k=i+1;d.classList.toggle('done',n>k||n===0);if(k===n)d.setAttribute('aria-current','step');else d.removeAttribute('aria-current');});
+    }
+    function flyGroup(list,delay){
+      list.forEach(function(c,i){
+        later(function(){
+          var first=c.getBoundingClientRect(),cell=stage.querySelector('[data-cell="'+c.dataset.to+'"]');
+          sendCard(c);c.classList.add('fly');flip(c,first,reduce?0:950);
+          later(function(){c.classList.remove('fly');},1000);
+          cell.classList.add('ov-hot');later(function(){cell.classList.remove('ov-hot');},1100);
+        },delay+i*(reduce?0:1050));
+      });
+      return delay+list.length*(reduce?0:1050);
+    }
+    /* afspil overgangen til trin n fra trin n-1 */
+    function go(n){
+      state(n-1===0?1:n-1);
+      cur=n;showText(n);
+      if(n===1){
+        state(1);
+        anim(srcs[0],'ov-in-l');later(function(){anim(srcs[1],'ov-in-r');},250);
+        return 1300;
+      }
+      if(n===2){
         var first=srcs.map(function(e){return e.getBoundingClientRect();});
         arrs.concat(cells).forEach(function(e){e.style.opacity='0';});
         stage.classList.remove('intro');
-        srcs.forEach(function(e,i){e.classList.remove('ov-in-l','ov-in-r');flip(e,first[i],900);});
-        later(function(){arrs.forEach(function(a){anim(a,'ov-draw');});},500);
-        later(function(){cells.forEach(function(c,i){later(function(){anim(c,'ov-pop');},i*120);});},800);
-        cap.textContent='2 af 4: Derefter bruges konklusionerne til at identificere SWOT. Interne analyser giver styrker og svagheder, eksterne giver muligheder og trusler.';
-      },3800);
-      /* 3: fundene flyver ét ad gangen ind i det felt, de hører til */
-      var t0=3800+1900,gap=reduce?600:1150;
-      chips.forEach(function(c,i){
-        later(function(){
-          if(me!==run)return;
-          var first=c.getBoundingClientRect(),li=copy(c),k=c.dataset.to,cell=stage.querySelector('[data-cell="'+k+'"]');
-          cellOf(k).appendChild(li);c.classList.add('sent');
-          li.classList.add('ov-fly');flip(li,first,850);
-          later(function(){li.classList.remove('ov-fly');},900);
-          cell.classList.add('ov-hot');later(function(){cell.classList.remove('ov-hot');},1000);
-          cap.textContent='3 af 4: '+srcName(c)+': «'+c.textContent+'» er en '+NAME[k]+'.';
-        },t0+i*gap);
-      });
-      /* 4: prioritering og strategi */
-      var t1=t0+chips.length*gap+600;
-      later(function(){
-        if(me!==run)return;
-        stage.classList.remove('pre');
-        anim(steps[0],'ov-pop');steps[0].classList.add('ov-hot');
-        later(function(){anim(steps[1],'ov-pop');steps[0].classList.remove('ov-hot');steps[1].classList.add('ov-hot');},1600);
-        later(function(){steps[1].classList.remove('ov-hot');},3600);
-        cap.textContent='4 af 4: Punkterne prioriteres, og de vigtigste kombineres til strategier i TOWS.';
-      },t1);
-      later(function(){
-        if(me!==run)return;
-        btn.textContent='Afspil igen';
-        cap.textContent='Analyserne laves først, deres konklusioner fordeles i SWOT, og de vigtigste punkter bliver til strategi.';
-      },t1+4200);
+        srcs.forEach(function(e,i){flip(e,first[i],900);});
+        later(function(){arrs.forEach(function(a){anim(a,'ov-draw');});},600);
+        later(function(){cells.forEach(function(c,i){later(function(){anim(c,'ov-pop');},i*120);});},900);
+        return 1800;
+      }
+      if(n===3)return flyGroup(cards.filter(isInt),300);
+      if(n===4)return flyGroup(cards.filter(function(c){return !isInt(c);}),300);
+      if(n===5){stage.classList.remove('no-prio');anim(stepEls[0],'ov-pop');stepEls[0].classList.add('ov-hot');return 700;}
+      if(n===6){stage.classList.remove('no-strat');stepEls[0].classList.remove('ov-hot');anim(stepEls[1],'ov-pop');stepEls[1].classList.add('ov-hot');return 700;}
+      return 0;
     }
-    btn.addEventListener('click',play);
-    finalState();
+    function jump(n){autoOff();cur=n;state(n);showText(n);}
+    function autoOff(){autoOn=false;auto.textContent='Afspil alle';}
+    function autoStep(){
+      if(!autoOn)return;
+      if(cur>=N){autoOff();return;}
+      var dur=go(cur+1);
+      later(autoStep,dur+(reduce?3500:4200));
+    }
+    next.addEventListener('click',function(){
+      autoOff();
+      if(cur===N){jump(0);return;}
+      go(cur+1);
+    });
+    prev.addEventListener('click',function(){if(cur>1)jump(cur-1);});
+    auto.addEventListener('click',function(){
+      if(autoOn){autoOff();stop();state(cur);return;}
+      autoOn=true;auto.textContent='Stop';
+      if(cur>=N)cur=0;
+      autoStep();
+    });
+    for(var i=1;i<=N;i++){
+      var d=document.createElement('button');d.type='button';d.textContent=i;d.setAttribute('aria-label','Trin '+i);
+      (function(k){d.addEventListener('click',function(){jump(k);});})(i);
+      dots.appendChild(d);
+    }
+    state(0);showText(0);
   })();
 
   /* ---------- matricer ---------- */
