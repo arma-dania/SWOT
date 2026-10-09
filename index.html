@@ -76,6 +76,16 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* overbliksanimation: syv scener. Kun én række analyser ad gangen, så figuren kan ses uden at scrolle. Konklusionerne er kort, der flyver fra analysen til SWOT-feltet. */
 .ov{background:var(--surface);border:1px solid var(--line);border-radius:.625rem;padding:1rem;display:flex;flex-direction:column;gap:.8rem;font-family:var(--display);box-shadow:var(--shadow)}
+.ov{scroll-margin-top:4.5rem}
+.ov-box{grid-area:box} .ov-ctl{grid-area:ctl} .ov-stage{grid-area:stage}
+/* på brede skærme bryder figuren ud af læsekolonnen, og forklaringen står til venstre for scenen */
+@media (min-width:64rem){
+  .ov{display:grid;grid-template-columns:17.5rem minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"box stage" "ctl stage";gap:.8rem 1.1rem;align-items:start;
+    margin-inline:calc(50% - min(50vw - 1.5rem, 39rem))}
+  .ov-box{min-height:0}
+  .ov-ctl .nav{flex-wrap:wrap}
+  .ov-dots{margin-left:0}
+}
 .ov small{font-size:.6875rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .ov-box{border-radius:.5rem;padding:.7rem .95rem;background:color-mix(in srgb,var(--accent) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 25%,var(--surface));border-left:4px solid var(--accent);display:flex;flex-direction:column;gap:.25rem;min-height:6.75rem}
 .ov-box .lbl{font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);font-weight:700}
@@ -543,7 +553,7 @@ a{color:var(--accent)}
       {t:'Trin 7 af 7',h:'Fra SWOT til strategi',p:'De vigtigste punkter kombineres i TOWS-matricen: styrker bruges til at gribe muligheder og afværge trusler, og svagheder udbedres. Se fanen TOWS.'}
     ];
     var N=STEPS.length-1;
-    var stage=document.getElementById('ov-stage'),box=document.getElementById('ov-box'),sum=document.getElementById('ov-sum'),
+    var ov=document.getElementById('ov'),stage=document.getElementById('ov-stage'),box=document.getElementById('ov-box'),sum=document.getElementById('ov-sum'),
         prev=document.getElementById('ov-prev'),next=document.getElementById('ov-next'),auto=document.getElementById('ov-auto'),dots=document.getElementById('ov-dots');
     var rows={int:stage.querySelector('[data-row="int"]'),ext:stage.querySelector('[data-row="ext"]')};
     var prio=stage.querySelector('[data-k="prio"]'),strat=stage.querySelector('[data-k="strat"]');
@@ -566,13 +576,13 @@ a{color:var(--accent)}
     }
     /* FLIP: mål før og efter flytningen, og lad elementet glide fra den gamle til den nye plads */
     function flip(el,first,ms){
-      var last=el.getBoundingClientRect();
+      var last=el.getBoundingClientRect(),z=parseFloat(ov.style.zoom)||1;
       el.style.transition='none';
-      el.style.transform='translate('+(first.left-last.left)+'px,'+(first.top-last.top)+'px)';
-      el.style.width=first.width+'px';
+      el.style.transform='translate('+(first.left-last.left)/z+'px,'+(first.top-last.top)/z+'px)';
+      el.style.width=first.width/z+'px';
       void el.offsetWidth;
       el.style.transition='transform '+ms+'ms cubic-bezier(.25,.8,.25,1),width '+ms+'ms cubic-bezier(.25,.8,.25,1)';
-      el.style.transform='';el.style.width=last.width+'px';
+      el.style.transform='';el.style.width=last.width/z+'px';
       later(function(){el.style.transition='';el.style.width='';},ms+40);
     }
 
@@ -658,7 +668,29 @@ a{color:var(--accent)}
       (function(k){d.addEventListener('click',function(){jump(k);});})(i);
       dots.appendChild(d);
     }
+    /* skalér figuren ned, hvis dens højeste trin ikke kan være på skærmen under fanerne */
+    var tabsEl=document.querySelector('.tabs');
+    function fit(){
+      ov.style.zoom='';
+      if(innerWidth<640)return;
+      var max=0,keep=cur;
+      for(var k=0;k<=N;k++){state(k);max=Math.max(max,ov.offsetHeight);}
+      state(keep);
+      var avail=innerHeight-(tabsEl?tabsEl.offsetHeight:0)-24;
+      if(max>avail)ov.style.zoom=Math.max(.6,avail/max).toFixed(3);
+      ov._max=max*(parseFloat(ov.style.zoom)||1);
+    }
+    function show(){
+      var r=ov.getBoundingClientRect(),top=(tabsEl?tabsEl.offsetHeight:0);
+      if(r.top<top||r.top+Math.max(r.height,ov._max||0)>innerHeight)ov.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+    [next,auto].forEach(function(b){b.addEventListener('click',show);});
+    var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(!autoT){fit();}},200);});
     state(0);showText(0);
+    /* fit måler først, når siden og skrifterne er klar, og kun når Viden-fanen er synlig */
+    function fitWhenVisible(){if(ov.offsetParent)fit();}
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitWhenVisible);else fitWhenVisible();
+    document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){setTimeout(fitWhenVisible,0);});});
   })();
 
   /* ---------- matricer ---------- */
