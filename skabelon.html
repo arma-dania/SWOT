@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SWOT-skabelon</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+html{color-scheme:light dark}
+body{margin:0}
+[hidden]{display:none!important}
+/* Samme farver og typografi som SWOT-værkstedet. Hvert felt har sin farve, som går igen i kort, koder og spørgsmål. */
+:root{
+  --bg:#f2f6f5; --surface:#ffffff; --ink:#14211f; --muted:#566764; --line:#d3dedb;
+  --accent:#0f5c55; --on-accent:#ffffff;
+  --s:#1c7448; --w:#8f6210; --o:#275aa3; --t:#8a2f5c; --x:#566764;
+  --bad:#b3261e;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1615; --surface:#162120; --ink:#e6eeec; --muted:#9aaca8; --line:#2b3a37;
+    --accent:#5cc4b6; --on-accent:#0e1615;
+    --s:#62c692; --w:#e0b352; --o:#7fb1f2; --t:#e384b3; --x:#9aaca8;
+    --bad:#f08a80; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1615; --surface:#162120; --ink:#e6eeec; --muted:#9aaca8; --line:#2b3a37;
+  --accent:#5cc4b6; --on-accent:#0e1615;
+  --s:#62c692; --w:#e0b352; --o:#7fb1f2; --t:#e384b3; --x:#9aaca8;
+  --bad:#f08a80; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
+.wrap{max-width:54rem;margin:0 auto;padding-inline:1rem;padding-block:1.5rem 4rem;display:flex;flex-direction:column;gap:2.5rem}
+h1,h2,h3,button,select,label,.ui{font-family:var(--display)}
+h1{font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.02em}
+h2{font-size:1.5rem;line-height:1.2;margin:0;font-weight:700}
+h3{font-size:1.0625rem;margin:0;font-weight:700}
+p{margin:0;max-width:65ch}
+a{color:var(--accent)}
+.lead{color:var(--muted);font-size:1.1875rem}
+.head{display:flex;flex-direction:column;gap:.75rem}
+.back{font-family:var(--display);font-size:.875rem}
+.note{border-left:3px solid var(--accent);padding:.25rem 0 .25rem 1rem;color:var(--muted);font-size:1.0625rem}
+.mod{display:flex;flex-direction:column;gap:.9rem}
+.mod .n{font-family:var(--display);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.s{color:var(--s)} .w{color:var(--w)} .o{color:var(--o)} .t{color:var(--t)}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.go{font-size:1rem;font-weight:700;padding:.6rem 1.1rem;border:0;border-radius:.375rem;background:var(--accent);color:var(--on-accent);cursor:pointer}
+.ghost{font-size:.875rem;font-weight:500;padding:.4rem .75rem;border:1px solid var(--line);border-radius:.375rem;background:var(--surface);color:var(--ink);cursor:pointer}
+.ghost:hover{border-color:var(--accent)}
+.ghost.danger:hover{border-color:var(--bad);color:var(--bad)}
+.tools{display:flex;flex-wrap:wrap;gap:.5rem}
+
+/* værktøjslinje med status */
+.status{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding-block:.6rem;display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:center;font-family:var(--display);font-size:.875rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.status b{color:var(--ink)}
+.status .open b{color:var(--bad)}
+
+.firm{display:flex;flex-direction:column;gap:.3rem;max-width:24rem}
+label,.lbl{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+input[type=text],textarea,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:.375rem;padding:.5rem .65rem;width:100%;min-width:0}
+textarea{font-family:var(--body);font-size:1.0625rem;line-height:1.45;resize:vertical}
+select{font-family:var(--display);font-size:.875rem;padding:.45rem .5rem}
+
+/* felter */
+.field{display:flex;flex-direction:column;gap:.75rem;padding:1rem;border-radius:.5rem;background:color-mix(in srgb,var(--c) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--surface))}
+.field > header{display:flex;flex-direction:column;gap:.2rem}
+.field > header h2{color:var(--c);display:flex;gap:.5rem;align-items:baseline}
+.field > header h2 span{font-size:.875rem;color:var(--muted);font-weight:500}
+.field > header p{font-size:1rem;color:var(--muted)}
+.ffb{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4rem}
+
+.pt{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:.375rem;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.6rem}
+.pt .top{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.pt .code{font-family:var(--display);font-weight:700;color:var(--c);font-size:1.125rem}
+.pt .prio{font-family:var(--display);font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:1rem;padding:.1rem .55rem}
+.pt .prio.hi{color:var(--accent);border-color:var(--accent)}
+.row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+.row > div{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+@media (max-width:40rem){.row{grid-template-columns:1fr}}
+.pt .acts{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.pt .acts .lbl{margin-right:.2rem}
+
+/* spørgsmål fra tjekket */
+.fb{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.q{display:flex;flex-direction:column;gap:.3rem;padding:.55rem .7rem;border-radius:.375rem;background:color-mix(in srgb,var(--qc) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--qc) 35%,var(--surface));font-size:1rem;line-height:1.45}
+.q .k{font-family:var(--display);font-size:.6875rem;letter-spacing:.07em;text-transform:uppercase;color:var(--qc);font-weight:700}
+.q[data-k="Placering"]{--qc:var(--bad)}
+.q[data-k="Konkret"],.q[data-k="Dokumentation"]{--qc:var(--w)}
+.q[data-k="Betydning"],.q[data-k="Kilde"],.q[data-k="Handling"],.q[data-k="Henvisning"]{--qc:var(--o)}
+.q[data-k="Prioritering"],.q[data-k="Valg"]{--qc:var(--accent)}
+.q .mv{display:flex;flex-wrap:wrap;gap:.4rem}
+.okmsg{font-family:var(--display);font-size:.875rem;color:var(--s)}
+
+/* TOWS */
+.strat{background:var(--surface);border:1px solid var(--line);border-radius:.375rem;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.6rem}
+.strat .top{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.strat .top select{width:auto}
+.refs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.25rem .75rem}
+@media (max-width:40rem){.refs{grid-template-columns:1fr}}
+.refs label{text-transform:none;letter-spacing:0;font-size:.875rem;color:var(--ink);display:flex;gap:.4rem;align-items:flex-start;line-height:1.3;font-weight:400}
+.refs label b{color:var(--c);flex:none}
+.refs label.low{color:var(--muted)}
+.refs input{margin-top:.15rem;flex:none}
+.chk{text-transform:none;letter-spacing:0;font-size:.875rem;color:var(--ink);display:flex;gap:.4rem;align-items:center}
+.empty{color:var(--muted);font-size:1rem}
+.toast{font-family:var(--display);font-size:.875rem;color:var(--s)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <a class="back" href="index.html">← SWOT-værkstedet</a>
+    <h1>Jeres SWOT og TOWS</h1>
+    <p class="lead">Skriv punkterne ind felt for felt. Når du forlader et felt, stiller tjekket spørgsmål til punktet: er det konkret, er det dokumenteret, og står det det rigtige sted? Brug spørgsmålene til at omskrive eller flytte punktet.</p>
+    <p class="note">Tjekket læser ordene, ikke virkeligheden. Det kan overse fejl og stille spørgsmål til punkter, der er i orden. Et spørgsmål er en opfordring til at overveje punktet, ikke en dom. Kan du svare godt for dig, må punktet gerne blive stående.</p>
+    <div class="firm">
+      <label for="firma">Virksomhed</label>
+      <input type="text" id="firma" autocomplete="off">
+    </div>
+  </header>
+
+  <div class="status ui" id="status"></div>
+
+  <section class="mod">
+    <span class="n">Trin 1 · SWOT</span>
+    <h2>Punkterne</h2>
+    <p>Skriv hvert punkt så præcist, at en læser uden for gruppen forstår det. Angiv, hvilken analyse det kommer fra, hvad det betyder for virksomheden, og hvordan det skal prioriteres.</p>
+    <div id="swot" style="display:flex;flex-direction:column;gap:1rem"></div>
+  </section>
+
+  <section class="mod">
+    <span class="n">Trin 2 · TOWS</span>
+    <h2>Strategierne</h2>
+    <p>Kombinér punkterne til strategier. Vælg feltet, og sæt kryds ved de punkter, strategien bygger på. Punkter med lav prioritet er nedtonede. Markér til sidst de strategier, I vælger.</p>
+    <div id="tows" style="display:flex;flex-direction:column;gap:.75rem"></div>
+    <button type="button" class="go" id="add-strat" style="align-self:flex-start">Tilføj strategi</button>
+  </section>
+
+  <section class="mod">
+    <span class="n">Gem og del</span>
+    <h2>Gem arbejdet</h2>
+    <p>Arbejdet gemmes automatisk i denne browser på denne computer. Skal gruppen dele det, så gem en fil og send den rundt. Den kan åbnes her igen. Kopiér som tekst, når punkterne skal ind i rapporten.</p>
+    <div class="tools">
+      <button type="button" class="ghost" id="copy">Kopiér som tekst</button>
+      <button type="button" class="ghost" id="save">Gem fil</button>
+      <button type="button" class="ghost" id="open">Åbn fil</button>
+      <input type="file" id="file" accept=".json,application/json" hidden>
+      <button type="button" class="ghost" id="demo">Prøv med et eksempel</button>
+      <button type="button" class="ghost danger" id="clear">Ryd alt</button>
+    </div>
+    <p class="toast" id="toast" aria-live="polite"></p>
+  </section>
+</div>
+
+<script>
+(function(){
+  /* ---------- grunddata ---------- */
+  var KEYS=['s','w','o','t'];
+  var F={
+    s:{n:'Styrker',one:'styrke',int:true,pos:true,help:'Det, virksomheden gør bedre end konkurrenterne, på noget kunderne lægger vægt på.'},
+    w:{n:'Svagheder',one:'svaghed',int:true,pos:false,help:'Det, virksomheden gør ringere end konkurrenterne, eller som hæmmer den i at nå sine mål.'},
+    o:{n:'Muligheder',one:'mulighed',int:false,pos:true,help:'Udviklinger i omverdenen, som virksomheden kan udnytte.'},
+    t:{n:'Trusler',one:'trussel',int:false,pos:false,help:'Udviklinger i omverdenen, der kan skade virksomheden.'}
+  };
+  /* kind: i = intern analyse, e = ekstern analyse, b = kan levere til begge sider */
+  var SRC=[['','Vælg analyse',''],['vk','Værdikæde','i'],['viro','VIRO','i'],['regn','Regnskabsanalyse','i'],['fm','Forretningsmodel / værditilbud','i'],
+    ['pest','PESTEL / omverden','e'],['bra','Branche (Porters fem kræfter)','e'],['konk','Konkurrentanalyse','b'],['kund','Kunde- og markedsanalyse','b'],['and','Andet','b']];
+  var DIM={
+    sw:[['Vigtighed for kunderne','Høj','Lav'],['Præstation mod konkurrenterne','Bedre','Ringere']],
+    ot:[['Sandsynlighed','Høj','Lav'],['Konsekvens','Stor','Lille']]
+  };
+  var TF={SO:['s','o'],ST:['s','t'],WO:['w','o'],WT:['w','t']};
+  var TN={SO:'SO · brug styrker til at gribe muligheder',ST:'ST · brug styrker til at afværge trusler',WO:'WO · udbedr svagheder for at gribe muligheder',WT:'WT · mindsk svagheder og undgå trusler'};
+
+  var VAGUE=['god','godt','gode','dårlig','dårligt','dårlige','stærk','stærkt','stærke','svag','svagt','svage','høj kvalitet','mange','få','stor','store','lille','effektiv','effektivt','effektive','dygtig','dygtige','kendt','populær','populære','bred','bredt','flot','flotte','fin','fint','fine','unik','unikt','unikke','professionel','professionelle','engageret','engagerede','spændende','attraktiv','attraktivt','konkurrence'];
+  var COMPARE=['mod','end','i forhold til','sammenlignet','branchen','branchens','konkurrent','konkurrenter','konkurrenterne','konkurrentens','gennemsnit','gennemsnittet','sidste år','tidligere år','steget','faldet','højere','lavere','bedst','bedste','eneste','længste','største','mindste','hurtigste','billigste','dyreste','førende','markedsandel'];
+  var MODAL=['bør','skal','kan','vil','må','burde','kunne','skulle'];
+  var VERBS=['udvikle','udvikl','åbne','åbn','ansætte','ansæt','lancere','lancer','lancér','øge','øg','forbedre','forbedr','satse','sats','investere','invester','investér','udvide','udvid','starte','start','sælge','sælg','bruge','brug','skabe','skab','indføre','indfør','etablere','etabler','etablér','ekspandere','ekspander','ekspandér','købe','køb','samarbejde','samarbejd','markedsføre','markedsfør','optimere','optimer','optimér','reducere','reducer','reducér','sænke','sænk','hæve','hæv','tilbyde','tilbyd','fokusere','fokuser','fokusér','opbygge','opbyg','flytte','flyt','overtage','opkøbe','opkøb','digitalisere','digitaliser','automatisere','automatiser','outsource','rekruttere','rekrutter','uddanne','uddan','oprette','opret','indgå','godkende','godkend','finansiere','finansier','finansiér','omlægge','omlæg','træne','træn','certificere','certificer','styrke','målrette','målret','genforhandle','genforhandl','lave','gennemføre','gennemfør','afvikle','afvikl','lukke','luk','prissætte','hæve','sikre','sikr','tilpasse','tilpas','ændre','ændr'];
+  var INTERNAL=['vi','vores','vort','vore','os','virksomhedens','medarbejder','medarbejdere','medarbejderne','ansatte','ledelsen','afhængig','afhængighed','soliditet','soliditetsgrad','soliditetsgraden','likviditet','egenkapital','egenkapitalen','overskud','underskud','vores produkt','vores produkter'];
+  var EXTERNAL=['markedet','markedets','efterspørgsel','efterspørgslen','lovgivning','lovgivningen','lov','loven','lovkrav','afgift','afgiften','afgifter','rente','renten','renter','konjunktur','konjunkturen','konjunkturer','inflation','inflationen','trend','trenden','tendens','tendensen','staten','regeringen','folketinget','eu','kommune','kommuner','kommunerne','forbrugerne','forbrugernes','klimaforandringer','tilskud','valuta','valutakurs','krig','pandemi','befolkningen','samfundet'];
+  var NEG=['fald','falder','faldende','faldet','mangler','mangel','manglende','problem','problemer','risiko','trussel','tab','underskud','krise','nedgang','svigtende','dyrere','højere omkostninger','stigende omkostninger','stigende priser','prisstigning','prisstigninger'];
+  var POS=['vækst','vokser','voksende','fordel','fordele','overskud','fremgang','stigende efterspørgsel','øget efterspørgsel','tilskud','gevinst'];
+
+  function words(t){return String(t||'').toLowerCase().split(/[^a-zæøåéü0-9%]+/).filter(Boolean);}
+  function find(t,list){var ws=' '+words(t).join(' ')+' ';for(var i=0;i<list.length;i++){if(ws.indexOf(' '+list[i]+' ')>-1)return list[i];}return null;}
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function uid(){return Math.random().toString(36).slice(2,9);}
+  function srcKind(v){for(var i=0;i<SRC.length;i++)if(SRC[i][0]===v)return SRC[i][2];return '';}
+  function srcName(v){for(var i=0;i<SRC.length;i++)if(SRC[i][0]===v)return SRC[i][1];return '';}
+  function dims(k){return F[k].int?DIM.sw:DIM.ot;}
+
+  /* ---------- tilstand ---------- */
+  var STORE='swot-skabelon-v1';
+  function blank(){return {firma:'Living Flowers',pts:{s:[np()],w:[np()],o:[np()],t:[np()]},strat:[]};}
+  function np(){return {id:uid(),txt:'',src:'',why:'',p1:'',p2:''};}
+  var S;
+  try{S=JSON.parse(localStorage.getItem(STORE));}catch(e){S=null;}
+  if(!S||!S.pts)S=blank();
+  var saveT=null;
+  function save(){clearTimeout(saveT);saveT=setTimeout(function(){try{localStorage.setItem(STORE,JSON.stringify(S));}catch(e){}},300);}
+
+  function codeOf(id){
+    for(var k=0;k<4;k++){var a=S.pts[KEYS[k]];for(var i=0;i<a.length;i++)if(a[i].id===id)return {k:KEYS[k],code:KEYS[k].toUpperCase()+(i+1),p:a[i]};}
+    return null;
+  }
+
+  /* ---------- prioritering ---------- */
+  function prio(k,p){
+    if(!p.p1||!p.p2)return null;
+    if(F[k].int){
+      var m={hh:'Fasthold og brug',hl:'Sæt ind her',lh:'Mulig overinvestering',ll:'Lav prioritet'}[p.p1+p.p2];
+      return {txt:m,hi:p.p1==='h'};
+    }
+    var n={hh:'Højeste prioritet',lh:'Overvåg og vær forberedt',hl:'Håndtér i driften',ll:'Se bort fra'}[p.p1+p.p2];
+    return {txt:n,hi:p.p2==='h'};
+  }
+
+  /* ---------- tjek af ét SWOT-punkt ---------- */
+  function checkPoint(k,p){
+    var out=[],t=(p.txt||'').trim(),f=F[k],w=words(t);
+    if(!t)return out;
+    var firm=words(S.firma).join(' ');
+    var others=KEYS.filter(function(x){return x!==k;});
+
+    /* placering: handling i stedet for forhold */
+    var first=w[0],second=w[1];
+    var isAct=MODAL.indexOf(first)>-1||first==='at'||((first==='vi'||first==='virksomheden'||(firm&&t.toLowerCase().indexOf(firm)===0))&&(MODAL.indexOf(second)>-1||MODAL.indexOf(w[firm?firm.split(' ').length:1])>-1))||VERBS.indexOf(first)>-1||find(t,['mulighed for at','muligheden for at']);
+    if(isAct){
+      if(f.int) out.push({k:'Placering',q:'Det lyder som noget, virksomheden har tænkt sig at gøre. SWOT beskriver situationen, som den er i dag. Hvilken egenskab ved virksomheden ligger bag ideen? Den kan være '+(k==='s'?'styrken':'svagheden')+'. Selve handlingen kan du gemme til TOWS i trin 2.'});
+      else out.push({k:'Placering',q:'Det lyder som en handling, virksomheden selv beslutter. En '+f.one+' er et forhold i omverdenen. Hvilken udvikling i omverdenen gør handlingen interessant? Skriv udviklingen her, og gem handlingen til TOWS i trin 2.'});
+    }
+
+    /* placering: internt/eksternt */
+    if(isAct){}
+    else if(!f.int){
+      var hit=find(t,INTERNAL)||(firm&&find(t,[firm])?S.firma:null);
+      if(hit) out.push({k:'Placering',q:'Punktet nævner virksomheden selv («'+hit+'»). Beskriver det en udvikling i omverdenen, eller virksomhedens egen situation? Hvis '+esc(S.firma||'virksomheden')+' kan ændre det med egne beslutninger, hører det til i styrker eller svagheder.',mv:f.pos?['s','w']:['w','s']});
+    }else{
+      var ex=find(t,EXTERNAL);
+      if(ex) out.push({k:'Placering',q:'Punktet nævner «'+ex+'», som typisk ligger uden for virksomhedens kontrol. Kan '+esc(S.firma||'virksomheden')+' selv ændre forholdet? Hvis ikke, er det en mulighed eller en trussel. Er det i stedet virksomhedens evne til at håndtere forholdet, du vil beskrive, så skriv det tydeligt.',mv:['o','t']});
+    }
+
+    /* placering: positiv/negativ */
+    var neg=find(t,NEG),pos=find(t,POS);
+    if(f.pos&&neg&&!pos) out.push({k:'Placering',q:'Punktet indeholder «'+neg+'». Hjælper forholdet virksomheden, eller hæmmer det den? Hvis det hæmmer, hører det til i '+(f.int?'svagheder':'trusler')+'.',mv:[f.int?'w':'t']});
+    if(!f.pos&&pos&&!neg) out.push({k:'Placering',q:'Punktet indeholder «'+pos+'». Hæmmer forholdet virksomheden, eller hjælper det den? Hvis det hjælper, hører det til i '+(f.int?'styrker':'muligheder')+'.',mv:[f.int?'s':'o']});
+
+    /* placering: præstation passer ikke til feltet */
+    if(k==='s'&&p.p2==='l') out.push({k:'Placering',q:'Du har vurderet, at virksomheden præsterer ringere end konkurrenterne her. Kan det så være en styrke? Måske er det en svaghed, eller måske skal vurderingen ændres.',mv:['w']});
+    if(k==='w'&&p.p2==='h') out.push({k:'Placering',q:'Du har vurderet, at virksomheden præsterer bedre end konkurrenterne her. Er det så en svaghed? Måske er det en styrke, eller måske skal vurderingen ændres.',mv:['s']});
+
+    /* placering: kilde fra den anden side */
+    var sk=srcKind(p.src);
+    if(f.int&&sk==='e') out.push({k:'Kilde',q:'Punktet kommer fra '+srcName(p.src)+', som ser på omverdenen. Beskriver punktet virksomheden selv, eller et forhold uden for den?'});
+    if(!f.int&&sk==='i') out.push({k:'Kilde',q:'Punktet kommer fra '+srcName(p.src)+', som ser ind i virksomheden. Er det virkelig et forhold i omverdenen, eller er det en styrke eller svaghed?'});
+
+    /* konkret */
+    if(w.length<5) out.push({k:'Konkret',q:'Punktet er meget kort. Hvad præcis menes der? Ville en læser uden for gruppen forstå, hvad det handler om, og hvor stort det er?'});
+    var vg=find(t,VAGUE),num=/\d/.test(t);
+    if(vg==='konkurrence'&&k==='t') out.push({k:'Konkret',q:'Konkurrence er der altid. Hvilken konkurrent, hvilket træk, og hvad betyder det for virksomheden?'});
+    else if(vg&&!num) out.push({k:'Konkret',q:'«'+vg+'» er et skøn. Hvad viser, at det er sådan? Hvilket tal, hvilken observation eller hvilken sammenligning kan erstatte ordet?'});
+
+    /* dokumentation */
+    if(!num&&!(vg&&!num)) out.push({k:'Dokumentation',q:'Punktet har ingen tal. Kan det dokumenteres med et nøgletal, en andel, en udvikling over tid eller et resultat fra en undersøgelse?'});
+    if(f.int&&!find(t,COMPARE)) out.push({k:'Dokumentation',q:'En '+f.one+' er relativ. Hvem er virksomheden '+(k==='s'?'bedre':'ringere')+' end, og på hvad? Sammenlign med konkurrenterne, branchen eller tidligere år.'});
+    if(!p.src) out.push({k:'Kilde',q:'Hvilken analyse kommer punktet fra? Kan du ikke pege på en, er punktet måske et gæt.'});
+
+    /* betydning */
+    if(!(p.why||'').trim()) out.push({k:'Betydning',q:'Så hvad? Hvad betyder punktet for, at '+esc(S.firma||'virksomheden')+' kan nå sine mål?'});
+    else if(words(p.why).length<5) out.push({k:'Betydning',q:'Betydningen er kort. Hvad sker der konkret for salget, indtjeningen eller positionen på grund af punktet?'});
+
+    /* prioritering */
+    var d=dims(k);
+    if(!p.p1||!p.p2) out.push({k:'Prioritering',q:'Vurdér punktet på '+d[0][0].toLowerCase()+' og '+d[1][0].toLowerCase()+', så det kan prioriteres.'});
+    else{
+      var pr=prio(k,p);
+      if(!pr.hi) out.push({k:'Prioritering',q:'Punktet har fået lav prioritet ('+pr.txt.toLowerCase()+'). Skal det med i jeres endelige SWOT, eller tager det pladsen fra noget vigtigere?'});
+      if(f.int&&p.p1==='h'&&!/kunde|undersøg|analyse|data|%|\d/.test((p.why||'').toLowerCase())) out.push({k:'Prioritering',q:'Du vurderer, at forholdet er vigtigt for kunderne. Hvad bygger det på? En kundeundersøgelse, kundeanmeldelser eller en forventning? Skriv det i betydningen.'});
+    }
+
+    /* dublet */
+    var norm=w.join(' ');
+    KEYS.forEach(function(x){S.pts[x].forEach(function(o,i){
+      if(o!==p&&norm.length>3&&words(o.txt).join(' ')===norm) out.push({k:'Placering',q:'Det samme punkt står også som '+x.toUpperCase()+(i+1)+'. Hvor hører det hjemme?'});
+    });});
+    return out;
+  }
+
+  /* ---------- tjek af et helt felt ---------- */
+  function checkField(k){
+    var a=S.pts[k].filter(function(p){return p.txt.trim();}),out=[];
+    var total=KEYS.reduce(function(n,x){return n+S.pts[x].filter(function(p){return p.txt.trim();}).length;},0);
+    if(a.length>5) out.push({k:'Prioritering',q:'Der er '+a.length+' '+F[k].n.toLowerCase()+'. Hvilke tre til fem er de vigtigste? Resten kan måske samles eller udelades.'});
+    if(!a.length&&total>=4) out.push({k:'Placering',q:'Der er endnu ingen '+F[k].n.toLowerCase()+'. Er der virkelig ingen, eller mangler en analyse? '+F[k].help});
+    return out;
+  }
+
+  /* ---------- tjek af en strategi ---------- */
+  function checkStrat(st){
+    var out=[],t=(st.txt||'').trim(),w=words(t);
+    if(!t)return out;
+    var refs=st.refs.map(codeOf).filter(Boolean);
+    var hasI=refs.filter(function(r){return F[r.k].int;}),hasE=refs.filter(function(r){return !F[r.k].int;});
+    if(!refs.length) out.push({k:'Henvisning',q:'Hvilke punkter bygger strategien på? Sæt kryds ved mindst ét internt og ét eksternt punkt. Kan du ikke finde dem, hænger strategien måske ikke sammen med analysen.'});
+    else{
+      if(!hasI.length) out.push({k:'Henvisning',q:'Strategien henviser ikke til nogen styrke eller svaghed. Hvad ved virksomheden selv gør strategien mulig eller nødvendig?'});
+      if(!hasE.length) out.push({k:'Henvisning',q:'Strategien henviser ikke til nogen mulighed eller trussel. Hvilken udvikling i omverdenen svarer den på?'});
+      var need=TF[st.f];
+      if(hasI.length&&hasE.length){
+        var iOk=hasI.some(function(r){return r.k===need[0];}),eOk=hasE.some(function(r){return r.k===need[1];});
+        if(!iOk||!eOk){
+          var ik=hasI[0].k,ek=hasE[0].k,sug=(ik+ek).toUpperCase();
+          out.push({k:'Placering',q:'Strategien står i '+st.f+', men bygger på '+refs.map(function(r){return r.code;}).join(', ')+'. Hvilket felt passer til de punkter?',tmv:sug});
+        }
+      }
+      var low=refs.filter(function(r){var pr=prio(r.k,r.p);return pr&&!pr.hi;});
+      if(low.length) out.push({k:'Prioritering',q:low.map(function(r){return r.code;}).join(' og ')+' har lav prioritet i jeres SWOT. Er det det, virksomheden skal bruge kræfter på?'});
+    }
+    /* gentager et punkt */
+    var tw=w.filter(function(x){return x.length>3;});
+    refs.concat(KEYS.reduce(function(a,k){return a.concat(S.pts[k].map(function(p){return codeOf(p.id);}));},[])).some(function(r){
+      var pw=words(r.p.txt).filter(function(x){return x.length>3;});
+      if(tw.length<3||!pw.length)return false;
+      var same=tw.filter(function(x){return pw.indexOf(x)>-1;}).length;
+      if(same/tw.length>=.7&&tw.length<=pw.length+2){out.push({k:'Handling',q:'Strategien minder meget om '+r.code+'. Den gentager situationen. Hvad skal virksomheden gøre ved den?'});return true;}
+      return false;
+    });
+    /* mål i stedet for handling */
+    if(/^(vi )?(vil|skal|ønsker at|må) (være|blive|have)\b|^(at )?blive\b|markedsleder|førende|foretrukne/.test(t.toLowerCase())||/^(øge|øg|forøge) (salget|omsætningen|indtjeningen|markedsandelen)$/.test(w.join(' ')))
+      out.push({k:'Handling',q:'Det lyder som et mål. Hvad konkret skal virksomheden gøre for at nå det? Hvem gør hvad?'});
+    else if(!w.some(function(x){return VERBS.indexOf(x)>-1;})&&!find(t,['ved at']))
+      out.push({k:'Handling',q:'Hvad er handlingen? Prøv at begynde med et udsagnsord, fx «Ansæt …», «Lancér …» eller «Indfør …», så det er tydeligt, hvad virksomheden skal gøre.'});
+    if(w.length<6) out.push({k:'Konkret',q:'Strategien er kort. Hvad, for hvem, og hvordan? Er der noget, der skal ske inden en bestemt dato?'});
+    return out;
+  }
+
+  /* ---------- tegning ---------- */
+  function qHtml(list,pid){
+    if(!list.length)return '';
+    return list.map(function(x,i){
+      var mv='';
+      if(x.mv)mv='<span class="mv">'+x.mv.map(function(k){return '<button type="button" class="ghost" data-move="'+k+'" data-pid="'+pid+'">Flyt til '+F[k].n.toLowerCase()+'</button>';}).join('')+'</span>';
+      if(x.tmv)mv='<span class="mv"><button type="button" class="ghost" data-tmove="'+x.tmv+'" data-sid="'+pid+'">Flyt til '+x.tmv+'</button></span>';
+      return '<li class="q" data-k="'+x.k+'"><span class="k">'+x.k+'</span><span>'+x.q+'</span>'+mv+'</li>';
+    }).join('');
+  }
+  function okHtml(){return '<p class="okmsg">✓ Ingen spørgsmål fra tjekket. Det kan kun se formen, så læs punktet igennem en gang til.</p>';}
+
+  function renderSwot(){
+    var el=document.getElementById('swot'),html='';
+    KEYS.forEach(function(k){
+      var f=F[k],d=dims(k);
+      html+='<section class="field" style="--c:var(--'+k+')" data-field="'+k+'"><header><h2>'+f.n+' <span>'+k.toUpperCase()+'</span></h2><p>'+f.help+'</p></header>';
+      html+='<ul class="ffb" data-ffb="'+k+'"></ul>';
+      S.pts[k].forEach(function(p,i){
+        var opt=function(v,a){return '<option value="'+v+'"'+(a===v?' selected':'')+'>';};
+        html+='<article class="pt" data-pid="'+p.id+'" data-k="'+k+'">'+
+          '<div class="top"><span class="code">'+k.toUpperCase()+(i+1)+'</span><span class="prio" data-prio></span></div>'+
+          '<div style="display:flex;flex-direction:column;gap:.25rem"><label for="tx-'+p.id+'">Punkt</label><textarea id="tx-'+p.id+'" rows="2" data-f="txt" placeholder="Hvad, hvor meget, sammenlignet med hvem?">'+esc(p.txt)+'</textarea></div>'+
+          '<div class="row">'+
+            '<div><label for="sr-'+p.id+'">Kilde</label><select id="sr-'+p.id+'" data-f="src">'+SRC.map(function(s){return opt(s[0],p.src)+s[1]+'</option>';}).join('')+'</select></div>'+
+            '<div><label for="p1-'+p.id+'">'+d[0][0]+'</label><select id="p1-'+p.id+'" data-f="p1">'+opt('',p.p1)+'Vælg</option>'+opt('h',p.p1)+d[0][1]+'</option>'+opt('l',p.p1)+d[0][2]+'</option></select></div>'+
+            '<div><label for="p2-'+p.id+'">'+d[1][0]+'</label><select id="p2-'+p.id+'" data-f="p2">'+opt('',p.p2)+'Vælg</option>'+opt('h',p.p2)+d[1][1]+'</option>'+opt('l',p.p2)+d[1][2]+'</option></select></div>'+
+          '</div>'+
+          '<div style="display:flex;flex-direction:column;gap:.25rem"><label for="wh-'+p.id+'">Så hvad? Betydning for virksomheden</label><textarea id="wh-'+p.id+'" rows="2" data-f="why" placeholder="Hvad betyder punktet for, at virksomheden kan nå sine mål?">'+esc(p.why)+'</textarea></div>'+
+          '<ul class="fb" data-fb></ul>'+
+          '<div class="acts"><span class="lbl">Flyt til</span>'+KEYS.filter(function(x){return x!==k;}).map(function(x){return '<button type="button" class="ghost" data-move="'+x+'" data-pid="'+p.id+'">'+x.toUpperCase()+'</button>';}).join('')+
+          '<button type="button" class="ghost danger" data-del="'+p.id+'" style="margin-left:auto">Slet</button></div>'+
+        '</article>';
+      });
+      html+='<button type="button" class="ghost" data-add="'+k+'" style="align-self:flex-start">+ Tilføj '+f.one+'</button></section>';
+    });
+    el.innerHTML=html;
+    KEYS.forEach(function(k){S.pts[k].forEach(function(p){updatePoint(k,p);});updateField(k);});
+  }
+  function updatePoint(k,p){
+    var card=document.querySelector('.pt[data-pid="'+p.id+'"]');if(!card)return;
+    var list=checkPoint(k,p),fb=card.querySelector('[data-fb]');
+    fb.innerHTML=p.txt.trim()?(list.length?qHtml(list,p.id):'<li>'+okHtml()+'</li>'):'';
+    var pr=prio(k,p),pe=card.querySelector('[data-prio]');
+    pe.textContent=pr?pr.txt:'Ikke prioriteret';pe.className='prio'+(pr&&pr.hi?' hi':'');
+  }
+  function updateField(k){document.querySelector('[data-ffb="'+k+'"]').innerHTML=qHtml(checkField(k),'');}
+
+  function renderTows(){
+    var el=document.getElementById('tows');
+    if(!S.strat.length){el.innerHTML='<p class="empty">Ingen strategier endnu. Udfyld SWOT først, og tilføj så strategierne én ad gangen.</p>';updateStatus();return;}
+    var all=[];KEYS.forEach(function(k){S.pts[k].forEach(function(p,i){if(p.txt.trim())all.push({k:k,code:k.toUpperCase()+(i+1),p:p});});});
+    el.innerHTML=S.strat.map(function(st,n){
+      return '<article class="strat" data-sid="'+st.id+'">'+
+        '<div class="top"><span class="lbl">Strategi '+(n+1)+'</span><select data-sf="f" aria-label="Felt">'+Object.keys(TF).map(function(x){return '<option value="'+x+'"'+(st.f===x?' selected':'')+'>'+TN[x]+'</option>';}).join('')+'</select>'+
+        '<label class="chk" style="margin-left:auto"><input type="checkbox" data-sf="valgt"'+(st.valgt?' checked':'')+'> Valgt</label></div>'+
+        '<textarea rows="2" data-sf="txt" aria-label="Strategi" placeholder="Hvad skal virksomheden gøre? Begynd med et udsagnsord.">'+esc(st.txt)+'</textarea>'+
+        '<div style="display:flex;flex-direction:column;gap:.3rem"><span class="lbl">Bygger på</span><div class="refs">'+
+          (all.length?all.map(function(r){var pr=prio(r.k,r.p);return '<label class="'+(pr&&!pr.hi?'low':'')+'" style="--c:var(--'+r.k+')"><input type="checkbox" data-ref="'+r.p.id+'"'+(st.refs.indexOf(r.p.id)>-1?' checked':'')+'><b>'+r.code+'</b><span>'+esc(r.p.txt.length>90?r.p.txt.slice(0,88)+'…':r.p.txt)+'</span></label>';}).join(''):'<span class="empty">Skriv punkter i SWOT først.</span>')+
+        '</div></div>'+
+        '<ul class="fb" data-fb></ul>'+
+        '<div class="acts" style="display:flex"><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
+      '</article>';
+    }).join('')+'<ul class="fb" id="tows-fb"></ul>';
+    S.strat.forEach(updateStrat);updateTowsField();
+  }
+  function updateStrat(st){
+    var card=document.querySelector('.strat[data-sid="'+st.id+'"]');if(!card)return;
+    var list=checkStrat(st);
+    card.querySelector('[data-fb]').innerHTML=st.txt.trim()?(list.length?qHtml(list,st.id):'<li>'+okHtml()+'</li>'):'';
+  }
+  function updateTowsField(){
+    var el=document.getElementById('tows-fb');if(!el)return;
+    var out=[],filled=S.strat.filter(function(s){return s.txt.trim();});
+    var cnt={};filled.forEach(function(s){cnt[s.f]=(cnt[s.f]||0)+1;});
+    if(filled.length>=4&&!cnt.SO) out.push({k:'Valg',q:'Der er ingen SO-strategier. Er der ingen styrker, der kan bruges på mulighederne, eller er de ikke undersøgt endnu?'});
+    if(filled.length>=4&&!cnt.ST&&!cnt.WT) out.push({k:'Valg',q:'Ingen strategier svarer på truslerne. Hvad gør virksomheden, hvis de indtræffer?'});
+    var hiT=[];S.pts.t.forEach(function(p,i){var pr=prio('t',p);if(pr&&p.p1==='h'&&p.p2==='h'&&!S.strat.some(function(s){return s.txt.trim()&&s.refs.indexOf(p.id)>-1;}))hiT.push('T'+(i+1));});
+    if(filled.length&&hiT.length) out.push({k:'Valg',q:hiT.join(' og ')+' har højeste prioritet, men ingen strategi henviser til '+(hiT.length>1?'dem':'den')+'. Hvordan skal virksomheden møde '+(hiT.length>1?'dem':'den')+'?'});
+    var v=filled.filter(function(s){return s.valgt;}).length;
+    if(filled.length>=3&&!v) out.push({k:'Valg',q:'Ingen strategier er valgt endnu. Hvilke passer bedst til virksomhedens mål og ressourcer, og hvilke trækker i samme retning?'});
+    if(v>5) out.push({k:'Valg',q:v+' strategier er valgt. Har virksomheden ressourcer til dem alle? Hvad viser regnskabsanalysen?'});
+    el.innerHTML=qHtml(out,'');
+  }
+
+  function updateStatus(){
+    var n=0,open=0;
+    KEYS.forEach(function(k){S.pts[k].forEach(function(p){if(p.txt.trim()){n++;if(checkPoint(k,p).length)open++;}});});
+    var sn=0,so=0,sv=0;
+    S.strat.forEach(function(s){if(s.txt.trim()){sn++;if(checkStrat(s).length)so++;if(s.valgt)sv++;}});
+    document.getElementById('status').innerHTML=
+      '<span><b>'+n+'</b> SWOT-punkter</span><span class="'+(open?'open':'')+'"><b>'+open+'</b> med spørgsmål</span>'+
+      '<span><b>'+sn+'</b> strategier</span><span class="'+(so?'open':'')+'"><b>'+so+'</b> med spørgsmål</span><span><b>'+sv+'</b> valgt</span>';
+  }
+  function renderAll(){document.getElementById('firma').value=S.firma||'';renderSwot();renderTows();updateStatus();}
+
+  /* ---------- handlinger ---------- */
+  function findPoint(id){for(var k=0;k<4;k++){var a=S.pts[KEYS[k]];for(var i=0;i<a.length;i++)if(a[i].id===id)return {k:KEYS[k],i:i,p:a[i]};}return null;}
+  function findStrat(id){for(var i=0;i<S.strat.length;i++)if(S.strat[i].id===id)return S.strat[i];return null;}
+
+  document.getElementById('firma').addEventListener('input',function(e){S.firma=e.target.value;save();});
+  document.getElementById('firma').addEventListener('change',function(){renderSwot();renderTows();updateStatus();});
+
+  var swot=document.getElementById('swot');
+  swot.addEventListener('input',function(e){
+    var card=e.target.closest('.pt');if(!card||!e.target.dataset.f)return;
+    var r=findPoint(card.dataset.pid);r.p[e.target.dataset.f]=e.target.value;save();
+  });
+  swot.addEventListener('change',function(e){
+    var card=e.target.closest('.pt');if(!card)return;
+    var r=findPoint(card.dataset.pid);
+    KEYS.forEach(function(k){S.pts[k].forEach(function(p){updatePoint(k,p);});updateField(k);});
+    renderTows();updateStatus();
+  });
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.add){var p=np();S.pts[b.dataset.add].push(p);save();renderSwot();updateStatus();document.getElementById('tx-'+p.id).focus();}
+    else if(b.dataset.del){var r=findPoint(b.dataset.del);if(r.p.txt.trim()&&!confirm('Slet punktet?'))return;S.pts[r.k].splice(r.i,1);S.strat.forEach(function(s){s.refs=s.refs.filter(function(x){return x!==r.p.id;});});save();renderSwot();renderTows();updateStatus();}
+    else if(b.dataset.move&&b.dataset.pid){
+      var m=findPoint(b.dataset.pid);if(!m)return;
+      S.pts[m.k].splice(m.i,1);
+      /* vurderingerne betyder noget andet i det nye felt, når det skifter mellem intern og ekstern */
+      if(F[m.k].int!==F[b.dataset.move].int){m.p.p1='';m.p.p2='';}
+      S.pts[b.dataset.move].push(m.p);save();renderSwot();renderTows();updateStatus();
+      var c=document.querySelector('.pt[data-pid="'+m.p.id+'"]');if(c){c.scrollIntoView({behavior:'smooth',block:'center'});c.querySelector('textarea').focus({preventScroll:true});}
+    }
+    else if(b.dataset.tmove){var st=findStrat(b.dataset.sid);st.f=b.dataset.tmove;save();renderTows();updateStatus();}
+    else if(b.dataset.sdel){var i=S.strat.indexOf(findStrat(b.dataset.sdel));if(S.strat[i].txt.trim()&&!confirm('Slet strategien?'))return;S.strat.splice(i,1);save();renderTows();updateStatus();}
+  });
+
+  document.getElementById('add-strat').addEventListener('click',function(){
+    var st={id:uid(),txt:'',f:'SO',refs:[],valgt:false};S.strat.push(st);save();renderTows();updateStatus();
+    document.querySelector('.strat[data-sid="'+st.id+'"] textarea').focus();
+  });
+  var tows=document.getElementById('tows');
+  tows.addEventListener('input',function(e){
+    var card=e.target.closest('.strat');if(!card)return;var st=findStrat(card.dataset.sid);
+    if(e.target.dataset.sf==='txt'){st.txt=e.target.value;save();}
+  });
+  tows.addEventListener('change',function(e){
+    var card=e.target.closest('.strat');if(!card)return;var st=findStrat(card.dataset.sid),t=e.target;
+    if(t.dataset.sf==='f')st.f=t.value;
+    else if(t.dataset.sf==='valgt')st.valgt=t.checked;
+    else if(t.dataset.ref){var id=t.dataset.ref;st.refs=st.refs.filter(function(x){return x!==id;});if(t.checked)st.refs.push(id);}
+    save();updateStrat(st);updateTowsField();updateStatus();
+  });
+
+  /* ---------- gem og del ---------- */
+  var toastT;
+  function toast(m){var t=document.getElementById('toast');t.textContent=m;clearTimeout(toastT);toastT=setTimeout(function(){t.textContent='';},4000);}
+  function asText(){
+    var L=[],firm=S.firma||'Virksomheden';
+    L.push('# SWOT for '+firm,'');
+    KEYS.forEach(function(k){
+      L.push('## '+F[k].n,'');
+      var d=dims(k);
+      S.pts[k].forEach(function(p,i){
+        if(!p.txt.trim())return;
+        var pr=prio(k,p);
+        L.push('**'+k.toUpperCase()+(i+1)+'** '+p.txt.trim());
+        var meta=[];
+        if(p.src)meta.push('Kilde: '+srcName(p.src));
+        if(p.p1)meta.push(d[0][0]+': '+(p.p1==='h'?d[0][1]:d[0][2]).toLowerCase());
+        if(p.p2)meta.push(d[1][0]+': '+(p.p2==='h'?d[1][1]:d[1][2]).toLowerCase());
+        if(pr)meta.push('Prioritet: '+pr.txt.toLowerCase());
+        if(meta.length)L.push('  '+meta.join(' · '));
+        if(p.why.trim())L.push('  Betydning: '+p.why.trim());
+        L.push('');
+      });
+    });
+    var st=S.strat.filter(function(s){return s.txt.trim();});
+    if(st.length){
+      L.push('# TOWS for '+firm,'');
+      Object.keys(TF).forEach(function(f){
+        var a=st.filter(function(s){return s.f===f;});if(!a.length)return;
+        L.push('## '+TN[f],'');
+        a.forEach(function(s){var refs=s.refs.map(codeOf).filter(Boolean).map(function(r){return r.code;});L.push('- '+(s.valgt?'**Valgt:** ':'')+s.txt.trim()+(refs.length?' ('+refs.join(', ')+')':''));});
+        L.push('');
+      });
+    }
+    return L.join('\n');
+  }
+  document.getElementById('copy').addEventListener('click',function(){
+    var txt=asText();
+    function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Kopieret.');}catch(e){toast('Kopiering mislykkedes.');}ta.remove();}
+    if(navigator.clipboard)navigator.clipboard.writeText(txt).then(function(){toast('Kopieret. Sæt teksten ind i rapporten.');},fallback);else fallback();
+  });
+  document.getElementById('save').addEventListener('click',function(){
+    var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='swot-'+(S.firma||'analyse').toLowerCase().replace(/[^a-z0-9æøå]+/g,'-')+'.json';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+    toast('Filen er gemt i din downloadmappe.');
+  });
+  var file=document.getElementById('file');
+  document.getElementById('open').addEventListener('click',function(){file.click();});
+  file.addEventListener('change',function(){
+    var f=file.files[0];if(!f)return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{var d=JSON.parse(r.result);if(!d.pts||!d.strat)throw 0;
+        KEYS.forEach(function(k){d.pts[k]=d.pts[k]||[];});
+        S=d;save();renderAll();toast('Filen er åbnet.');}
+      catch(e){toast('Filen kunne ikke læses. Er det en fil gemt fra denne side?');}
+      file.value='';
+    };
+    r.readAsText(f);
+  });
+  document.getElementById('clear').addEventListener('click',function(){
+    if(!confirm('Slet alle punkter og strategier? Det kan ikke fortrydes. Gem en fil først, hvis du vil beholde arbejdet.'))return;
+    S=blank();save();renderAll();toast('Alt er ryddet.');
+  });
+
+  /* Et bevidst fejlbehæftet eksempel på øvelsescasen, så man kan se, hvad tjekket spørger om */
+  document.getElementById('demo').addEventListener('click',function(){
+    var has=KEYS.some(function(k){return S.pts[k].some(function(p){return p.txt.trim();});});
+    if(has&&!confirm('Eksemplet erstatter det, der står nu. Gem en fil først, hvis du vil beholde arbejdet. Fortsæt?'))return;
+    function P(txt,src,why,p1,p2){return {id:uid(),txt:txt,src:src||'',why:why||'',p1:p1||'',p2:p2||''};}
+    var s1=P('Garanti på 10 år mod 2 til 5 år hos konkurrenterne','konk','Kunderne nævner holdbarhed som vigtigste købsgrund i kundeundersøgelsen, så garantien er et stærkt salgsargument.','h','h');
+    var s2=P('Godt produkt');
+    var s3=P('Markedet for ladcykler til erhverv vokser 15 % om året','kund','Giver mulighed for vækst.','h','h');
+    var w1=P('Alle motorer og batterier købes hos én leverandør i Taiwan','vk','Et leveringsstop vil standse hele produktionen.','h','l');
+    var w2=P('Dårlig økonomi','regn');
+    var o1=P('Vi bør åbne en webshop i Tyskland');
+    var o2=P('Bilfrie zoner i fire af de fem største byer inden 2028','pest','Flere bybeboere får brug for et alternativ til bilen, og det øger efterspørgslen på ladcykler.','h','h');
+    var t1=P('Konkurrence');
+    var t2=P('Vi mangler en medarbejder til digital markedsføring','fm');
+    S={firma:'Cykelværket ApS',pts:{s:[s1,s2,s3],w:[w1,w2],o:[o1,o2],t:[t1,t2]},strat:[
+      {id:uid(),txt:'Øge salget',f:'SO',refs:[],valgt:false},
+      {id:uid(),txt:'Godkend en europæisk reserveleverandør af motorer og batterier inden udgangen af næste år',f:'SO',refs:[w1.id,t1.id],valgt:true},
+      {id:uid(),txt:'Lancér en erhvervsmodel med 10 års garanti og sælg den direkte til budfirmaer',f:'SO',refs:[s1.id,s3.id],valgt:true}
+    ]};
+    save();renderAll();toast('Eksemplet er indlæst. Læs spørgsmålene, og prøv at rette punkterne.');
+    document.getElementById('swot').scrollIntoView({behavior:'smooth'});
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
