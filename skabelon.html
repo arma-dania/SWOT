@@ -21,12 +21,12 @@ body{margin:0}
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
-.wrap{max-width:min(64rem, 100%);margin:0 auto;padding-inline:1rem;padding-block:1.5rem 4rem;display:flex;flex-direction:column;gap:2.5rem}
+.wrap{max-width:min(44rem, 100%);margin:0 auto;padding-inline:1rem;padding-block:1.5rem 4rem;display:flex;flex-direction:column;gap:2.5rem}
 h1,h2,h3,button,select,label,.ui{font-family:var(--display)}
 h1{font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.02em}
 h2{font-size:1.5rem;line-height:1.2;margin:0;font-weight:700}
 h3{font-size:1.0625rem;margin:0;font-weight:700}
-p{margin:0;max-width:72ch}
+p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter; kolonnen er smal nok til cirka 85 tegn pr. linje */
 a{color:var(--accent)}
 .lead{color:var(--muted);font-size:1.1875rem}
 .head{display:flex;flex-direction:column;gap:.75rem}
