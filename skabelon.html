@@ -6,7 +6,7 @@
 <title>SWOT-skabelon</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <style>
-html{color-scheme:light dark}
+html{color-scheme:light}
 body{margin:0}
 [hidden]{display:none!important}
 /* Samme farver og typografi som SWOT-værkstedet. Hvert felt har sin farve, som går igen i kort, koder og spørgsmål. */
@@ -18,20 +18,6 @@ body{margin:0}
   --shadow:0 1px 2px rgba(16,24,40,.05),0 1px 3px rgba(16,24,40,.07);
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --body:"Newsreader",Georgia,"Times New Roman",serif;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#17191c; --surface:#212429; --ink:#e8eaed; --muted:#a0a7b1; --line:#353a42;
-    --accent:#c9d3df; --on-accent:#17191c;
-    --s:#66c795; --w:#e0b352; --o:#86b4f0; --t:#e58ab6; --x:#a0a7b1;
-    --bad:#f08a80; --shadow:none; color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#17191c; --surface:#212429; --ink:#e8eaed; --muted:#a0a7b1; --line:#353a42;
-    --accent:#c9d3df; --on-accent:#17191c;
-    --s:#66c795; --w:#e0b352; --o:#86b4f0; --t:#e58ab6; --x:#a0a7b1;
-    --bad:#f08a80; --shadow:none; color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
