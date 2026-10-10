@@ -714,7 +714,7 @@ a{color:var(--accent)}
     <section class="mod">
       <span class="n">Klasseøvelser · sprint 2</span>
       <h2>Øvelser til undervisningen</h2>
-      <p>Syv øvelser, der fører fra kvaliteten af det enkelte punkt til en prioriteret SW for Living Flowers. Øvelserne bygger på hinanden i tre dele. Fold en øvelse ud for at se formål, materialer, trin og produkt.</p>
+      <p>Syv øvelser, der fører fra kvaliteten af det enkelte punkt til en prioriteret SW for Living Flowers. Øvelse 1 og 2 bruger øvelsescasen Cykelværket, øvelse 3–7 Living Flowers. Øvelserne bygger på hinanden i tre dele. Fold en øvelse ud for at se formål, materialer, trin og produkt.</p>
       <div class="it-plan" id="it-plan"></div>
       <div class="it-tools">
         <button type="button" id="it-open">Fold alle ud</button>
@@ -1288,23 +1288,24 @@ a{color:var(--accent)}
   ];
   /* Én post pr. øvelse. trin: [minuttal, tekst]. links: [tekst, mål], hvor mål er en fane eller en fil. */
   var OVELSER=[
-    {n:1,del:'A',titel:'Fra svagt til stærkt',type:'par',form:'Par',tid:20,kase:'Living Flowers',
+    {n:1,del:'A',titel:'Fra svagt til stærkt',type:'par',form:'Par',tid:20,kase:'Cykelværket',
      formaal:'At gøre et punkt præcist, dokumenteret og sammenlignet.',
-     materialer:'Living Flowers’ regnskabsanalyse og de øvrige interne analyser. Tre vage punkter: «Godt brand», «Dårlig økonomi», «Stærk bæredygtighedsprofil».',
-     trin:[['2 min','Læs de tre punkter. Afgør for hvert, om I tror, det holder.'],
-           ['12 min','Skriv hvert punkt om, så det indeholder en konkret observation, et tal eller en kilde og en sammenligning (konkurrent, branche eller tidligere år). Holder punktet ikke, så skriv det, analysen faktisk viser.'],
-           ['6 min','Tilføj én «så hvad?»-sætning til hvert punkt: hvad betyder det for virksomhedens muligheder for at nå sine mål?']],
+     materialer:'Casebeskrivelsen og Cykelværkets prioriterede SWOT under Træning. Tre vage punkter: «Høj kvalitet», «Langsom levering» og «Godt forhandlernet».',
+     trin:[['2 min','Læs de tre punkter. Afgør for hvert, om det er en styrke eller en svaghed, og om casen kan dokumentere det.'],
+           ['12 min','Skriv hvert punkt om, så det indeholder en konkret observation, et tal og en sammenligning med konkurrenter, branche eller tidligere år. Kan casen ikke dokumentere punktet, så skriv, hvilken analyse og hvilke tal der skulle til.'],
+           ['6 min','Tilføj én «så hvad?»-sætning til hvert punkt: hvad betyder det for Cykelværkets muligheder for at nå sine mål?']],
      produkt:'Tre omskrevne punkter med konsekvenssætning.',
-     tip:'Tjek før timen, at de tre vage punkter passer til Living Flowers-casen. Mindst ét punkt skal bygge på regnskabet. Et punkt, der viser sig ikke at holde, er et godt resultat.',
-     links:[['SWOT: et godt SWOT-punkt','viden'],['Træning: Find fejlen','traening']]},
-    {n:2,del:'A',titel:'Advokat og dommer',type:'par',form:'Par',tid:12,kase:'Living Flowers',
+     tip:'«Høj kvalitet» kan dokumenteres med stellets 4,8 af 5 mod 4,1 og 4,3, og «Langsom levering» med 6 uger mod 2. «Godt forhandlernet» kan ikke: casen siger 38 forhandlere, men intet om konkurrenternes. Det er pointen. De studerende skal kunne sige, hvilke data der mangler, fx fra BMC’ens kanaler eller en konkurrentanalyse.',
+     links:[['Træning: casen og øvelserne','traening'],['SWOT: et godt SWOT-punkt','viden']]},
+    {n:2,del:'A',titel:'Advokat og dommer',type:'par',form:'Par',tid:12,kase:'Cykelværket',
      formaal:'At teste, om en styrke er relativ til konkurrenterne.',
-     materialer:'De interne analyser, parret selv har lavet.',
-     trin:[['1 min','Vælg fire styrker fra jeres analyser.'],
+     materialer:'Casebeskrivelsen og Cykelværkets prioriterede SWOT under Træning.',
+     trin:[['1 min','Vælg fire mulige styrker fra casen: det holdbare stel, garantien på 10 år, soliditeten og forhandlernettet med 38 forhandlere.'],
            ['8 min','2 min pr. styrke. A argumenterer for, at forholdet er en styrke. B argumenterer imod: kan konkurrenterne det samme, og betyder det noget for kunderne? Byt roller ved hver ny styrke.'],
            ['3 min','Afgør sammen for hver styrke: beholdes, omformuleres eller fjernes?']],
      produkt:'Fire styrker med afgørelse og én linjes begrundelse.',
-     tip:'Øvelsen er VRIO-testen i samtaleform. Henvis til den, hvis et par går i stå. VPC’en kan afgøre, om forholdet betyder noget for kunderne.'},
+     tip:'Øvelsen er VRIO-testen i samtaleform. Henvis til den, hvis et par går i stå. Forhandlernettet er det sværeste: casen siger ikke, om konkurrenterne har lige så mange forhandlere, så det kan ikke afgøres, om det er en styrke.',
+     links:[['Træning: casen og øvelserne','traening']]},
     {n:3,del:'B',titel:'Fra analyse til bruttoliste',type:'gruppe',form:'Gruppe (3-5)',tid:20,kase:'Living Flowers',
      formaal:'At omsætte konklusionerne fra de interne analyser til styrker og svagheder med kilde.',
      materialer:'Gruppens interne analyser: mission og vision, Golden Circle, VRIO, BMC, VPC, Porters værdikæde og regnskabsanalyse. Skabelonen på sitet eller et fælles dokument.',
