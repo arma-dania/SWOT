@@ -15,3 +15,7 @@ Siderne er selvstændige filer uden byggetrin: `index.html` (værkstedet) og `sk
 ## Skabelon med tjek
 
 `skabelon.html` lader de studerende udfylde SWOT (punkt, kilde, betydning, prioritering) og TOWS (strategi, felt, henvisninger, valgt). Et regelbaseret tjek i browseren stiller spørgsmål, når et punkt er vagt, udokumenteret, mangler kilde eller betydning, ligner en handling, eller ser ud til at stå i det forkerte felt. Punkter og strategier kan flyttes med ét klik. Arbejdet gemmes i browseren og kan gemmes som fil, åbnes igen og kopieres som tekst til rapporten.
+
+## Moodle
+
+`moodle/swot-traening.html` er en selvstændig udgave af fanen Træning (casen og de tre øvelser) til upload i Moodle som fil. Alt CSS og JavaScript ligger i filen. Den er trukket ud af `index.html`; ændres øvelserne på sitet, skal filen laves igen.
