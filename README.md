@@ -6,10 +6,10 @@ Siderne er selvstændige filer uden byggetrin: `index.html` (værkstedet) og `sk
 
 ## Indhold
 
-- **Viden**: SWOT's formål, de to akser, interne og eksterne forhold, kvalitet i SWOT-punkter, prioritering (sandsynlighed × konsekvens, vigtighed × præstation), faldgruber og overgangen til TOWS.
-- **Træning**: tre øvelser på den opdigtede case Cykelværket ApS (sortering, find fejlen, prioritering).
-- **Quiz**: 13 spørgsmål med forklaringer og resultat fordelt på emner.
-- **TOWS**: viden om de fire strategifelter (SO, ST, WO, WT), fremgangsmåde, kvalitet, valg og faldgruber; tre øvelser på Cykelværkets prioriterede SWOT (kombinér, hvilket felt, find fejlen) og en quiz med 13 spørgsmål.
+- **SWOT**: SWOT's formål, de to akser, interne og eksterne forhold, kvalitet i SWOT-punkter, prioritering (sandsynlighed × konsekvens, vigtighed × præstation), faldgruber og overgangen til TOWS.
+- **Træning**: seks øvelser på den opdigtede case Cykelværket ApS. SWOT: sortering, find fejlen, prioritering. TOWS: kombinér, hvilket felt, find fejlen.
+- **Quiz**: to quizzer, om SWOT og om TOWS, hver med 13 spørgsmål, forklaringer og resultat fordelt på emner.
+- **TOWS**: de fire strategifelter (SO, ST, WO, WT), fremgangsmåde, kvalitet med tjekliste, valg og faldgruber. Øvelser og quiz ligger under Træning og Quiz.
 - **I timen**: ni klasseøvelser til sprint 2 (par og grupper) i fire dele, fra begreber til en prioriteret SW for Living Flowers. Hver øvelse kan foldes ud med formål, materialer, trin med minuttal, produkt og tip til underviseren. Tips skjules ved at sætte `VIS_TIPS = false` i scriptet i `index.html`.
 
 ## Skabelon med tjek
@@ -18,4 +18,4 @@ Siderne er selvstændige filer uden byggetrin: `index.html` (værkstedet) og `sk
 
 ## Moodle
 
-`moodle/swot-traening.html` er en selvstændig udgave af fanen Træning (casen og de tre øvelser) til upload i Moodle som fil. Alt CSS og JavaScript ligger i filen. Den er trukket ud af `index.html`; ændres øvelserne på sitet, skal filen laves igen.
+`moodle/swot-traening.html` er en selvstændig udgave af fanen Træning (casen og de seks øvelser i SWOT og TOWS) til upload i Moodle som fil. Alt CSS og JavaScript ligger i filen. Den er trukket ud af `index.html`; ændres øvelserne på sitet, skal filen laves igen.

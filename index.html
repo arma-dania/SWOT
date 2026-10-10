@@ -170,7 +170,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .opts button:disabled{cursor:default;opacity:.6}
 .opts button.right,#p-traening .opts button.right{opacity:1;border-color:var(--s);background:color-mix(in srgb,var(--s) 15%,var(--surface));color:var(--s)}
 /* hver træningsøvelse har sin egen farve på svarfelterne; farverne er valgt, så de ikke forveksles med S, W, O og T */
-#ex-sort{--ex:#0e7c86} #ex-err{--ex:#6a4c9c} #ex-prio{--ex:#b4532a}
+#ex-sort,#tx-field{--ex:#0e7c86} #ex-err,#tx-err{--ex:#6a4c9c} #ex-prio,#tx-comb{--ex:#b4532a}
 #p-traening .ex{border-top:4px solid var(--ex)}
 #p-traening .opts button{background:color-mix(in srgb,var(--ex) 15%,var(--surface));border-color:color-mix(in srgb,var(--ex) 40%,var(--surface))}
 #p-traening .opts button:hover:not(:disabled){border-color:var(--ex)}
@@ -194,7 +194,7 @@ a{color:var(--accent)}
 .jump button:hover{border-color:var(--accent)}
 .anchor{scroll-margin-top:4.5rem}
 .part{font-family:var(--display);font-size:1.75rem;font-weight:700;letter-spacing:-.01em;padding-top:1rem;border-top:2px solid var(--line)}
-.steps,.crit{margin:0;padding-left:1.4rem;display:flex;flex-direction:column;gap:.5rem;max-width:65ch}
+.steps,.crit{margin:0;padding-left:1.4rem;display:flex;flex-direction:column;gap:.5rem}
 .steps li::marker{font-family:var(--display);font-weight:700;color:var(--accent)}
 .crit li::marker{color:var(--accent)}
 .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.75rem}
@@ -295,7 +295,7 @@ a{color:var(--accent)}
   </header>
 
   <nav class="tabs" role="tablist">
-    <button role="tab" id="tab-viden" data-tab="viden" aria-selected="true">Viden</button>
+    <button role="tab" id="tab-viden" data-tab="viden" aria-selected="true">SWOT</button>
     <button role="tab" id="tab-traening" data-tab="traening" aria-selected="false">Træning</button>
     <button role="tab" id="tab-quiz" data-tab="quiz" aria-selected="false">Quiz</button>
     <button role="tab" id="tab-tows" data-tab="tows" aria-selected="false">TOWS</button>
@@ -447,6 +447,11 @@ a{color:var(--accent)}
 
   <!-- TRÆNING -->
   <main class="panel" id="p-traening" role="tabpanel" hidden>
+    <nav class="jump" aria-label="Spring til">
+      <button type="button" data-jump="tr-swot">SWOT · øvelse 1–3</button>
+      <button type="button" data-jump="tr-tows">TOWS · øvelse 4–6</button>
+    </nav>
+    <h2 class="part anchor" id="tr-swot">Træning i SWOT</h2>
     <section class="case">
       <span class="tag">Øvelsescase · opdigtet virksomhed</span>
       <h2>Cykelværket ApS</h2>
@@ -454,47 +459,81 @@ a{color:var(--accent)}
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 1</span>
+      <span class="n">Øvelse 1 · SWOT</span>
       <h2>Sortér udsagnene</h2>
       <p>Placér hvert udsagn om Cykelværket i det rigtige felt. Nogle udsagn hører slet ikke hjemme i en SWOT.</p>
       <div class="ex" id="ex-sort"></div>
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 2</span>
+      <span class="n">Øvelse 2 · SWOT</span>
       <h2>Find fejlen</h2>
       <p>En gruppe har lavet en SWOT for Cykelværket. Vurdér hvert punkt i det felt, gruppen har placeret det i.</p>
       <div class="ex" id="ex-err"></div>
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 3</span>
+      <span class="n">Øvelse 3 · SWOT</span>
       <h2>Prioritér efter sandsynlighed</h2>
       <p>Placér hver mulighed og trussel i matricen ud fra oplysningerne. Læs efter, hvad der siger noget om sandsynligheden for, at forholdet indtræffer, og hvad der siger noget om konsekvensen for virksomheden.</p>
       <div class="ex" id="ex-prio"></div>
+    </section>
+
+    <h2 class="part anchor" id="tr-tows">Træning i TOWS</h2>
+
+
+    <section class="case">
+      <span class="tag">Øvelsescase · opdigtet virksomhed</span>
+      <h2>Cykelværkets prioriterede SWOT</h2>
+      <p>Øvelse 4–6 bygger på disse punkter. Henvisningerne i øvelserne, for eksempel (S1, O1), peger hertil.</p>
+      <div class="swl" data-swl></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 4 · TOWS</span>
+      <h2>Kombinér til en strategi</h2>
+      <p>For hver kombination af punkter skal du vælge den strategi, der bedst svarer på feltets spørgsmål.</p>
+      <div class="ex" id="tx-comb"></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 5 · TOWS</span>
+      <h2>Hvilket felt?</h2>
+      <p>Placér hver strategi i det felt, den hører til. Find først de punkter i SWOT'en, strategien bygger på. Nogle af udsagnene er slet ikke strategier.</p>
+      <div class="ex" id="tx-field"></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 6 · TOWS</span>
+      <h2>Find fejlen i en TOWS</h2>
+      <p>En gruppe har lavet en TOWS for Cykelværket. Vurdér hver strategi med det felt og den henvisning, gruppen har givet den.</p>
+      <div class="ex" id="tx-err"></div>
     </section>
   </main>
 
   <!-- QUIZ -->
   <main class="panel" id="p-quiz" role="tabpanel" hidden>
-    <section class="mod">
+    <nav class="jump" aria-label="Spring til">
+      <button type="button" data-jump="qz-swot">Quiz om SWOT</button>
+      <button type="button" data-jump="qz-tows">Quiz om TOWS</button>
+    </nav>
+    <section class="mod anchor" id="qz-swot">
       <span class="n">Test dig selv</span>
       <h2>Quiz om SWOT</h2>
       <p>13 spørgsmål. Du får en forklaring efter hvert svar og til sidst et resultat fordelt på emner, så du kan se, hvad du bør læse igen.</p>
       <div class="ex" id="ex-quiz"></div>
     </section>
+
+    <section class="mod anchor" id="qz-tows">
+      <span class="n">Test dig selv</span>
+      <h2>Quiz om TOWS</h2>
+      <p>13 spørgsmål. Du får en forklaring efter hvert svar og til sidst et resultat fordelt på emner.</p>
+      <div class="ex" id="tx-quiz"></div>
+    </section>
   </main>
 
   <!-- TOWS -->
   <main class="panel" id="p-tows" role="tabpanel" hidden>
-    <nav class="jump" aria-label="Spring til">
-      <button type="button" data-jump="tows-viden">Viden</button>
-      <button type="button" data-jump="tows-traening">Træning</button>
-      <button type="button" data-jump="tows-quiz">Quiz</button>
-    </nav>
-
-    <h2 class="part anchor" id="tows-viden">Viden om TOWS</h2>
-
     <section class="mod">
       <span class="n">1 · Formål</span>
       <h2>TOWS gør SWOT til strategi</h2>
@@ -533,12 +572,27 @@ a{color:var(--accent)}
       <span class="n">4 · Kvalitet</span>
       <h2>Hvad kendetegner en god strategi?</h2>
       <p>En god strategi består tre prøver. Den er en <b>handling</b>: den siger, hvad virksomheden skal gøre, ikke bare hvad den gerne vil opnå. Den er <b>sporbar</b>: den henviser til mindst ét internt og ét eksternt punkt, og forbindelsen giver mening. Og den er <b>realistisk</b>: virksomheden har eller kan skaffe de ressourcer, den kræver.</p>
+      <p>Formuleringen skal være så konkret, at en anden kan gå i gang med den. Den skal svare på hvad, for hvem og hvordan, og gerne hvornår. «Styrk markedsføringen» kan betyde hvad som helst. «Ansæt en digital marketingansvarlig inden sommer, og flyt en femtedel af annoncebudgettet til webshoppen» kan sættes i gang i morgen.</p>
+      <p>Strategien skal også passe til feltet. En SO-strategi er offensiv: den bruger en styrke til at vokse. En WT-strategi er defensiv: den begrænser en risiko, hvor virksomheden er sårbar. Står der «Gå ind på nye markeder» i WT-feltet, er der noget galt, enten med strategien eller med placeringen.</p>
+      <p>Endelig skal strategien være specifik for virksomheden. Spørg: Kunne den stå i en hvilken som helst virksomheds TOWS? Er svaret ja, bygger den ikke på virksomhedens egne styrker og svagheder, og så er den for generel. «Bliv mere digital» passer på alle. «Brug garantien på 10 år som hovedargument over for budfirmaer» passer kun på Cykelværket.</p>
       <div class="pairs">
         <div class="pair"><div><small>Svagt</small>Øg salget</div><div><small>Stærkt</small>Sælg en erhvervsmodel direkte til budfirmaer med garantien på 10 år som hovedargument (S2, O1)</div></div>
         <div class="pair"><div><small>Svagt</small>Udnyt det voksende erhvervsmarked</div><div><small>Stærkt</small>Ansæt en digital marketingansvarlig, og lav en erhvervsside på webshoppen (W2, O1)</div></div>
+        <div class="pair"><div><small>Svagt</small>Sænk priserne</div><div><small>Stærkt</small>Tilbyd rentefri afbetaling over 24 måneder, finansieret af den solide egenkapital, så kunderne ikke rammes af den stigende rente (S3, T2)</div></div>
         <div class="pair"><div><small>Svagt</small>Bliv bedre til at levere</div><div><small>Stærkt</small>Hav de mest solgte modeller på lager hos de københavnske forhandlere, før konkurrentens showroom åbner (W3, T1)</div></div>
       </div>
-      <p>Det første svage eksempel er et mål. Det andet gentager bare muligheden. Det tredje er en hensigt uden indhold. I alle tre tilfælde mangler både handlingen og henvisningen.</p>
+      <p>Det første svage eksempel er et mål. Det andet gentager bare muligheden. Det tredje er en handling, men så generel, at den kunne gælde enhver virksomhed, og den siger ikke, hvad prisnedsættelsen skal svare på. Det fjerde er en hensigt uden indhold. I alle fire tilfælde mangler henvisningen til SWOT.</p>
+      <div class="case">
+        <span class="tag">Tjekliste til hver strategi</span>
+        <ol class="steps">
+          <li><b>Handling:</b> begynder den med et udsagnsord, så man kan se, hvad der skal gøres?</li>
+          <li><b>Konkret:</b> fremgår det, hvem den retter sig mod, hvordan, og gerne hvornår?</li>
+          <li><b>Sporbar:</b> henviser den til mindst ét internt og ét eksternt punkt?</li>
+          <li><b>Rigtigt felt:</b> passer henvisningerne til feltet, SO, ST, WO eller WT?</li>
+          <li><b>Specifik:</b> giver den kun mening for netop denne virksomhed?</li>
+          <li><b>Realistisk:</b> har virksomheden penge, medarbejdere og kompetencer til den?</li>
+        </ol>
+      </div>
       <p>En strategi kan godt bygge på flere punkter, og det samme punkt kan indgå i flere strategier. Cykelværkets soliditet (S3) er for eksempel det, der gør det muligt at finansiere flere af de andre strategier.</p>
     </section>
 
@@ -558,49 +612,30 @@ a{color:var(--accent)}
     <section class="mod">
       <span class="n">6 · Faldgruber</span>
       <h2>Typiske fejl og kritikken af TOWS</h2>
-      <p>De fleste fejl i en TOWS falder i fire grupper. Strategien er ikke en handling, fordi den gentager et SWOT-punkt eller udtrykker et mål. Strategien står i det forkerte felt, typisk fordi den bygger på en svaghed, men er placeret som SO. Henvisningen passer ikke, fordi strategien ikke bruger de punkter, den henviser til, eller slet ikke henviser. Og matricen fyldes med alle tænkelige kombinationer, uden at der bliver valgt.</p>
-      <p>Modellen selv har også begrænsninger. Den er aldrig bedre end den SWOT, den bygger på: vage punkter giver vage strategier. Den kombinerer punkterne parvis og kan derfor overse sammenhænge, der går på tværs af flere felter. Og den leverer forslag, ikke beslutninger. Valget kræver stadig en vurdering af mål og ressourcer.</p>
-      <p class="note">Brug TOWS, når jeres SWOT har både den interne og den eksterne side på plads. I <a href="skabelon.html">skabelonen</a> kan I udfylde begge dele med indbygget tjek.</p>
+      <div class="duo">
+        <div class="duo-box" style="--c:var(--bad)">
+          <h3>Typiske fejl i en TOWS</h3>
+          <ul>
+            <li><b>Ikke en handling.</b> Strategien gentager et SWOT-punkt eller udtrykker et mål, fx «Erhvervsmarkedet vokser» eller «Vi vil være markedsleder».</li>
+            <li><b>Forkert felt.</b> Strategien bygger på en svaghed, men er placeret som SO.</li>
+            <li><b>Henvisningen passer ikke.</b> Strategien bruger ikke de punkter, den henviser til, eller henviser slet ikke.</li>
+            <li><b>Intet valg.</b> Matricen fyldes med alle tænkelige kombinationer, uden at der bliver prioriteret.</li>
+          </ul>
+        </div>
+        <div class="duo-box" style="--c:var(--accent)">
+          <h3>Kritikken af modellen</h3>
+          <ul>
+            <li><b>Afhængig af SWOT.</b> Den er aldrig bedre end den SWOT, den bygger på. Vage punkter giver vage strategier.</li>
+            <li><b>Parvise kombinationer.</b> Den kan overse sammenhænge, der går på tværs af flere felter.</li>
+            <li><b>Forslag, ikke beslutninger.</b> Valget kræver stadig en vurdering af mål og ressourcer.</li>
+            <li><b>Øjebliksbillede.</b> Ændrer omverdenen sig, skal strategierne vurderes igen.</li>
+          </ul>
+          <p class="duo-foot">Kritikken imødegås med en dokumenteret og prioriteret SWOT, klare henvisninger og et bevidst valg af få strategier.</p>
+        </div>
+      </div>
+      <p class="note">Brug TOWS, når jeres SWOT har både den interne og den eksterne side på plads. I <a href="skabelon.html">skabelonen</a> kan I udfylde begge dele med indbygget tjek. Træn TOWS under <a href="#traening" data-goto="traening">Træning</a> (øvelse 4–6), og test dig selv i <a href="#quiz" data-goto="quiz">quizzen om TOWS</a>.</p>
     </section>
 
-    <h2 class="part anchor" id="tows-traening">Træning</h2>
-
-    <section class="case">
-      <span class="tag">Øvelsescase · opdigtet virksomhed</span>
-      <h2>Cykelværkets prioriterede SWOT</h2>
-      <p>Alle øvelser bygger på disse punkter. Henvisningerne i øvelserne, for eksempel (S1, O1), peger hertil.</p>
-      <div class="swl" data-swl></div>
-    </section>
-
-    <section class="mod">
-      <span class="n">Øvelse 1</span>
-      <h2>Kombinér til en strategi</h2>
-      <p>For hver kombination af punkter skal du vælge den strategi, der bedst svarer på feltets spørgsmål.</p>
-      <div class="ex" id="tx-comb"></div>
-    </section>
-
-    <section class="mod">
-      <span class="n">Øvelse 2</span>
-      <h2>Hvilket felt?</h2>
-      <p>Placér hver strategi i det felt, den hører til. Find først de punkter i SWOT'en, strategien bygger på. Nogle af udsagnene er slet ikke strategier.</p>
-      <div class="ex" id="tx-field"></div>
-    </section>
-
-    <section class="mod">
-      <span class="n">Øvelse 3</span>
-      <h2>Find fejlen</h2>
-      <p>En gruppe har lavet en TOWS for Cykelværket. Vurdér hver strategi med det felt og den henvisning, gruppen har givet den.</p>
-      <div class="ex" id="tx-err"></div>
-    </section>
-
-    <h2 class="part anchor" id="tows-quiz">Quiz</h2>
-
-    <section class="mod">
-      <span class="n">Test dig selv</span>
-      <h2>Quiz om TOWS</h2>
-      <p>13 spørgsmål. Du får en forklaring efter hvert svar og til sidst et resultat fordelt på emner.</p>
-      <div class="ex" id="tx-quiz"></div>
-    </section>
   </main>
 
   <!-- I TIMEN -->
@@ -856,7 +891,7 @@ a{color:var(--accent)}
       if(keys.length){
         html+='<div class="topics">';
         keys.forEach(function(k){var t=byTopic[k];html+='<div><span>'+esc(k)+'</span><span class="track"><span style="width:'+Math.round(100*t[0]/t[1])+'%"></span></span><span>'+t[0]+'/'+t[1]+'</span></div>';});
-        html+='</div><p class="fb">Læs de moduler igen under Viden, hvor du mangler rigtige svar.</p>';
+        html+='</div><p class="fb">Læs de moduler igen under SWOT og TOWS, hvor du mangler rigtige svar.</p>';
       }else{
         html+='<p class="fb">'+(score===items.length?'Alt rigtigt.':'Prøv igen, og læs forklaringerne til dem, du missede.')+'</p>';
       }
@@ -911,24 +946,7 @@ a{color:var(--accent)}
     {ctx:'Trussel',c:'t',q:'Fragtfirmaet har varslet en prisstigning på 3 % fra januar. Fragt udgør under 2 % af virksomhedens omkostninger.',a:2,f:'Stigningen kommer med sikkerhed, men betyder næsten intet for resultatet. Den klares i den daglige drift.'}
   ],{o:PR});
 
-  /* ---------- Quiz ---------- */
-  runner(document.getElementById('ex-quiz'),[
-    {topic:'Formål',q:'Hvad er SWOT-analysens rolle i situationsanalysen?',o:['Den erstatter de øvrige analyser','Den samler og prioriterer konklusionerne fra de interne og eksterne analyser','Den fastlægger virksomhedens strategi','Den beskriver virksomhedens historie'],a:1,f:'SWOT er en opsamling. Den bygger på analyserne og danner grundlag for strategien, men den er ingen af delene.'},
-    {topic:'Internt/eksternt',q:'Hvad afgør, om et forhold er internt?',o:['At virksomheden selv kan styre det','At det er positivt for virksomheden','At det fremgår af regnskabet','At det handler om fremtiden'],a:0,f:'Kontrol er testen. Det interne kan virksomheden ændre med egne beslutninger, det eksterne kan den kun reagere på.'},
-    {topic:'Internt/eksternt',q:'Folketinget vedtager en ny afgift på emballage. Hvor hører det hjemme for en producent, der bruger meget emballage?',o:['Styrke','Svaghed','Mulighed','Trussel'],a:3,f:'Lovgivningen ligger uden for virksomhedens kontrol og øger dens omkostninger.'},
-    {topic:'Kvalitet',q:'Hvilken formulering er den bedste styrke?',o:['Vi har dygtige medarbejdere','Stærkt brand','Kundetilfredshed på 87 % mod 74 % i branchen','Vi vil være markedsleder'],a:2,f:'Den er præcis og dokumenteret med et tal og en sammenligning. Den sidste er et mål, ikke en styrke.'},
-    {topic:'Internt/eksternt',q:'Hvorfor er "Vi kan ekspandere til Norge" ikke en mulighed i SWOT?',o:['Fordi Norge ligger uden for EU','Fordi det er en handling, virksomheden selv beslutter','Fordi muligheder kun må handle om hjemmemarkedet','Fordi det er en styrke'],a:1,f:'Muligheden er forholdet i omverdenen, for eksempel voksende efterspørgsel i Norge. Ekspansionen er et muligt svar på den.'},
-    {topic:'Kvalitet',q:'Hvad skal en styrke vurderes i forhold til?',o:['Virksomhedens egne ambitioner','Hvad ledelsen er mest stolt af','Sidste års budget','Konkurrenterne og det, kunderne lægger vægt på'],a:3,f:'En styrke er relativ. Den tæller kun, hvis virksomheden er bedre end konkurrenterne på noget, der betyder noget for kunderne.'},
-    {topic:'Prioritering',q:'En trussel har stor konsekvens og høj sandsynlighed for at indtræffe. Hvad gør virksomheden?',o:['Lægger en konkret plan og handler nu','Venter og ser, om den indtræffer','Flytter den til svagheder','Ser bort fra den'],a:0,f:'Trusler i det felt er de vigtigste. De kræver et svar, før de rammer.'},
-    {topic:'Prioritering',q:'Hvilke to dimensioner bruges til at prioritere muligheder og trusler?',o:['Vigtighed og præstation','Pris og kvalitet','Sandsynlighed for at indtræffe og konsekvens for virksomheden','Internt og eksternt'],a:2,f:'Hvor sandsynligt er det, at forholdet indtræffer, og hvor meget betyder det for virksomheden, hvis det gør? Vigtighed og præstation bruges til styrker og svagheder.'},
-    {topic:'Prioritering',q:'Et forhold har høj vigtighed for kunderne, men virksomheden præsterer dårligere end konkurrenterne. Hvad betyder det?',o:['Det er en styrke, der skal fastholdes','Det er en svaghed, der skal udbedres først','Det er en mulig overinvestering','Det har lav prioritet'],a:1,f:'Høj vigtighed og lav præstation er det felt, hvor en indsats giver mest.'},
-    {topic:'Formål',q:'Hvilken kritik af SWOT-modellen er berettiget?',o:['Den kan kun bruges af store virksomheder','Den kræver regnskabstal for mindst ti år','Den ser kun på interne forhold','Den giver et øjebliksbillede og bliver let en subjektiv, uprioriteret liste'],a:3,f:'Derfor skal punkterne dokumenteres, sammenlignes med konkurrenter og prioriteres.'},
-    {topic:'Internt/eksternt',q:'Kan det samme eksterne forhold være en mulighed for én virksomhed og en trussel for en anden?',o:['Ja, det afhænger af virksomhedens styrker og svagheder','Nej, et forhold er enten positivt eller negativt','Kun hvis virksomhederne er i forskellige lande','Kun for lovgivning'],a:0,f:'Skærpede miljøkrav rammer den, der skal bygge om, og gavner den, der allerede opfylder dem.'},
-    {topic:'Kvalitet',q:'Hvilke analyser leverer typisk stoffet til styrker og svagheder?',o:['PESTEL og Porters Five Forces','Konkurrent- og kundeanalyse','Værdikæde, VIRO og regnskabsanalyse','Markedsstørrelse og markedsvækst'],a:2,f:'De tre ser ind i virksomheden. De øvrige ser på omverdenen og leverer stof til muligheder og trusler.'},
-    {topic:'Prioritering',q:'En trussel er usandsynlig, men ville have stor konsekvens for virksomheden, hvis den indtraf. Hvad er det rigtige svar?',o:['Se bort fra den, fordi den er usandsynlig','Overvåg udviklingen, og hav en beredskabsplan klar','Behandl den som en svaghed','Brug alle ressourcer på at afværge den nu'],a:1,f:'Konsekvensen gør, at virksomheden skal være forberedt. Den lave sandsynlighed gør, at den ikke skal bruge alle kræfter på det nu.'}
-  ],{});
-
-  /* ================= TOWS ================= */
+  /* ---------- Træning i TOWS ---------- */
 
   /* Cykelværkets prioriterede SWOT, som alle TOWS-eksempler og -øvelser henviser til */
   var CV={
@@ -947,32 +965,6 @@ a{color:var(--accent)}
     });
     el.innerHTML=html;
   });
-
-  /* TOWS-matrice: rækker S/W, kolonner O/T. cells i rækkefølgen SO, ST, WO, WT */
-  function tows(id,cells){
-    var keys=[['s','o'],['s','t'],['w','o'],['w','t']];
-    function cell(i){
-      var k=keys[i],c=cells[i];
-      return '<div class="c" style="--a:var(--'+k[0]+');--b:var(--'+k[1]+')"><span class="code"><span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span></span><small>'+c[0]+'</small><strong>'+c[1]+'</strong>'+(c[2]?'<i>'+c[2]+'</i>':'')+(c[3]?'<span class="ref">'+c[3]+'</span>':'')+'</div>';
-    }
-    var html='<div class="tw"><span></span>'+
-      '<span class="h" style="--c:var(--o)"><b>O</b>Muligheder</span><span class="h" style="--c:var(--t)"><b>T</b>Trusler</span>'+
-      '<span class="h rh" style="--c:var(--s)"><b>S</b>Styrker</span>'+cell(0)+cell(1)+
-      '<span class="h rh" style="--c:var(--w)"><b>W</b>Svagheder</span>'+cell(2)+cell(3)+'</div>';
-    document.getElementById(id).innerHTML=html;
-  }
-  tows('tw-types',[
-    ['Offensive strategier · maxi-maxi','Brug styrkerne til at gribe mulighederne','Hvordan kan vores styrker udnytte udviklingen i markedet?'],
-    ['Forsvarsstrategier · maxi-mini','Brug styrkerne til at afværge truslerne','Hvordan kan vores styrker mindske truslernes skade?'],
-    ['Udbedrende strategier · mini-maxi','Udbedr svaghederne, så mulighederne kan udnyttes','Hvad skal vi rette op på for at kunne gribe mulighederne?'],
-    ['Defensive strategier · mini-mini','Mindsk svaghederne, og undgå truslerne','Hvordan undgår vi, at truslerne rammer, hvor vi er svagest?']
-  ]);
-  tows('tw-ex',[
-    ['Offensiv','Udvikl en erhvervsmodel med forstærket stel og 10 års garanti, og sælg den direkte til budfirmaer og håndværkere','','S1, S2 + O1'],
-    ['Forsvar','Gør garantien til hovedbudskabet i København, og tilbyd prøvekørsel hos forhandlerne, før konkurrentens showroom åbner','','S2 + T1'],
-    ['Udbedrende','Ansæt en digital marketingansvarlig, og byg en erhvervsside på webshoppen','','W2 + O1'],
-    ['Defensiv','Godkend en europæisk reserveleverandør af motorer og batterier, så en handelskonflikt ikke standser produktionen','','W1 + T3']
-  ]);
 
   /* ---------- TOWS øvelse 1: kombinér ---------- */
   runner(document.getElementById('tx-comb'),[
@@ -1012,7 +1004,26 @@ a{color:var(--accent)}
     {ctx:'Placeret som ST · S2 + T1',c:'t',q:'Vi skal slå den tyske konkurrent.',a:1,f:'Det er et mål. Strategien skal sige, hvordan det skal ske, for eksempel med garantien som våben.'}
   ],{o:['Strategien er i orden','Er ikke en handling','Står i det forkerte felt','Henvisningen passer ikke']});
 
-  /* ---------- TOWS quiz ---------- */
+  /* ---------- slut på træning ---------- */
+
+  /* ---------- Quiz om SWOT ---------- */
+  runner(document.getElementById('ex-quiz'),[
+    {topic:'Formål',q:'Hvad er SWOT-analysens rolle i situationsanalysen?',o:['Den erstatter de øvrige analyser','Den samler og prioriterer konklusionerne fra de interne og eksterne analyser','Den fastlægger virksomhedens strategi','Den beskriver virksomhedens historie'],a:1,f:'SWOT er en opsamling. Den bygger på analyserne og danner grundlag for strategien, men den er ingen af delene.'},
+    {topic:'Internt/eksternt',q:'Hvad afgør, om et forhold er internt?',o:['At virksomheden selv kan styre det','At det er positivt for virksomheden','At det fremgår af regnskabet','At det handler om fremtiden'],a:0,f:'Kontrol er testen. Det interne kan virksomheden ændre med egne beslutninger, det eksterne kan den kun reagere på.'},
+    {topic:'Internt/eksternt',q:'Folketinget vedtager en ny afgift på emballage. Hvor hører det hjemme for en producent, der bruger meget emballage?',o:['Styrke','Svaghed','Mulighed','Trussel'],a:3,f:'Lovgivningen ligger uden for virksomhedens kontrol og øger dens omkostninger.'},
+    {topic:'Kvalitet',q:'Hvilken formulering er den bedste styrke?',o:['Vi har dygtige medarbejdere','Stærkt brand','Kundetilfredshed på 87 % mod 74 % i branchen','Vi vil være markedsleder'],a:2,f:'Den er præcis og dokumenteret med et tal og en sammenligning. Den sidste er et mål, ikke en styrke.'},
+    {topic:'Internt/eksternt',q:'Hvorfor er "Vi kan ekspandere til Norge" ikke en mulighed i SWOT?',o:['Fordi Norge ligger uden for EU','Fordi det er en handling, virksomheden selv beslutter','Fordi muligheder kun må handle om hjemmemarkedet','Fordi det er en styrke'],a:1,f:'Muligheden er forholdet i omverdenen, for eksempel voksende efterspørgsel i Norge. Ekspansionen er et muligt svar på den.'},
+    {topic:'Kvalitet',q:'Hvad skal en styrke vurderes i forhold til?',o:['Virksomhedens egne ambitioner','Hvad ledelsen er mest stolt af','Sidste års budget','Konkurrenterne og det, kunderne lægger vægt på'],a:3,f:'En styrke er relativ. Den tæller kun, hvis virksomheden er bedre end konkurrenterne på noget, der betyder noget for kunderne.'},
+    {topic:'Prioritering',q:'En trussel har stor konsekvens og høj sandsynlighed for at indtræffe. Hvad gør virksomheden?',o:['Lægger en konkret plan og handler nu','Venter og ser, om den indtræffer','Flytter den til svagheder','Ser bort fra den'],a:0,f:'Trusler i det felt er de vigtigste. De kræver et svar, før de rammer.'},
+    {topic:'Prioritering',q:'Hvilke to dimensioner bruges til at prioritere muligheder og trusler?',o:['Vigtighed og præstation','Pris og kvalitet','Sandsynlighed for at indtræffe og konsekvens for virksomheden','Internt og eksternt'],a:2,f:'Hvor sandsynligt er det, at forholdet indtræffer, og hvor meget betyder det for virksomheden, hvis det gør? Vigtighed og præstation bruges til styrker og svagheder.'},
+    {topic:'Prioritering',q:'Et forhold har høj vigtighed for kunderne, men virksomheden præsterer dårligere end konkurrenterne. Hvad betyder det?',o:['Det er en styrke, der skal fastholdes','Det er en svaghed, der skal udbedres først','Det er en mulig overinvestering','Det har lav prioritet'],a:1,f:'Høj vigtighed og lav præstation er det felt, hvor en indsats giver mest.'},
+    {topic:'Formål',q:'Hvilken kritik af SWOT-modellen er berettiget?',o:['Den kan kun bruges af store virksomheder','Den kræver regnskabstal for mindst ti år','Den ser kun på interne forhold','Den giver et øjebliksbillede og bliver let en subjektiv, uprioriteret liste'],a:3,f:'Derfor skal punkterne dokumenteres, sammenlignes med konkurrenter og prioriteres.'},
+    {topic:'Internt/eksternt',q:'Kan det samme eksterne forhold være en mulighed for én virksomhed og en trussel for en anden?',o:['Ja, det afhænger af virksomhedens styrker og svagheder','Nej, et forhold er enten positivt eller negativt','Kun hvis virksomhederne er i forskellige lande','Kun for lovgivning'],a:0,f:'Skærpede miljøkrav rammer den, der skal bygge om, og gavner den, der allerede opfylder dem.'},
+    {topic:'Kvalitet',q:'Hvilke analyser leverer typisk stoffet til styrker og svagheder?',o:['PESTEL og Porters Five Forces','Konkurrent- og kundeanalyse','Værdikæde, VIRO og regnskabsanalyse','Markedsstørrelse og markedsvækst'],a:2,f:'De tre ser ind i virksomheden. De øvrige ser på omverdenen og leverer stof til muligheder og trusler.'},
+    {topic:'Prioritering',q:'En trussel er usandsynlig, men ville have stor konsekvens for virksomheden, hvis den indtraf. Hvad er det rigtige svar?',o:['Se bort fra den, fordi den er usandsynlig','Overvåg udviklingen, og hav en beredskabsplan klar','Behandl den som en svaghed','Brug alle ressourcer på at afværge den nu'],a:1,f:'Konsekvensen gør, at virksomheden skal være forberedt. Den lave sandsynlighed gør, at den ikke skal bruge alle kræfter på det nu.'}
+  ],{});
+
+  /* ---------- Quiz om TOWS ---------- */
   var F4=['SO','ST','WO','WT'];
   runner(document.getElementById('tx-quiz'),[
     {topic:'Formål',q:'Hvad er forskellen på SWOT og TOWS?',o:['TOWS bygger på andre analyser end SWOT','SWOT beskriver situationen, og TOWS kombinerer punkterne til strategier','TOWS ser kun på det eksterne','Der er ingen forskel ud over rækkefølgen'],a:1,f:'De bruger de samme punkter. SWOT stiller dem op hver for sig, og TOWS sætter dem sammen til strategier.'},
@@ -1030,15 +1041,43 @@ a{color:var(--accent)}
     {topic:'Valg',q:'Hvilken kritik af TOWS er berettiget?',o:['Den kan kun bruges sammen med regnskabstal','Den kan aldrig bruges af små virksomheder','Den er ikke bedre end den SWOT, den bygger på, og den giver forslag, ikke beslutninger','Den ser kun på trusler'],a:2,f:'Vage punkter giver vage strategier, og valget kræver stadig en vurdering af mål og ressourcer.'}
   ],{});
 
+  /* ================= TOWS-fanen ================= */
+
+  /* TOWS-matrice: rækker S/W, kolonner O/T. cells i rækkefølgen SO, ST, WO, WT */
+  function tows(id,cells){
+    var keys=[['s','o'],['s','t'],['w','o'],['w','t']];
+    function cell(i){
+      var k=keys[i],c=cells[i];
+      return '<div class="c" style="--a:var(--'+k[0]+');--b:var(--'+k[1]+')"><span class="code"><span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span></span><small>'+c[0]+'</small><strong>'+c[1]+'</strong>'+(c[2]?'<i>'+c[2]+'</i>':'')+(c[3]?'<span class="ref">'+c[3]+'</span>':'')+'</div>';
+    }
+    var html='<div class="tw"><span></span>'+
+      '<span class="h" style="--c:var(--o)"><b>O</b>Muligheder</span><span class="h" style="--c:var(--t)"><b>T</b>Trusler</span>'+
+      '<span class="h rh" style="--c:var(--s)"><b>S</b>Styrker</span>'+cell(0)+cell(1)+
+      '<span class="h rh" style="--c:var(--w)"><b>W</b>Svagheder</span>'+cell(2)+cell(3)+'</div>';
+    document.getElementById(id).innerHTML=html;
+  }
+  tows('tw-types',[
+    ['Offensive strategier · maxi-maxi','Brug styrkerne til at gribe mulighederne','Hvordan kan vores styrker udnytte udviklingen i markedet?'],
+    ['Forsvarsstrategier · maxi-mini','Brug styrkerne til at afværge truslerne','Hvordan kan vores styrker mindske truslernes skade?'],
+    ['Udbedrende strategier · mini-maxi','Udbedr svaghederne, så mulighederne kan udnyttes','Hvad skal vi rette op på for at kunne gribe mulighederne?'],
+    ['Defensive strategier · mini-mini','Mindsk svaghederne, og undgå truslerne','Hvordan undgår vi, at truslerne rammer, hvor vi er svagest?']
+  ]);
+  tows('tw-ex',[
+    ['Offensiv','Udvikl en erhvervsmodel med forstærket stel og 10 års garanti, og sælg den direkte til budfirmaer og håndværkere','','S1, S2 + O1'],
+    ['Forsvar','Gør garantien til hovedbudskabet i København, og tilbyd prøvekørsel hos forhandlerne, før konkurrentens showroom åbner','','S2 + T1'],
+    ['Udbedrende','Ansæt en digital marketingansvarlig, og byg en erhvervsside på webshoppen','','W2 + O1'],
+    ['Defensiv','Godkend en europæisk reserveleverandør af motorer og batterier, så en handelskonflikt ikke standser produktionen','','W1 + T3']
+  ]);
+
   /* ================= I TIMEN ================= */
 
   /* Sæt til false, før siden deles med de studerende. Så skjules alle tips til underviseren. */
   var VIS_TIPS=true;
 
   var DELE=[
-    {id:'A',navn:'Begreberne',efter:'Efter Viden 1–3'},
-    {id:'B',navn:'Kvalitet',efter:'Efter Viden 5'},
-    {id:'C',navn:'Fra analyse til prioriteret SW',efter:'Efter Viden 6'},
+    {id:'A',navn:'Begreberne',efter:'Efter SWOT 1–3'},
+    {id:'B',navn:'Kvalitet',efter:'Efter SWOT 5'},
+    {id:'C',navn:'Fra analyse til prioriteret SW',efter:'Efter SWOT 6'},
     {id:'D',navn:'Afslutning',efter:'Sidst i sprint 2'}
   ];
   /* Én post pr. øvelse. trin: [minuttal, tekst]. links: [tekst, mål], hvor mål er en fane eller en fil. */
@@ -1052,7 +1091,7 @@ a{color:var(--accent)}
            ['1 min','Notér det begreb, der var sværest at forklare.']],
      produkt:'Ét begreb pr. par, som underviseren samler op på i plenum.',
      tip:'Spørg tre par om deres sværeste begreb, og forklar kun dem.',
-     links:[['Viden: de to akser','viden']]},
+     links:[['SWOT: de to akser','viden']]},
     {n:2,del:'A',titel:'Skriv en fælde',type:'par',form:'Par, derefter to par sammen',tid:15,kase:'Living Flowers',
      formaal:'At kunne skelne mellem styrker og svagheder, mellem internt og eksternt og mellem forhold og handlinger.',
      materialer:'Gruppens interne analyser af Living Flowers.',
@@ -1071,7 +1110,7 @@ a{color:var(--accent)}
            ['6 min','Tilføj én «så hvad?»-sætning til hvert punkt: hvad betyder det for virksomhedens muligheder for at nå sine mål?']],
      produkt:'Tre omskrevne punkter med konsekvenssætning.',
      tip:'Tjek før timen, at de tre vage punkter passer til Living Flowers-casen. Mindst ét punkt skal bygge på regnskabet. Et punkt, der viser sig ikke at holde, er et godt resultat.',
-     links:[['Viden: et godt SWOT-punkt','viden'],['Træning: Find fejlen','traening']]},
+     links:[['SWOT: et godt SWOT-punkt','viden'],['Træning: Find fejlen','traening']]},
     {n:4,del:'B',titel:'Advokat og dommer',type:'par',form:'Par',tid:12,kase:'Living Flowers',
      formaal:'At teste, om en styrke er relativ til konkurrenterne.',
      materialer:'De interne analyser, parret selv har lavet.',
@@ -1113,7 +1152,7 @@ a{color:var(--accent)}
      produkt:'Én fælles matrice og en liste over de punkter, hvor dokumentationen mangler.',
      tip:'Uenighed skyldes næsten altid manglende data om, hvad kunderne lægger vægt på. Lad grupperne notere det som et spørgsmål til sprint 3.',
      bygger:'Øvelse 5 og 6',
-     links:[['Viden: prioritering','viden']]},
+     links:[['SWOT: prioritering','viden']]},
     {n:8,del:'C',titel:'Fem pladser',type:'gruppe',form:'Gruppe (3-5)',tid:30,kase:'Living Flowers',
      formaal:'At vælge og begrunde de vigtigste styrker og svagheder.',
      materialer:'Den fælles matrice fra øvelse 7 og bruttolisten (12-15 punkter).',
@@ -1169,7 +1208,7 @@ a{color:var(--accent)}
     var all=function(){return [].slice.call(document.querySelectorAll('#p-i-timen details.it'));};
     document.getElementById('it-open').addEventListener('click',function(){all().forEach(function(d){d.open=true;});});
     document.getElementById('it-close').addEventListener('click',function(){all().forEach(function(d){d.open=false;});});
-    /* links til andre faner fra øvelserne, og fra Viden til en bestemt øvelse */
+    /* links til andre faner fra øvelserne, og fra SWOT-fanen til en bestemt øvelse */
     document.addEventListener('click',function(e){
       var a=e.target.closest('[data-tablink],[data-ex]');if(!a)return;
       e.preventDefault();

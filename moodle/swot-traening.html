@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SWOT-træning · Cykelværket</title>
+<title>SWOT- og TOWS-træning · Cykelværket</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <!-- Selvstændig udgave af fanen Træning fra SWOT-værkstedet, til upload i Moodle som fil.
      Alt CSS og JavaScript ligger i filen. Skrifttyperne hentes fra Google Fonts; uden net bruges systemskrift. -->
@@ -57,7 +57,7 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 .opts button:disabled{cursor:default;opacity:.6}
 .opts button.right,#p-traening .opts button.right{opacity:1;border-color:var(--s);background:color-mix(in srgb,var(--s) 15%,var(--surface));color:var(--s)}
 /* hver træningsøvelse har sin egen farve på svarfelterne; farverne er valgt, så de ikke forveksles med S, W, O og T */
-#ex-sort{--ex:#0e7c86} #ex-err{--ex:#6a4c9c} #ex-prio{--ex:#b4532a}
+#ex-sort,#tx-field{--ex:#0e7c86} #ex-err,#tx-err{--ex:#6a4c9c} #ex-prio,#tx-comb{--ex:#b4532a}
 #p-traening .ex{border-top:4px solid var(--ex)}
 #p-traening .opts button{background:color-mix(in srgb,var(--ex) 15%,var(--surface));border-color:color-mix(in srgb,var(--ex) 40%,var(--surface))}
 #p-traening .opts button:hover:not(:disabled){border-color:var(--ex)}
@@ -72,6 +72,41 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 .topics .track{height:.5rem;background:var(--line);border-radius:1rem;overflow:hidden}
 .topics .track span{display:block;height:100%;background:var(--accent)}
 @media (max-width:26rem){.topics div{grid-template-columns:6.5rem 1fr auto}}
+/* TOWS */
+.jump{display:flex;flex-wrap:wrap;gap:.5rem}
+.jump button{font-size:.875rem;font-weight:500;padding:.35rem .75rem;border:1px solid var(--line);border-radius:1rem;background:var(--surface);color:var(--ink);cursor:pointer}
+.jump button:hover{border-color:var(--accent)}
+.anchor{scroll-margin-top:4.5rem}
+.part{font-family:var(--display);font-size:1.75rem;font-weight:700;letter-spacing:-.01em;padding-top:1rem;border-top:2px solid var(--line)}
+.steps,.crit{margin:0;padding-left:1.4rem;display:flex;flex-direction:column;gap:.5rem}
+.steps li::marker{font-family:var(--display);font-weight:700;color:var(--accent)}
+.crit li::marker{color:var(--accent)}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.75rem}
+@media (max-width:40rem){.duo{grid-template-columns:1fr}}
+.duo-box{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:.625rem;box-shadow:var(--shadow);padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.6rem}
+.duo-box h3{color:var(--c)}
+.duo-box ul{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.45rem;font-size:1.0625rem;line-height:1.45}
+.duo-box li::marker{color:var(--c)}
+.duo-box li b{font-family:var(--display);font-size:.9375rem}
+.duo-foot{font-size:1rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.6rem}
+.tw{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:.375rem}
+.tw .h{font-family:var(--display);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;padding:.25rem}
+.tw .h b{font-size:1.25rem;letter-spacing:0;margin-right:.3rem;color:var(--c)}
+.tw .rh{writing-mode:vertical-rl;transform:rotate(180deg)}
+.tw .c{min-width:0;border-radius:.375rem;padding:.7rem .85rem;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 14%,var(--surface)),color-mix(in srgb,var(--b) 14%,var(--surface)));border:1px solid var(--line);font-size:.9375rem;line-height:1.4;display:flex;flex-direction:column;gap:.25rem}
+.tw .c small{font-family:var(--display);font-size:.6875rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.tw .c .code{font-family:var(--display);font-size:1.375rem;font-weight:700;line-height:1}
+.tw .c strong{font-family:var(--display);font-size:1rem}
+.tw .c i{color:var(--muted)}
+.tw .c .ref{font-family:var(--display);font-size:.8125rem;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:34rem){.tw{grid-template-columns:minmax(0,1fr)}.tw .h{display:none}}
+.swl{display:grid;grid-template-columns:1fr 1fr;gap:.375rem}
+.swl > div{min-width:0;border-radius:.375rem;padding:.7rem .85rem;background:color-mix(in srgb,var(--c) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface))}
+.swl h3{color:var(--c);font-size:.9375rem;margin-bottom:.35rem}
+.swl ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.35rem;font-size:.9375rem;line-height:1.35}
+.swl li b{font-family:var(--display);color:var(--c);margin-right:.35rem}
+@media (max-width:34rem){.swl{grid-template-columns:1fr}}
+
 .intro{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
 .intro .n{font-family:var(--display);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 </style>
@@ -80,10 +115,15 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 <div class="wrap">
   <header class="intro">
     <span class="n">SWOT-værkstedet · Træning</span>
-    <h1>Træn SWOT på Cykelværket</h1>
-    <p class="lead">Tre øvelser: sortér udsagn i de fire felter, find fejlene i en gruppes SWOT, og prioritér muligheder og trusler. Du får en forklaring efter hvert svar.</p>
+    <h1>Træn SWOT og TOWS på Cykelværket</h1>
+    <p class="lead">Seks øvelser. I SWOT sorterer du udsagn, finder fejl og prioriterer muligheder og trusler. I TOWS kombinerer du punkter til strategier, placerer strategier i det rigtige felt og finder fejl. Du får en forklaring efter hvert svar.</p>
   </header>
   <main class="panel" id="p-traening">
+    <nav class="jump" aria-label="Spring til">
+      <button type="button" data-jump="tr-swot">SWOT · øvelse 1–3</button>
+      <button type="button" data-jump="tr-tows">TOWS · øvelse 4–6</button>
+    </nav>
+    <h2 class="part anchor" id="tr-swot">Træning i SWOT</h2>
     <section class="case">
       <span class="tag">Øvelsescase · opdigtet virksomhed</span>
       <h2>Cykelværket ApS</h2>
@@ -91,24 +131,55 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 1</span>
+      <span class="n">Øvelse 1 · SWOT</span>
       <h2>Sortér udsagnene</h2>
       <p>Placér hvert udsagn om Cykelværket i det rigtige felt. Nogle udsagn hører slet ikke hjemme i en SWOT.</p>
       <div class="ex" id="ex-sort"></div>
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 2</span>
+      <span class="n">Øvelse 2 · SWOT</span>
       <h2>Find fejlen</h2>
       <p>En gruppe har lavet en SWOT for Cykelværket. Vurdér hvert punkt i det felt, gruppen har placeret det i.</p>
       <div class="ex" id="ex-err"></div>
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 3</span>
+      <span class="n">Øvelse 3 · SWOT</span>
       <h2>Prioritér efter sandsynlighed</h2>
       <p>Placér hver mulighed og trussel i matricen ud fra oplysningerne. Læs efter, hvad der siger noget om sandsynligheden for, at forholdet indtræffer, og hvad der siger noget om konsekvensen for virksomheden.</p>
       <div class="ex" id="ex-prio"></div>
+    </section>
+
+    <h2 class="part anchor" id="tr-tows">Træning i TOWS</h2>
+
+
+    <section class="case">
+      <span class="tag">Øvelsescase · opdigtet virksomhed</span>
+      <h2>Cykelværkets prioriterede SWOT</h2>
+      <p>Øvelse 4–6 bygger på disse punkter. Henvisningerne i øvelserne, for eksempel (S1, O1), peger hertil.</p>
+      <div class="swl" data-swl></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 4 · TOWS</span>
+      <h2>Kombinér til en strategi</h2>
+      <p>For hver kombination af punkter skal du vælge den strategi, der bedst svarer på feltets spørgsmål.</p>
+      <div class="ex" id="tx-comb"></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 5 · TOWS</span>
+      <h2>Hvilket felt?</h2>
+      <p>Placér hver strategi i det felt, den hører til. Find først de punkter i SWOT'en, strategien bygger på. Nogle af udsagnene er slet ikke strategier.</p>
+      <div class="ex" id="tx-field"></div>
+    </section>
+
+    <section class="mod">
+      <span class="n">Øvelse 6 · TOWS</span>
+      <h2>Find fejlen i en TOWS</h2>
+      <p>En gruppe har lavet en TOWS for Cykelværket. Vurdér hver strategi med det felt og den henvisning, gruppen har givet den.</p>
+      <div class="ex" id="tx-err"></div>
     </section>
   </main>
 </div>
@@ -148,7 +219,7 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
       if(keys.length){
         html+='<div class="topics">';
         keys.forEach(function(k){var t=byTopic[k];html+='<div><span>'+esc(k)+'</span><span class="track"><span style="width:'+Math.round(100*t[0]/t[1])+'%"></span></span><span>'+t[0]+'/'+t[1]+'</span></div>';});
-        html+='</div><p class="fb">Læs de moduler igen under Viden, hvor du mangler rigtige svar.</p>';
+        html+='</div><p class="fb">Læs de moduler igen under SWOT og TOWS, hvor du mangler rigtige svar.</p>';
       }else{
         html+='<p class="fb">'+(score===items.length?'Alt rigtigt.':'Prøv igen, og læs forklaringerne til dem, du missede.')+'</p>';
       }
@@ -203,6 +274,67 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
     {ctx:'Trussel',c:'t',q:'Fragtfirmaet har varslet en prisstigning på 3 % fra januar. Fragt udgør under 2 % af virksomhedens omkostninger.',a:2,f:'Stigningen kommer med sikkerhed, men betyder næsten intet for resultatet. Den klares i den daglige drift.'}
   ],{o:PR});
 
+  /* ---------- Træning i TOWS ---------- */
+
+  /* Cykelværkets prioriterede SWOT, som alle TOWS-eksempler og -øvelser henviser til */
+  var CV={
+    s:['Holdbart stel: kunderne giver 4,8 af 5 mod 4,1 og 4,3 hos de nærmeste konkurrenter','Garanti på 10 år, branchens længste','Soliditetsgrad på 41 % mod 28 % i branchen'],
+    w:['Motorer og batterier købes hos én leverandør i Taiwan','Ingen medarbejder med ansvar for digital markedsføring. Webshoppen står for 12 % af omsætningen mod ca. 35 % hos konkurrenterne','Leveringstid på seks uger mod to hos konkurrenterne'],
+    o:['Erhvervsmarkedet (bude, håndværkere) vokser 15 % om året, og statens tilskud er forlænget med tre år','Bilfrie zoner i fire af de fem største byer inden 2028'],
+    t:['En tysk konkurrent åbner showroom i København, som står for 40 % af salget','Stigende rente på forbrugslån får færre til at finansiere dyre cykler','En handelskonflikt kan standse leverancer af elektronik fra Asien (lav sandsynlighed, stor konsekvens)']
+  };
+  var CVN={s:'Styrker',w:'Svagheder',o:'Muligheder',t:'Trusler'};
+  [].forEach.call(document.querySelectorAll('[data-swl]'),function(el){
+    var html='';
+    ['s','w','o','t'].forEach(function(k){
+      html+='<div style="--c:var(--'+k+')"><h3>'+CVN[k]+'</h3><ul>';
+      CV[k].forEach(function(p,n){html+='<li><b>'+k.toUpperCase()+(n+1)+'</b>'+esc(p)+'</li>';});
+      html+='</ul></div>';
+    });
+    el.innerHTML=html;
+  });
+
+  /* ---------- TOWS øvelse 1: kombinér ---------- */
+  runner(document.getElementById('tx-comb'),[
+    {ctx:'SO · S1 + O1',c:'s',q:'Hvordan kan det holdbare stel bruges til at gribe væksten på erhvervsmarkedet?',o:['Erhvervsmarkedet vokser 15 % om året','Udvikl en erhvervsmodel med forstærket stel, og markedsfør holdbarheden over for bude og håndværkere','Sænk prisen på alle modeller for at vinde markedsandele','Ansæt en medarbejder til digital markedsføring'],a:1,f:'Strategien bruger styrken direkte i det segment, der vokser. Det første svar gentager blot muligheden. Prisnedsættelsen bruger ikke styrken og koster indtjening. Ansættelsen er en WO-strategi, der svarer på W2.'},
+    {ctx:'ST · S2 + T1',c:'t',q:'Hvordan kan garantien bruges til at møde den tyske konkurrents showroom i København?',o:['Gør garantien til hovedbudskabet i en kampagne i København, og tilbyd prøvekørsel hos forhandlerne','Træk virksomheden ud af det københavnske marked','Konkurrenten er en trussel mod salget i København','Forkort garantien for at få råd til at sænke priserne'],a:0,f:'Strategien bruger en styrke, konkurrenten ikke kan matche, netop der hvor truslen rammer. At trække sig opgiver 40 % af salget, det tredje svar gentager truslen, og det sidste svækker den styrke, der skulle bruges.'},
+    {ctx:'WO · W2 + O1',c:'o',q:'Hvordan kan manglen på digital markedsføring udbedres, så erhvervsmarkedet kan udnyttes?',o:['Vent med erhvervsmarkedet, til webshoppen er blevet bedre','Ansæt en digital marketingansvarlig med fokus på at nå erhvervskunderne online','Lad forhandlerne tage sig af erhvervskunderne som hidtil','Webshoppen står for 12 % af omsætningen'],a:1,f:'Strategien udbedrer svagheden og retter indsatsen mod muligheden. At vente lader muligheden gå forbi, at fortsætte som hidtil ændrer intet, og det sidste svar gentager svagheden.'},
+    {ctx:'WT · W1 + T3',c:'w',q:'Hvordan kan afhængigheden af én leverandør mindskes, så en handelskonflikt ikke standser produktionen?',o:['Godkend en europæisk reserveleverandør af motorer og batterier','Køb et lager af motorer, der rækker i ti år','Håb på, at handelskonflikten ikke opstår','Gå over til at producere cykler uden motor'],a:0,f:'En reserveleverandør fjerner svagheden til en overkommelig pris. Et lager til ti år binder alt for meget kapital, at håbe er ingen strategi, og at droppe motoren opgiver kerneforretningen for at undgå en usandsynlig trussel.'},
+    {ctx:'SO · S3 + O2',c:'s',q:'Hvordan kan den stærke soliditet bruges til at udnytte de bilfrie zoner?',o:['Soliditetsgraden er 41 %','Optag et stort lån for at købe en konkurrent i Tyskland','Finansiér egne prøve- og udlejningsstationer i de byer, der indfører bilfrie zoner','Sænk priserne i de byer, der indfører bilfrie zoner'],a:2,f:'Strategien bruger kapitalen til at komme tæt på de kunder, de bilfrie zoner skaber. Det første svar gentager styrken, opkøbet i Tyskland har intet med de bilfrie zoner at gøre, og prisnedsættelsen bruger ikke styrken.'},
+    {ctx:'WT · W3 + T1',c:'w',q:'Hvordan kan den lange leveringstid gøres mindre skadelig, før konkurrenten åbner i København?',o:['Hold de mest solgte modeller på lager hos de københavnske forhandlere','Fortæl kunderne, at en god cykel er værd at vente seks uger på','Leveringstiden er seks uger mod to hos konkurrenterne','Byg en ny fabrik i Tyskland'],a:0,f:'Lageret mindsker svagheden netop der, hvor truslen rammer, og soliditeten (S3) kan finansiere det. At forklare ventetiden ændrer ikke svagheden, det tredje svar gentager den, og en fabrik i Tyskland er ude af proportion med problemet.'}
+  ],{});
+
+  /* ---------- TOWS øvelse 2: hvilket felt ---------- */
+  runner(document.getElementById('tx-field'),[
+    {q:'Tilbyd budfirmaer en serviceaftale, hvor garantien på 10 år også dækker hård erhvervsbrug.',a:0,f:'SO (S2, O1). Garantien er en styrke, og den bruges til at vinde kunder på det voksende erhvervsmarked.'},
+    {q:'Brug den stærke økonomi til at tilbyde rentefri afbetaling, så kunderne ikke skal låne i banken.',a:1,f:'ST (S3, T2). Soliditeten er en styrke, og den bruges til at afbøde den stigende rente.'},
+    {q:'Ansæt en webansvarlig, der kan nå de nye kunder i de byer, der indfører bilfrie zoner.',a:2,f:'WO (W2, O2). Strategien udbedrer manglen på digital markedsføring, så muligheden kan udnyttes.'},
+    {q:'Godkend en reserveleverandør af motorer og batterier i Europa.',a:3,f:'WT (W1, T3). Afhængigheden er en svaghed, og handelskonflikten er truslen, der kan udløse den.'},
+    {q:'Renten på forbrugslån stiger.',a:4,f:'Det er et SWOT-punkt, nærmere bestemt trussel T2. Det siger ikke, hvad virksomheden skal gøre.'},
+    {q:'Læg samlingen om, så erhvervskunder kan få deres cykel på to uger, og virksomheden kan følge med den voksende efterspørgsel.',a:2,f:'WO (W3, O1). Den lange leveringstid er en svaghed, som skal udbedres, før erhvervsmarkedet kan udnyttes fuldt ud.'},
+    {q:'Lancér en erhvervsmodel med forstærket stel.',a:0,f:'SO (S1, O1). Holdbarheden er en styrke, og den bruges i det segment, der vokser.'},
+    {q:'Vi vil være Danmarks foretrukne ladcykel.',a:4,f:'Det er et mål eller en vision. Det siger ikke, hvad virksomheden skal gøre, og det henviser ikke til bestemte punkter.'},
+    {q:'Lav en holdbarhedstest i København, hvor kunderne selv kan sammenligne stellene, før konkurrentens showroom åbner.',a:1,f:'ST (S1, T1). Holdbarheden bruges som våben mod konkurrenten på hovedmarkedet.'},
+    {q:'Hav de mest solgte modeller på lager hos de københavnske forhandlere, så leveringstiden falder til få dage, før konkurrenten åbner.',a:3,f:'WT (W3, T1). Strategien mindsker en svaghed, der ellers ville gøre truslen fra konkurrenten langt større.'}
+  ],{o:['SO','ST','WO','WT','Ikke en strategi'],short:true,shuffle:true});
+
+  /* ---------- TOWS øvelse 3: find fejlen ---------- */
+  runner(document.getElementById('tx-err'),[
+    {ctx:'Placeret som SO · S1 + O1',c:'s',q:'Lancér en erhvervsmodel med forstærket stel, og sælg den til budfirmaer.',a:0,f:'En konkret handling, der bruger styrken S1 på muligheden O1.'},
+    {ctx:'Placeret som SO · O1',c:'s',q:'Erhvervsmarkedet vokser 15 % om året.',a:1,f:'Det er muligheden O1 skrevet af. Der er ingen handling, og der er ingen styrke i henvisningen.'},
+    {ctx:'Placeret som SO · W2 + O1',c:'s',q:'Ansæt en digital marketingansvarlig, der skal nå erhvervskunderne online.',a:2,f:'Strategien bygger på svagheden W2. Den hører hjemme i WO.'},
+    {ctx:'Placeret som ST · S2 + T1',c:'t',q:'Gør garantien til hovedbudskabet i en kampagne i København, før konkurrenten åbner.',a:0,f:'En styrke bruges konkret mod en trussel. Felt og henvisning passer.'},
+    {ctx:'Placeret som WT · W1 + T2',c:'w',q:'Godkend en europæisk reserveleverandør af motorer og batterier.',a:3,f:'T2 er den stigende rente. Strategien svarer på risikoen for leveringsstop, så henvisningen skal være T3.'},
+    {ctx:'Placeret som ST · S3 + T2',c:'t',q:'Tilbyd rentefri afbetaling, finansieret af virksomhedens egen kapital.',a:0,f:'Soliditeten bruges til at afbøde den stigende rente. Felt og henvisning passer.'},
+    {ctx:'Placeret som WT · W3 + T1',c:'w',q:'Lang leveringstid.',a:1,f:'Det er svagheden W3 skrevet af. Hvad skal virksomheden gøre ved den?'},
+    {ctx:'Placeret som WO · S3 + O2',c:'o',q:'Finansiér prøvestationer i byer med bilfrie zoner med virksomhedens egen kapital.',a:2,f:'Henvisningen passer til strategien, men S3 er en styrke. Strategien hører hjemme i SO.'},
+    {ctx:'Placeret som SO · S1 + O2',c:'s',q:'Sænk prisen på alle modeller med 10 %.',a:3,f:'Strategien bruger hverken holdbarheden eller de bilfrie zoner. Den hænger ikke sammen med de punkter, den henviser til.'},
+    {ctx:'Placeret som ST · S2 + T1',c:'t',q:'Vi skal slå den tyske konkurrent.',a:1,f:'Det er et mål. Strategien skal sige, hvordan det skal ske, for eksempel med garantien som våben.'}
+  ],{o:['Strategien er i orden','Er ikke en handling','Står i det forkerte felt','Henvisningen passer ikke']});
+
+  [].forEach.call(document.querySelectorAll('[data-jump]'),function(b){
+    b.addEventListener('click',function(){document.getElementById(b.dataset.jump).scrollIntoView({behavior:'smooth'});});
+  });
 })();
 </script>
 </body>
