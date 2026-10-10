@@ -32,9 +32,8 @@ h2{font-size:1.5rem;line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
 h3{font-size:1.0625rem;margin:0;font-weight:700}
 p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 .lead{color:var(--muted);font-size:1.1875rem}
-.head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;margin-bottom:1.5rem}
+.head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:end;margin-bottom:.5rem}
 .head > div:first-child{min-width:0;display:flex;flex-direction:column;gap:.75rem}
-@media (max-width:40rem){.head{grid-template-columns:1fr}}
 
 /* SWOT-kvadrant i hovedet */
 .quad{display:grid;grid-template-columns:auto 5.25rem 5.25rem;gap:.25rem;font-family:var(--display);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);align-items:center}
@@ -42,6 +41,15 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 .quad .cell{height:4.25rem;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:.25rem;color:var(--c);background:color-mix(in srgb,var(--c) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 40%,var(--surface))}
 .quad .cell b{font-size:1.625rem;line-height:1;letter-spacing:0}
 .quad .cell span{font-size:.625rem;letter-spacing:.03em;text-transform:none}
+/* på smalle skærme står en lille kvadrant med kun bogstaverne ved siden af titlen */
+@media (max-width:40rem){
+  .head{gap:.75rem}
+  .quad{grid-template-columns:2.4rem 2.4rem;gap:.2rem}
+  .quad > span{display:none}
+  .quad .cell{height:2.4rem}
+  .quad .cell b{font-size:1.15rem}
+  .quad .cell span{display:none}
+}
 
 /* Faner */
 .tabs{position:sticky;top:0;padding-top:max(.5rem,env(safe-area-inset-top,0px));z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);display:flex;gap:.25rem;padding-block:.5rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
