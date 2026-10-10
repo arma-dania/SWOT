@@ -25,7 +25,7 @@ img{max-width:100%}
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
-.wrap{max-width:min(66rem, 100%);margin:0 auto;padding-inline:1.125rem;padding-block:0 4rem}
+.wrap{max-width:min(66rem, 100%);margin:0 auto;padding-inline:1.125rem;padding-block:1.5rem 4rem}
 h1,h2,h3,button,.ui{font-family:var(--display)}
 h1{font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.02em}
 h2{font-size:1.5rem;line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
@@ -317,13 +317,6 @@ a{color:var(--accent)}
 <body>
 
 <div class="wrap">
-  <nav class="tabs" role="tablist">
-    <button role="tab" id="tab-viden" data-tab="viden" aria-selected="true">SWOT</button>
-    <button role="tab" id="tab-tows" data-tab="tows" aria-selected="false">TOWS</button>
-    <button role="tab" id="tab-traening" data-tab="traening" aria-selected="false">Træning</button>
-    <button role="tab" id="tab-quiz" data-tab="quiz" aria-selected="false">Quiz</button>
-    <button role="tab" id="tab-i-timen" data-tab="i-timen" aria-selected="false">Øvelser</button>
-  </nav>
   <header class="head">
     <div>
       <h1>SWOT shop</h1>
@@ -339,6 +332,14 @@ a{color:var(--accent)}
       <div class="cell" style="--c:var(--t)"><b>T</b><span>Trusler</span></div>
     </div>
   </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-viden" data-tab="viden" aria-selected="true">SWOT</button>
+    <button role="tab" id="tab-tows" data-tab="tows" aria-selected="false">TOWS</button>
+    <button role="tab" id="tab-traening" data-tab="traening" aria-selected="false">Træning</button>
+    <button role="tab" id="tab-quiz" data-tab="quiz" aria-selected="false">Quiz</button>
+    <button role="tab" id="tab-i-timen" data-tab="i-timen" aria-selected="false">Øvelser</button>
+  </nav>
 
 
   <!-- VIDEN -->
