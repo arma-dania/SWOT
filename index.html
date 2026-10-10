@@ -236,7 +236,7 @@ a{color:var(--accent)}
 .it-tools{display:flex;flex-wrap:wrap;gap:.5rem}
 .it-tools button{font-family:var(--display);font-size:.9375rem;font-weight:700;padding:.5rem .95rem;border-radius:.375rem;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
 .it-tools button:hover{border-color:var(--accent)}
-.it-plan{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}
+.it-plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
 .it-plan > div{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:.5rem;padding:.65rem .8rem;display:flex;flex-direction:column;gap:.25rem;box-shadow:var(--shadow);min-width:0}
 .it-plan b{font-family:var(--display);font-size:.9375rem}
 .it-plan small,.it-meta{font-family:var(--display);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
@@ -418,7 +418,7 @@ a{color:var(--accent)}
         <li><b>Regnskabsanalysen</b> viser, om forretningsmodellen faktisk tjener penge, og hvor robust økonomien er. Den giver tallene, som mange punkter skal dokumenteres med.</li>
       </ul>
       <p>Hvert punkt bør derfor kunne føres tilbage til en bestemt analyse og en bestemt observation. Kan du ikke pege på, hvor et punkt kommer fra, er det et gæt.</p>
-      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="1">øvelse 1</a> og <a href="#i-timen" data-ex="2">øvelse 2</a> (begreber og felter).</p>
+      
     </section>
 
     <section class="mod">
@@ -439,7 +439,7 @@ a{color:var(--accent)}
         <div class="pair"><div><small>Svagt</small>Stærk økonomi</div><div><small>Stærkt</small>Soliditetsgrad på 41 % mod 28 % i branchen, så virksomheden kan finansiere en udvidelse uden ny gæld</div></div>
       </div>
       <p>Punkterne skal desuden være få. En SWOT med femten styrker fortæller ikke, hvad der er vigtigt. Tre til fem punkter i hvert felt er nok, hvis de er de rigtige, og det kræver, at du prioriterer.</p>
-      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="3">øvelse 3</a> og <a href="#i-timen" data-ex="4">øvelse 4</a> (præcise og relative punkter).</p>
+      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="1">øvelse 1</a> og <a href="#i-timen" data-ex="2">øvelse 2</a> (præcise og relative punkter).</p>
     </section>
 
     <section class="mod">
@@ -455,7 +455,7 @@ a{color:var(--accent)}
       <p>En svaghed på et område, kunderne er ligeglade med, behøver ingen indsats. En svaghed på et område, der afgør købet, skal først på listen.</p>
       <div id="mx-i"></div>
       <p>Vurderingerne er skøn, og derfor skal de begrundes. Skriv, hvad der taler for høj eller lav, og hvilken analyse du bygger på. Så kan andre efterprøve din prioritering.</p>
-      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="5">øvelse 5–8</a> (fra bruttoliste til prioriteret SW).</p>
+      <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="3">øvelse 3–6</a> (fra bruttoliste til prioriteret SW).</p>
     </section>
 
     <section class="mod">
@@ -711,7 +711,7 @@ a{color:var(--accent)}
     <section class="mod">
       <span class="n">Klasseøvelser · sprint 2</span>
       <h2>Øvelser til undervisningen</h2>
-      <p>Ni øvelser, der fører fra begreberne til en prioriteret SW for Living Flowers. Øvelserne bygger på hinanden i fire dele. Fold en øvelse ud for at se formål, materialer, trin og produkt.</p>
+      <p>Syv øvelser, der fører fra kvaliteten af det enkelte punkt til en prioriteret SW for Living Flowers. Øvelserne bygger på hinanden i tre dele. Fold en øvelse ud for at se formål, materialer, trin og produkt.</p>
       <div class="it-plan" id="it-plan"></div>
       <div class="it-tools">
         <button type="button" id="it-open">Fold alle ud</button>
@@ -1279,34 +1279,13 @@ a{color:var(--accent)}
   var VIS_TIPS=true;
 
   var DELE=[
-    {id:'A',navn:'Begreberne',efter:'Efter SWOT 1–3'},
-    {id:'B',navn:'Kvalitet',efter:'Efter SWOT 5'},
-    {id:'C',navn:'Fra analyse til prioriteret SW',efter:'Efter SWOT 6'},
-    {id:'D',navn:'Afslutning',efter:'Sidst i sprint 2'}
+    {id:'A',navn:'Kvalitet',efter:'Efter SWOT 5'},
+    {id:'B',navn:'Fra analyse til prioriteret SW',efter:'Efter SWOT 6'},
+    {id:'C',navn:'Afslutning',efter:'Sidst i sprint 2'}
   ];
   /* Én post pr. øvelse. trin: [minuttal, tekst]. links: [tekst, mål], hvor mål er en fane eller en fil. */
   var OVELSER=[
-    {n:1,del:'A',titel:'Forklar og gæt',type:'par',form:'Par',tid:8,kase:'Ingen',
-     formaal:'At kunne forklare SWOT-begreberne med egne ord.',
-     materialer:'Begrebsliste: styrke, svaghed, mulighed, trussel, internt forhold, eksternt forhold, kendt vigtighed, forventet vigtighed, præstation, sandsynlighed, konsekvens.',
-     trin:[['1 min','Parret deler begrebslisten, så hver har fem til seks begreber.'],
-           ['3 min','A forklarer sine begreber ét ad gangen uden at bruge selve ordet. B gætter.'],
-           ['3 min','Byt roller.'],
-           ['1 min','Notér det begreb, der var sværest at forklare.']],
-     produkt:'Ét begreb pr. par, som underviseren samler op på i plenum.',
-     tip:'Spørg tre par om deres sværeste begreb, og forklar kun dem.',
-     links:[['SWOT: de to akser','viden']]},
-    {n:2,del:'A',titel:'Skriv en fælde',type:'par',form:'Par, derefter to par sammen',tid:15,kase:'Living Flowers',
-     formaal:'At kunne skelne mellem styrker og svagheder, mellem internt og eksternt og mellem forhold og handlinger.',
-     materialer:'Gruppens interne analyser af Living Flowers.',
-     trin:[['6 min','Parret skriver tre udsagn om Living Flowers, hver med angivet felt (S eller W). Ét af de tre skal være en fælde: en handling forklædt som styrke («Vi bør …»), et eksternt forhold skrevet som styrke eller svaghed, eller et vagt punkt.'],
-           ['5 min','Byt udsagn med naboparret. Find fælden, og skriv den rettede version.'],
-           ['4 min','De to par sammenligner. Blev fælden fundet, og er rettelsen korrekt?']],
-     produkt:'Tre udsagn og én rettet fælde pr. par.',
-     tip:'De bedste fælder kan lægges ind i sorteringsøvelsen på sitet.',
-     bygger:'Den digitale sorteringsøvelse under Træning',
-     links:[['Træning: Sortér udsagnene','traening']]},
-    {n:3,del:'B',titel:'Fra svagt til stærkt',type:'par',form:'Par',tid:20,kase:'Living Flowers',
+    {n:1,del:'A',titel:'Fra svagt til stærkt',type:'par',form:'Par',tid:20,kase:'Living Flowers',
      formaal:'At gøre et punkt præcist, dokumenteret og sammenlignet.',
      materialer:'Living Flowers’ regnskabsanalyse og de øvrige interne analyser. Tre vage punkter: «Godt brand», «Dårlig økonomi», «Stærk bæredygtighedsprofil».',
      trin:[['2 min','Læs de tre punkter. Afgør for hvert, om I tror, det holder.'],
@@ -1315,7 +1294,7 @@ a{color:var(--accent)}
      produkt:'Tre omskrevne punkter med konsekvenssætning.',
      tip:'Tjek før timen, at de tre vage punkter passer til Living Flowers-casen. Mindst ét punkt skal bygge på regnskabet. Et punkt, der viser sig ikke at holde, er et godt resultat.',
      links:[['SWOT: et godt SWOT-punkt','viden'],['Træning: Find fejlen','traening']]},
-    {n:4,del:'B',titel:'Advokat og dommer',type:'par',form:'Par',tid:12,kase:'Living Flowers',
+    {n:2,del:'A',titel:'Advokat og dommer',type:'par',form:'Par',tid:12,kase:'Living Flowers',
      formaal:'At teste, om en styrke er relativ til konkurrenterne.',
      materialer:'De interne analyser, parret selv har lavet.',
      trin:[['1 min','Vælg fire styrker fra jeres analyser.'],
@@ -1323,7 +1302,7 @@ a{color:var(--accent)}
            ['3 min','Afgør sammen for hver styrke: beholdes, omformuleres eller fjernes?']],
      produkt:'Fire styrker med afgørelse og én linjes begrundelse.',
      tip:'Øvelsen er VRIO-testen i samtaleform. Henvis til den, hvis et par går i stå. VPC’en kan afgøre, om forholdet betyder noget for kunderne.'},
-    {n:5,del:'C',titel:'Fra analyse til bruttoliste',type:'gruppe',form:'Gruppe (3-5)',tid:20,kase:'Living Flowers',
+    {n:3,del:'B',titel:'Fra analyse til bruttoliste',type:'gruppe',form:'Gruppe (3-5)',tid:20,kase:'Living Flowers',
      formaal:'At omsætte konklusionerne fra de interne analyser til styrker og svagheder med kilde.',
      materialer:'Gruppens interne analyser: mission og vision, Golden Circle, VRIO, BMC, VPC, Porters værdikæde og regnskabsanalyse. Skabelonen på sitet eller et fælles dokument.',
      trin:[['6 min','Hver studerende skriver de vigtigste konklusioner fra den analyse, vedkommende har ansvar for, som S- eller W-punkter. Hvert punkt får kilde og den observation, det bygger på. Brug mission, vision og Golden Circle som målestok: hjælper eller hæmmer forholdet virksomheden i at nå sine mål?'],
@@ -1334,43 +1313,43 @@ a{color:var(--accent)}
      tip:'Kan laves hjemme som forberedelse, hvis tiden er knap. Skabelonens tjek kan bruges som første filter.',
      bygger:'De interne analyser fra sprint 2',
      links:[['Skabelon med tjek','skabelon.html']]},
-    {n:6,del:'C',titel:'Sporbarhedstjek på tværs',type:'gruppe',form:'Gruppe, to grupper bytter',tid:20,kase:'Living Flowers',
+    {n:4,del:'B',titel:'Sporbarhedstjek på tværs',type:'gruppe',form:'Gruppe, to grupper bytter',tid:20,kase:'Living Flowers',
      formaal:'At sikre, at hvert punkt kan føres tilbage til en analyse.',
-     materialer:'Bruttolisten fra øvelse 5 med kilde for hvert punkt.',
+     materialer:'Bruttolisten fra øvelse 3 med kilde for hvert punkt.',
      trin:[['2 min','Byt bruttoliste med en anden gruppe.'],
            ['10 min','Markér hvert punkt: grøn (navngiven analyse og konkret observation), gul (analysen er nævnt, observationen mangler) eller rød (påstand uden kilde).'],
            ['5 min','Giv listen tilbage, og forklar de gule og røde markeringer.'],
            ['3 min','Gruppen vælger de to punkter, den vil reparere først.']],
      produkt:'En farvemarkeret bruttoliste og to punkter til forbedring.',
      tip:'Bed om en optælling pr. gruppe (grøn/gul/rød), og vis fordelingen for holdet. Grupperne kan køre skabelonens tjek som selvtjek, før listerne byttes.',
-     bygger:'Øvelse 5',
+     bygger:'Øvelse 3',
      links:[['Skabelon med tjek','skabelon.html']]},
-    {n:7,del:'C',titel:'Stille matrice',type:'gruppe',form:'Gruppe (3-5)',tid:25,kase:'Living Flowers',
+    {n:5,del:'B',titel:'Stille matrice',type:'gruppe',form:'Gruppe (3-5)',tid:25,kase:'Living Flowers',
      formaal:'At prioritere styrker og svagheder efter vigtighed og præstation.',
-     materialer:'Bruttolisten fra øvelse 5, rettet efter øvelse 6. En tom 2x2-matrice pr. person (vigtighed lodret, præstation vandret).',
-     trin:[['3 min','Gennemgå listen, og ret eller fjern de punkter, der fik rød i øvelse 6.'],
+     materialer:'Bruttolisten fra øvelse 3, rettet efter øvelse 4. En tom 2x2-matrice pr. person (vigtighed lodret, præstation vandret).',
+     trin:[['3 min','Gennemgå listen, og ret eller fjern de punkter, der fik rød i øvelse 4.'],
            ['7 min','Hver studerende placerer alle numre i sin egen matrice. Ingen snak.'],
            ['3 min','Læg matricerne ved siden af hinanden. Markér de numre, gruppen har placeret forskelligt.'],
            ['9 min','Diskutér kun de markerede punkter. Hvad bygger hver placering på, og er vigtigheden kendt eller forventet? Tjek VPC’en: står forholdet blandt kundernes vigtigste pains og gains?'],
            ['3 min','Tegn én fælles matrice.']],
      produkt:'Én fælles matrice og en liste over de punkter, hvor dokumentationen mangler.',
      tip:'Uenighed skyldes næsten altid manglende data om, hvad kunderne lægger vægt på. Lad grupperne notere det som et spørgsmål til sprint 3.',
-     bygger:'Øvelse 5 og 6',
+     bygger:'Øvelse 3 og 4',
      links:[['SWOT: prioritering','viden']]},
-    {n:8,del:'C',titel:'Fem pladser',type:'gruppe',form:'Gruppe (3-5)',tid:30,kase:'Living Flowers',
+    {n:6,del:'B',titel:'Fem pladser',type:'gruppe',form:'Gruppe (3-5)',tid:30,kase:'Living Flowers',
      formaal:'At vælge og begrunde de vigtigste styrker og svagheder.',
-     materialer:'Den fælles matrice fra øvelse 7 og bruttolisten (12-15 punkter).',
+     materialer:'Den fælles matrice fra øvelse 5 og bruttolisten (12-15 punkter).',
      trin:[['3 min','Tegn to kolonner med fem tomme pladser: fem til S og fem til W.'],
            ['12 min','Fyld pladserne. Tag først punkter med høj vigtighed.'],
            ['8 min','Skriv én sætning for hvert fravalgt punkt: hvorfor kom det ikke med? Henvis til placeringen i matricen.'],
            ['7 min','Rangordn de valgte punkter fra 1 til 5 i hver kolonne, og skriv en «så hvad?»-sætning til nummer 1 i hver.']],
      produkt:'En prioriteret SW med højst fem punkter i hver kolonne, rangordnet og begrundet.',
      tip:'Dette er sprintets afleveringsprodukt. Punkter, der blev fravalgt på grund af manglende viden, føres videre som spørgsmål til sprint 3 og 4. Grupperne kan skrive SW ind i skabelonen og kopiere den som tekst til rapporten.',
-     bygger:'Øvelse 7',
+     bygger:'Øvelse 5',
      links:[['Skabelon med tjek','skabelon.html']]},
-    {n:9,del:'D',titel:'Direktørens ti minutter',type:'gruppe',form:'To grupper sammen',tid:25,kase:'Living Flowers',
+    {n:7,del:'C',titel:'Direktørens ti minutter',type:'gruppe',form:'To grupper sammen',tid:25,kase:'Living Flowers',
      formaal:'At kunne forsvare en prioriteret SW mundtligt.',
-     materialer:'Den prioriterede SW fra øvelse 8.',
+     materialer:'Den prioriterede SW fra øvelse 6.',
      trin:[['3 min','Begge grupper forbereder en fremlæggelse på tre minutter.'],
            ['3 min','Gruppe A fremlægger. Gruppe B er Living Flowers’ ledelse.'],
            ['7 min','Ledelsen må kun stille to spørgsmål, så mange gange den vil: «Hvor ved I det fra?» og «Så hvad?»'],
@@ -1378,7 +1357,7 @@ a{color:var(--accent)}
            ['2 min','Hver gruppe noterer det ene punkt, den ikke kunne forsvare.']],
      produkt:'Ét punkt pr. gruppe, der skal styrkes eller fjernes.',
      tip:'Kan bruges som mundtlig afslutning på sprint 2 i stedet for plenumfremlæggelse.',
-     bygger:'Øvelse 8'}
+     bygger:'Øvelse 6'}
   ];
 
   (function(){
