@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- SWOT-favikon: S og W over O og T, i sidens fire SWOT-farver -->
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="25" fill="#fff" text-anchor="middle">
+    <rect x="1" y="1" width="30" height="30" rx="5" fill="#1d7a4a"/>
+    <rect x="33" y="1" width="30" height="30" rx="5" fill="#946300"/>
+    <rect x="1" y="33" width="30" height="30" rx="5" fill="#2a5ca8"/>
+    <rect x="33" y="33" width="30" height="30" rx="5" fill="#952f60"/>
+    <text x="16" y="25">S</text>
+    <text x="48" y="25">W</text>
+    <text x="16" y="57">O</text>
+    <text x="48" y="57">T</text>
+  </g>
+</svg>
