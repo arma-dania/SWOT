@@ -1,8 +1,8 @@
-# SWOT-værkstedet
+# SWOT shop
 
 Undervisningsmateriale om SWOT-analysen og TOWS-matricen: viden, træningsøvelser og quiz.
 
-Siderne er selvstændige filer uden byggetrin: `index.html` (værkstedet) og `skabelon.html` (skabelon med tjek). Åbn den direkte i en browser, eller slå GitHub Pages til for repoet (Settings → Pages → branch `main`, mappe `/`).
+Siderne er selvstændige filer uden byggetrin: `index.html` (selve siden) og `skabelon.html` (skabelon med tjek). Åbn den direkte i en browser, eller slå GitHub Pages til for repoet (Settings → Pages → branch `main`, mappe `/`).
 
 ## Indhold
 
