@@ -107,6 +107,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .ov-row.intro .ov-arr,.ov-row.intro .ov-cell{display:none}
 .ov-src{grid-area:src;border:1.5px dashed color-mix(in srgb,var(--ink) 30%,var(--surface));border-radius:.5rem;padding:.65rem .75rem;display:flex;flex-direction:column;gap:.4rem;background:var(--bg);min-width:0}
 .ov-src > strong{font-size:1rem}
+.ov-goal{font-family:var(--body);font-size:.875rem;font-style:italic;color:var(--muted);line-height:1.3}
 .ov-row.intro .ov-src{padding:.9rem 1rem}
 .ov-row.intro .ov-src > strong{font-size:1.25rem}
 .ov-src ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.4rem}
@@ -363,11 +364,12 @@ a{color:var(--accent)}
         </div>
         <div class="ov-stage" id="ov-stage">
           <div class="ov-row" data-row="int" hidden>
-            <div class="ov-src"><strong>Interne analyser</strong><small>Ser ind i virksomheden</small><ul>
-              <li><div class="ov-card" data-to="w"><small>Værdikæde</small><span>Leveringstid på 6 uger mod 2 hos konkurrenterne</span></div><span class="ov-slot"></span></li>
-              <li><div class="ov-card" data-to="s"><small>VIRO</small><span>10 års garanti, som er svær at efterligne</span></div><span class="ov-slot"></span></li>
+            <div class="ov-src"><strong>Interne analyser</strong><small>Ser ind i virksomheden</small><span class="ov-goal">Målestok: mission, vision og Golden Circle</span><ul>
+              <li><div class="ov-card" data-to="s"><small>VRIO</small><span>10 års garanti, som er svær at efterligne</span></div><span class="ov-slot"></span></li>
+              <li><div class="ov-card" data-to="w"><small>BMC</small><span>Webshoppen giver 12 % af omsætningen mod 35 %</span></div><span class="ov-slot"></span></li>
+              <li><div class="ov-card" data-to="s"><small>VPC</small><span>Holdbarhed er kundernes vigtigste gevinst, og stellet scorer 4,8 mod 4,1</span></div><span class="ov-slot"></span></li>
+              <li><div class="ov-card" data-to="w"><small>Porters værdikæde</small><span>Leveringstid på 6 uger mod 2 hos konkurrenterne</span></div><span class="ov-slot"></span></li>
               <li><div class="ov-card" data-to="s"><small>Regnskabsanalyse</small><span>Soliditetsgrad 41 % mod 28 % i branchen</span></div><span class="ov-slot"></span></li>
-              <li><div class="ov-card" data-to="w"><small>Forretningsmodel</small><span>Webshoppen giver 12 % af omsætningen mod 35 %</span></div><span class="ov-slot"></span></li>
             </ul></div>
             <div class="ov-arr" aria-hidden="true"><svg viewBox="0 0 52 24" preserveAspectRatio="xMidYMid meet"><path class="shaft" d="M3 12H38"/><path class="head" d="M36 3l14 9-14 9z"/></svg></div>
             <div class="ov-cell" data-cell="s" style="--c:var(--s)"><header><b>S</b><strong>Styrker</strong></header><small>Internt · positivt</small><div class="drop"></div></div>
@@ -406,7 +408,15 @@ a{color:var(--accent)}
       <span class="n">3 · Den interne side</span>
       <h2>Styrker og svagheder er relative</h2>
       <p>En styrke er ikke bare noget, virksomheden har eller er god til. Den er kun en styrke, hvis virksomheden gør det bedre end konkurrenterne, og hvis det betyder noget for kunderne. Hurtig levering er ikke en styrke, når alle i branchen leverer lige så hurtigt. Så er det en adgangsbillet til markedet. Tilsvarende er en svaghed et område, hvor virksomheden står ringere end konkurrenterne på noget, kunderne lægger vægt på, eller noget der hæmmer dens evne til at nå sine mål.</p>
-      <p>Stoffet til S og W kommer fra de interne analyser. Værdikæden viser, hvilke aktiviteter der skaber værdi, og hvor der er spild. VIRO-analysen viser, hvilke ressourcer der er værdifulde, sjældne og svære at efterligne, og om organisationen udnytter dem. Regnskabsanalysen viser, om forretningsmodellen faktisk tjener penge, og hvor robust økonomien er. Forretningsmodellen og værditilbuddet viser, hvor godt virksomheden rammer kundernes behov.</p>
+      <p>Stoffet til S og W kommer fra de interne analyser, men de har forskellige roller.</p>
+      <ul class="crit">
+        <li><b>Mission, vision og Golden Circle</b> fastlægger, hvad virksomheden vil, og hvorfor den findes. De er målestokken: et forhold er en styrke, hvis det hjælper virksomheden mod målene, og en svaghed, hvis det hæmmer. Et tydeligt «hvorfor» kan i sig selv være en styrke, hvis kunderne mærker det.</li>
+        <li><b>VRIO</b> viser, hvilke ressourcer og kompetencer der er værdifulde, sjældne, svære at efterligne, og om organisationen udnytter dem. Det er her, de varige styrker findes.</li>
+        <li><b>Business Model Canvas (BMC)</b> viser, hvordan virksomheden skaber, leverer og tjener penge på værdi. Hver af de ni byggesten, fx kanaler, partnere og indtægtsstrømme, kan rumme styrker og svagheder.</li>
+        <li><b>Value Proposition Canvas (VPC)</b> viser, hvor godt værditilbuddet rammer kundernes jobs, pains og gains. Den fortæller også, hvad kunderne lægger vægt på, og bruges derfor til at vurdere vigtigheden af et punkt.</li>
+        <li><b>Porters værdikæde</b> viser, hvilke aktiviteter der skaber værdi eller omkostningsfordele, og hvor der er spild.</li>
+        <li><b>Regnskabsanalysen</b> viser, om forretningsmodellen faktisk tjener penge, og hvor robust økonomien er. Den giver tallene, som mange punkter skal dokumenteres med.</li>
+      </ul>
       <p>Hvert punkt bør derfor kunne føres tilbage til en bestemt analyse og en bestemt observation. Kan du ikke pege på, hvor et punkt kommer fra, er det et gæt.</p>
       <p class="it-see">Øv i timen: <a href="#i-timen" data-ex="1">øvelse 1</a> og <a href="#i-timen" data-ex="2">øvelse 2</a> (begreber og felter).</p>
     </section>
@@ -441,7 +451,7 @@ a{color:var(--accent)}
       <p>De to dimensioner skal holdes adskilt. Et forhold kan være meget omtalt og alligevel usandsynligt, og et usandsynligt forhold kan have så stor konsekvens, at virksomheden skal være forberedt. Konsekvensen afhænger desuden af virksomheden selv: et leveringsstop rammer hårdere, når der kun er én leverandør. Derfor skal S og W være på plads, før O og T kan prioriteres.</p>
       <div id="mx-ot"></div>
       <h3>Styrker og svagheder: vigtighed og præstation</h3>
-      <p>De interne forhold vurderes på, hvor vigtigt forholdet er for kunderne og for konkurrencen, og hvor godt virksomheden præsterer på det i forhold til konkurrenterne. Vigtigheden er kendt, når virksomheden har data om, hvad kunderne vælger efter, for eksempel fra en kundeundersøgelse. Ellers er den forventet, og så skal du skrive, hvad forventningen bygger på.</p>
+      <p>De interne forhold vurderes på, hvor vigtigt forholdet er for kunderne og for konkurrencen, og hvor godt virksomheden præsterer på det i forhold til konkurrenterne. Vigtigheden er kendt, når virksomheden har data om, hvad kunderne vælger efter, for eksempel fra kundeprofilen i VPC'en eller en kundeundersøgelse. Ellers er den forventet, og så skal du skrive, hvad forventningen bygger på.</p>
       <p>En svaghed på et område, kunderne er ligeglade med, behøver ingen indsats. En svaghed på et område, der afgør købet, skal først på listen.</p>
       <div id="mx-i"></div>
       <p>Vurderingerne er skøn, og derfor skal de begrundes. Skriv, hvad der taler for høj eller lav, og hvilken analyse du bygger på. Så kan andre efterprøve din prioritering.</p>
@@ -556,7 +566,7 @@ a{color:var(--accent)}
     <section class="mod anchor" id="qz-swot">
       <span class="n">Test dig selv</span>
       <h2>Quiz om SWOT</h2>
-      <p>13 spørgsmål. Du får en forklaring efter hvert svar og til sidst et resultat fordelt på emner, så du kan se, hvad du bør læse igen.</p>
+      <p>14 spørgsmål. Du får en forklaring efter hvert svar og til sidst et resultat fordelt på emner, så du kan se, hvad du bør læse igen.</p>
       <div class="ex" id="ex-quiz"></div>
     </section>
 
@@ -659,7 +669,7 @@ a{color:var(--accent)}
       <h2>Fra forslag til valg</h2>
       <p>En udfyldt TOWS giver som regel flere strategier, end virksomheden kan gennemføre. Næste skridt er at vælge. Vurdér hver strategi på fire spørgsmål:</p>
       <ul class="crit">
-        <li><b>Mål:</b> bringer den virksomheden nærmere sine mål og sin vision?</li>
+        <li><b>Mål:</b> bringer den virksomheden nærmere sin mission og vision, og passer den til virksomhedens «hvorfor» fra Golden Circle?</li>
         <li><b>Ressourcer:</b> har virksomheden penge, medarbejdere og kompetencer til den? Her bruger du regnskabsanalysen.</li>
         <li><b>Vægt:</b> bygger den på punkter med høj prioritet? En strategi, der møder en sandsynlig trussel med stor konsekvens, går forud for en, der jagter en usikker mulighed.</li>
         <li><b>Sammenhæng:</b> trækker strategierne i samme retning, eller modarbejder de hinanden?</li>
@@ -745,8 +755,8 @@ a{color:var(--accent)}
   (function(){
     var STEPS=[
       {t:'Overblik',h:'Fra analyser til strategi',p:'Her er den samlede SWOT for Cykelværket. Tryk på Start for at se, hvordan den bygges op trin for trin, eller på Afspil alle for at se det i ét stræk.'},
-      {t:'Trin 1 af 7',h:'De interne analyser udarbejdes',p:'Først analyseres virksomheden selv: værdikæde, VIRO, regnskab og forretningsmodel. Hver analyse ender med en konklusion, her vist som et kort.'},
-      {t:'Trin 2 af 7',h:'Interne konklusioner bliver til S og W',p:'Analyserne rykker til side, og kortene flyver ind i det felt, de hører til. Er virksomheden bedre end konkurrenterne, er det en styrke. Er den ringere, er det en svaghed. Den stiplede plads viser, hvor kortet kom fra.'},
+      {t:'Trin 1 af 7',h:'De interne analyser udarbejdes',p:'Først analyseres virksomheden selv. Mission, vision og Golden Circle fastlægger, hvad virksomheden vil og hvorfor. VRIO, BMC, VPC, Porters værdikæde og regnskabsanalysen ender hver med konklusioner, her vist som kort.'},
+      {t:'Trin 2 af 7',h:'Interne konklusioner bliver til S og W',p:'Analyserne rykker til side, og kortene flyver ind i det felt, de hører til. Er virksomheden bedre end konkurrenterne på noget, der bringer den nærmere sin mission og vision, er det en styrke. Er den ringere, er det en svaghed. Den stiplede plads viser, hvor kortet kom fra.'},
       {t:'Trin 3 af 7',h:'De eksterne analyser udarbejdes',p:'Nu ser vi ud på omverdenen: PESTEL, branche, konkurrenter og kunder. Det er udviklinger, som virksomheden ikke selv bestemmer over.'},
       {t:'Trin 4 af 7',h:'Eksterne konklusioner bliver til O og T',p:'En udvikling, virksomheden kan udnytte, er en mulighed. En udvikling, der kan skade den, er en trussel.'},
       {t:'Trin 5 af 7',h:'Den samlede SWOT',p:'Nu står alle fire felter samlet. SWOT er opsamlingen af analyserne. Den beskriver situationen, men siger endnu ikke, hvad virksomheden skal gøre.'},
@@ -1077,7 +1087,8 @@ a{color:var(--accent)}
     {topic:'Prioritering',q:'Et forhold har høj vigtighed for kunderne, men virksomheden præsterer dårligere end konkurrenterne. Hvad betyder det?',o:['Det er en styrke, der skal fastholdes','Det er en svaghed, der skal udbedres først','Det er en mulig overinvestering','Det har lav prioritet'],a:1,f:'Høj vigtighed og lav præstation er det felt, hvor en indsats giver mest.'},
     {topic:'Formål',q:'Hvilken kritik af SWOT-modellen er berettiget?',o:['Den kan kun bruges af store virksomheder','Den kræver regnskabstal for mindst ti år','Den ser kun på interne forhold','Den giver et øjebliksbillede og bliver let en subjektiv, uprioriteret liste'],a:3,f:'Derfor skal punkterne dokumenteres, sammenlignes med konkurrenter og prioriteres.'},
     {topic:'Internt/eksternt',q:'Kan det samme eksterne forhold være en mulighed for én virksomhed og en trussel for en anden?',o:['Ja, det afhænger af virksomhedens styrker og svagheder','Nej, et forhold er enten positivt eller negativt','Kun hvis virksomhederne er i forskellige lande','Kun for lovgivning'],a:0,f:'Skærpede miljøkrav rammer den, der skal bygge om, og gavner den, der allerede opfylder dem.'},
-    {topic:'Kvalitet',q:'Hvilke analyser leverer typisk stoffet til styrker og svagheder?',o:['PESTEL og Porters Five Forces','Konkurrent- og kundeanalyse','Værdikæde, VIRO og regnskabsanalyse','Markedsstørrelse og markedsvækst'],a:2,f:'De tre ser ind i virksomheden. De øvrige ser på omverdenen og leverer stof til muligheder og trusler.'},
+    {topic:'Kvalitet',q:'Hvilke analyser leverer typisk stoffet til styrker og svagheder?',o:['PESTEL og Porters Five Forces','Konkurrent- og markedsanalyse','VRIO, BMC, VPC, Porters værdikæde og regnskabsanalyse','Markedsstørrelse og markedsvækst'],a:2,f:'De ser ind i virksomheden. De øvrige ser på omverdenen og leverer stof til muligheder og trusler.'},
+    {topic:'Formål',q:'Hvilken rolle spiller mission, vision og Golden Circle i SWOT?',o:['De er selv styrker','De fastlægger målene, som styrker og svagheder vurderes op imod','De hører til under muligheder','De bruges kun i TOWS'],a:1,f:'Et forhold er en styrke, hvis det hjælper virksomheden mod sine mål, og en svaghed, hvis det hæmmer. Mission, vision og Golden Circle siger, hvad målene er.'},
     {topic:'Prioritering',q:'En trussel er usandsynlig, men ville have stor konsekvens for virksomheden, hvis den indtraf. Hvad er det rigtige svar?',o:['Se bort fra den, fordi den er usandsynlig','Overvåg udviklingen, og hav en beredskabsplan klar','Behandl den som en svaghed','Brug alle ressourcer på at afværge den nu'],a:1,f:'Konsekvensen gør, at virksomheden skal være forberedt. Den lave sandsynlighed gør, at den ikke skal bruge alle kræfter på det nu.'}
   ],{});
 
@@ -1311,11 +1322,11 @@ a{color:var(--accent)}
            ['8 min','2 min pr. styrke. A argumenterer for, at forholdet er en styrke. B argumenterer imod: kan konkurrenterne det samme, og betyder det noget for kunderne? Byt roller ved hver ny styrke.'],
            ['3 min','Afgør sammen for hver styrke: beholdes, omformuleres eller fjernes?']],
      produkt:'Fire styrker med afgørelse og én linjes begrundelse.',
-     tip:'Øvelsen er VIRO-testen i samtaleform. Henvis til den, hvis et par går i stå.'},
+     tip:'Øvelsen er VRIO-testen i samtaleform. Henvis til den, hvis et par går i stå. VPC’en kan afgøre, om forholdet betyder noget for kunderne.'},
     {n:5,del:'C',titel:'Fra analyse til bruttoliste',type:'gruppe',form:'Gruppe (3-5)',tid:20,kase:'Living Flowers',
      formaal:'At omsætte konklusionerne fra de interne analyser til styrker og svagheder med kilde.',
-     materialer:'Gruppens interne analyser: værdikæde, VIRO, regnskabsanalyse og forretningsmodel. Skabelonen på sitet eller et fælles dokument.',
-     trin:[['6 min','Hver studerende skriver de vigtigste konklusioner fra den analyse, vedkommende har ansvar for, som S- eller W-punkter. Hvert punkt får kilde og den observation, det bygger på.'],
+     materialer:'Gruppens interne analyser: mission og vision, Golden Circle, VRIO, BMC, VPC, Porters værdikæde og regnskabsanalyse. Skabelonen på sitet eller et fælles dokument.',
+     trin:[['6 min','Hver studerende skriver de vigtigste konklusioner fra den analyse, vedkommende har ansvar for, som S- eller W-punkter. Hvert punkt får kilde og den observation, det bygger på. Brug mission, vision og Golden Circle som målestok: hjælper eller hæmmer forholdet virksomheden i at nå sine mål?'],
            ['8 min','Læs punkterne op på skift. Saml dem på én liste, og slå dubletter sammen.'],
            ['4 min','Markér de punkter, hvor I er uenige om S eller W, eller om forholdet overhovedet er internt.'],
            ['2 min','Nummerér listen.']],
@@ -1340,7 +1351,7 @@ a{color:var(--accent)}
      trin:[['3 min','Gennemgå listen, og ret eller fjern de punkter, der fik rød i øvelse 6.'],
            ['7 min','Hver studerende placerer alle numre i sin egen matrice. Ingen snak.'],
            ['3 min','Læg matricerne ved siden af hinanden. Markér de numre, gruppen har placeret forskelligt.'],
-           ['9 min','Diskutér kun de markerede punkter. Hvad bygger hver placering på, og er vigtigheden kendt eller forventet?'],
+           ['9 min','Diskutér kun de markerede punkter. Hvad bygger hver placering på, og er vigtigheden kendt eller forventet? Tjek VPC’en: står forholdet blandt kundernes vigtigste pains og gains?'],
            ['3 min','Tegn én fælles matrice.']],
      produkt:'Én fælles matrice og en liste over de punkter, hvor dokumentationen mangler.',
      tip:'Uenighed skyldes næsten altid manglende data om, hvad kunderne lægger vægt på. Lad grupperne notere det som et spørgsmål til sprint 3.',

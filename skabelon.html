@@ -159,7 +159,7 @@ select{font-family:var(--display);font-size:.875rem;padding:.45rem .5rem}
     t:{n:'Trusler',one:'trussel',int:false,pos:false,help:'Udviklinger i omverdenen, der kan skade virksomheden.'}
   };
   /* kind: i = intern analyse, e = ekstern analyse, b = kan levere til begge sider */
-  var SRC=[['','Vælg analyse',''],['vk','Værdikæde','i'],['viro','VIRO','i'],['regn','Regnskabsanalyse','i'],['fm','Forretningsmodel / værditilbud','i'],
+  var SRC=[['','Vælg analyse',''],['mv','Mission og vision','i'],['gc','Golden Circle','i'],['viro','VRIO','i'],['fm','Business Model Canvas (BMC)','i'],['vpc','Value Proposition Canvas (VPC)','b'],['vk','Porters værdikæde','i'],['regn','Regnskabsanalyse','i'],
     ['pest','PESTEL / omverden','e'],['bra','Branche (Porters fem kræfter)','e'],['konk','Konkurrentanalyse','b'],['kund','Kunde- og markedsanalyse','b'],['and','Andet','b']];
   var DIM={
     sw:[['Vigtighed for kunderne','Høj','Lav'],['Præstation mod konkurrenterne','Bedre','Ringere']],
@@ -250,6 +250,9 @@ select{font-family:var(--display);font-size:.875rem;padding:.45rem .5rem}
     if(f.int&&sk==='e') out.push({k:'Kilde',q:'Punktet kommer fra '+srcName(p.src)+', som ser på omverdenen. Beskriver punktet virksomheden selv, eller et forhold uden for den?'});
     if(!f.int&&sk==='i') out.push({k:'Kilde',q:'Punktet kommer fra '+srcName(p.src)+', som ser ind i virksomheden. Er det virkelig et forhold i omverdenen, eller er det en styrke eller svaghed?'});
 
+    /* mission, vision og Golden Circle er målestokken, ikke en egenskab */
+    if(f.int&&(p.src==='mv'||p.src==='gc')) out.push({k:'Kilde',q:srcName(p.src)+' siger, hvad virksomheden vil, og hvorfor. Beskriver punktet en egenskab ved virksomheden i dag, eller et mål? Er det et mål, så brug det som målestok for de andre punkter i stedet.'});
+
     /* konkret */
     if(w.length<5) out.push({k:'Konkret',q:'Punktet er meget kort. Hvad præcis menes der? Ville en læser uden for gruppen forstå, hvad det handler om, og hvor stort det er?'});
     var vg=find(t,VAGUE),num=/\d/.test(t);
@@ -271,7 +274,7 @@ select{font-family:var(--display);font-size:.875rem;padding:.45rem .5rem}
     else{
       var pr=prio(k,p);
       if(!pr.hi) out.push({k:'Prioritering',q:'Punktet har fået lav prioritet ('+pr.txt.toLowerCase()+'). Skal det med i jeres endelige SWOT, eller tager det pladsen fra noget vigtigere?'});
-      if(f.int&&p.p1==='h'&&!/kunde|undersøg|analyse|data|%|\d/.test((p.why||'').toLowerCase())) out.push({k:'Prioritering',q:'Du vurderer, at forholdet er vigtigt for kunderne. Hvad bygger det på? En kundeundersøgelse, kundeanmeldelser eller en forventning? Skriv det i betydningen.'});
+      if(f.int&&p.p1==='h'&&!/kunde|undersøg|analyse|data|vpc|%|\d/.test((p.why||'').toLowerCase())) out.push({k:'Prioritering',q:'Du vurderer, at forholdet er vigtigt for kunderne. Hvad bygger det på? Kundeprofilen i VPC'en, en kundeundersøgelse, kundeanmeldelser eller en forventning? Skriv det i betydningen.'});
     }
 
     /* dublet */
