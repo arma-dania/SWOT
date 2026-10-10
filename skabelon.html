@@ -274,7 +274,7 @@ select{font-family:var(--display);font-size:.875rem;padding:.45rem .5rem}
     else{
       var pr=prio(k,p);
       if(!pr.hi) out.push({k:'Prioritering',q:'Punktet har fået lav prioritet ('+pr.txt.toLowerCase()+'). Skal det med i jeres endelige SWOT, eller tager det pladsen fra noget vigtigere?'});
-      if(f.int&&p.p1==='h'&&!/kunde|undersøg|analyse|data|vpc|%|\d/.test((p.why||'').toLowerCase())) out.push({k:'Prioritering',q:'Du vurderer, at forholdet er vigtigt for kunderne. Hvad bygger det på? Kundeprofilen i VPC'en, en kundeundersøgelse, kundeanmeldelser eller en forventning? Skriv det i betydningen.'});
+      if(f.int&&p.p1==='h'&&!/kunde|undersøg|analyse|data|vpc|%|\d/.test((p.why||'').toLowerCase())) out.push({k:'Prioritering',q:'Du vurderer, at forholdet er vigtigt for kunderne. Hvad bygger det på? Kundeprofilen i VPC’en, en kundeundersøgelse, kundeanmeldelser eller en forventning? Skriv det i betydningen.'});
     }
 
     /* dublet */
