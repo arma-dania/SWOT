@@ -822,7 +822,7 @@ a{color:var(--accent)}
     <section class="mod">
       <span class="n">Skabelon</span>
       <h2>Jeres SWOT og TOWS</h2>
-      <p>Skriv punkterne ind felt for felt. Når du forlader et felt, stiller tjekket spørgsmål til punktet: er det konkret, er det dokumenteret, og står det det rigtige sted? Brug spørgsmålene til at omskrive eller flytte punktet.</p>
+      <p>Skriv punkterne ind felt for felt. Når du forlader et felt, stiller tjekket spørgsmål til punktet: er det konkret, er det dokumenteret, og står det det rigtige sted? Brug spørgsmålene til at omskrive punktet. Hører det hjemme i et andet felt, så slet det, og skriv det det rigtige sted.</p>
       <p class="note">Tjekket læser ordene, ikke virkeligheden. Det kan overse fejl og stille spørgsmål til punkter, der er i orden. Et spørgsmål er en opfordring til at overveje punktet, ikke en dom. Kan du svare godt for dig, må punktet gerne blive stående.</p>
       <div class="firm">
         <label for="sk-firma">Virksomhed</label>
@@ -1734,7 +1734,6 @@ a{color:var(--accent)}
     if(!list.length)return '';
     return list.map(function(x,i){
       var mv='';
-      if(x.mv)mv='<span class="mv">'+x.mv.map(function(k){return '<button type="button" class="ghost" data-move="'+k+'" data-pid="'+pid+'">Flyt til '+F[k].n.toLowerCase()+'</button>';}).join('')+'</span>';
       if(x.tmv)mv='<span class="mv"><button type="button" class="ghost" data-tmove="'+x.tmv+'" data-sid="'+pid+'">Flyt til '+x.tmv+'</button></span>';
       return '<li class="q" data-k="'+x.k+'"><span class="k">'+x.k+'</span><span>'+x.q+'</span>'+mv+'</li>';
     }).join('');
@@ -1759,7 +1758,7 @@ a{color:var(--accent)}
           '</div>'+
           '<div style="display:flex;flex-direction:column;gap:.25rem"><label for="wh-'+p.id+'">Så hvad? Betydning for virksomheden</label><textarea id="wh-'+p.id+'" rows="2" data-f="why" placeholder="Hvad betyder punktet for, at virksomheden kan nå sine mål?">'+esc(p.why)+'</textarea></div>'+
           '<ul class="fb" data-fb></ul>'+
-          '<div class="acts"><span class="lbl">Flyt til</span>'+KEYS.filter(function(x){return x!==k;}).map(function(x){return '<button type="button" class="ghost" data-move="'+x+'" data-pid="'+p.id+'">'+x.toUpperCase()+'</button>';}).join('')+
+          '<div class="acts">'+
           '<button type="button" class="ghost danger" data-del="'+p.id+'" style="margin-left:auto">Slet</button></div>'+
         '</article>';
       });

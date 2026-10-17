@@ -14,7 +14,7 @@ Siden er én selvstændig fil uden byggetrin: `index.html`. `skabelon.html` send
 
 ## Skabelon med tjek
 
-Fanen Skabelon (tidligere `skabelon.html`) lader de studerende udfylde SWOT (punkt, kilde, betydning, prioritering) og TOWS (strategi, felt, henvisninger, valgt). Et regelbaseret tjek i browseren stiller spørgsmål, når et punkt er vagt, udokumenteret, mangler kilde eller betydning, ligner en handling, eller ser ud til at stå i det forkerte felt. Punkter og strategier kan flyttes med ét klik. Arbejdet gemmes i browseren og kan gemmes som fil, åbnes igen og kopieres som tekst til rapporten.
+Fanen Skabelon (tidligere `skabelon.html`) lader de studerende udfylde SWOT (punkt, kilde, betydning, prioritering) og TOWS (strategi, felt, henvisninger, valgt). Et regelbaseret tjek i browseren stiller spørgsmål, når et punkt er vagt, udokumenteret, mangler kilde eller betydning, ligner en handling, eller ser ud til at stå i det forkerte felt. Strategier kan flyttes til det felt, tjekket foreslår, med ét klik. Arbejdet gemmes i browseren og kan gemmes som fil, åbnes igen og kopieres som tekst til rapporten.
 
 ## Moodle
 
