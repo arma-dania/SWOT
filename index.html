@@ -405,6 +405,27 @@ a{color:var(--accent)}
 #p-skabelon .pt,#p-skabelon .strat,#p-skabelon .field{transition:box-shadow .2s ease}
 @media (hover:hover){#p-skabelon .pt:hover,#p-skabelon .strat:hover{box-shadow:0 2px 6px rgba(16,24,40,.08),0 8px 20px rgba(16,24,40,.08)}}
 
+
+/* ===== Kontrast og farve ===== */
+/* E: lidt mørkere grå baggrund, så de hvide kort står skarpere */
+:root{--bg:#e4e8ed}
+/* A: mørkt sidehoved med menuen */
+.head{background:var(--accent);color:#fff;padding:1.4rem 1.6rem 1rem;border-radius:.9rem .9rem 0 0;margin-bottom:0}
+.head h1{color:#fff}
+.quad{color:rgba(255,255,255,.72)}
+.tabs{background:var(--accent);border-bottom:0;border-radius:0 0 .9rem .9rem;padding:.55rem 1rem .7rem;margin-bottom:2rem;box-shadow:0 6px 18px rgba(16,24,40,.18)}
+.tabs button{color:rgba(255,255,255,.78)}
+.tabs button:hover{color:#fff}
+.tabs button[aria-selected="true"]{background:#fff;color:var(--accent)}
+.tabs button:focus-visible{outline-color:#fff}
+@media (max-width:40rem){.head{padding:1rem 1rem .6rem}.tabs{padding:.45rem .6rem .6rem}}
+/* B: de små afsnitsoverskrifter som mærker */
+.mod .n{align-self:flex-start;background:var(--accent);color:#fff;padding:.2rem .6rem;border-radius:999px;letter-spacing:.06em}
+/* C: farvestreg i de fire SWOT-farver under afsnitsoverskrifter */
+.mod > h2{padding-bottom:.4rem;background:linear-gradient(90deg,var(--s) 0 2.2rem,var(--w) 2.2rem 4.4rem,var(--o) 4.4rem 6.6rem,var(--t) 6.6rem 8.8rem) no-repeat left bottom/8.8rem 4px}
+/* D: under Øvelser har del A, B og C hver sin farve */
+.it[data-del="A"] summary .no{background:var(--s)} .it[data-del="B"] summary .no{background:var(--o)} .it[data-del="C"] summary .no{background:var(--t)}
+.it-plan > div:nth-child(1){border-top-color:var(--s)} .it-plan > div:nth-child(2){border-top-color:var(--o)} .it-plan > div:nth-child(3){border-top-color:var(--t)}
 </style>
 </head>
 <body>
@@ -1543,7 +1564,7 @@ a{color:var(--accent)}
     }
     function card(o){
       var d=DELE.filter(function(x){return x.id===o.del;})[0];
-      var h='<details class="it" id="ovelse-'+o.n+'"><summary>'+
+      var h='<details class="it" data-del="'+o.del+'" id="ovelse-'+o.n+'"><summary>'+
         '<span class="no">'+o.n+'</span>'+
         '<span class="ti">'+esc(o.titel)+'<small>Del '+d.id+' · '+esc(d.navn)+'</small></span>'+
         '<span class="form'+(o.type==='gruppe'?' grp':'')+'">'+(o.type==='gruppe'?'Gruppe':'Par')+'</span>'+
