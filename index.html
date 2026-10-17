@@ -329,6 +329,9 @@ a{color:var(--accent)}
 #p-skabelon .duo-box p{font-size:1.0625rem;line-height:1.5}
 #p-skabelon .sk-steps .steps{font-size:1.0625rem;line-height:1.5}
 /* streg, der markerer, hvor selve skabelonen begynder */
+#p-skabelon .sk-head{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:flex-end}
+#p-skabelon .sk-head .firm{flex:0 1 24rem}
+#p-skabelon .sk-head .status{position:static;border:0;background:none;backdrop-filter:none;padding-block:0 .55rem;flex:1 1 auto}
 #p-skabelon .sk-divider{border:0;border-top:2px solid color-mix(in srgb,var(--ink) 35%,var(--bg));margin:1rem 0 .5rem;width:100%}
 #p-skabelon select:focus-visible,#p-skabelon textarea:focus-visible,#p-skabelon input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #p-skabelon .ghost{font-size:.875rem;font-weight:500;padding:.4rem .75rem;border:1px solid var(--line);border-radius:.375rem;background:var(--surface);color:var(--ink);cursor:pointer}
@@ -827,22 +830,17 @@ a{color:var(--accent)}
       <span class="n">Skabelon</span>
       <h2>Jeres SWOT og TOWS</h2>
       <p>Skabelonen er stedet, hvor I samler jeres SWOT for Living Flowers.</p>
-      <div class="duo">
-        <div class="duo-box" style="--c:var(--accent)">
-          <h3>Kvalitet</h3>
-          <p>Skabelonen kvalitetssikrer jeres SWOT. Hvert punkt får en kilde, en betydning og en prioritering, så det kan føres tilbage til en bestemt analyse og vurderes op imod de andre. Samtidig tjekker den formuleringen i «Punkt» og «Så hvad?» og stiller spørgsmål, når et punkt er vagt, mangler tal eller sammenligning, lyder som en handling eller måske står i det forkerte felt.</p>
-        </div>
-        <div class="duo-box" style="--c:var(--accent)">
-          <h3>Overblik og aflevering</h3>
-          <p>Statuslinjen viser, hvor mange punkter der stadig har åbne spørgsmål. I kan dele arbejdet i gruppen og kopiere jeres SWOT direkte ind i rapporten.</p>
-        </div>
+      <div class="duo-box" style="--c:var(--accent)">
+        <h3>Ideen</h3>
+        <p>Skabelonen kvalitetssikrer jeres SWOT. Hvert punkt får en kilde, en betydning og en prioritering, så det kan føres tilbage til en bestemt analyse og vurderes op imod de andre. Samtidig tjekker den formuleringen i «Punkt» og «Så hvad?» og stiller spørgsmål, når et punkt er vagt, mangler tal eller sammenligning, lyder som en handling eller måske står i det forkerte felt.</p>
+        <p>Statuslinjen viser, hvor mange punkter der stadig har åbne spørgsmål. I kan dele arbejdet i gruppen og kopiere jeres SWOT direkte ind i rapporten.</p>
       </div>
       <div class="duo-box sk-steps" style="--c:var(--accent)">
         <h3>Sådan gør I</h3>
         <ol class="steps">
           <li><b>Skriv punkterne felt for felt.</b> I sprint 2 arbejder I med styrker og svagheder. Hvert punkt skal være konkret og helst dokumenteret med tal og en sammenligning med konkurrenter, branchen eller tidligere år.</li>
           <li><b>Angiv kilden.</b> Vælg den analyse, punktet kommer fra: VRIO, BMC, VPC, Porters værdikæde eller regnskabsanalysen.</li>
-          <li><b>Skriv betydningen.</b> Svar på «så hvad?»: hvad betyder punktet for, at Living Flowers kan nå sine mål?</li>
+          <li><b>Skriv betydningen.</b> Svar på «Så hvad?»: hvad betyder punktet for, at Living Flowers kan nå sine mål?</li>
           <li><b>Prioritér.</b> Vurdér vigtigheden for kunderne og præstationen i forhold til konkurrenterne.</li>
           <li><b>Læs tjekkets spørgsmål.</b> Når I forlader et felt, stiller skabelonen spørgsmål til punktet. Brug dem til at omskrive det. Hører punktet hjemme i et andet felt, så slet det, og skriv det det rigtige sted.</li>
         </ol>
@@ -859,13 +857,16 @@ a{color:var(--accent)}
       </div>
       <p class="note">Tjekket læser ordene, ikke virkeligheden. Det kan overse fejl og stille spørgsmål til punkter, der er i orden. Et spørgsmål er en opfordring til at overveje punktet, ikke en dom. Kan I begrunde et punkt, må det gerne blive stående.</p>
       <hr class="sk-divider" aria-label="Skabelonen begynder her">
-      <div class="firm">
-        <label for="sk-firma">Virksomhed</label>
-        <input type="text" id="sk-firma" autocomplete="off">
+      <h2>Skabelonen</h2>
+      <div class="sk-head">
+        <div class="firm">
+          <label for="sk-firma">Virksomhed</label>
+          <input type="text" id="sk-firma" autocomplete="off">
+        </div>
+        <div class="status ui" id="sk-status" aria-live="polite"></div>
       </div>
     </section>
 
-    <div class="status ui" id="sk-status"></div>
 
   <section class="mod">
     <span class="n">Trin 1 · SWOT</span>
