@@ -56,7 +56,7 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 .opts button:disabled{cursor:default;opacity:.6}
 .opts button.right,#p-traening .opts button.right{opacity:1;border-color:var(--s);background:color-mix(in srgb,var(--s) 15%,var(--surface));color:var(--s)}
 /* hver træningsøvelse har sin egen farve på svarfelterne; farverne er valgt, så de ikke forveksles med S, W, O og T */
-#ex-sort,#tx-field{--ex:#0e7c86} #ex-err,#tx-err{--ex:#6a4c9c} #ex-prio,#tx-comb{--ex:#b4532a}
+#ex-sort,#tx-field{--ex:#0e7c86} #ex-err,#tx-err{--ex:#6a4c9c} #ex-prio,#ex-prio-ot,#tx-comb{--ex:#b4532a}
 #p-traening .ex{border-top:4px solid var(--ex)}
 #p-traening .opts button{background:color-mix(in srgb,var(--ex) 15%,var(--surface));border-color:color-mix(in srgb,var(--ex) 40%,var(--surface))}
 #p-traening .opts button:hover:not(:disabled){border-color:var(--ex)}
@@ -123,12 +123,12 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
   <header class="intro">
     <span class="n">SWOT shop · Træning</span>
     <h1>Træn SWOT og TOWS på Cykelværket</h1>
-    <p class="lead">Seks øvelser. I SWOT sorterer du udsagn, finder fejl og prioriterer styrker og svagheder. I TOWS kombinerer du punkter til handlingsalternativer, placerer dem i det rigtige felt og finder fejl. Du får en forklaring efter hvert svar.</p>
+    <p class="lead">Syv øvelser. I SWOT sorterer du udsagn, finder fejl og prioriterer styrker og svagheder og muligheder og trusler. I TOWS kombinerer du punkter til handlingsalternativer, placerer dem i det rigtige felt og finder fejl. Du får en forklaring efter hvert svar.</p>
   </header>
   <main class="panel" id="p-traening">
     <nav class="jump" aria-label="Spring til">
-      <button type="button" data-jump="tr-swot">SWOT · øvelse 1–3</button>
-      <button type="button" data-jump="tr-tows">TOWS · øvelse 4–6</button>
+      <button type="button" data-jump="tr-swot">SWOT · øvelse 1–4</button>
+      <button type="button" data-jump="tr-tows">TOWS · øvelse 5–7</button>
     </nav>
     <h2 class="part anchor" id="tr-swot">Træning i SWOT</h2>
     <section class="case">
@@ -166,32 +166,39 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
       <div class="ex" id="ex-prio"></div>
     </section>
 
+    <section class="mod">
+      <span class="n">Øvelse 4 · SWOT</span>
+      <h2>Prioritér muligheder og trusler</h2>
+      <p>Placér hver mulighed og trussel i matricen ud fra oplysningerne. Læs efter, hvad der siger noget om sandsynligheden for, at forholdet indtræffer, og hvad der siger noget om konsekvensen for virksomheden: hvor attraktiv en mulighed er, og hvor alvorlig en trussel er.</p>
+      <div class="ex" id="ex-prio-ot"></div>
+    </section>
+
     <h2 class="part anchor" id="tr-tows">Træning i TOWS</h2>
 
 
     <section class="case">
       <span class="tag">Øvelsescase · opdigtet virksomhed</span>
       <h2>Cykelværkets prioriterede SWOT</h2>
-      <p>Øvelse 4–6 bygger på disse punkter. Henvisningerne i øvelserne, for eksempel (S1, O1), peger hertil.</p>
+      <p>Øvelse 5–7 bygger på disse punkter. Henvisningerne i øvelserne, for eksempel (S1, O1), peger hertil.</p>
       <div class="swl" data-swl></div>
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 4 · TOWS</span>
+      <span class="n">Øvelse 5 · TOWS</span>
       <h2>Kombinér til et handlingsalternativ</h2>
       <p>For hver kombination af punkter skal du vælge det handlingsalternativ, der bedst svarer på feltets spørgsmål.</p>
       <div class="ex" id="tx-comb"></div>
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 5 · TOWS</span>
+      <span class="n">Øvelse 6 · TOWS</span>
       <h2>Hvilket felt?</h2>
       <p>Placér hvert handlingsalternativ i det felt, det hører til. Find først de punkter i SWOT'en, alternativet bygger på. Nogle af udsagnene er slet ikke handlingsalternativer.</p>
       <div class="ex" id="tx-field"></div>
     </section>
 
     <section class="mod">
-      <span class="n">Øvelse 6 · TOWS</span>
+      <span class="n">Øvelse 7 · TOWS</span>
       <h2>Find fejlen i en TOWS</h2>
       <p>En gruppe har lavet en TOWS for Cykelværket. Vurdér hvert handlingsalternativ med det felt og den henvisning, gruppen har givet det.</p>
       <div class="ex" id="tx-err"></div>
@@ -290,6 +297,20 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
     {ctx:'Svaghed',c:'w',q:'Cykelværket har ingen app, der viser batteriniveau og kørte kilometer. To af konkurrenterne har en. Kun 2 % af kunderne nævner en app som købsgrund.',a:3,f:'Konkurrenterne er bedre, men det betyder næsten intet for kunderne. Svagheden kræver ingen indsats nu.'},
     {ctx:'Svaghed',c:'w',q:'Brugermanualen findes kun på dansk, mens konkurrenterne også har den på engelsk og tysk. 97 % af kunderne er danske.',a:3,f:'En svaghed, der ikke koster kunder på det marked, virksomheden sælger på.'}
   ],{o:PRI,shuffle:true});
+
+  /* ---------- Øvelse 4: prioritering af muligheder og trusler ---------- */
+  var PRO=['Meget attraktiv, stor sandsynlighed','Meget attraktiv, lille sandsynlighed','Mindre attraktiv, stor sandsynlighed','Mindre attraktiv, lille sandsynlighed'],
+      PRT=['Meget alvorlig, stor sandsynlighed','Meget alvorlig, lille sandsynlighed','Mindre alvorlig, stor sandsynlighed','Mindre alvorlig, lille sandsynlighed'];
+  runner(document.getElementById('ex-prio-ot'),[
+    {ctx:'Mulighed',c:'o',o:PRO,q:'Efterspørgslen fra erhvervskunder som bude og håndværkere er vokset 15 % om året tre år i træk, og statens tilskud er netop forlænget. Segmentet giver højt dækningsbidrag, og kunderne vælger efter holdbarhed.',a:0,f:'Væksten er dokumenteret over flere år og understøttet af tilskud, så sandsynligheden er stor. Muligheden er meget attraktiv, fordi segmentet er lønsomt og passer til virksomhedens styrke. Højeste prioritet: udnyt den aktivt.'},
+    {ctx:'Mulighed',c:'o',o:PRO,q:'En tysk forhandlerkæde med 200 butikker har i et interview nævnt, at den måske vil tage et dansk ladcykelmærke ind. Der er ingen kontakt eller aftale. En aftale ville fordoble Cykelværkets omsætning.',a:1,f:'En fordobling af omsætningen er meget attraktiv, men en løs bemærkning i et interview gør det ikke sandsynligt. Hold øje med udviklingen, og vær klar til at reagere.'},
+    {ctx:'Mulighed',c:'o',o:PRO,q:'Forhandlerne melder, at kunderne jævnligt spørger efter regnslag og reflekser til cyklerne. Varerne giver få kroner pr. ordre.',a:2,f:'Efterspørgslen er der allerede, så sandsynligheden er stor. Gevinsten pr. ordre er lille, så muligheden er mindre attraktiv. Udnyt den, hvis det er billigt.'},
+    {ctx:'Trussel',c:'t',o:PRT,q:'Den tyske konkurrent har underskrevet lejekontrakt og annonceret åbning af showroom i København. Byen står for 40 % af Cykelværkets salg.',a:0,f:'Åbningen er besluttet, og den rammer hovedmarkedet. Højeste prioritet: virksomheden skal handle nu.'},
+    {ctx:'Trussel',c:'t',o:PRT,q:'Et leveringsstop fra leverandøren i Taiwan ville standse produktionen helt. Leverandøren har leveret stabilt i ni år, og der er ingen aktuelle tegn på problemer.',a:1,f:'Truslen er meget alvorlig, men intet tyder på, at den indtræffer. Lav en beredskabsplan, for eksempel en godkendt alternativ leverandør.'},
+    {ctx:'Trussel',c:'t',o:PRT,q:'Fragtfirmaet har varslet en prisstigning på 3 % fra januar. Fragt udgør under 2 % af virksomhedens omkostninger.',a:2,f:'Stigningen kommer med sikkerhed, men betyder næsten intet for resultatet. Overvåg den, og tilpas løbende i den daglige drift.'},
+    {ctx:'Mulighed',c:'o',o:PRO,q:'En blogger forudser, at ladcykler med solceller på taget bliver populære. Der findes ingen sådanne modeller, og ingen af kunderne i undersøgelsen nævner det.',a:3,f:'Der er intet, der tyder på, at det sker, og selv hvis det gjorde, er der ingen tegn på, at kunderne vil betale for det. Lav prioritet.'},
+    {ctx:'Trussel',c:'t',o:PRT,q:'I byrådet i en mindre jysk by er det foreslået at forbyde ladcykler på én bestemt cykelsti. Forslaget har ikke flertal, og byen står for under 1 % af salget.',a:3,f:'Forslaget vedtages næppe, og selv hvis det gør, rammer det næsten intet af salget. Det kan ignoreres for nu.'}
+  ],{shuffle:true});
 
   /* ---------- Træning i TOWS ---------- */
 
