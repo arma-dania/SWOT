@@ -24,16 +24,15 @@ img{max-width:100%}
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6}
-.wrap{max-width:min(52rem, 100%);margin:0 auto;padding-inline:1.125rem;padding-block:1.5rem 4rem}
+.wrap{max-width:min(52rem, 100%);margin:0 auto;padding-inline:1.125rem;padding-block:.75rem 4rem}
 h1,h2,h3,button,.ui{font-family:var(--display)}
 h1{font-size:clamp(2rem,6vw,3rem);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.02em}
 h2{font-size:1.5rem;line-height:1.2;margin:0;text-wrap:balance;font-weight:700}
 h3{font-size:1.0625rem;margin:0;font-weight:700}
 p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 .lead{color:var(--muted);font-size:1.1875rem}
-.head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;margin-bottom:1.5rem}
+.head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:end;margin-bottom:.5rem}
 .head > div:first-child{min-width:0;display:flex;flex-direction:column;gap:.75rem}
-@media (max-width:40rem){.head{grid-template-columns:1fr}}
 
 .panel{display:flex;flex-direction:column;gap:3rem}
 .mod{display:flex;flex-direction:column;gap:.9rem}
@@ -124,7 +123,7 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
   <header class="intro">
     <span class="n">SWOT shop · Træning</span>
     <h1>Træn SWOT og TOWS på Cykelværket</h1>
-    <p class="lead">Seks øvelser. I SWOT sorterer du udsagn, finder fejl og prioriterer muligheder og trusler. I TOWS kombinerer du punkter til strategier, placerer strategier i det rigtige felt og finder fejl. Du får en forklaring efter hvert svar.</p>
+    <p class="lead">Seks øvelser. I SWOT sorterer du udsagn, finder fejl og prioriterer muligheder og trusler. I TOWS kombinerer du punkter til handlingsalternativer, placerer dem i det rigtige felt og finder fejl. Du får en forklaring efter hvert svar.</p>
   </header>
   <main class="panel" id="p-traening">
     <nav class="jump" aria-label="Spring til">
@@ -154,7 +153,7 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 
     <section class="mod">
       <span class="n">Øvelse 3 · SWOT</span>
-      <h2>Prioritér efter sandsynlighed</h2>
+      <h2>Prioritér muligheder og trusler</h2>
       <p>Placér hver mulighed og trussel i matricen ud fra oplysningerne. Læs efter, hvad der siger noget om sandsynligheden for, at forholdet indtræffer, og hvad der siger noget om konsekvensen for virksomheden.</p>
       <div class="ex" id="ex-prio"></div>
     </section>
@@ -171,22 +170,22 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 
     <section class="mod">
       <span class="n">Øvelse 4 · TOWS</span>
-      <h2>Kombinér til en strategi</h2>
-      <p>For hver kombination af punkter skal du vælge den strategi, der bedst svarer på feltets spørgsmål.</p>
+      <h2>Kombinér til et handlingsalternativ</h2>
+      <p>For hver kombination af punkter skal du vælge det handlingsalternativ, der bedst svarer på feltets spørgsmål.</p>
       <div class="ex" id="tx-comb"></div>
     </section>
 
     <section class="mod">
       <span class="n">Øvelse 5 · TOWS</span>
       <h2>Hvilket felt?</h2>
-      <p>Placér hver strategi i det felt, den hører til. Find først de punkter i SWOT'en, strategien bygger på. Nogle af udsagnene er slet ikke strategier.</p>
+      <p>Placér hvert handlingsalternativ i det felt, det hører til. Find først de punkter i SWOT'en, alternativet bygger på. Nogle af udsagnene er slet ikke handlingsalternativer.</p>
       <div class="ex" id="tx-field"></div>
     </section>
 
     <section class="mod">
       <span class="n">Øvelse 6 · TOWS</span>
       <h2>Find fejlen i en TOWS</h2>
-      <p>En gruppe har lavet en TOWS for Cykelværket. Vurdér hver strategi med det felt og den henvisning, gruppen har givet den.</p>
+      <p>En gruppe har lavet en TOWS for Cykelværket. Vurdér hvert handlingsalternativ med det felt og den henvisning, gruppen har givet det.</p>
       <div class="ex" id="tx-err"></div>
     </section>
   </main>
@@ -272,15 +271,16 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
   ],{o:ER});
 
   /* ---------- Øvelse 3: prioritering ---------- */
-  var PR=['Stor konsekvens, høj sandsynlighed','Stor konsekvens, lav sandsynlighed','Lille konsekvens, høj sandsynlighed','Lille konsekvens, lav sandsynlighed'];
+  var PRO=['Meget attraktiv, stor sandsynlighed','Meget attraktiv, lille sandsynlighed','Mindre attraktiv, stor sandsynlighed','Mindre attraktiv, lille sandsynlighed'],
+      PRT=['Meget alvorlig, stor sandsynlighed','Meget alvorlig, lille sandsynlighed','Mindre alvorlig, stor sandsynlighed','Mindre alvorlig, lille sandsynlighed'];
   runner(document.getElementById('ex-prio'),[
-    {ctx:'Mulighed',c:'o',q:'Efterspørgslen fra erhvervskunder som bude og håndværkere er vokset 15 % om året tre år i træk, og statens tilskud er netop forlænget. Segmentet giver højt dækningsbidrag, og kunderne vælger efter holdbarhed.',a:0,f:'Væksten er dokumenteret over flere år og understøttet af tilskud, så sandsynligheden er høj. Gevinsten er stor, fordi segmentet er lønsomt og passer til virksomhedens styrke.'},
-    {ctx:'Mulighed',c:'o',q:'En tysk forhandlerkæde med 200 butikker har i et interview nævnt, at den måske vil tage et dansk ladcykelmærke ind. Der er ingen kontakt eller aftale. En aftale ville fordoble Cykelværkets omsætning.',a:1,f:'En fordobling af omsætningen er en stor konsekvens, men en løs bemærkning i et interview gør det ikke sandsynligt. Overvåg, og vær klar til at reagere.'},
-    {ctx:'Mulighed',c:'o',q:'Forhandlerne melder, at kunderne jævnligt spørger efter regnslag og reflekser til cyklerne. Varerne giver få kroner pr. ordre.',a:2,f:'Efterspørgslen er der allerede, så sandsynligheden er høj. Gevinsten pr. ordre er lille, så konsekvensen for virksomheden er begrænset.'},
-    {ctx:'Trussel',c:'t',q:'Den tyske konkurrent har underskrevet lejekontrakt og annonceret åbning af showroom i København. Byen står for 40 % af Cykelværkets salg.',a:0,f:'Åbningen er besluttet, og den rammer hovedmarkedet. Virksomheden skal have et svar klar nu.'},
-    {ctx:'Trussel',c:'t',q:'Et leveringsstop fra leverandøren i Taiwan ville standse produktionen helt. Leverandøren har leveret stabilt i ni år, og der er ingen aktuelle tegn på problemer.',a:1,f:'Konsekvensen ville være meget stor, men intet tyder på, at det sker. Overvåg, og hav en beredskabsplan, for eksempel en godkendt alternativ leverandør.'},
-    {ctx:'Trussel',c:'t',q:'Fragtfirmaet har varslet en prisstigning på 3 % fra januar. Fragt udgør under 2 % af virksomhedens omkostninger.',a:2,f:'Stigningen kommer med sikkerhed, men betyder næsten intet for resultatet. Den klares i den daglige drift.'}
-  ],{o:PR});
+    {ctx:'Mulighed',c:'o',o:PRO,q:'Efterspørgslen fra erhvervskunder som bude og håndværkere er vokset 15 % om året tre år i træk, og statens tilskud er netop forlænget. Segmentet giver højt dækningsbidrag, og kunderne vælger efter holdbarhed.',a:0,f:'Væksten er dokumenteret over flere år og understøttet af tilskud, så sandsynligheden er stor. Muligheden er meget attraktiv, fordi segmentet er lønsomt og passer til virksomhedens styrke. Højeste prioritet: udnyt den aktivt.'},
+    {ctx:'Mulighed',c:'o',o:PRO,q:'En tysk forhandlerkæde med 200 butikker har i et interview nævnt, at den måske vil tage et dansk ladcykelmærke ind. Der er ingen kontakt eller aftale. En aftale ville fordoble Cykelværkets omsætning.',a:1,f:'En fordobling af omsætningen er meget attraktiv, men en løs bemærkning i et interview gør det ikke sandsynligt. Hold øje med udviklingen, og vær klar til at reagere.'},
+    {ctx:'Mulighed',c:'o',o:PRO,q:'Forhandlerne melder, at kunderne jævnligt spørger efter regnslag og reflekser til cyklerne. Varerne giver få kroner pr. ordre.',a:2,f:'Efterspørgslen er der allerede, så sandsynligheden er stor. Gevinsten pr. ordre er lille, så muligheden er mindre attraktiv. Udnyt den, hvis det er billigt.'},
+    {ctx:'Trussel',c:'t',o:PRT,q:'Den tyske konkurrent har underskrevet lejekontrakt og annonceret åbning af showroom i København. Byen står for 40 % af Cykelværkets salg.',a:0,f:'Åbningen er besluttet, og den rammer hovedmarkedet. Højeste prioritet: virksomheden skal handle nu.'},
+    {ctx:'Trussel',c:'t',o:PRT,q:'Et leveringsstop fra leverandøren i Taiwan ville standse produktionen helt. Leverandøren har leveret stabilt i ni år, og der er ingen aktuelle tegn på problemer.',a:1,f:'Truslen er meget alvorlig, men intet tyder på, at den indtræffer. Lav en beredskabsplan, for eksempel en godkendt alternativ leverandør.'},
+    {ctx:'Trussel',c:'t',o:PRT,q:'Fragtfirmaet har varslet en prisstigning på 3 % fra januar. Fragt udgør under 2 % af virksomhedens omkostninger.',a:2,f:'Stigningen kommer med sikkerhed, men betyder næsten intet for resultatet. Overvåg den, og tilpas løbende i den daglige drift.'}
+  ],{});
 
   /* ---------- Træning i TOWS ---------- */
 
@@ -289,7 +289,7 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
     s:['Holdbart stel: kunderne giver 4,8 af 5 mod 4,1 og 4,3 hos de nærmeste konkurrenter','Garanti på 10 år, branchens længste','Soliditetsgrad på 41 % mod 28 % i branchen'],
     w:['Motorer og batterier købes hos én leverandør i Taiwan','Ingen medarbejder med ansvar for digital markedsføring. Webshoppen står for 12 % af omsætningen mod ca. 35 % hos konkurrenterne','Leveringstid på seks uger mod to hos konkurrenterne'],
     o:['Erhvervsmarkedet (bude, håndværkere) vokser 15 % om året, og statens tilskud er forlænget med tre år','Bilfrie zoner i fire af de fem største byer inden 2028'],
-    t:['En tysk konkurrent åbner showroom i København, som står for 40 % af salget','Stigende rente på forbrugslån får færre til at finansiere dyre cykler','En handelskonflikt kan standse leverancer af elektronik fra Asien (lav sandsynlighed, stor konsekvens)']
+    t:['En tysk konkurrent åbner showroom i København, som står for 40 % af salget','Stigende rente på forbrugslån får færre til at finansiere dyre cykler','En handelskonflikt kan standse leverancer af elektronik fra Asien (lille sandsynlighed, meget alvorlig)']
   };
   var CVN={s:'Styrker',w:'Svagheder',o:'Muligheder',t:'Trusler'};
   [].forEach.call(document.querySelectorAll('[data-swl]'),function(el){
@@ -304,11 +304,11 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 
   /* ---------- TOWS øvelse 1: kombinér ---------- */
   runner(document.getElementById('tx-comb'),[
-    {ctx:'SO · S1 + O1',c:'s',q:'Hvordan kan det holdbare stel bruges til at gribe væksten på erhvervsmarkedet?',o:['Erhvervsmarkedet vokser 15 % om året','Udvikl en erhvervsmodel med forstærket stel, og markedsfør holdbarheden over for bude og håndværkere','Sænk prisen på alle modeller for at vinde markedsandele','Ansæt en medarbejder til digital markedsføring'],a:1,f:'Strategien bruger styrken direkte i det segment, der vokser. Det første svar gentager blot muligheden. Prisnedsættelsen bruger ikke styrken og koster indtjening. Ansættelsen er en WO-strategi, der svarer på W2.'},
-    {ctx:'ST · S2 + T1',c:'t',q:'Hvordan kan garantien bruges til at møde den tyske konkurrents showroom i København?',o:['Gør garantien til hovedbudskabet i en kampagne i København, og tilbyd prøvekørsel hos forhandlerne','Træk virksomheden ud af det københavnske marked','Konkurrenten er en trussel mod salget i København','Forkort garantien for at få råd til at sænke priserne'],a:0,f:'Strategien bruger en styrke, konkurrenten ikke kan matche, netop der hvor truslen rammer. At trække sig opgiver 40 % af salget, det tredje svar gentager truslen, og det sidste svækker den styrke, der skulle bruges.'},
-    {ctx:'WO · W2 + O1',c:'o',q:'Hvordan kan manglen på digital markedsføring udbedres, så erhvervsmarkedet kan udnyttes?',o:['Vent med erhvervsmarkedet, til webshoppen er blevet bedre','Ansæt en digital marketingansvarlig med fokus på at nå erhvervskunderne online','Lad forhandlerne tage sig af erhvervskunderne som hidtil','Webshoppen står for 12 % af omsætningen'],a:1,f:'Strategien udbedrer svagheden og retter indsatsen mod muligheden. At vente lader muligheden gå forbi, at fortsætte som hidtil ændrer intet, og det sidste svar gentager svagheden.'},
-    {ctx:'WT · W1 + T3',c:'w',q:'Hvordan kan afhængigheden af én leverandør mindskes, så en handelskonflikt ikke standser produktionen?',o:['Godkend en europæisk reserveleverandør af motorer og batterier','Køb et lager af motorer, der rækker i ti år','Håb på, at handelskonflikten ikke opstår','Gå over til at producere cykler uden motor'],a:0,f:'En reserveleverandør fjerner svagheden til en overkommelig pris. Et lager til ti år binder alt for meget kapital, at håbe er ingen strategi, og at droppe motoren opgiver kerneforretningen for at undgå en usandsynlig trussel.'},
-    {ctx:'SO · S3 + O2',c:'s',q:'Hvordan kan den stærke soliditet bruges til at udnytte de bilfrie zoner?',o:['Soliditetsgraden er 41 %','Optag et stort lån for at købe en konkurrent i Tyskland','Finansiér egne prøve- og udlejningsstationer i de byer, der indfører bilfrie zoner','Sænk priserne i de byer, der indfører bilfrie zoner'],a:2,f:'Strategien bruger kapitalen til at komme tæt på de kunder, de bilfrie zoner skaber. Det første svar gentager styrken, opkøbet i Tyskland har intet med de bilfrie zoner at gøre, og prisnedsættelsen bruger ikke styrken.'},
+    {ctx:'SO · S1 + O1',c:'s',q:'Hvordan kan det holdbare stel bruges til at udnytte væksten på erhvervsmarkedet?',o:['Erhvervsmarkedet vokser 15 % om året','Udvikl en erhvervsmodel med forstærket stel, og markedsfør holdbarheden over for bude og håndværkere','Sænk prisen på alle modeller for at vinde markedsandele','Ansæt en medarbejder til digital markedsføring'],a:1,f:'Alternativet bruger styrken direkte i det segment, der vokser. Det første svar gentager blot muligheden. Prisnedsættelsen bruger ikke styrken og koster indtjening. Ansættelsen er et WO-alternativ, der svarer på W2.'},
+    {ctx:'ST · S2 + T1',c:'t',q:'Hvordan kan garantien bruges til at håndtere den tyske konkurrents showroom i København?',o:['Gør garantien til hovedbudskabet i en kampagne i København, og tilbyd prøvekørsel hos forhandlerne','Træk virksomheden ud af det københavnske marked','Konkurrenten er en trussel mod salget i København','Forkort garantien for at få råd til at sænke priserne'],a:0,f:'Alternativet bruger en styrke, konkurrenten ikke kan matche, netop der hvor truslen rammer. At trække sig opgiver 40 % af salget, det tredje svar gentager truslen, og det sidste svækker den styrke, der skulle bruges.'},
+    {ctx:'WO · W2 + O1',c:'o',q:'Hvordan kan manglen på digital markedsføring mindskes, så erhvervsmarkedet kan udnyttes?',o:['Vent med erhvervsmarkedet, til webshoppen er blevet bedre','Ansæt en digital marketingansvarlig med fokus på at nå erhvervskunderne online','Lad forhandlerne tage sig af erhvervskunderne som hidtil','Webshoppen står for 12 % af omsætningen'],a:1,f:'Alternativet mindsker svagheden og retter indsatsen mod muligheden. At vente lader muligheden gå forbi, at fortsætte som hidtil ændrer intet, og det sidste svar gentager svagheden.'},
+    {ctx:'WT · W1 + T3',c:'w',q:'Hvordan kan afhængigheden af én leverandør mindskes, så en handelskonflikt ikke standser produktionen?',o:['Godkend en europæisk reserveleverandør af motorer og batterier','Køb et lager af motorer, der rækker i ti år','Håb på, at handelskonflikten ikke opstår','Gå over til at producere cykler uden motor'],a:0,f:'En reserveleverandør fjerner svagheden til en overkommelig pris. Et lager til ti år binder alt for meget kapital, at håbe er ingen handling, og at droppe motoren opgiver kerneforretningen for at undgå en usandsynlig trussel.'},
+    {ctx:'SO · S3 + O2',c:'s',q:'Hvordan kan den stærke soliditet bruges til at udnytte de bilfrie zoner?',o:['Soliditetsgraden er 41 %','Optag et stort lån for at købe en konkurrent i Tyskland','Finansiér egne prøve- og udlejningsstationer i de byer, der indfører bilfrie zoner','Sænk priserne i de byer, der indfører bilfrie zoner'],a:2,f:'Alternativet bruger kapitalen til at komme tæt på de kunder, de bilfrie zoner skaber. Det første svar gentager styrken, opkøbet i Tyskland har intet med de bilfrie zoner at gøre, og prisnedsættelsen bruger ikke styrken.'},
     {ctx:'WT · W3 + T1',c:'w',q:'Hvordan kan den lange leveringstid gøres mindre skadelig, før konkurrenten åbner i København?',o:['Hold de mest solgte modeller på lager hos de københavnske forhandlere','Fortæl kunderne, at en god cykel er værd at vente seks uger på','Leveringstiden er seks uger mod to hos konkurrenterne','Byg en ny fabrik i Tyskland'],a:0,f:'Lageret mindsker svagheden netop der, hvor truslen rammer, og soliditeten (S3) kan finansiere det. At forklare ventetiden ændrer ikke svagheden, det tredje svar gentager den, og en fabrik i Tyskland er ude af proportion med problemet.'}
   ],{});
 
@@ -316,29 +316,29 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
   runner(document.getElementById('tx-field'),[
     {q:'Tilbyd budfirmaer en serviceaftale, hvor garantien på 10 år også dækker hård erhvervsbrug.',a:0,f:'SO (S2, O1). Garantien er en styrke, og den bruges til at vinde kunder på det voksende erhvervsmarked.'},
     {q:'Brug den stærke økonomi til at tilbyde rentefri afbetaling, så kunderne ikke skal låne i banken.',a:1,f:'ST (S3, T2). Soliditeten er en styrke, og den bruges til at afbøde den stigende rente.'},
-    {q:'Ansæt en webansvarlig, der kan nå de nye kunder i de byer, der indfører bilfrie zoner.',a:2,f:'WO (W2, O2). Strategien udbedrer manglen på digital markedsføring, så muligheden kan udnyttes.'},
+    {q:'Ansæt en webansvarlig, der kan nå de nye kunder i de byer, der indfører bilfrie zoner.',a:2,f:'WO (W2, O2). Alternativet mindsker manglen på digital markedsføring, så muligheden kan udnyttes.'},
     {q:'Godkend en reserveleverandør af motorer og batterier i Europa.',a:3,f:'WT (W1, T3). Afhængigheden er en svaghed, og handelskonflikten er truslen, der kan udløse den.'},
     {q:'Renten på forbrugslån stiger.',a:4,f:'Det er et SWOT-punkt, nærmere bestemt trussel T2. Det siger ikke, hvad virksomheden skal gøre.'},
-    {q:'Læg samlingen om, så erhvervskunder kan få deres cykel på to uger, og virksomheden kan følge med den voksende efterspørgsel.',a:2,f:'WO (W3, O1). Den lange leveringstid er en svaghed, som skal udbedres, før erhvervsmarkedet kan udnyttes fuldt ud.'},
+    {q:'Læg samlingen om, så erhvervskunder kan få deres cykel på to uger, og virksomheden kan følge med den voksende efterspørgsel.',a:2,f:'WO (W3, O1). Den lange leveringstid er en svaghed, som skal mindskes, før erhvervsmarkedet kan udnyttes fuldt ud.'},
     {q:'Lancér en erhvervsmodel med forstærket stel.',a:0,f:'SO (S1, O1). Holdbarheden er en styrke, og den bruges i det segment, der vokser.'},
     {q:'Vi vil være Danmarks foretrukne ladcykel.',a:4,f:'Det er et mål eller en vision. Det siger ikke, hvad virksomheden skal gøre, og det henviser ikke til bestemte punkter.'},
     {q:'Lav en holdbarhedstest i København, hvor kunderne selv kan sammenligne stellene, før konkurrentens showroom åbner.',a:1,f:'ST (S1, T1). Holdbarheden bruges som våben mod konkurrenten på hovedmarkedet.'},
-    {q:'Hav de mest solgte modeller på lager hos de københavnske forhandlere, så leveringstiden falder til få dage, før konkurrenten åbner.',a:3,f:'WT (W3, T1). Strategien mindsker en svaghed, der ellers ville gøre truslen fra konkurrenten langt større.'}
-  ],{o:['SO','ST','WO','WT','Ikke en strategi'],short:true,shuffle:true});
+    {q:'Hav de mest solgte modeller på lager hos de københavnske forhandlere, så leveringstiden falder til få dage, før konkurrenten åbner.',a:3,f:'WT (W3, T1). Alternativet mindsker en svaghed, der ellers ville gøre truslen fra konkurrenten langt større.'}
+  ],{o:['SO','ST','WO','WT','Ikke et handlingsalternativ'],short:true,shuffle:true});
 
   /* ---------- TOWS øvelse 3: find fejlen ---------- */
   runner(document.getElementById('tx-err'),[
     {ctx:'Placeret som SO · S1 + O1',c:'s',q:'Lancér en erhvervsmodel med forstærket stel, og sælg den til budfirmaer.',a:0,f:'En konkret handling, der bruger styrken S1 på muligheden O1.'},
     {ctx:'Placeret som SO · O1',c:'s',q:'Erhvervsmarkedet vokser 15 % om året.',a:1,f:'Det er muligheden O1 skrevet af. Der er ingen handling, og der er ingen styrke i henvisningen.'},
-    {ctx:'Placeret som SO · W2 + O1',c:'s',q:'Ansæt en digital marketingansvarlig, der skal nå erhvervskunderne online.',a:2,f:'Strategien bygger på svagheden W2. Den hører hjemme i WO.'},
+    {ctx:'Placeret som SO · W2 + O1',c:'s',q:'Ansæt en digital marketingansvarlig, der skal nå erhvervskunderne online.',a:2,f:'Alternativet bygger på svagheden W2. Det hører hjemme i WO.'},
     {ctx:'Placeret som ST · S2 + T1',c:'t',q:'Gør garantien til hovedbudskabet i en kampagne i København, før konkurrenten åbner.',a:0,f:'En styrke bruges konkret mod en trussel. Felt og henvisning passer.'},
-    {ctx:'Placeret som WT · W1 + T2',c:'w',q:'Godkend en europæisk reserveleverandør af motorer og batterier.',a:3,f:'T2 er den stigende rente. Strategien svarer på risikoen for leveringsstop, så henvisningen skal være T3.'},
+    {ctx:'Placeret som WT · W1 + T2',c:'w',q:'Godkend en europæisk reserveleverandør af motorer og batterier.',a:3,f:'T2 er den stigende rente. Alternativet svarer på risikoen for leveringsstop, så henvisningen skal være T3.'},
     {ctx:'Placeret som ST · S3 + T2',c:'t',q:'Tilbyd rentefri afbetaling, finansieret af virksomhedens egen kapital.',a:0,f:'Soliditeten bruges til at afbøde den stigende rente. Felt og henvisning passer.'},
     {ctx:'Placeret som WT · W3 + T1',c:'w',q:'Lang leveringstid.',a:1,f:'Det er svagheden W3 skrevet af. Hvad skal virksomheden gøre ved den?'},
-    {ctx:'Placeret som WO · S3 + O2',c:'o',q:'Finansiér prøvestationer i byer med bilfrie zoner med virksomhedens egen kapital.',a:2,f:'Henvisningen passer til strategien, men S3 er en styrke. Strategien hører hjemme i SO.'},
-    {ctx:'Placeret som SO · S1 + O2',c:'s',q:'Sænk prisen på alle modeller med 10 %.',a:3,f:'Strategien bruger hverken holdbarheden eller de bilfrie zoner. Den hænger ikke sammen med de punkter, den henviser til.'},
-    {ctx:'Placeret som ST · S2 + T1',c:'t',q:'Vi skal slå den tyske konkurrent.',a:1,f:'Det er et mål. Strategien skal sige, hvordan det skal ske, for eksempel med garantien som våben.'}
-  ],{o:['Strategien er i orden','Er ikke en handling','Står i det forkerte felt','Henvisningen passer ikke']});
+    {ctx:'Placeret som WO · S3 + O2',c:'o',q:'Finansiér prøvestationer i byer med bilfrie zoner med virksomhedens egen kapital.',a:2,f:'Henvisningen passer til alternativet, men S3 er en styrke. Alternativet hører hjemme i SO.'},
+    {ctx:'Placeret som SO · S1 + O2',c:'s',q:'Sænk prisen på alle modeller med 10 %.',a:3,f:'Alternativet bruger hverken holdbarheden eller de bilfrie zoner. Det hænger ikke sammen med de punkter, det henviser til.'},
+    {ctx:'Placeret som ST · S2 + T1',c:'t',q:'Vi skal slå den tyske konkurrent.',a:1,f:'Det er et mål. Alternativet skal sige, hvordan det skal ske, for eksempel med garantien som våben.'}
+  ],{o:['Alternativet er i orden','Er ikke en handling','Står i det forkerte felt','Henvisningen passer ikke']});
 
   [].forEach.call(document.querySelectorAll('[data-jump]'),function(b){
     b.addEventListener('click',function(){document.getElementById(b.dataset.jump).scrollIntoView({behavior:'smooth'});});
