@@ -10,7 +10,7 @@ Siden er én selvstændig fil uden byggetrin: `index.html`. `skabelon.html` send
 - **Træning**: seks øvelser på den opdigtede case Cykelværket ApS. SWOT: sortering, find fejlen, prioritering. TOWS: kombinér, hvilket felt, find fejlen.
 - **Quiz**: to quizzer, om SWOT og om TOWS, hver med 13 spørgsmål, forklaringer og resultat fordelt på emner.
 - **TOWS**: en animation i syv trin fra prioriteret SWOT til valgte strategier, de fire strategifelter (SO, ST, WO, WT), fremgangsmåde, kvalitet med tjekliste, valg og faldgruber. Øvelser og quiz ligger under Træning og Quiz.
-- **Øvelser**: syv klasseøvelser til sprint 2 (par og grupper) i tre dele, fra kvaliteten af det enkelte punkt til en prioriteret SW for Living Flowers. Hver øvelse kan foldes ud med formål, materialer, trin med minuttal, produkt og tip til underviseren. Tips skjules ved at sætte `VIS_TIPS = false` i scriptet i `index.html`.
+- **Øvelser**: syv klasseøvelser til sprint 2 (par og grupper) i tre dele, fra kvaliteten af det enkelte punkt til en prioriteret SW for Living Flowers. Hver øvelse kan foldes ud med formål, materialer, trin med minuttal og produkt. Tip til underviseren og tidsplanen ligger i et separat underviserdokument.
 
 ## Skabelon med tjek
 

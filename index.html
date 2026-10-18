@@ -280,7 +280,6 @@ a{color:var(--accent)}
 .it-links{display:flex;flex-wrap:wrap;gap:.4rem}
 .it-links a{font-family:var(--display);font-size:.875rem;padding:.25rem .65rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);background:var(--bg)}
 .it-links a:hover{border-color:var(--accent)}
-.it-tip{border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--surface));padding:.6rem .85rem;border-radius:0 .375rem .375rem 0}
 .it-see{font-family:var(--display);font-size:.9375rem}
 @media (max-width:40rem){
   .it summary{grid-template-columns:2rem auto auto minmax(0,1fr) 1rem;row-gap:.45rem;column-gap:.75rem}
@@ -1470,9 +1469,6 @@ a{color:var(--accent)}
 
   /* ================= I TIMEN ================= */
 
-  /* Sæt til false, før siden deles med de studerende. Så skjules alle tips til underviseren. */
-  var VIS_TIPS=true;
-
   var DELE=[
     {id:'A',navn:'Kvalitet',efter:'Efter SWOT 5'},
     {id:'B',navn:'Fra analyse til prioriteret SW',efter:'Efter SWOT 6'},
@@ -1487,7 +1483,6 @@ a{color:var(--accent)}
            ['12 min','Skriv hvert punkt om, så det indeholder en konkret observation, et tal og en sammenligning med konkurrenter, branche eller tidligere år. Kan casen ikke dokumentere punktet, så skriv, hvilken analyse og hvilke tal der skulle til.'],
            ['6 min','Tilføj én «så hvad?»-sætning til hvert punkt: hvad betyder det for Cykelværkets muligheder for at nå sine mål?']],
      produkt:'Tre omskrevne punkter med konsekvenssætning.',
-     tip:'«Høj kvalitet» kan dokumenteres med stellets 4,8 af 5 mod 4,1 og 4,3, og «Langsom levering» med 6 uger mod 2. «Godt forhandlernet» kan ikke: casen siger 38 forhandlere, men intet om konkurrenternes. Det er pointen. De studerende skal kunne sige, hvilke data der mangler, fx fra BMC’ens kanaler eller en konkurrentanalyse.',
      links:[['Træning: casen og øvelserne','traening'],['SWOT: et godt SWOT-punkt','viden']]},
     {n:2,del:'A',titel:'Advokat og dommer',type:'par',form:'Par',tid:12,kase:'Cykelværket',
      formaal:'At teste, om en styrke er relativ til konkurrenterne.',
@@ -1496,7 +1491,6 @@ a{color:var(--accent)}
            ['8 min','2 min pr. styrke. A argumenterer for, at forholdet er en styrke. B argumenterer imod: kan konkurrenterne det samme, og betyder det noget for kunderne? Byt roller ved hver ny styrke.'],
            ['3 min','Afgør sammen for hver styrke: beholdes, omformuleres eller fjernes?']],
      produkt:'Fire styrker med afgørelse og én linjes begrundelse.',
-     tip:'Øvelsen er VRIO-testen i samtaleform. Henvis til den, hvis et par går i stå. Forhandlernettet er det sværeste: casen siger ikke, om konkurrenterne har lige så mange forhandlere, så det kan ikke afgøres, om det er en styrke.',
      links:[['Træning: casen og øvelserne','traening']]},
     {n:3,del:'B',titel:'Fra analyse til bruttoliste',type:'gruppe',form:'Gruppe (3-5)',tid:20,kase:'Living Flowers',
      formaal:'At omsætte konklusionerne fra de interne analyser til styrker og svagheder med kilde.',
@@ -1506,7 +1500,6 @@ a{color:var(--accent)}
            ['4 min','Markér de punkter, hvor I er uenige om S eller W, eller om forholdet overhovedet er internt.'],
            ['2 min','Nummerér listen.']],
      produkt:'En nummereret bruttoliste over S og W med kilde for hvert punkt, typisk 12-15 punkter.',
-     tip:'Kan laves hjemme som forberedelse, hvis tiden er knap. Skabelonens tjek kan bruges som første filter.',
      bygger:'De interne analyser fra sprint 2',
      links:[['Skabelon med tjek','skabelon']]},
     {n:4,del:'B',titel:'Sporbarhedstjek på tværs',type:'gruppe',form:'Gruppe, to grupper bytter',tid:20,kase:'Living Flowers',
@@ -1517,7 +1510,6 @@ a{color:var(--accent)}
            ['5 min','Giv listen tilbage, og forklar de gule og røde markeringer.'],
            ['3 min','Gruppen vælger de to punkter, den vil reparere først.']],
      produkt:'En farvemarkeret bruttoliste og to punkter til forbedring.',
-     tip:'Bed om en optælling pr. gruppe (grøn/gul/rød), og vis fordelingen for holdet. Grupperne kan køre skabelonens tjek som selvtjek, før listerne byttes.',
      bygger:'Øvelse 3',
      links:[['Skabelon med tjek','skabelon']]},
     {n:5,del:'B',titel:'Stille matrice',type:'gruppe',form:'Gruppe (3-5)',tid:25,kase:'Living Flowers',
@@ -1529,7 +1521,6 @@ a{color:var(--accent)}
            ['9 min','Diskutér kun de markerede punkter. Hvad bygger hver placering på, og er vigtigheden kendt eller forventet? Tjek VPC’en: står forholdet blandt kundernes vigtigste pains og gains?'],
            ['3 min','Tegn én fælles matrice.']],
      produkt:'Én fælles matrice og en liste over de punkter, hvor dokumentationen mangler.',
-     tip:'Uenighed skyldes næsten altid manglende data om, hvad kunderne lægger vægt på. Lad grupperne notere det som et spørgsmål til sprint 3.',
      bygger:'Øvelse 3 og 4',
      links:[['SWOT: prioritering','viden']]},
     {n:6,del:'B',titel:'Fem pladser',type:'gruppe',form:'Gruppe (3-5)',tid:30,kase:'Living Flowers',
@@ -1540,7 +1531,6 @@ a{color:var(--accent)}
            ['8 min','Skriv én sætning for hvert fravalgt punkt: hvorfor kom det ikke med? Henvis til placeringen i matricen.'],
            ['7 min','Rangordn de valgte punkter fra 1 til 5 i hver kolonne, og skriv en «så hvad?»-sætning til nummer 1 i hver.']],
      produkt:'En prioriteret SW med højst fem punkter i hver kolonne, rangordnet og begrundet.',
-     tip:'Dette er sprintets afleveringsprodukt. Punkter, der blev fravalgt på grund af manglende viden, føres videre som spørgsmål til sprint 3 og 4. Grupperne kan skrive SW ind i skabelonen og kopiere den som tekst til rapporten.',
      bygger:'Øvelse 5',
      links:[['Skabelon med tjek','skabelon']]},
     {n:7,del:'C',titel:'Direktørens ti minutter',type:'gruppe',form:'To grupper sammen',tid:25,kase:'Living Flowers',
@@ -1552,7 +1542,6 @@ a{color:var(--accent)}
            ['10 min','Byt roller, og gentag trin 2 og 3.'],
            ['2 min','Hver gruppe noterer det ene punkt, den ikke kunne forsvare.']],
      produkt:'Ét punkt pr. gruppe, der skal styrkes eller fjernes.',
-     tip:'Kan bruges som mundtlig afslutning på sprint 2 i stedet for plenumfremlæggelse.',
      bygger:'Øvelse 6'}
   ];
 
@@ -1575,7 +1564,6 @@ a{color:var(--accent)}
       h+=blok('Trin','<ol class="it-steps">'+o.trin.map(function(t){return '<li><span class="min">'+esc(t[0])+'</span><span class="txt">'+esc(t[1])+'</span></li>';}).join('')+'</ol>');
       h+=blok('Produkt','<p>'+esc(o.produkt)+'</p>');
       if(o.links&&o.links.length)h+=blok('På sitet','<div class="it-links">'+o.links.map(link).join('')+'</div>');
-      if(VIS_TIPS&&o.tip)h+='<div class="it-tip">'+blok('Tip til underviseren','<p>'+esc(o.tip)+'</p>')+'</div>';
       return h+'</div></details>';
     }
     document.getElementById('it-par').innerHTML=OVELSER.filter(function(o){return o.type==='par';}).map(card).join('');
