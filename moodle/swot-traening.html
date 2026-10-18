@@ -123,7 +123,7 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
   <header class="intro">
     <span class="n">SWOT shop · Træning</span>
     <h1>Træn SWOT og TOWS på Cykelværket</h1>
-    <p class="lead">Seks øvelser. I SWOT sorterer du udsagn, finder fejl og prioriterer muligheder og trusler. I TOWS kombinerer du punkter til handlingsalternativer, placerer dem i det rigtige felt og finder fejl. Du får en forklaring efter hvert svar.</p>
+    <p class="lead">Seks øvelser. I SWOT sorterer du udsagn, finder fejl og prioriterer styrker og svagheder. I TOWS kombinerer du punkter til handlingsalternativer, placerer dem i det rigtige felt og finder fejl. Du får en forklaring efter hvert svar.</p>
   </header>
   <main class="panel" id="p-traening">
     <nav class="jump" aria-label="Spring til">
@@ -134,7 +134,15 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
     <section class="case">
       <span class="tag">Øvelsescase · opdigtet virksomhed</span>
       <h2>Cykelværket ApS</h2>
-      <p>Cykelværket i Horsens udvikler og samler ladcykler med elmotor. Virksomheden har 24 ansatte og sælger gennem 38 forhandlere og sin egen webshop, som står for 12 % af omsætningen. Cyklerne er kendt for et holdbart stel og 10 års garanti. Motorer og batterier købes hos én leverandør i Taiwan. Der er ingen medarbejder med ansvar for digital markedsføring. København står for 40 % af salget.</p>
+      <p>Cykelværket i Horsens udvikler og samler ladcykler med elmotor til familier og erhverv. Virksomheden blev grundlagt i 2009, har 24 ansatte og omsatte sidste år for 68 mio. kr. Cyklerne sælges gennem 38 forhandlere og egen webshop. København står for 40 % af salget.</p>
+      <p><b>Mission, vision og mål.</b> Missionen er «Vi bygger ladcykler, der holder et helt arbejdsliv, så flere kan lade bilen stå». Visionen er at være Danmarks foretrukne ladcykel til familier og erhverv i 2030. Inden for tre år vil virksomheden</p>
+      <ul class="crit">
+        <li>fordoble salget til erhvervskunder som bude og håndværkere, så de står for 28 % af omsætningen mod 14 % i dag</li>
+        <li>øge webshoppens andel af omsætningen fra 12 % til 25 %, mens konkurrenterne ligger omkring 35 %</li>
+        <li>finansiere væksten uden at optage ny gæld.</li>
+      </ul>
+      <p><b>Produkt og drift.</b> Stellet svejses i Horsens, og kunderne giver det 4,8 af 5 i holdbarhed mod 4,1 og 4,3 hos de to nærmeste konkurrenter. Garantien er 10 år mod 2 til 5 år hos konkurrenterne. Cyklerne fås i 14 farver. Motorer og batterier købes hos én leverandør i Taiwan. Leveringstiden er seks uger, mens konkurrenterne leverer på to.</p>
+      <p><b>Marked og økonomi.</b> Ingen medarbejder har ansvar for digital markedsføring. Soliditetsgraden er 41 % mod 28 % i branchen. Tallene om kunderne kommer fra en kundeundersøgelse blandt 400 købere. Den viser også, at holdbarhed, pris og leveringstid er de tre vigtigste købsgrunde. Farve kommer på en 11.-plads.</p>
     </section>
 
     <section class="mod">
@@ -153,8 +161,8 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
 
     <section class="mod">
       <span class="n">Øvelse 3 · SWOT</span>
-      <h2>Prioritér muligheder og trusler</h2>
-      <p>Placér hver mulighed og trussel i matricen ud fra oplysningerne. Læs efter, hvad der siger noget om sandsynligheden for, at forholdet indtræffer, og hvad der siger noget om konsekvensen for virksomheden.</p>
+      <h2>Prioritér styrker og svagheder</h2>
+      <p>Placér hver styrke og svaghed i matricen for præstation og vigtighed. Læs efter, hvad der siger noget om, hvordan Cykelværket præsterer i forhold til konkurrenterne, og hvad der siger noget om, hvor vigtigt forholdet er for kunderne.</p>
       <div class="ex" id="ex-prio"></div>
     </section>
 
@@ -271,16 +279,17 @@ p{margin:0} /* afsnit fylder kolonnen, så tekst og bokse flugter */
   ],{o:ER});
 
   /* ---------- Øvelse 3: prioritering ---------- */
-  var PRO=['Meget attraktiv, stor sandsynlighed','Meget attraktiv, lille sandsynlighed','Mindre attraktiv, stor sandsynlighed','Mindre attraktiv, lille sandsynlighed'],
-      PRT=['Meget alvorlig, stor sandsynlighed','Meget alvorlig, lille sandsynlighed','Mindre alvorlig, stor sandsynlighed','Mindre alvorlig, lille sandsynlighed'];
+  var PRI=['Fortsæt det gode arbejde','Klart indsatsområde','Mulig besparelse (overkilling)','Ikke høj prioritering'];
   runner(document.getElementById('ex-prio'),[
-    {ctx:'Mulighed',c:'o',o:PRO,q:'Efterspørgslen fra erhvervskunder som bude og håndværkere er vokset 15 % om året tre år i træk, og statens tilskud er netop forlænget. Segmentet giver højt dækningsbidrag, og kunderne vælger efter holdbarhed.',a:0,f:'Væksten er dokumenteret over flere år og understøttet af tilskud, så sandsynligheden er stor. Muligheden er meget attraktiv, fordi segmentet er lønsomt og passer til virksomhedens styrke. Højeste prioritet: udnyt den aktivt.'},
-    {ctx:'Mulighed',c:'o',o:PRO,q:'En tysk forhandlerkæde med 200 butikker har i et interview nævnt, at den måske vil tage et dansk ladcykelmærke ind. Der er ingen kontakt eller aftale. En aftale ville fordoble Cykelværkets omsætning.',a:1,f:'En fordobling af omsætningen er meget attraktiv, men en løs bemærkning i et interview gør det ikke sandsynligt. Hold øje med udviklingen, og vær klar til at reagere.'},
-    {ctx:'Mulighed',c:'o',o:PRO,q:'Forhandlerne melder, at kunderne jævnligt spørger efter regnslag og reflekser til cyklerne. Varerne giver få kroner pr. ordre.',a:2,f:'Efterspørgslen er der allerede, så sandsynligheden er stor. Gevinsten pr. ordre er lille, så muligheden er mindre attraktiv. Udnyt den, hvis det er billigt.'},
-    {ctx:'Trussel',c:'t',o:PRT,q:'Den tyske konkurrent har underskrevet lejekontrakt og annonceret åbning af showroom i København. Byen står for 40 % af Cykelværkets salg.',a:0,f:'Åbningen er besluttet, og den rammer hovedmarkedet. Højeste prioritet: virksomheden skal handle nu.'},
-    {ctx:'Trussel',c:'t',o:PRT,q:'Et leveringsstop fra leverandøren i Taiwan ville standse produktionen helt. Leverandøren har leveret stabilt i ni år, og der er ingen aktuelle tegn på problemer.',a:1,f:'Truslen er meget alvorlig, men intet tyder på, at den indtræffer. Lav en beredskabsplan, for eksempel en godkendt alternativ leverandør.'},
-    {ctx:'Trussel',c:'t',o:PRT,q:'Fragtfirmaet har varslet en prisstigning på 3 % fra januar. Fragt udgør under 2 % af virksomhedens omkostninger.',a:2,f:'Stigningen kommer med sikkerhed, men betyder næsten intet for resultatet. Overvåg den, og tilpas løbende i den daglige drift.'}
-  ],{});
+    {ctx:'Styrke',c:'s',q:'Kunderne giver stellet 4,8 af 5 i holdbarhed mod 4,1 og 4,3 hos de to nærmeste konkurrenter. I kundeundersøgelsen er holdbarhed den vigtigste købsgrund, nævnt af 62 %.',a:0,f:'Cykelværket præsterer bedre end konkurrenterne på det, kunderne lægger mest vægt på. Styrken skal fastholdes og bruges.'},
+    {ctx:'Styrke',c:'s',q:'Garantien på 10 år er branchens længste, mod 2 til 5 år hos konkurrenterne. Blandt erhvervskunderne nævner 7 ud af 10 garantien som afgørende, fordi cyklerne kører hver dag.',a:0,f:'En klar styrke på noget, der er vigtigt for det segment, virksomheden vil vokse i. Den passer direkte til målet om flere erhvervskunder.'},
+    {ctx:'Svaghed',c:'w',q:'Leveringstiden er seks uger mod to hos konkurrenterne. Leveringstid er den tredjevigtigste købsgrund, og hver fjerde, der valgte en konkurrent, nævner ventetiden.',a:1,f:'En svaghed på noget, der afgør købet. Den koster salg i dag og skal først på listen.'},
+    {ctx:'Svaghed',c:'w',q:'Webshoppen står for 12 % af omsætningen mod omkring 35 % hos konkurrenterne. 7 ud af 10 kunder begynder købet med at sammenligne modeller på nettet.',a:1,f:'Kunderne starter på nettet, og der står Cykelværket svagt. Svagheden spærrer også for målet om, at webshoppen skal stå for 25 %.'},
+    {ctx:'Styrke',c:'s',q:'Cyklerne fås i 14 farver mod 4 til 5 hos konkurrenterne. Farve er nr. 11 af 12 købsgrunde, og hver ekstra farve binder lager og forlænger samlingen.',a:2,f:'Cykelværket er bedre end konkurrenterne, men kunderne værdsætter det knap. Det er overkilling, og ressourcerne kan måske bruges bedre, for eksempel på leveringstiden.'},
+    {ctx:'Styrke',c:'s',q:'Fabrikken i Horsens har et showroom med café, som koster 0,8 mio. kr. om året. Under 5 % af kunderne har besøgt det, og næsten alle køber hos en forhandler eller på nettet.',a:2,f:'Et tilbud, konkurrenterne ikke har, men som næsten ingen kunder bruger. En mulig besparelse.'},
+    {ctx:'Svaghed',c:'w',q:'Cykelværket har ingen app, der viser batteriniveau og kørte kilometer. To af konkurrenterne har en. Kun 2 % af kunderne nævner en app som købsgrund.',a:3,f:'Konkurrenterne er bedre, men det betyder næsten intet for kunderne. Svagheden kræver ingen indsats nu.'},
+    {ctx:'Svaghed',c:'w',q:'Brugermanualen findes kun på dansk, mens konkurrenterne også har den på engelsk og tysk. 97 % af kunderne er danske.',a:3,f:'En svaghed, der ikke koster kunder på det marked, virksomheden sælger på.'}
+  ],{o:PRI,shuffle:true});
 
   /* ---------- Træning i TOWS ---------- */
 
