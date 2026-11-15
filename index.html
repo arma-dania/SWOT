@@ -491,8 +491,15 @@ a{color:var(--accent)}
 #p-skabelon .vd textarea{min-height:3.2em;field-sizing:content}
 #p-skabelon .tb-sc{font-family:var(--display);font-size:.8125rem;font-weight:700;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--surface));border-radius:1rem;padding:.05rem .5rem}
 #p-skabelon #sk-rank{display:flex;flex-direction:column;gap:.5rem}
-#p-skabelon .rk{display:grid;grid-template-columns:2.2rem minmax(0,1fr) auto;gap:.6rem .9rem;align-items:start;padding:.7rem .8rem;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--a);border-radius:.5rem;box-shadow:var(--shadow)}
+#p-skabelon .rk{display:grid;grid-template-columns:2.6rem minmax(0,1fr) auto;gap:.6rem .9rem;align-items:start;padding:.7rem .8rem;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--a);border-radius:.5rem;box-shadow:var(--shadow)}
 #p-skabelon .rk.valgt{box-shadow:0 0 0 2px var(--ink)}
+#p-skabelon #sk-swot{scroll-margin-top:calc(var(--tabs-h,3.5rem) + 1rem)}
+#p-skabelon .rk-mode{display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;font-size:.875rem;color:var(--muted)}
+#p-skabelon .rk .lft{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+#p-skabelon .rk .mv2{display:flex;gap:.2rem}
+#p-skabelon .rk .mv2 button{font:inherit;font-size:.8125rem;line-height:1;width:1.25rem;height:1.5rem;padding:0;border:1px solid var(--line);border-radius:.3rem;background:var(--surface);color:var(--ink);cursor:pointer}
+#p-skabelon .rk .mv2 button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+#p-skabelon .rk .mv2 button:disabled{opacity:.3;cursor:default}
 #p-skabelon .rk .no{width:2.2rem;height:2.2rem;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700}
 #p-skabelon .rk.none .no{background:var(--line);color:var(--muted)}
 #p-skabelon .rk .bd{display:flex;flex-direction:column;gap:.35rem;min-width:0}
@@ -508,7 +515,7 @@ a{color:var(--accent)}
 #p-skabelon .rk .tot{font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;color:var(--ink)}
 #p-skabelon .rk .tot small{font-size:.8125rem;color:var(--muted);font-weight:500}
 #p-skabelon .rk .miss{font-size:.75rem;color:var(--muted);font-family:var(--display)}
-@media (max-width:34rem){#p-skabelon .rk{grid-template-columns:2.2rem minmax(0,1fr)}#p-skabelon .rk .sd{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-end;flex-wrap:wrap}}
+@media (max-width:34rem){#p-skabelon .rk{grid-template-columns:2.6rem minmax(0,1fr)}#p-skabelon .rk .sd{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-end;flex-wrap:wrap}}
 /* kortet, hvor handlingsalternativet skrives */
 #p-skabelon .tb-dlg{border:0;border-radius:.75rem;padding:0;width:min(38rem,calc(100% - 1.5rem));max-height:calc(100dvh - 2rem);background:var(--surface);color:var(--ink);box-shadow:0 20px 50px rgba(16,24,40,.3)}
 #p-skabelon .tb-dlg::backdrop{background:rgba(16,24,40,.45)}
@@ -1031,7 +1038,8 @@ a{color:var(--accent)}
         </div>
         <div class="duo-box" style="--c:var(--accent)">
           <h3>Prøv først med et eksempel</h3>
-          <p>Knappen «Prøv med et eksempel» nederst viser, hvordan tjekket virker. Eksemplet erstatter det, der står, så gem en fil først, hvis I allerede er gået i gang. TOWS-delen bruger I i sprint 3 og 4.</p>
+          <p>Eksemplet viser, hvordan tjekket virker. Det erstatter det, der står, så gem en fil først, hvis I allerede er gået i gang. TOWS-delen bruger I i sprint 3 og 4.</p>
+          <button type="button" class="ghost" data-demo style="align-self:flex-start">Indlæs eksemplet</button>
         </div>
       </div>
       <p class="note">Tjekket læser ordene, ikke virkeligheden. Det kan overse fejl og stille spørgsmål til punkter, der er i orden. Et spørgsmål er en opfordring til at overveje punktet, ikke en dom. Kan I begrunde et punkt, må det gerne blive stående.</p>
@@ -1064,7 +1072,7 @@ a{color:var(--accent)}
   <section class="mod">
     <span class="n">Trin 3 · Valg</span>
     <h2>Vurdér og rangordn</h2>
-    <p>Giv hvert handlingsalternativ 1 til 3 point på de fem kriterier fra TOWS-fanen, og skriv kort, hvorfor. Listen sorteres efter samlet score, så de stærkeste alternativer står øverst. Markér til sidst dem, I vælger. De bliver jeres strategi.</p>
+    <p>Giv hvert handlingsalternativ 1 til 3 point på de fem kriterier fra TOWS-fanen, og skriv kort, hvorfor. Listen sorteres efter samlet score, så de stærkeste alternativer står øverst. Med pilene kan I flytte et alternativ op eller ned, men skriv i begrundelsen, hvorfor det skal stå der. Markér til sidst dem, I vælger. De bliver jeres strategi.</p>
     <ul class="crit sk-krit">
       <li><b>Mål:</b> bringer det virksomheden nærmere sin mission og vision og dens «hvorfor»?</li>
       <li><b>Målgrupper, strategi og værdier:</b> passer det til målgrupper og segmenter og til virksomhedens strategi og værdier?</li>
@@ -2197,17 +2205,23 @@ a{color:var(--accent)}
   function ranked(){
     var a=S.strat.filter(function(s){return s.txt.trim();}).map(function(s,i){return {st:s,sc:scoreOf(s),i:i};});
     a.sort(function(x,y){return (y.sc.n?1:0)-(x.sc.n?1:0)||y.sc.t-x.sc.t||x.i-y.i;});
+    /* en manuel rækkefølge går forud; nye alternativer kommer bagerst i den rækkefølge, scoren giver */
+    if(S.rankOrder){
+      var o=S.rankOrder,pos=function(x){var i=o.indexOf(x.st.id);return i<0?1e6:i;};
+      a=a.map(function(x,j){x.j=j;return x;});
+      a.sort(function(x,y){return pos(x)-pos(y)||x.j-y.j;});
+    }
     return a;
   }
   function renderRank(){
     var el=document.getElementById('sk-rank');if(!el)return;
     var a=ranked();
     if(!a.length){el.innerHTML='<p class="empty">Ingen handlingsalternativer endnu. Lav dem i trin 2.</p>';document.getElementById('sk-rank-fb').innerHTML='';return;}
-    var no=0;
-    el.innerHTML=a.map(function(x){
+    var no=0,man=!!S.rankOrder;
+    el.innerHTML='<div class="rk-mode">'+(man?'<span>Rækkefølgen er sat manuelt.</span><button type="button" class="ghost" data-rsort="1">Sortér efter score</button>':'<span>Sorteret efter score. Brug pilene for at flytte et alternativ op eller ned.</span>')+'</div>'+a.map(function(x,ix){
       var st=x.st,sc=st.score||{},k=TF[st.f],refs=st.refs.map(codeOf).filter(Boolean).map(function(r){return r.code;}).join(', ');
-      var num=x.sc.n?++no:'–';
-      return '<article class="rk'+(x.sc.n?'':' none')+(st.valgt?' valgt':'')+'" data-sid="'+st.id+'" style="--a:var(--'+k[0]+')"><span class="no">'+num+'</span>'+
+      var num=man||x.sc.n?++no:'–';
+      return '<article class="rk'+(x.sc.n||man?'':' none')+(st.valgt?' valgt':'')+'" data-sid="'+st.id+'" style="--a:var(--'+k[0]+')"><span class="lft"><span class="no">'+num+'</span><span class="mv2"><button type="button" data-rmove="-1" data-sid="'+st.id+'" aria-label="Flyt op"'+(ix===0?' disabled':'')+'>↑</button><button type="button" data-rmove="1" data-sid="'+st.id+'" aria-label="Flyt ned"'+(ix===a.length-1?' disabled':'')+'>↓</button></span></span>'+
         '<div class="bd"><div class="tx"><span class="code"><span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span></span>'+esc(st.txt)+(refs?' <span class="miss">('+refs+')</span>':'')+'</div>'+
         (x.sc.n?'<div class="bars">'+KRIT.map(function(c){return '<span>'+c[1].split(',')[0]+' <i data-v="'+(sc[c[0]]||0)+'"><u></u></i></span>';}).join('')+'</div>':'<span class="miss">Ikke vurderet endnu</span>')+
         (st.why?'<p class="why">'+esc(st.why)+'</p>':'')+'</div>'+
@@ -2222,6 +2236,10 @@ a{color:var(--accent)}
     if(part) out.push({k:'Valg',q:part+' '+(part===1?'alternativ mangler':'alternativer mangler')+' point på et eller flere kriterier.'});
     if(a.length>=3&&!v.length) out.push({k:'Valg',q:'Ingen alternativer er valgt endnu. Hvilke passer bedst til virksomhedens mål og ressourcer, og hvilke trækker i samme retning?'});
     if(v.length>5) out.push({k:'Valg',q:v.length+' alternativer er valgt. Har virksomheden ressourcer til dem alle? Hvad viser regnskabsanalysen?'});
+    if(man){var full=a.filter(function(x){return x.sc.n===KRIT.length;}),nq=0;
+      full.forEach(function(x,i){full.slice(i+1).forEach(function(y){
+        if(nq<2&&y.sc.t>x.sc.t&&!x.st.why){nq++;out.push({k:'Valg',q:'«'+short(x.st.txt)+'» står over «'+short(y.st.txt)+'», selvom det har '+x.sc.t+' point mod '+y.sc.t+'. Skriv i begrundelsen, hvorfor det skal gå forud.'});}
+      });});}
     var best=a.filter(function(x){return !x.st.valgt&&x.sc.n===KRIT.length;})[0];
     v.forEach(function(x){
       if(best&&x.sc.n===KRIT.length&&best.sc.t>x.sc.t) out.push({k:'Valg',q:'«'+short(x.st.txt)+'» er valgt med '+x.sc.t+' point, mens «'+short(best.st.txt)+'» har '+best.sc.t+' point og ikke er valgt. Hvad taler for valget? Skriv det i begrundelsen.'});
@@ -2233,6 +2251,13 @@ a{color:var(--accent)}
   document.getElementById('sk-rank').addEventListener('click',function(e){
     var b=e.target.closest('button');if(!b)return;
     if(b.dataset.rate)openEdit(b.dataset.rate,true);
+    else if(b.dataset.rsort){delete S.rankOrder;save();renderRank();}
+    else if(b.dataset.rmove){
+      var ids=ranked().map(function(x){return x.st.id;}),i=ids.indexOf(b.dataset.sid),j=i+(+b.dataset.rmove);
+      if(i<0||j<0||j>=ids.length)return;
+      ids.splice(j,0,ids.splice(i,1)[0]);S.rankOrder=ids;save();renderRank();
+      var nb=document.querySelector('#sk-rank [data-sid="'+b.dataset.sid+'"][data-rmove="'+b.dataset.rmove+'"]');if(nb&&!nb.disabled)nb.focus();else{nb=document.querySelector('#sk-rank [data-sid="'+b.dataset.sid+'"][data-rmove]:not([disabled])');if(nb)nb.focus();}
+    }
     else if(b.dataset.valgt){var sv=findStrat(b.dataset.valgt);sv.valgt=!sv.valgt;save();renderTows();updateStatus();}
   });
 
@@ -2247,11 +2272,11 @@ a{color:var(--accent)}
       '<span><b>'+sn+'</b> <i class="lg">alternativer</i><i class="sh">alt.</i></span><span class="'+(so?'open':'')+'"><b>'+so+'</b> med <i class="lg">spørgsmål</i><i class="sh">spm.</i></span><span><b>'+sv+'</b> valgt</span>';
   }
   /* Trin 1: hvert felt kan foldes sammen. Opsummering i overskriften, og browseren husker, hvad der er foldet ud */
-  var FOLD='swot-skabelon-fold2',openF=null;
+  var FOLD='swot-skabelon-fold3',openF=null;
   try{openF=JSON.parse(localStorage.getItem(FOLD));}catch(e){}
   if(!openF||typeof openF!=='object')openF={};
-  /* første gang: et felt er foldet ud, indtil der er skrevet punkter i det */
-  function isOpen(k){return k in openF?!!openF[k]:!S.pts[k].some(function(p){return p.txt.trim();});}
+  /* felterne starter foldet sammen */
+  function isOpen(k){return !!openF[k];}
   function setOpen(k,v){openF[k]=v;try{localStorage.setItem(FOLD,JSON.stringify(openF));}catch(e){}}
   function updateFoldSum(){
     KEYS.forEach(function(k){
@@ -2385,7 +2410,7 @@ a{color:var(--accent)}
       var no=0;
       rk.forEach(function(x){
         var st=x.st,sc=st.score||{};
-        L.push((x.sc.n?(++no)+'. ':'- ')+(st.valgt?'**Valgt:** ':'')+st.txt.trim()+' ('+st.f+')'+(x.sc.n?' · '+x.sc.t+'/'+x.sc.max+' point':' · ikke vurderet'));
+        L.push((x.sc.n||S.rankOrder?(++no)+'. ':'- ')+(st.valgt?'**Valgt:** ':'')+st.txt.trim()+' ('+st.f+')'+(x.sc.n?' · '+x.sc.t+'/'+x.sc.max+' point':' · ikke vurderet'));
         if(x.sc.n)L.push('   '+KRIT.map(function(c){return c[1]+': '+(sc[c[0]]||'-');}).join(' · '));
         if(st.why)L.push('   Begrundelse: '+st.why);
       });
@@ -2424,6 +2449,7 @@ a{color:var(--accent)}
     S=blank();save();renderAll();toast('Alt er ryddet.');
   });
 
+  [].forEach.call(document.querySelectorAll('#p-skabelon [data-demo]'),function(b){b.addEventListener('click',function(){document.getElementById('sk-demo').click();});});
   /* Et bevidst fejlbehæftet eksempel på øvelsescasen, så man kan se, hvad tjekket spørger om */
   document.getElementById('sk-demo').addEventListener('click',function(){
     var has=KEYS.some(function(k){return S.pts[k].some(function(p){return p.txt.trim();});});
