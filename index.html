@@ -411,6 +411,50 @@ a{color:var(--accent)}
 /* svag hover på kortene */
 #p-skabelon .pt,#p-skabelon .strat,#p-skabelon .field{transition:box-shadow .2s ease}
 @media (hover:hover){#p-skabelon .pt:hover,#p-skabelon .strat:hover{box-shadow:0 2px 6px rgba(16,24,40,.08),0 8px 20px rgba(16,24,40,.08)}}
+/* TOWS-tavle: SWOT-kortene trækkes ned i matricen */
+#p-skabelon .tb{display:flex;flex-direction:column;gap:.9rem}
+#p-skabelon .tb-swot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}
+#p-skabelon .tb-col{min-width:0;border-radius:.5rem;padding:.5rem .55rem;display:flex;flex-direction:column;gap:.35rem;background:color-mix(in srgb,var(--c) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface))}
+#p-skabelon .tb-col header{display:flex;align-items:baseline;gap:.4rem;font-family:var(--display)}
+#p-skabelon .tb-col header b{font-size:1.3rem;line-height:1;color:var(--c)}
+#p-skabelon .tb-col header strong{font-size:.9375rem;color:var(--c)}
+#p-skabelon .tb-col .empty{font-size:.8125rem}
+#p-skabelon .tb-pt{user-select:none;-webkit-user-select:none;display:flex;gap:.4rem;align-items:flex-start;width:100%;text-align:left;font:inherit;font-size:.8125rem;line-height:1.3;padding:.4rem .5rem;border-radius:.375rem;background:var(--surface);border:1px solid var(--line);color:var(--ink);cursor:grab;touch-action:manipulation}
+#p-skabelon .tb-pt b{font-family:var(--display);color:var(--c);flex:none}
+#p-skabelon .tb-pt span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#p-skabelon .tb-pt i{margin-left:auto;flex:none;font-style:normal;font-family:var(--display);font-size:.6875rem;color:var(--muted)}
+#p-skabelon .tb-pt.low{opacity:.55}
+#p-skabelon .tb-pt:hover{border-color:var(--c)}
+#p-skabelon .tb-pt.sel{outline:2px solid var(--c);outline-offset:1px;background:color-mix(in srgb,var(--c) 12%,var(--surface));opacity:1}
+#p-skabelon .tb-pt.dragging{opacity:.35}
+#p-skabelon .tb-hint{font-size:.875rem;color:var(--muted);margin:0}
+#p-skabelon .tb-grid{display:grid;grid-template-columns:1.6rem minmax(0,1fr) minmax(0,1fr);gap:.5rem}
+#p-skabelon .tb-h{font-family:var(--display);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:.3rem}
+#p-skabelon .tb-h b{color:var(--c);font-size:1.1rem;letter-spacing:0}
+#p-skabelon .tb-h.rh{writing-mode:vertical-rl;transform:rotate(180deg)}
+#p-skabelon .tb-cell{min-width:0;border-radius:.5rem;padding:.6rem;display:flex;flex-direction:column;gap:.5rem;border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--a) 13%,var(--surface)),color-mix(in srgb,var(--b) 13%,var(--surface)))}
+#p-skabelon .tb-cell header{display:flex;flex-direction:column;gap:.15rem}
+#p-skabelon .tb-cell .code{font-family:var(--display);font-size:1.25rem;font-weight:700;line-height:1}
+#p-skabelon .tb-cell .qq{font-style:italic;font-size:.875rem;line-height:1.3;color:var(--muted)}
+#p-skabelon .tb-cell.over,#p-skabelon .tb-alt.over{outline:2px dashed var(--accent);outline-offset:2px}
+#p-skabelon .tb-alt{padding:.6rem .65rem;gap:.45rem}
+#p-skabelon .tb-alt.valgt{border-left:4px solid var(--ink)}
+#p-skabelon .tb-alt textarea{min-height:3.4em;field-sizing:content}
+#p-skabelon .tb-refs{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center}
+#p-skabelon .tb-ref{display:inline-flex;align-items:center;font-family:var(--display);font-size:.8125rem;font-weight:700;padding:.1rem .15rem .1rem .5rem;border-radius:1rem;color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 40%,var(--surface))}
+#p-skabelon .tb-ref button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:0 .3rem}
+#p-skabelon .tb-ref button:hover{color:var(--bad)}
+#p-skabelon .tb-none{font-size:.8125rem;color:var(--muted)}
+#p-skabelon .tb-put{font-size:.8125rem;padding:.15rem .55rem;border-radius:1rem}
+#p-skabelon .tb-alt .acts{display:flex;align-items:center;gap:.6rem}
+#p-skabelon .tb-add{font:inherit;font-family:var(--display);font-size:.8125rem;color:var(--muted);background:transparent;border:1px dashed color-mix(in srgb,var(--ink) 30%,transparent);border-radius:.375rem;padding:.55rem;cursor:pointer;text-align:center}
+#p-skabelon .tb-add:hover,#p-skabelon .tb-add.ready{border-color:var(--accent);color:var(--accent)}
+#p-skabelon .tb-bar{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:20;display:flex;gap:.75rem;align-items:center;max-width:calc(100% - 2rem);padding:.55rem .6rem .55rem .9rem;border-radius:.5rem;background:var(--ink);color:#fff;font-size:.875rem;box-shadow:0 6px 20px rgba(16,24,40,.25)}
+#p-skabelon .tb-bar button{font:inherit;font-size:.8125rem;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:.375rem;padding:.3rem .6rem;cursor:pointer;flex:none}
+/* på store skærme bliver SWOT-kortene stående, mens man ruller ned gennem matricen */
+@media (min-width:52.01rem) and (min-height:700px){#p-skabelon .tb-swot{position:sticky;top:calc(var(--tabs-h,3.5rem) + .5rem);z-index:4;max-height:38vh;overflow-y:auto;padding:.4rem;margin:-.4rem;border-radius:.6rem;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(6px);align-items:start}}
+@media (max-width:52rem){#p-skabelon .tb-swot{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:34rem){#p-skabelon .tb-grid{grid-template-columns:minmax(0,1fr)}#p-skabelon .tb-h{display:none}}
 
 
 /* ===== Kontrast og farve ===== */
@@ -941,9 +985,8 @@ a{color:var(--accent)}
   <section class="mod">
     <span class="n">Trin 2 · TOWS</span>
     <h2>Handlingsalternativerne</h2>
-    <p>Kombinér punkterne til handlingsalternativer. Vælg feltet, og sæt kryds ved de punkter, alternativet bygger på. Punkter med lav prioritet er nedtonede. Markér til sidst de alternativer, I vælger. De bliver jeres strategi.</p>
-    <div id="sk-tows" style="display:flex;flex-direction:column;gap:.75rem"></div>
-    <button type="button" class="go" id="sk-add-strat" style="align-self:flex-start">Tilføj handlingsalternativ</button>
+    <p>Jeres SWOT står øverst. Træk et punkt ned i det felt i TOWS-matricen, hvor det skal bruges. Så opstår et nyt handlingsalternativ med punktet som henvisning. Træk flere punkter ind på samme alternativ, og skriv, hvad virksomheden skal gøre. Punkter med lav prioritet er nedtonede. Markér til sidst de alternativer, I vælger. De bliver jeres strategi.</p>
+    <div id="sk-tows"></div>
   </section>
 
   <section class="mod">
@@ -1826,7 +1869,7 @@ a{color:var(--accent)}
     if(!t)return out;
     var refs=st.refs.map(codeOf).filter(Boolean);
     var hasI=refs.filter(function(r){return F[r.k].int;}),hasE=refs.filter(function(r){return !F[r.k].int;});
-    if(!refs.length) out.push({k:'Henvisning',q:'Hvilke punkter bygger alternativet på? Sæt kryds ved mindst ét internt og ét eksternt punkt. Kan du ikke finde dem, hænger alternativet måske ikke sammen med analysen.'});
+    if(!refs.length) out.push({k:'Henvisning',q:'Hvilke punkter bygger alternativet på? Træk mindst ét internt og ét eksternt punkt ind på alternativet. Kan du ikke finde dem, hænger alternativet måske ikke sammen med analysen.'});
     else{
       if(!hasI.length) out.push({k:'Henvisning',q:'Alternativet henviser ikke til nogen styrke eller svaghed. Hvad ved virksomheden selv gør det muligt eller nødvendigt?'});
       if(!hasE.length) out.push({k:'Henvisning',q:'Alternativet henviser ikke til nogen mulighed eller trussel. Hvilken udvikling i omverdenen svarer den på?'});
@@ -1906,23 +1949,67 @@ a{color:var(--accent)}
   }
   function updateField(k){document.querySelector('[data-ffb="'+k+'"]').innerHTML=qHtml(checkField(k),'');}
 
+  /* ---------- TOWS-tavle ---------- */
+  var QQ={SO:'Brug styrkerne til at udnytte mulighederne',ST:'Brug styrkerne til at håndtere truslerne',WO:'Mindsk svaghederne, og udnyt samtidig mulighederne',WT:'Det kritiske felt: mindsk svaghederne, og undgå truslerne'};
+  var sel=null; /* id på det punkt, der er valgt med et tryk */
+  function cellHtml(f){
+    var k=TF[f],alts=S.strat.filter(function(st){return st.f===f;});
+    return '<div class="tb-cell" data-f="'+f+'" style="--a:var(--'+k[0]+');--b:var(--'+k[1]+')"><header><span class="code"><span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span></span><span class="qq">'+QQ[f]+'</span></header>'+
+      alts.map(altHtml).join('')+'<button type="button" class="tb-add" data-addf="'+f+'"></button></div>';
+  }
+  function altHtml(st){
+    var refs=st.refs.map(codeOf).filter(Boolean);
+    return '<article class="strat tb-alt'+(st.valgt?' valgt':'')+'" data-sid="'+st.id+'">'+
+      '<textarea rows="2" data-sf="txt" aria-label="Handlingsalternativ i '+st.f+'" placeholder="Hvad skal virksomheden gøre? Begynd med et udsagnsord.">'+esc(st.txt)+'</textarea>'+
+      '<div class="tb-refs">'+(refs.length?refs.map(function(r){return '<span class="tb-ref" style="--c:var(--'+r.k+')" title="'+esc(r.p.txt)+'">'+r.code+'<button type="button" data-unref="'+r.p.id+'" data-sid="'+st.id+'" aria-label="Fjern '+r.code+' fra alternativet">×</button></span>';}).join(''):'<span class="tb-none">Ingen punkter endnu. Træk et punkt hertil.</span>')+
+      '<button type="button" class="ghost tb-put" data-put="'+st.id+'" hidden></button></div>'+
+      '<div class="acts"><label class="chk"><input type="checkbox" data-sf="valgt"'+(st.valgt?' checked':'')+'> Valgt</label><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
+      '<ul class="fb" data-fb></ul></article>';
+  }
   function renderTows(){
     var el=document.getElementById('sk-tows');
-    if(!S.strat.length){el.innerHTML='<p class="empty">Ingen handlingsalternativer endnu. Udfyld SWOT først, og tilføj så alternativerne ét ad gangen.</p>';updateStatus();return;}
-    var all=[];KEYS.forEach(function(k){S.pts[k].forEach(function(p,i){if(p.txt.trim())all.push({k:k,code:k.toUpperCase()+(i+1),p:p});});});
-    el.innerHTML=S.strat.map(function(st,n){
-      return '<article class="strat" data-sid="'+st.id+'">'+
-        '<div class="top"><span class="lbl">Alternativ '+(n+1)+'</span><select data-sf="f" aria-label="Felt">'+Object.keys(TF).map(function(x){return '<option value="'+x+'"'+(st.f===x?' selected':'')+'>'+TN[x]+'</option>';}).join('')+'</select>'+
-        '<label class="chk" style="margin-left:auto"><input type="checkbox" data-sf="valgt"'+(st.valgt?' checked':'')+'> Valgt</label></div>'+
-        '<textarea rows="2" data-sf="txt" aria-label="Handlingsalternativ" placeholder="Hvad skal virksomheden gøre? Begynd med et udsagnsord.">'+esc(st.txt)+'</textarea>'+
-        '<div style="display:flex;flex-direction:column;gap:.3rem"><span class="lbl">Bygger på</span><div class="refs">'+
-          (all.length?all.map(function(r){var pr=prio(r.k,r.p);return '<label class="'+(pr&&!pr.hi?'low':'')+'" style="--c:var(--'+r.k+')"><input type="checkbox" data-ref="'+r.p.id+'"'+(st.refs.indexOf(r.p.id)>-1?' checked':'')+'><b>'+r.code+'</b><span>'+esc(r.p.txt.length>90?r.p.txt.slice(0,88)+'…':r.p.txt)+'</span></label>';}).join(''):'<span class="empty">Skriv punkter i SWOT først.</span>')+
-        '</div></div>'+
-        '<ul class="fb" data-fb></ul>'+
-        '<div class="acts" style="display:flex"><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
-      '</article>';
-    }).join('')+'<ul class="fb" id="sk-tows-fb"></ul>';
-    S.strat.forEach(updateStrat);updateTowsField();
+    var used={};S.strat.forEach(function(st){st.refs.forEach(function(id){used[id]=(used[id]||0)+1;});});
+    var cols=KEYS.map(function(k){
+      var pts=S.pts[k].map(function(p,i){return {p:p,code:k.toUpperCase()+(i+1)};}).filter(function(x){return x.p.txt.trim();});
+      return '<div class="tb-col" style="--c:var(--'+k+')"><header><b>'+k.toUpperCase()+'</b><strong>'+F[k].n+'</strong></header>'+
+        (pts.length?pts.map(function(x){var pr=prio(k,x.p);
+          return '<div role="button" tabindex="0" aria-pressed="false" class="tb-pt'+(pr&&!pr.hi?' low':'')+'" draggable="true" data-pid="'+x.p.id+'" style="--c:var(--'+k+')" title="'+esc(x.p.txt)+(pr?' · '+esc(pr.txt):'')+'"><b>'+x.code+'</b><span>'+esc(x.p.txt)+'</span>'+(used[x.p.id]?'<i title="Brugt i '+used[x.p.id]+' alternativ'+(used[x.p.id]>1?'er':'')+'">'+used[x.p.id]+'×</i>':'')+'</div>';
+        }).join(''):'<span class="empty">Ingen punkter endnu. Skriv dem i trin 1.</span>')+'</div>';
+    }).join('');
+    function head(k,rh){return '<div class="tb-h'+(rh?' rh':'')+'" style="--c:var(--'+k+')"><b>'+k.toUpperCase()+'</b>'+F[k].n+'</div>';}
+    el.innerHTML='<div class="tb"><div class="tb-swot">'+cols+'</div>'+
+      '<p class="tb-hint">Træk et punkt ned i et felt eller ind på et alternativ. På en telefon eller med tastaturet: tryk på punktet, og tryk derefter på feltet eller alternativet.</p>'+
+      '<div class="tb-grid"><span></span>'+head('s')+head('w')+head('o',1)+cellHtml('SO')+cellHtml('WO')+head('t',1)+cellHtml('ST')+cellHtml('WT')+'</div></div>'+
+      '<ul class="fb" id="sk-tows-fb"></ul>';
+    if(sel&&!codeOf(sel))sel=null;
+    S.strat.forEach(updateStrat);updateTowsField();updateSel();
+  }
+  var bar=document.createElement('div');bar.className='tb-bar';bar.hidden=true;bar.setAttribute('aria-live','polite');
+  bar.innerHTML='<span></span><button type="button">Fortryd</button>';
+  bar.querySelector('button').addEventListener('click',function(){sel=null;updateSel();});
+  document.getElementById('p-skabelon').appendChild(bar);
+  function updateSel(){
+    var r=sel?codeOf(sel):null;if(!r)sel=null;
+    [].forEach.call(document.querySelectorAll('#sk-tows .tb-pt'),function(b){var on=b.dataset.pid===sel;b.classList.toggle('sel',on);b.setAttribute('aria-pressed',on?'true':'false');});
+    [].forEach.call(document.querySelectorAll('#sk-tows .tb-add'),function(b){b.classList.toggle('ready',!!r);b.textContent=r?'+ Nyt alternativ med '+r.code:'+ Slip et punkt her, eller klik for et tomt alternativ';});
+    [].forEach.call(document.querySelectorAll('#sk-tows .tb-put'),function(b){var st=findStrat(b.dataset.put);b.hidden=!r||st.refs.indexOf(sel)>-1;if(r)b.textContent='+ Tilføj '+r.code;});
+    bar.hidden=!r;
+    if(r)bar.querySelector('span').textContent=r.code+' er valgt. Tryk på et felt eller et alternativ.';
+  }
+  function newAlt(f,pid){
+    var st={id:uid(),txt:'',f:f,refs:pid?[pid]:[],valgt:false};S.strat.push(st);sel=null;save();renderTows();updateStatus();
+    var t=document.querySelector('.tb-alt[data-sid="'+st.id+'"] textarea');if(t)t.focus();
+  }
+  function addRef(st,pid){
+    var r=codeOf(pid);if(!r)return;
+    if(st.refs.indexOf(pid)>-1){toast(r.code+' er allerede med i alternativet.');return;}
+    st.refs.push(pid);sel=null;save();renderTows();updateStatus();
+  }
+  /* et punkt sluppet på et alternativ føjes til det, sluppet andre steder i feltet giver et nyt alternativ */
+  function dropOn(target,pid){
+    var alt=target.closest('.tb-alt');
+    if(alt)addRef(findStrat(alt.dataset.sid),pid);
+    else{var cell=target.closest('.tb-cell');if(cell)newAlt(cell.dataset.f,pid);}
   }
   function updateStrat(st){
     var card=document.querySelector('.strat[data-sid="'+st.id+'"]');if(!card)return;
@@ -1988,20 +2075,50 @@ a{color:var(--accent)}
     else if(b.dataset.sdel){var i=S.strat.indexOf(findStrat(b.dataset.sdel));if(S.strat[i].txt.trim()&&!confirm('Slet alternativet?'))return;S.strat.splice(i,1);save();renderTows();updateStatus();}
   });
 
-  document.getElementById('sk-add-strat').addEventListener('click',function(){
-    var st={id:uid(),txt:'',f:'SO',refs:[],valgt:false};S.strat.push(st);save();renderTows();updateStatus();
-    document.querySelector('.strat[data-sid="'+st.id+'"] textarea').focus();
+  var tows=document.getElementById('sk-tows'),dragPid=null;
+  function clearOver(){[].forEach.call(tows.querySelectorAll('.over'),function(x){x.classList.remove('over');});}
+  tows.addEventListener('dragstart',function(e){
+    var b=e.target.closest&&e.target.closest('.tb-pt');if(!b)return;
+    dragPid=b.dataset.pid;b.classList.add('dragging');
+    try{e.dataTransfer.setData('text/plain',dragPid);e.dataTransfer.effectAllowed='copy';}catch(x){}
   });
-  var tows=document.getElementById('sk-tows');
+  /* tavlen tegnes først forfra, når trækket er helt slut, ellers mister browseren det trukne element */
+  var pending=null;
+  function runPending(){if(!pending)return;var d=pending;pending=null;dropOn(d.t,d.pid);}
+  tows.addEventListener('dragend',function(){dragPid=null;clearOver();[].forEach.call(tows.querySelectorAll('.dragging'),function(x){x.classList.remove('dragging');});runPending();});
+  tows.addEventListener('dragover',function(e){
+    if(!dragPid)return;
+    var t=e.target.closest('.tb-alt')||e.target.closest('.tb-cell');if(!t)return;
+    e.preventDefault();try{e.dataTransfer.dropEffect='copy';}catch(x){}
+    if(!t.classList.contains('over')){clearOver();t.classList.add('over');}
+  });
+  tows.addEventListener('dragleave',function(e){if(!tows.contains(e.relatedTarget))clearOver();});
+  tows.addEventListener('drop',function(e){
+    if(!dragPid)return;e.preventDefault();
+    pending={t:e.target,pid:dragPid};dragPid=null;clearOver();setTimeout(runPending,200);
+  });
+  tows.addEventListener('click',function(e){
+    var pt=e.target.closest('.tb-pt');
+    if(pt){sel=sel===pt.dataset.pid?null:pt.dataset.pid;updateSel();return;}
+    var b=e.target.closest('button');
+    if(b&&b.dataset.addf){newAlt(b.dataset.addf,sel);return;}
+    if(b&&b.dataset.put){addRef(findStrat(b.dataset.put),sel);return;}
+    if(b&&b.dataset.unref){var st=findStrat(b.dataset.sid);st.refs=st.refs.filter(function(x){return x!==b.dataset.unref;});save();renderTows();updateStatus();return;}
+    /* med et valgt punkt virker et tryk på selve feltet eller alternativet som et slip */
+    if(sel&&!b&&!e.target.closest('textarea,input,label,.fb'))dropOn(e.target,sel);
+  });
+  tows.addEventListener('keydown',function(e){
+    var pt=e.target.closest&&e.target.closest('.tb-pt');
+    if(pt&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pt.click();}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&sel){sel=null;updateSel();}});
   tows.addEventListener('input',function(e){
     var card=e.target.closest('.strat');if(!card)return;var st=findStrat(card.dataset.sid);
     if(e.target.dataset.sf==='txt'){st.txt=e.target.value;save();}
   });
   tows.addEventListener('change',function(e){
     var card=e.target.closest('.strat');if(!card)return;var st=findStrat(card.dataset.sid),t=e.target;
-    if(t.dataset.sf==='f')st.f=t.value;
-    else if(t.dataset.sf==='valgt')st.valgt=t.checked;
-    else if(t.dataset.ref){var id=t.dataset.ref;st.refs=st.refs.filter(function(x){return x!==id;});if(t.checked)st.refs.push(id);}
+    if(t.dataset.sf==='valgt'){st.valgt=t.checked;card.classList.toggle('valgt',st.valgt);}
     save();updateStrat(st);updateTowsField();updateStatus();
   });
 
