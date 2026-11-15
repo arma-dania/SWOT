@@ -553,9 +553,10 @@ a{color:var(--accent)}
 .mod .n{align-self:flex-start;background:var(--accent);color:#fff;padding:.2rem .6rem;border-radius:999px;letter-spacing:.06em}
 /* C: farvestreg i de fire SWOT-farver under afsnitsoverskrifter */
 .mod > h2{padding-bottom:.4rem;background:linear-gradient(90deg,var(--s) 0 2.2rem,var(--w) 2.2rem 4.4rem,var(--o) 4.4rem 6.6rem,var(--t) 6.6rem 8.8rem) no-repeat left bottom/8.8rem 4px}
-/* D: under Øvelser har del A, B og C hver sin farve */
-.it[data-del="A"] summary .no{background:var(--s)} .it[data-del="B"] summary .no{background:var(--o)} .it[data-del="C"] summary .no{background:var(--t)}
-.it-plan > div:nth-child(1){border-top-color:var(--s)} .it-plan > div:nth-child(2){border-top-color:var(--o)} .it-plan > div:nth-child(3){border-top-color:var(--t)}
+/* D: under Øvelser har hver del sin farve */
+.it[data-del="A"] summary .no,.it[data-del="D"] summary .no{background:var(--s)} .it[data-del="B"] summary .no,.it[data-del="E"] summary .no{background:var(--o)} .it[data-del="C"] summary .no,.it[data-del="F"] summary .no{background:var(--t)}
+.it-plan > div[data-del="A"],.it-plan > div[data-del="D"]{border-top-color:var(--s)} .it-plan > div[data-del="B"],.it-plan > div[data-del="E"]{border-top-color:var(--o)} .it-plan > div[data-del="C"],.it-plan > div[data-del="F"]{border-top-color:var(--t)}
+.it-data{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.3rem;font-size:1rem;line-height:1.4}
 </style>
 </head>
 <body>
@@ -685,6 +686,7 @@ a{color:var(--accent)}
       <p>Det eksterne skal beskrives lige så konkret som det interne. "Konkurrence" er ikke en trussel, for konkurrence er der altid. "En tysk konkurrent åbner showroom i København til foråret" er en trussel, fordi den peger på en bestemt begivenhed med en bestemt konsekvens.</p>
       <p>Tag kun de mest relevante forhold med. En mekanisk opremsning af alt, hvad der sker i omverdenen, får det strategiske overblik til at forsvinde.</p>
       <p class="note">I sprint 3 laver I de eksterne analyser og skriver muligheder og trusler ind i <a href="#skabelon" data-goto="skabelon">skabelonen</a>. Angiv for hvert punkt, hvilken analyse det kommer fra, og hvilke tal fra jeres undersøgelser der dokumenterer det.</p>
+      <p class="it-see">Under Øvelser: <a href="#i-timen" data-ex="8">øvelse 8–9</a> (fra tal til punkt) og <a href="#i-timen" data-ex="10">øvelse 10–11</a> (bruttoliste over O og T).</p>
     </section>
 
     <section class="mod">
@@ -713,7 +715,7 @@ a{color:var(--accent)}
       <p>De to dimensioner skal holdes adskilt. Et forhold kan være meget omtalt og alligevel usandsynligt, og et usandsynligt forhold kan have så stor konsekvens, at virksomheden skal være forberedt. Konsekvensen afhænger desuden af virksomheden selv: et leveringsstop rammer hårdere, når der kun er én leverandør. Derfor skal S og W være prioriteret, før O og T kan prioriteres.</p>
       <div class="mx2"><div id="mx-o"></div><div id="mx-t"></div></div>
       <p>Vurderingerne er skøn, og derfor skal de begrundes. Skriv, hvad der taler for høj eller lav, og hvilken analyse du bygger på. Så kan andre efterprøve din prioritering.</p>
-      <p class="it-see">Under Øvelser: <a href="#i-timen" data-ex="3">øvelse 3–6</a> (fra bruttoliste til prioriteret SW).</p>
+      <p class="it-see">Under Øvelser: <a href="#i-timen" data-ex="3">øvelse 3–6</a> (fra bruttoliste til prioriteret SW) og <a href="#i-timen" data-ex="12">øvelse 12–13</a> (prioriteret OT og vigtigheden af S og W).</p>
     </section>
 
     <section class="mod">
@@ -966,6 +968,7 @@ a{color:var(--accent)}
         <li><b>Sammenhæng:</b> trækker alternativerne i samme retning, eller modarbejder de hinanden?</li>
       </ul>
       <p>De få alternativer, der står tilbage, bliver virksomhedens strategi og grundlaget for den konkrete plan: hvem gør hvad, hvornår og for hvilket budget.</p>
+      <p class="it-see">Under Øvelser: <a href="#i-timen" data-ex="14">øvelse 14–16</a> (TOWS på tavlen, vurdering og valg).</p>
     </section>
 
     <section class="mod">
@@ -1000,22 +1003,45 @@ a{color:var(--accent)}
   <!-- I TIMEN -->
   <main class="panel" id="p-i-timen" role="tabpanel" hidden>
     <section class="mod">
-      <span class="n">Klasseøvelser · sprint 2</span>
+      <span class="n">Klasseøvelser</span>
       <h2>Øvelser til undervisningen</h2>
-      <p>Syv øvelser, der fører fra kvaliteten af det enkelte punkt til en prioriteret SW for Living Flowers. Øvelse 1 og 2 bruger øvelsescasen Cykelværket fra fanen Træning og bygger videre på Træning, øvelse 1 og 2. Øvelse 3–7 bruger Living Flowers. Øvelserne bygger på hinanden i tre dele. Fold en øvelse ud for at se formål, materialer, trin og produkt.</p>
-      <div class="it-plan" id="it-plan"></div>
+      <p>Øvelserne følger sprintene. I sprint 2 fører de fra kvaliteten af det enkelte punkt til en prioriteret SW for Living Flowers. I sprint 3 fører de fra jeres undersøgelser og eksterne analyser til en prioriteret OT, en TOWS og et begrundet valg af strategi. Inden for hver sprint bygger øvelserne på hinanden. Fold en øvelse ud for at se formål, materialer, trin og produkt.</p>
+      <nav class="jump" aria-label="Spring til">
+        <button type="button" data-jump="it-s2">Sprint 2 · øvelse 1–7</button>
+        <button type="button" data-jump="it-s3">Sprint 3 · øvelse 8–16</button>
+      </nav>
       <div class="it-tools">
         <button type="button" id="it-open">Fold alle ud</button>
         <button type="button" id="it-close">Fold alle ind</button>
       </div>
     </section>
+
+    <h2 class="part anchor" id="it-s2">Sprint 2 · Styrker og svagheder</h2>
+    <section class="mod">
+      <p>Syv øvelser. Øvelse 1 og 2 bruger øvelsescasen Cykelværket fra fanen Træning og bygger videre på Træning, øvelse 1 og 2. Øvelse 3–7 bruger Living Flowers.</p>
+      <div class="it-plan" data-plan="2"></div>
+    </section>
     <section class="mod">
       <h2>To og to</h2>
-      <div class="it-list" id="it-par"></div>
+      <div class="it-list" data-list="2-par"></div>
     </section>
     <section class="mod">
       <h2>I grupper</h2>
-      <div class="it-list" id="it-grp"></div>
+      <div class="it-list" data-list="2-gruppe"></div>
+    </section>
+
+    <h2 class="part anchor" id="it-s3">Sprint 3 · Muligheder, trusler og TOWS</h2>
+    <section class="mod">
+      <p>Ni øvelser. Øvelse 8 og 9 træner på Cykelværket, hvordan resultater fra interviews, spørgeskemaer og analyser bliver til dokumenterede muligheder og trusler. Øvelse 10–16 bruger Living Flowers og jeres egne undersøgelser og ender i skabelonens TOWS-tavle og valget i trin 3.</p>
+      <div class="it-plan" data-plan="3"></div>
+    </section>
+    <section class="mod">
+      <h2>To og to</h2>
+      <div class="it-list" data-list="3-par"></div>
+    </section>
+    <section class="mod">
+      <h2>I grupper</h2>
+      <div class="it-list" data-list="3-gruppe"></div>
     </section>
   </main>
 
@@ -1698,11 +1724,14 @@ a{color:var(--accent)}
   /* ================= I TIMEN ================= */
 
   var DELE=[
-    {id:'A',navn:'Kvalitet',efter:'Efter SWOT 5'},
-    {id:'B',navn:'Fra analyse til prioriteret SW',efter:'Efter SWOT 6'},
-    {id:'C',navn:'Afslutning',efter:'Sidst i sprint 2'}
+    {id:'A',navn:'Kvalitet',efter:'Efter SWOT 5',sprint:2},
+    {id:'B',navn:'Fra analyse til prioriteret SW',efter:'Efter SWOT 6',sprint:2},
+    {id:'C',navn:'Afslutning',efter:'Sidst i sprint 2',sprint:2},
+    {id:'D',navn:'Fra undersøgelse til O og T',efter:'Efter SWOT 4',sprint:3},
+    {id:'E',navn:'Fra analyse til prioriteret OT',efter:'Efter SWOT 6 og 7',sprint:3},
+    {id:'F',navn:'TOWS og valg',efter:'Efter TOWS-fanen',sprint:3}
   ];
-  /* Én post pr. øvelse. trin: [minuttal, tekst]. links: [tekst, mål], hvor mål er en fane eller en fil. */
+  /* Én post pr. øvelse. trin: [minuttal, tekst]. data: opdigtede resultater til øvelsen. links: [tekst, mål], hvor mål er en fane, evt. med #anker, eller en fil. */
   var OVELSER=[
     {n:1,del:'A',titel:'Fra svagt til stærkt',type:'par',form:'Par',tid:20,kase:'Cykelværket',
      formaal:'At gøre et punkt præcist, dokumenteret og sammenlignet.',
@@ -1772,7 +1801,106 @@ a{color:var(--accent)}
            ['10 min','Byt roller, og gentag trin 2 og 3.'],
            ['2 min','Hver gruppe noterer det ene punkt, den ikke kunne forsvare.']],
      produkt:'Ét punkt pr. gruppe, der skal styrkes eller fjernes.',
-     bygger:'Øvelse 6'}
+     bygger:'Øvelse 6'},
+    {n:8,del:'D',titel:'Fra tal til punkt',type:'par',form:'Par',tid:20,kase:'Cykelværket',
+     formaal:'At omsætte resultater fra undersøgelser og analyser til præcise og dokumenterede muligheder og trusler.',
+     materialer:'Casebeskrivelsen «Cykelværket ApS» under Træning og de opdigtede resultater nedenfor.',
+     data:['Spørgeskema, 120 ladcykelkøbere: 71 % sammenlignede modeller på nettet, før de købte. 22 % købte på nettet.',
+           'Spørgeskema: 38 % har udskudt et køb over 20.000 kr. på grund af renten.',
+           'Interviews med 8 budfirmaer: 6 nævner holdbarhed og service som det vigtigste. 2 nævner prisen.',
+           'Markedsanalyse: salget af ladcykler til erhverv steg 15 % sidste år, salget til private faldt 4 %.',
+           'Konjunkturvurdering: renten ventes at holde sig høj året ud, og forbrugertilliden er negativ.',
+           'PESTLE: fire af de fem største byer indfører bilfrie zoner inden 2028.'],
+     trin:[['3 min','Læs resultaterne. Afgør for hvert, om det peger på en mulighed, en trussel eller ingen af delene for Cykelværket. Et resultat kan også sige noget om vigtigheden af en styrke.'],
+           ['10 min','Skriv fire punkter: to muligheder og to trusler. Hvert punkt skal nævne kilden og et tal, fx «71 % af 120 respondenter».'],
+           ['4 min','Tjek, at hvert punkt er et forhold i omverdenen og ikke en handling. Omskriv, hvis det lyder som noget, virksomheden selv beslutter.'],
+           ['3 min','Sammenlign med parret ved siden af. Valgte I de samme resultater, og hvorfor ikke?']],
+     produkt:'Fire dokumenterede muligheder og trusler med kilde.',
+     bygger:'SWOT 4 · Den eksterne side',
+     links:[['SWOT: den eksterne side','viden'],['Træning: casen Cykelværket','traening#tr-swot']]},
+    {n:9,del:'D',titel:'Hvad viser tallene?',type:'par',form:'Par',tid:15,kase:'Cykelværket',
+     formaal:'At skelne mellem, hvad interviews og spørgeskemaer kan vise, og undgå at konkludere mere, end data bærer.',
+     materialer:'Resultaterne fra øvelse 8 og de fire konklusioner nedenfor, som en gruppe har skrevet.',
+     data:['«Kunderne vil købe på nettet.» Bygger på: 71 % sammenlignede modeller på nettet.',
+           '«Budfirmaerne er ligeglade med prisen.» Bygger på: 6 af 8 interviewede nævnte holdbarhed og service.',
+           '«Renten er en trussel.» Bygger på: 38 % af 120 respondenter har udskudt et køb.',
+           '«Erhvervsmarkedet er det største marked.» Bygger på: salget til erhverv steg 15 %.'],
+     trin:[['5 min','Vurdér hver konklusion: holder den, holder den delvist, eller går den videre, end data viser? Skriv hvorfor.'],
+           ['5 min','Omskriv de konklusioner, der ikke holder, så de siger præcis det, data viser.'],
+           ['5 min','Skriv til hver konklusion, hvilke data der skulle til for at styrke den, fx flere interviews, et ekstra spørgsmål i skemaet eller tal fra markedsanalysen.']],
+     produkt:'Fire vurderede og omskrevne konklusioner med forslag til flere data.',
+     bygger:'Øvelse 8',
+     links:[['SWOT: den eksterne side','viden']]},
+    {n:10,del:'E',titel:'Fra analyse til bruttoliste over O og T',type:'gruppe',form:'Gruppe (3-5)',tid:20,kase:'Living Flowers',
+     formaal:'At omsætte konklusionerne fra de eksterne analyser og undersøgelser til muligheder og trusler med kilde og tal.',
+     materialer:'Gruppens eksterne analyser: PESTLE, konjunkturvurdering, markedsanalyse, kundeanalyse med interviews og spørgeskema og konkurrentanalyse. Skabelonen på sitet eller et fælles dokument.',
+     trin:[['6 min','Hver studerende skriver de vigtigste konklusioner fra den analyse, vedkommende har ansvar for, som O- eller T-punkter. Hvert punkt får kilde og det tal eller den observation, det bygger på.'],
+           ['8 min','Læs punkterne op på skift. Saml dem på én liste, og slå dubletter sammen. Det samme forhold dukker ofte op i flere analyser.'],
+           ['4 min','Find handlingerne: står der «Living Flowers kan …» eller «bør …», så skriv i stedet det forhold i omverdenen, der gør handlingen interessant.'],
+           ['2 min','Nummerér listen.']],
+     produkt:'En nummereret bruttoliste over O og T med kilde for hvert punkt, typisk 10-14 punkter.',
+     bygger:'De eksterne analyser fra sprint 3',
+     links:[['Skabelon med tjek','skabelon']]},
+    {n:11,del:'E',titel:'Sporbarhedstjek af O og T',type:'gruppe',form:'Gruppe, to grupper bytter',tid:20,kase:'Living Flowers',
+     formaal:'At sikre, at hvert punkt er et forhold i omverdenen og kan føres tilbage til en analyse eller undersøgelse.',
+     materialer:'Bruttolisten fra øvelse 10.',
+     trin:[['2 min','Byt bruttoliste med en anden gruppe.'],
+           ['10 min','Markér hvert punkt: grøn (forhold i omverdenen med kilde og tal), gul (kilden er nævnt, men tal eller observation mangler) eller rød (en handling, et internt forhold eller en påstand uden kilde).'],
+           ['5 min','Giv listen tilbage, og forklar de gule og røde markeringer.'],
+           ['3 min','Gruppen vælger de to punkter, den vil reparere først.']],
+     produkt:'En farvemarkeret bruttoliste og to punkter til forbedring.',
+     bygger:'Øvelse 10',
+     links:[['Skabelon med tjek','skabelon']]},
+    {n:12,del:'E',titel:'Stille matricer for O og T',type:'gruppe',form:'Gruppe (3-5)',tid:25,kase:'Living Flowers',
+     formaal:'At prioritere muligheder og trusler efter sandsynlighed og konsekvens.',
+     materialer:'Bruttolisten fra øvelse 10, rettet efter øvelse 11. En tom mulighedsmatrice og en tom trusselsmatrice pr. person (konsekvens lodret, sandsynlighed vandret).',
+     trin:[['3 min','Ret eller fjern de punkter, der fik rød i øvelse 11.'],
+           ['7 min','Hver studerende placerer alle numre i sine egne matricer. Ingen snak.'],
+           ['3 min','Læg matricerne ved siden af hinanden. Markér de numre, gruppen har placeret forskelligt.'],
+           ['9 min','Diskutér kun de markerede punkter. Hvad siger konjunkturvurderingen og markedsanalysen om sandsynligheden? Hvad betyder Living Flowers’ styrker og svagheder for konsekvensen?'],
+           ['3 min','Tegn de fælles matricer, og skriv prioriteten ind i skabelonen.']],
+     produkt:'En fælles mulighedsmatrice og trusselsmatrice og prioriteten i skabelonen.',
+     bygger:'Øvelse 10 og 11',
+     links:[['SWOT: prioritering','viden'],['Skabelon med tjek','skabelon']]},
+    {n:13,del:'E',titel:'Kunderne har talt',type:'gruppe',form:'Gruppe (3-5)',tid:15,kase:'Living Flowers',
+     formaal:'At bruge kundeanalysen til at efterprøve vigtigheden af styrkerne og svaghederne fra sprint 2.',
+     materialer:'Den prioriterede SW fra sprint 2 i skabelonen og resultaterne fra interviews og spørgeskema.',
+     trin:[['4 min','Find de resultater i kundeanalysen, der siger noget om, hvad kunderne lægger vægt på.'],
+           ['7 min','Gå styrkerne og svaghederne igennem. Bekræfter eller ændrer resultaterne vigtigheden? Ret prioriteringen i skabelonen, og skriv tallet i «Så hvad?».'],
+           ['4 min','Skriv én sætning om det punkt, der flyttede sig mest, og hvorfor.']],
+     produkt:'En opdateret prioritering af S og W, hvor vigtigheden er dokumenteret med kundeanalysen.',
+     bygger:'Øvelse 5 og 6 fra sprint 2 og kundeanalysen',
+     links:[['SWOT: prioritering','viden'],['Skabelon med tjek','skabelon']]},
+    {n:14,del:'F',titel:'TOWS på tavlen',type:'gruppe',form:'Gruppe (3-5)',tid:30,kase:'Living Flowers',
+     formaal:'At kombinere de prioriterede punkter til handlingsalternativer i alle fire felter.',
+     materialer:'Skabelonen med den prioriterede SWOT, trin 2.',
+     trin:[['3 min','Fold trin 1 sammen, og se på tavlen. Hvilke punkter har højeste prioritet?'],
+           ['16 min','Tag ét felt ad gangen, 4 min pr. felt. Kombinér punkterne parvis på tavlen, og skriv et handlingsalternativ i kortet for hver kombination, der giver mening.'],
+           ['6 min','Læs tjekkets spørgsmål til hvert alternativ, og ret formuleringen: hvad, for hvem, hvordan og hvornår?'],
+           ['5 min','Find de punkter med høj prioritet, der ikke er brugt endnu. Kan de indgå i et alternativ?']],
+     produkt:'Mindst ét handlingsalternativ i hvert felt, med henvisninger til SWOT.',
+     bygger:'Øvelse 12 og 13',
+     links:[['TOWS-fanen','tows'],['Skabelon med tjek','skabelon']]},
+    {n:15,del:'F',titel:'Fem kriterier',type:'gruppe',form:'Gruppe (3-5)',tid:25,kase:'Living Flowers',
+     formaal:'At vurdere og rangordne handlingsalternativerne og vælge strategien.',
+     materialer:'Skabelonen, trin 3, og de fem kriterier fra TOWS-fanen: mål, målgrupper/strategi/værdier, ressourcer, vægt og sammenhæng.',
+     trin:[['8 min','Hver studerende giver i stilhed point på de fem kriterier til alle alternativer på papir.'],
+           ['10 min','Sammenlign. Diskutér kun de kriterier, hvor I er mere end ét point fra hinanden. Skriv den fælles vurdering og begrundelsen i trin 3.'],
+           ['5 min','Vælg 2-4 alternativer. Afviger valget eller rækkefølgen fra scoren, så skriv hvorfor.'],
+           ['2 min','Kopiér rangordningen som tekst til rapporten.']],
+     produkt:'En rangordnet liste med valgte alternativer og begrundelser.',
+     bygger:'Øvelse 14',
+     links:[['TOWS: fra forslag til valg','tows'],['Skabelon med tjek','skabelon']]},
+    {n:16,del:'F',titel:'Bestyrelsesmødet',type:'gruppe',form:'To grupper sammen',tid:25,kase:'Living Flowers',
+     formaal:'At kunne forsvare valget af strategi mundtligt.',
+     materialer:'De valgte handlingsalternativer fra øvelse 15.',
+     trin:[['3 min','Begge grupper forbereder en fremlæggelse på tre minutter.'],
+           ['3 min','Gruppe A fremlægger. Gruppe B er Living Flowers’ bestyrelse.'],
+           ['7 min','Bestyrelsen må kun stille tre spørgsmål, så mange gange den vil: «Hvilke punkter bygger det på?», «Hvorfor ikke det næste på listen?» og «Har I ressourcerne?»'],
+           ['10 min','Byt roller, og gentag trin 2 og 3.'],
+           ['2 min','Hver gruppe noterer det ene valg, den ikke kunne forsvare.']],
+     produkt:'Ét valg pr. gruppe, der skal styrkes eller genovervejes.',
+     bygger:'Øvelse 15'}
   ];
 
   (function(){
@@ -1791,17 +1919,23 @@ a{color:var(--accent)}
       h+=blok('Formål','<p>'+esc(o.formaal)+'</p>');
       h+='<div class="it-row">'+blok('Form','<p>'+esc(o.form)+'</p>')+blok('Case','<p>'+esc(o.kase)+'</p>')+blok('Bygger på','<p>'+esc(o.bygger||'Ingen')+'</p>')+'</div>';
       h+=blok('Materialer','<p>'+esc(o.materialer)+'</p>');
+      if(o.data)h+=blok('Data (opdigtede)','<ul class="it-data">'+o.data.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>');
       h+=blok('Trin','<ol class="it-steps">'+o.trin.map(function(t){return '<li><span class="min">'+esc(t[0])+'</span><span class="txt">'+esc(t[1])+'</span></li>';}).join('')+'</ol>');
       h+=blok('Produkt','<p>'+esc(o.produkt)+'</p>');
       if(o.links&&o.links.length)h+=blok('På sitet','<div class="it-links">'+o.links.map(link).join('')+'</div>');
       return h+'</div></details>';
     }
-    document.getElementById('it-par').innerHTML=OVELSER.filter(function(o){return o.type==='par';}).map(card).join('');
-    document.getElementById('it-grp').innerHTML=OVELSER.filter(function(o){return o.type==='gruppe';}).map(card).join('');
-    document.getElementById('it-plan').innerHTML=DELE.map(function(d){
-      var ov=OVELSER.filter(function(o){return o.del===d.id;}),min=ov.reduce(function(a,o){return a+o.tid;},0);
-      return '<div><small>Del '+d.id+' · '+d.efter+'</small><b>'+esc(d.navn)+'</b><span>Øvelse '+ov.map(function(o){return o.n;}).join(', ')+' · '+min+' min</span></div>';
-    }).join('');
+    function sprintOf(o){return DELE.filter(function(x){return x.id===o.del;})[0].sprint;}
+    [].forEach.call(document.querySelectorAll('#p-i-timen [data-list]'),function(el){
+      var k=el.dataset.list.split('-');
+      el.innerHTML=OVELSER.filter(function(o){return String(sprintOf(o))===k[0]&&o.type===k[1];}).map(card).join('');
+    });
+    [].forEach.call(document.querySelectorAll('#p-i-timen [data-plan]'),function(el){
+      el.innerHTML=DELE.filter(function(d){return String(d.sprint)===el.dataset.plan;}).map(function(d){
+        var ov=OVELSER.filter(function(o){return o.del===d.id;}),min=ov.reduce(function(a,o){return a+o.tid;},0);
+        return '<div data-del="'+d.id+'"><small>Del '+d.id+' · '+d.efter+'</small><b>'+esc(d.navn)+'</b><span>Øvelse '+ov.map(function(o){return o.n;}).join(', ')+' · '+min+' min</span></div>';
+      }).join('');
+    });
     var all=function(){return [].slice.call(document.querySelectorAll('#p-i-timen details.it'));};
     document.getElementById('it-open').addEventListener('click',function(){all().forEach(function(d){d.open=true;});});
     document.getElementById('it-close').addEventListener('click',function(){all().forEach(function(d){d.open=false;});});
