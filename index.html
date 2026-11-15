@@ -367,10 +367,10 @@ a{color:var(--accent)}
 
 /* felter */
 #p-skabelon .field{display:flex;flex-direction:column;gap:.75rem;padding:1rem;border-radius:.625rem;box-shadow:var(--shadow);background:color-mix(in srgb,var(--c) 6%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--surface))}
-#p-skabelon .field > header{display:flex;flex-direction:column;gap:.2rem}
-#p-skabelon .field > header h2{color:var(--c);display:flex;gap:.5rem;align-items:baseline}
-#p-skabelon .field > header h2 span{font-size:.875rem;color:var(--muted);font-weight:500}
-#p-skabelon .field > header p{font-size:1rem;color:var(--muted)}
+#p-skabelon .field summary > header{display:flex;flex-direction:column;gap:.2rem}
+#p-skabelon .field summary > header h2{color:var(--c);display:flex;gap:.5rem;align-items:baseline}
+#p-skabelon .field summary > header h2 span{font-size:.875rem;color:var(--muted);font-weight:500}
+#p-skabelon .field summary > header p{font-size:1rem;color:var(--muted)}
 #p-skabelon .ffb{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.4rem}
 
 #p-skabelon .pt{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:.375rem;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.6rem}
@@ -411,12 +411,15 @@ a{color:var(--accent)}
 /* svag hover på kortene */
 #p-skabelon .pt,#p-skabelon .strat,#p-skabelon .field{transition:box-shadow .2s ease}
 @media (hover:hover){#p-skabelon .pt:hover,#p-skabelon .strat:hover{box-shadow:0 2px 6px rgba(16,24,40,.08),0 8px 20px rgba(16,24,40,.08)}}
-/* Trin 1 kan foldes sammen, så der er overblik over TOWS-tavlen */
+/* hvert felt i trin 1 kan foldes sammen, så der er overblik */
 .tabs{z-index:10}
 #p-skabelon .sk-fold summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem}
 #p-skabelon .sk-fold summary::-webkit-details-marker{display:none}
 #p-skabelon .sk-fold summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:.375rem}
+#p-skabelon .sk-fold summary > header{flex:1 1 16rem;display:flex;flex-direction:column;gap:.2rem}
+#p-skabelon .sk-fold:not([open]) summary > header p{display:none}
 #p-skabelon .sk-fold summary h2{margin:0}
+#p-skabelon .field.sk-fold:not([open]){gap:0}
 #p-skabelon .sk-sum{display:flex;flex-wrap:wrap;gap:.35rem;font-family:var(--display);font-size:.8125rem}
 #p-skabelon .sk-sum span{padding:.1rem .5rem;border-radius:1rem;border:1px solid color-mix(in srgb,var(--c,var(--muted)) 40%,var(--surface));background:color-mix(in srgb,var(--c,var(--muted)) 10%,var(--surface));color:var(--c,var(--muted));font-weight:700}
 #p-skabelon .sk-sum span.open{--c:var(--bad)}
@@ -425,7 +428,7 @@ a{color:var(--accent)}
 #p-skabelon .sk-fold[open] .sk-tog::before{content:"Fold sammen"}
 #p-skabelon .sk-tog::after{content:"";width:.55rem;height:.55rem;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-.3rem;transition:transform .2s ease}
 #p-skabelon .sk-fold[open] .sk-tog::after{transform:rotate(225deg);margin-top:.3rem}
-#p-skabelon .sk-fold-body{display:flex;flex-direction:column;gap:1rem;margin-top:1rem}
+#p-skabelon .sk-fold-body{display:flex;flex-direction:column;gap:.75rem}
 /* TOWS-tavle, opstillet som slutbilledet i TOWS-animationen: S og W øverst, O og T til venstre */
 #p-skabelon .tb{display:flex;flex-direction:column;gap:.75rem}
 #p-skabelon .tb-hint{font-size:.875rem;color:var(--muted);margin:0}
@@ -1010,13 +1013,9 @@ a{color:var(--accent)}
 
   <section class="mod">
     <span class="n">Trin 1 · SWOT</span>
-    <details class="sk-fold" id="sk-swot-fold">
-      <summary><h2>Punkterne</h2><span class="sk-sum" id="sk-swot-sum"></span><span class="sk-tog"></span></summary>
-      <div class="sk-fold-body">
-        <p>Skriv hvert punkt så præcist, at en læser uden for gruppen forstår det. Angiv, hvilken analyse det kommer fra, hvad det betyder for virksomheden, og hvordan det skal prioriteres.</p>
-        <div id="sk-swot" style="display:flex;flex-direction:column;gap:1rem"></div>
-      </div>
-    </details>
+    <h2>Punkterne</h2>
+    <p>Skriv hvert punkt så præcist, at en læser uden for gruppen forstår det. Angiv, hvilken analyse det kommer fra, hvad det betyder for virksomheden, og hvordan det skal prioriteres. Hvert felt kan foldes sammen, så der er overblik.</p>
+    <div id="sk-swot" style="display:flex;flex-direction:column;gap:1rem"></div>
   </section>
 
   <section class="mod">
@@ -1954,7 +1953,7 @@ a{color:var(--accent)}
     var el=document.getElementById('sk-swot'),html='';
     KEYS.forEach(function(k){
       var f=F[k],d=dims(k);
-      html+='<section class="field" style="--c:var(--'+k+')" data-field="'+k+'"><header><h2>'+f.n+' <span>'+k.toUpperCase()+'</span></h2><p>'+f.help+'</p></header>';
+      html+='<details class="field sk-fold" style="--c:var(--'+k+')" data-field="'+k+'"'+(isOpen(k)?' open':'')+'><summary><header><h2>'+f.n+' <span>'+k.toUpperCase()+'</span></h2><p>'+f.help+'</p></header><span class="sk-sum" data-sum="'+k+'"></span><span class="sk-tog"></span></summary><div class="sk-fold-body">';
       html+='<ul class="ffb" data-ffb="'+k+'"></ul>';
       S.pts[k].forEach(function(p,i){
         var opt=function(v,a){return '<option value="'+v+'"'+(a===v?' selected':'')+'>';};
@@ -1972,7 +1971,7 @@ a{color:var(--accent)}
           '<button type="button" class="ghost danger" data-del="'+p.id+'" style="margin-left:auto">Slet</button></div>'+
         '</article>';
       });
-      html+='<button type="button" class="ghost" data-add="'+k+'" style="align-self:flex-start">+ Tilføj '+f.one+'</button></section>';
+      html+='<button type="button" class="ghost" data-add="'+k+'" style="align-self:flex-start">+ Tilføj '+f.one+'</button></div></details>';
     });
     el.innerHTML=html;
     KEYS.forEach(function(k){S.pts[k].forEach(function(p){updatePoint(k,p);});updateField(k);});
@@ -2134,24 +2133,21 @@ a{color:var(--accent)}
       '<span><b>'+n+'</b> <i class="lg">SWOT-</i>punkter</span><span class="'+(open?'open':'')+'"><b>'+open+'</b> med <i class="lg">spørgsmål</i><i class="sh">spm.</i></span>'+
       '<span><b>'+sn+'</b> <i class="lg">alternativer</i><i class="sh">alt.</i></span><span class="'+(so?'open':'')+'"><b>'+so+'</b> med <i class="lg">spørgsmål</i><i class="sh">spm.</i></span><span><b>'+sv+'</b> valgt</span>';
   }
-  /* Trin 1: opsummering i den sammenfoldede overskrift, og husk om den er foldet ud */
-  var FOLD='swot-skabelon-fold',fold=document.getElementById('sk-swot-fold');
+  /* Trin 1: hvert felt kan foldes sammen. Opsummering i overskriften, og browseren husker, hvad der er foldet ud */
+  var FOLD='swot-skabelon-fold2',openF=null;
+  try{openF=JSON.parse(localStorage.getItem(FOLD));}catch(e){}
+  if(!openF||typeof openF!=='object')openF={};
+  /* første gang: et felt er foldet ud, indtil der er skrevet punkter i det */
+  function isOpen(k){return k in openF?!!openF[k]:!S.pts[k].some(function(p){return p.txt.trim();});}
+  function setOpen(k,v){openF[k]=v;try{localStorage.setItem(FOLD,JSON.stringify(openF));}catch(e){}}
   function updateFoldSum(){
-    var open=0,html=KEYS.map(function(k){
-      var a=S.pts[k].filter(function(p){return p.txt.trim();});
-      a.forEach(function(p){if(checkPoint(k,p).length)open++;});
-      return '<span style="--c:var(--'+k+')">'+k.toUpperCase()+' '+a.length+'</span>';
-    }).join('');
-    if(open)html+='<span class="open">'+open+' med spørgsmål</span>';
-    document.getElementById('sk-swot-sum').innerHTML=html;
+    KEYS.forEach(function(k){
+      var el=document.querySelector('[data-sum="'+k+'"]');if(!el)return;
+      var a=S.pts[k].filter(function(p){return p.txt.trim();}),open=a.filter(function(p){return checkPoint(k,p).length;}).length;
+      el.innerHTML='<span>'+a.length+' '+(a.length===1?'punkt':'punkter')+'</span>'+(open?'<span class="open">'+open+' med spørgsmål</span>':'');
+    });
   }
-  (function(){
-    var st=null;try{st=localStorage.getItem(FOLD);}catch(e){}
-    var any=KEYS.some(function(k){return S.pts[k].some(function(p){return p.txt.trim();});});
-    /* første gang: foldet ud, indtil der er skrevet punkter */
-    fold.open=st?st==='open':!any;
-    fold.addEventListener('toggle',function(){try{localStorage.setItem(FOLD,fold.open?'open':'closed');}catch(e){}});
-  })();
+  document.getElementById('sk-swot').addEventListener('toggle',function(e){var d=e.target;if(d.dataset&&d.dataset.field)setOpen(d.dataset.field,d.open);},true);
   function renderAll(){document.getElementById('sk-firma').value=S.firma||'';renderSwot();renderTows();updateStatus();}
 
   /* ---------- handlinger ---------- */
@@ -2181,7 +2177,7 @@ a{color:var(--accent)}
       S.pts[m.k].splice(m.i,1);
       /* vurderingerne betyder noget andet i det nye felt, når det skifter mellem intern og ekstern */
       if(F[m.k].int!==F[b.dataset.move].int){m.p.p1='';m.p.p2='';}
-      S.pts[b.dataset.move].push(m.p);save();renderSwot();renderTows();updateStatus();
+      S.pts[b.dataset.move].push(m.p);setOpen(b.dataset.move,true);save();renderSwot();renderTows();updateStatus();
       var c=document.querySelector('.pt[data-pid="'+m.p.id+'"]');if(c){c.scrollIntoView({behavior:'smooth',block:'center'});c.querySelector('textarea').focus({preventScroll:true});}
     }
     else if(b.dataset.tmove){var st=findStrat(b.dataset.sid);st.f=b.dataset.tmove;save();renderTows();updateStatus();}
@@ -2322,8 +2318,8 @@ a{color:var(--accent)}
       {id:uid(),txt:'Godkend en europæisk reserveleverandør af motorer og batterier inden udgangen af næste år',f:'SO',refs:[w1.id,t1.id],valgt:true},
       {id:uid(),txt:'Lancér en erhvervsmodel med 10 års garanti og sælg den direkte til budfirmaer',f:'SO',refs:[s1.id,s3.id],valgt:true}
     ]};
-    save();renderAll();toast('Eksemplet er indlæst. Læs spørgsmålene, og prøv at rette punkterne.');
-    fold.open=true;document.getElementById('sk-swot').scrollIntoView({behavior:'smooth'});
+    KEYS.forEach(function(k){setOpen(k,true);});save();renderAll();toast('Eksemplet er indlæst. Læs spørgsmålene, og prøv at rette punkterne.');
+    document.getElementById('sk-swot').scrollIntoView({behavior:'smooth'});
   });
 
   renderAll();
