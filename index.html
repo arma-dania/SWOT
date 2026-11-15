@@ -426,15 +426,17 @@ a{color:var(--accent)}
 #p-skabelon .sk-tog::after{content:"";width:.55rem;height:.55rem;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-.3rem;transition:transform .2s ease}
 #p-skabelon .sk-fold[open] .sk-tog::after{transform:rotate(225deg);margin-top:.3rem}
 #p-skabelon .sk-fold-body{display:flex;flex-direction:column;gap:1rem;margin-top:1rem}
-/* TOWS-tavle: SWOT-kortene trækkes ned i matricen */
-#p-skabelon .tb{display:flex;flex-direction:column;gap:.9rem}
-#p-skabelon .tb-swot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}
-#p-skabelon .tb-col{min-width:0;border-radius:.5rem;padding:.5rem .55rem;display:flex;flex-direction:column;gap:.35rem;background:color-mix(in srgb,var(--c) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface))}
-#p-skabelon .tb-col header{display:flex;align-items:baseline;gap:.4rem;font-family:var(--display)}
-#p-skabelon .tb-col header b{font-size:1.3rem;line-height:1;color:var(--c)}
-#p-skabelon .tb-col header strong{font-size:.9375rem;color:var(--c)}
+/* TOWS-tavle, opstillet som slutbilledet i TOWS-animationen: S og W øverst, O og T til venstre */
+#p-skabelon .tb{display:flex;flex-direction:column;gap:.75rem}
+#p-skabelon .tb-hint{font-size:.875rem;color:var(--muted);margin:0}
+#p-skabelon .tb-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr) minmax(0,1fr);gap:.6rem}
+#p-skabelon .tb-corner{display:flex;align-items:flex-end;justify-content:flex-end;padding:.4rem;font-family:var(--display);font-size:.6875rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:right}
+#p-skabelon .tb-col{min-width:0;border-radius:.6rem;padding:.6rem .65rem;display:flex;flex-direction:column;gap:.4rem;background:color-mix(in srgb,var(--c) 11%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 38%,var(--surface))}
+#p-skabelon .tb-col header{display:flex;align-items:baseline;gap:.45rem;font-family:var(--display)}
+#p-skabelon .tb-col header b{font-size:1.4rem;line-height:1;color:var(--c)}
+#p-skabelon .tb-col header strong{font-size:1rem;color:var(--c)}
 #p-skabelon .tb-col .empty{font-size:.8125rem}
-#p-skabelon .tb-pt{user-select:none;-webkit-user-select:none;display:flex;gap:.4rem;align-items:flex-start;width:100%;text-align:left;font:inherit;font-size:.8125rem;line-height:1.3;padding:.4rem .5rem;border-radius:.375rem;background:var(--surface);border:1px solid var(--line);color:var(--ink);cursor:grab;touch-action:manipulation}
+#p-skabelon .tb-pt{user-select:none;-webkit-user-select:none;display:flex;gap:.45rem;align-items:flex-start;width:100%;text-align:left;font-size:.9375rem;line-height:1.3;padding:.5rem .6rem;border-radius:.4rem;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink);cursor:grab;touch-action:manipulation}
 #p-skabelon .tb-pt b{font-family:var(--display);color:var(--c);flex:none}
 #p-skabelon .tb-pt span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #p-skabelon .tb-pt i{margin-left:auto;flex:none;font-style:normal;font-family:var(--display);font-size:.6875rem;color:var(--muted)}
@@ -442,34 +444,37 @@ a{color:var(--accent)}
 #p-skabelon .tb-pt:hover{border-color:var(--c)}
 #p-skabelon .tb-pt.sel{outline:2px solid var(--c);outline-offset:1px;background:color-mix(in srgb,var(--c) 12%,var(--surface));opacity:1}
 #p-skabelon .tb-pt.dragging{opacity:.35}
-#p-skabelon .tb-hint{font-size:.875rem;color:var(--muted);margin:0}
-#p-skabelon .tb-grid{display:grid;grid-template-columns:1.6rem minmax(0,1fr) minmax(0,1fr);gap:.5rem}
-#p-skabelon .tb-h{font-family:var(--display);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:.3rem}
-#p-skabelon .tb-h b{color:var(--c);font-size:1.1rem;letter-spacing:0}
-#p-skabelon .tb-h.rh{writing-mode:vertical-rl;transform:rotate(180deg)}
-#p-skabelon .tb-cell{min-width:0;border-radius:.5rem;padding:.6rem;display:flex;flex-direction:column;gap:.5rem;border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--a) 13%,var(--surface)),color-mix(in srgb,var(--b) 13%,var(--surface)))}
-#p-skabelon .tb-cell header{display:flex;flex-direction:column;gap:.15rem}
-#p-skabelon .tb-cell .code{font-family:var(--display);font-size:1.25rem;font-weight:700;line-height:1}
-#p-skabelon .tb-cell .qq{font-style:italic;font-size:.875rem;line-height:1.3;color:var(--muted)}
+#p-skabelon .tb-cell{min-width:0;border-radius:.6rem;padding:.65rem;display:flex;flex-direction:column;gap:.55rem;border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--a) 13%,var(--surface)),color-mix(in srgb,var(--b) 13%,var(--surface)))}
+#p-skabelon .tb-cell header{display:flex;flex-direction:column;gap:.2rem}
+#p-skabelon .tb-cell .code{font-family:var(--display);font-size:1.4rem;font-weight:700;line-height:1}
+#p-skabelon .tb-cell .qq{font-style:italic;font-size:.9375rem;line-height:1.3;color:var(--muted)}
 #p-skabelon .tb-cell.over,#p-skabelon .tb-alt.over{outline:2px dashed var(--accent);outline-offset:2px}
-#p-skabelon .tb-alt{padding:.6rem .65rem;gap:.45rem}
-#p-skabelon .tb-alt.valgt{border-left:4px solid var(--ink)}
-#p-skabelon .tb-alt textarea{min-height:3.4em;field-sizing:content}
+#p-skabelon .tb-alt{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--a);border-radius:.45rem;box-shadow:var(--shadow);padding:.55rem .65rem;gap:.4rem}
+#p-skabelon .tb-alt textarea{font-size:1rem;line-height:1.4;min-height:2.8em;field-sizing:content;resize:none;background:transparent;border:1px solid transparent;padding:.2rem .3rem;margin:-.2rem -.3rem}
+#p-skabelon .tb-alt textarea:hover{border-color:var(--line)}
+#p-skabelon .tb-alt textarea:focus{background:var(--bg);border-color:var(--accent)}
 #p-skabelon .tb-refs{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center}
-#p-skabelon .tb-ref{display:inline-flex;align-items:center;font-family:var(--display);font-size:.8125rem;font-weight:700;padding:.1rem .15rem .1rem .5rem;border-radius:1rem;color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 40%,var(--surface))}
+#p-skabelon .tb-ref{display:inline-flex;align-items:center;font-family:var(--display);font-size:.8125rem;font-weight:700;padding:.05rem .1rem .05rem .45rem;border-radius:1rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface))}
 #p-skabelon .tb-ref button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:0 .3rem}
 #p-skabelon .tb-ref button:hover{color:var(--bad)}
 #p-skabelon .tb-none{font-size:.8125rem;color:var(--muted)}
 #p-skabelon .tb-put{font-size:.8125rem;padding:.15rem .55rem;border-radius:1rem}
-#p-skabelon .tb-alt .acts{display:flex;align-items:center;gap:.6rem}
-#p-skabelon .tb-add{font:inherit;font-family:var(--display);font-size:.8125rem;color:var(--muted);background:transparent;border:1px dashed color-mix(in srgb,var(--ink) 30%,transparent);border-radius:.375rem;padding:.55rem;cursor:pointer;text-align:center}
+#p-skabelon .tb-alt .acts{display:flex;align-items:center;gap:.5rem}
+#p-skabelon .tb-valgt{font-family:var(--display);font-size:.8125rem;font-weight:600;padding:.25rem .6rem;border-radius:.375rem;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+#p-skabelon .tb-valgt:hover{border-color:var(--ink);color:var(--ink)}
+#p-skabelon .tb-valgt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+#p-skabelon .tb-alt .acts .danger{font-size:.8125rem;padding:.25rem .55rem}
+#p-skabelon .tb-q summary{cursor:pointer;font-family:var(--display);font-size:.8125rem;font-weight:600;color:var(--bad);list-style:none}
+#p-skabelon .tb-q summary::-webkit-details-marker{display:none}
+#p-skabelon .tb-q summary::after{content:" ▾"}
+#p-skabelon .tb-q[open] summary::after{content:" ▴"}
+#p-skabelon .tb-q.ok summary{color:var(--s)}
+#p-skabelon .tb-q .fb{margin-top:.4rem}
+#p-skabelon .tb-add{font:inherit;font-family:var(--display);font-size:.8125rem;color:var(--muted);background:transparent;border:1px dashed color-mix(in srgb,var(--ink) 30%,transparent);border-radius:.4rem;padding:.55rem;cursor:pointer;text-align:center}
 #p-skabelon .tb-add:hover,#p-skabelon .tb-add.ready{border-color:var(--accent);color:var(--accent)}
 #p-skabelon .tb-bar{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:20;display:flex;gap:.75rem;align-items:center;max-width:calc(100% - 2rem);padding:.55rem .6rem .55rem .9rem;border-radius:.5rem;background:var(--ink);color:#fff;font-size:.875rem;box-shadow:0 6px 20px rgba(16,24,40,.25)}
 #p-skabelon .tb-bar button{font:inherit;font-size:.8125rem;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:.375rem;padding:.3rem .6rem;cursor:pointer;flex:none}
-/* på store skærme bliver SWOT-kortene stående, mens man ruller ned gennem matricen */
-@media (min-width:52.01rem) and (min-height:700px){#p-skabelon .tb-swot{position:sticky;top:calc(var(--tabs-h,3.5rem) + .5rem);z-index:4;max-height:38vh;overflow-y:auto;padding:.4rem;margin:-.4rem;border-radius:.6rem;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(6px);align-items:start}}
-@media (max-width:52rem){#p-skabelon .tb-swot{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:34rem){#p-skabelon .tb-grid{grid-template-columns:minmax(0,1fr)}#p-skabelon .tb-h{display:none}}
+@media (max-width:40rem){#p-skabelon .tb-grid{grid-template-columns:minmax(0,1fr)}#p-skabelon .tb-corner{display:none}}
 
 
 /* ===== Kontrast og farve ===== */
@@ -1004,7 +1009,7 @@ a{color:var(--accent)}
   <section class="mod">
     <span class="n">Trin 2 · TOWS</span>
     <h2>Handlingsalternativerne</h2>
-    <p>Jeres SWOT står øverst. Træk et punkt ned i det felt i TOWS-matricen, hvor det skal bruges. Så opstår et nyt handlingsalternativ med punktet som henvisning. Træk flere punkter ind på samme alternativ, og skriv, hvad virksomheden skal gøre. Punkter med lav prioritet er nedtonede. Markér til sidst de alternativer, I vælger. De bliver jeres strategi.</p>
+    <p>Jeres SWOT står i kanten af TOWS-matricen: styrker og svagheder øverst, muligheder og trusler til venstre. Træk et punkt ind i det felt, hvor det skal bruges. Så opstår et nyt handlingsalternativ med punktet som henvisning. Træk flere punkter ind på samme alternativ, og skriv, hvad virksomheden skal gøre. Punkter med lav prioritet er nedtonede. Markér til sidst de alternativer, I vælger. De bliver jeres strategi.</p>
     <div id="sk-tows"></div>
   </section>
 
@@ -1976,29 +1981,28 @@ a{color:var(--accent)}
     return '<div class="tb-cell" data-f="'+f+'" style="--a:var(--'+k[0]+');--b:var(--'+k[1]+')"><header><span class="code"><span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span></span><span class="qq">'+QQ[f]+'</span></header>'+
       alts.map(altHtml).join('')+'<button type="button" class="tb-add" data-addf="'+f+'"></button></div>';
   }
+  var qOpen={}; /* hvilke alternativers spørgsmål er foldet ud */
   function altHtml(st){
     var refs=st.refs.map(codeOf).filter(Boolean);
-    return '<article class="strat tb-alt'+(st.valgt?' valgt':'')+'" data-sid="'+st.id+'">'+
+    return '<article class="strat tb-alt" data-sid="'+st.id+'" style="--a:var(--'+TF[st.f][0]+')">'+
       '<textarea rows="2" data-sf="txt" aria-label="Handlingsalternativ i '+st.f+'" placeholder="Hvad skal virksomheden gøre? Begynd med et udsagnsord.">'+esc(st.txt)+'</textarea>'+
       '<div class="tb-refs">'+(refs.length?refs.map(function(r){return '<span class="tb-ref" style="--c:var(--'+r.k+')" title="'+esc(r.p.txt)+'">'+r.code+'<button type="button" data-unref="'+r.p.id+'" data-sid="'+st.id+'" aria-label="Fjern '+r.code+' fra alternativet">×</button></span>';}).join(''):'<span class="tb-none">Ingen punkter endnu. Træk et punkt hertil.</span>')+
       '<button type="button" class="ghost tb-put" data-put="'+st.id+'" hidden></button></div>'+
-      '<div class="acts"><label class="chk"><input type="checkbox" data-sf="valgt"'+(st.valgt?' checked':'')+'> Valgt</label><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
-      '<ul class="fb" data-fb></ul></article>';
+      '<div class="acts"><button type="button" class="tb-valgt" data-valgt="'+st.id+'" aria-pressed="'+(st.valgt?'true':'false')+'">'+(st.valgt?'Valgt':'Markér som valgt')+'</button><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
+      '<details class="tb-q" data-q="'+st.id+'"'+(qOpen[st.id]?' open':'')+' hidden><summary></summary><ul class="fb" data-fb></ul></details></article>';
   }
   function renderTows(){
     var el=document.getElementById('sk-tows');
     var used={};S.strat.forEach(function(st){st.refs.forEach(function(id){used[id]=(used[id]||0)+1;});});
-    var cols=KEYS.map(function(k){
+    function col(k,cls){
       var pts=S.pts[k].map(function(p,i){return {p:p,code:k.toUpperCase()+(i+1)};}).filter(function(x){return x.p.txt.trim();});
-      return '<div class="tb-col" style="--c:var(--'+k+')"><header><b>'+k.toUpperCase()+'</b><strong>'+F[k].n+'</strong></header>'+
+      return '<div class="tb-col '+cls+'" style="--c:var(--'+k+')"><header><b>'+k.toUpperCase()+'</b><strong>'+F[k].n+'</strong></header>'+
         (pts.length?pts.map(function(x){var pr=prio(k,x.p);
           return '<div role="button" tabindex="0" aria-pressed="false" class="tb-pt'+(pr&&!pr.hi?' low':'')+'" draggable="true" data-pid="'+x.p.id+'" style="--c:var(--'+k+')" title="'+esc(x.p.txt)+(pr?' · '+esc(pr.txt):'')+'"><b>'+x.code+'</b><span>'+esc(x.p.txt)+'</span>'+(used[x.p.id]?'<i title="Brugt i '+used[x.p.id]+' alternativ'+(used[x.p.id]>1?'er':'')+'">'+used[x.p.id]+'×</i>':'')+'</div>';
         }).join(''):'<span class="empty">Ingen punkter endnu. Skriv dem i trin 1.</span>')+'</div>';
-    }).join('');
-    function head(k,rh){return '<div class="tb-h'+(rh?' rh':'')+'" style="--c:var(--'+k+')"><b>'+k.toUpperCase()+'</b>'+F[k].n+'</div>';}
-    el.innerHTML='<div class="tb"><div class="tb-swot">'+cols+'</div>'+
-      '<p class="tb-hint">Træk et punkt ned i et felt eller ind på et alternativ. På en telefon eller med tastaturet: tryk på punktet, og tryk derefter på feltet eller alternativet.</p>'+
-      '<div class="tb-grid"><span></span>'+head('s')+head('w')+head('o',1)+cellHtml('SO')+cellHtml('WO')+head('t',1)+cellHtml('ST')+cellHtml('WT')+'</div></div>'+
+    }
+    el.innerHTML='<div class="tb"><p class="tb-hint">Træk et punkt ind i et felt eller ind på et alternativ. På en telefon eller med tastaturet: tryk på punktet, og tryk derefter på feltet eller alternativet.</p>'+
+      '<div class="tb-grid"><div class="tb-corner">Internt → · Eksternt ↓</div>'+col('s','top')+col('w','top')+col('o','side')+cellHtml('SO')+cellHtml('WO')+col('t','side')+cellHtml('ST')+cellHtml('WT')+'</div></div>'+
       '<ul class="fb" id="sk-tows-fb"></ul>';
     if(sel&&!codeOf(sel))sel=null;
     S.strat.forEach(updateStrat);updateTowsField();updateSel();
@@ -2032,8 +2036,9 @@ a{color:var(--accent)}
   }
   function updateStrat(st){
     var card=document.querySelector('.strat[data-sid="'+st.id+'"]');if(!card)return;
-    var list=checkStrat(st);
-    card.querySelector('[data-fb]').innerHTML=st.txt.trim()?(list.length?qHtml(list,st.id):'<li>'+okHtml()+'</li>'):'';
+    var list=checkStrat(st),q=card.querySelector('.tb-q'),has=!!st.txt.trim();
+    card.querySelector('[data-fb]').innerHTML=has?(list.length?qHtml(list,st.id):'<li>'+okHtml()+'</li>'):'';
+    if(q){q.hidden=!has;q.classList.toggle('ok',!list.length);q.querySelector('summary').textContent=list.length?list.length+' spørgsmål fra tjekket':'✓ Ingen spørgsmål';}
   }
   function updateTowsField(){
     var el=document.getElementById('sk-tows-fb');if(!el)return;
@@ -2141,10 +2146,12 @@ a{color:var(--accent)}
     var b=e.target.closest('button');
     if(b&&b.dataset.addf){newAlt(b.dataset.addf,sel);return;}
     if(b&&b.dataset.put){addRef(findStrat(b.dataset.put),sel);return;}
+    if(b&&b.dataset.valgt){var sv=findStrat(b.dataset.valgt);sv.valgt=!sv.valgt;b.setAttribute('aria-pressed',sv.valgt?'true':'false');b.textContent=sv.valgt?'Valgt':'Markér som valgt';save();updateTowsField();updateStatus();return;}
     if(b&&b.dataset.unref){var st=findStrat(b.dataset.sid);st.refs=st.refs.filter(function(x){return x!==b.dataset.unref;});save();renderTows();updateStatus();return;}
     /* med et valgt punkt virker et tryk på selve feltet eller alternativet som et slip */
     if(sel&&!b&&!e.target.closest('textarea,input,label,.fb'))dropOn(e.target,sel);
   });
+  tows.addEventListener('toggle',function(e){var d=e.target;if(d.dataset&&d.dataset.q)qOpen[d.dataset.q]=d.open;},true);
   tows.addEventListener('keydown',function(e){
     var pt=e.target.closest&&e.target.closest('.tb-pt');
     if(pt&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pt.click();}
@@ -2156,7 +2163,6 @@ a{color:var(--accent)}
   });
   tows.addEventListener('change',function(e){
     var card=e.target.closest('.strat');if(!card)return;var st=findStrat(card.dataset.sid),t=e.target;
-    if(t.dataset.sf==='valgt'){st.valgt=t.checked;card.classList.toggle('valgt',st.valgt);}
     save();updateStrat(st);updateTowsField();updateStatus();
   });
 
