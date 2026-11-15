@@ -411,6 +411,21 @@ a{color:var(--accent)}
 /* svag hover på kortene */
 #p-skabelon .pt,#p-skabelon .strat,#p-skabelon .field{transition:box-shadow .2s ease}
 @media (hover:hover){#p-skabelon .pt:hover,#p-skabelon .strat:hover{box-shadow:0 2px 6px rgba(16,24,40,.08),0 8px 20px rgba(16,24,40,.08)}}
+/* Trin 1 kan foldes sammen, så der er overblik over TOWS-tavlen */
+.tabs{z-index:10}
+#p-skabelon .sk-fold summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem}
+#p-skabelon .sk-fold summary::-webkit-details-marker{display:none}
+#p-skabelon .sk-fold summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:.375rem}
+#p-skabelon .sk-fold summary h2{margin:0}
+#p-skabelon .sk-sum{display:flex;flex-wrap:wrap;gap:.35rem;font-family:var(--display);font-size:.8125rem}
+#p-skabelon .sk-sum span{padding:.1rem .5rem;border-radius:1rem;border:1px solid color-mix(in srgb,var(--c,var(--muted)) 40%,var(--surface));background:color-mix(in srgb,var(--c,var(--muted)) 10%,var(--surface));color:var(--c,var(--muted));font-weight:700}
+#p-skabelon .sk-sum span.open{--c:var(--bad)}
+#p-skabelon .sk-tog{margin-left:auto;font-family:var(--display);font-size:.875rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:.45rem}
+#p-skabelon .sk-tog::before{content:"Fold ud"}
+#p-skabelon .sk-fold[open] .sk-tog::before{content:"Fold sammen"}
+#p-skabelon .sk-tog::after{content:"";width:.55rem;height:.55rem;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-.3rem;transition:transform .2s ease}
+#p-skabelon .sk-fold[open] .sk-tog::after{transform:rotate(225deg);margin-top:.3rem}
+#p-skabelon .sk-fold-body{display:flex;flex-direction:column;gap:1rem;margin-top:1rem}
 /* TOWS-tavle: SWOT-kortene trækkes ned i matricen */
 #p-skabelon .tb{display:flex;flex-direction:column;gap:.9rem}
 #p-skabelon .tb-swot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}
@@ -977,9 +992,13 @@ a{color:var(--accent)}
 
   <section class="mod">
     <span class="n">Trin 1 · SWOT</span>
-    <h2>Punkterne</h2>
-    <p>Skriv hvert punkt så præcist, at en læser uden for gruppen forstår det. Angiv, hvilken analyse det kommer fra, hvad det betyder for virksomheden, og hvordan det skal prioriteres.</p>
-    <div id="sk-swot" style="display:flex;flex-direction:column;gap:1rem"></div>
+    <details class="sk-fold" id="sk-swot-fold">
+      <summary><h2>Punkterne</h2><span class="sk-sum" id="sk-swot-sum"></span><span class="sk-tog"></span></summary>
+      <div class="sk-fold-body">
+        <p>Skriv hvert punkt så præcist, at en læser uden for gruppen forstår det. Angiv, hvilken analyse det kommer fra, hvad det betyder for virksomheden, og hvordan det skal prioriteres.</p>
+        <div id="sk-swot" style="display:flex;flex-direction:column;gap:1rem"></div>
+      </div>
+    </details>
   </section>
 
   <section class="mod">
@@ -2035,10 +2054,29 @@ a{color:var(--accent)}
     KEYS.forEach(function(k){S.pts[k].forEach(function(p){if(p.txt.trim()){n++;if(checkPoint(k,p).length)open++;}});});
     var sn=0,so=0,sv=0;
     S.strat.forEach(function(s){if(s.txt.trim()){sn++;if(checkStrat(s).length)so++;if(s.valgt)sv++;}});
+    updateFoldSum();
     document.getElementById('sk-status').innerHTML=
       '<span><b>'+n+'</b> <i class="lg">SWOT-</i>punkter</span><span class="'+(open?'open':'')+'"><b>'+open+'</b> med <i class="lg">spørgsmål</i><i class="sh">spm.</i></span>'+
       '<span><b>'+sn+'</b> <i class="lg">alternativer</i><i class="sh">alt.</i></span><span class="'+(so?'open':'')+'"><b>'+so+'</b> med <i class="lg">spørgsmål</i><i class="sh">spm.</i></span><span><b>'+sv+'</b> valgt</span>';
   }
+  /* Trin 1: opsummering i den sammenfoldede overskrift, og husk om den er foldet ud */
+  var FOLD='swot-skabelon-fold',fold=document.getElementById('sk-swot-fold');
+  function updateFoldSum(){
+    var open=0,html=KEYS.map(function(k){
+      var a=S.pts[k].filter(function(p){return p.txt.trim();});
+      a.forEach(function(p){if(checkPoint(k,p).length)open++;});
+      return '<span style="--c:var(--'+k+')">'+k.toUpperCase()+' '+a.length+'</span>';
+    }).join('');
+    if(open)html+='<span class="open">'+open+' med spørgsmål</span>';
+    document.getElementById('sk-swot-sum').innerHTML=html;
+  }
+  (function(){
+    var st=null;try{st=localStorage.getItem(FOLD);}catch(e){}
+    var any=KEYS.some(function(k){return S.pts[k].some(function(p){return p.txt.trim();});});
+    /* første gang: foldet ud, indtil der er skrevet punkter */
+    fold.open=st?st==='open':!any;
+    fold.addEventListener('toggle',function(){try{localStorage.setItem(FOLD,fold.open?'open':'closed');}catch(e){}});
+  })();
   function renderAll(){document.getElementById('sk-firma').value=S.firma||'';renderSwot();renderTows();updateStatus();}
 
   /* ---------- handlinger ---------- */
@@ -2208,7 +2246,7 @@ a{color:var(--accent)}
       {id:uid(),txt:'Lancér en erhvervsmodel med 10 års garanti og sælg den direkte til budfirmaer',f:'SO',refs:[s1.id,s3.id],valgt:true}
     ]};
     save();renderAll();toast('Eksemplet er indlæst. Læs spørgsmålene, og prøv at rette punkterne.');
-    document.getElementById('sk-swot').scrollIntoView({behavior:'smooth'});
+    fold.open=true;document.getElementById('sk-swot').scrollIntoView({behavior:'smooth'});
   });
 
   renderAll();
