@@ -450,28 +450,41 @@ a{color:var(--accent)}
 #p-skabelon .tb-cell .qq{font-style:italic;font-size:.9375rem;line-height:1.3;color:var(--muted)}
 #p-skabelon .tb-cell.over,#p-skabelon .tb-alt.over{outline:2px dashed var(--accent);outline-offset:2px}
 #p-skabelon .tb-alt{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--a);border-radius:.45rem;box-shadow:var(--shadow);padding:.55rem .65rem;gap:.4rem}
-#p-skabelon .tb-alt textarea{font-size:1rem;line-height:1.4;min-height:2.8em;field-sizing:content;resize:none;background:transparent;border:1px solid transparent;padding:.2rem .3rem;margin:-.2rem -.3rem}
-#p-skabelon .tb-alt textarea:hover{border-color:var(--line)}
-#p-skabelon .tb-alt textarea:focus{background:var(--bg);border-color:var(--accent)}
+#p-skabelon .tb-txt{font:inherit;font-size:1rem;line-height:1.4;text-align:left;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;width:100%}
+#p-skabelon .tb-txt:hover{color:var(--accent)}
+#p-skabelon .tb-txt.empty-txt{color:var(--muted);font-style:italic}
+#p-skabelon .tb-qn{font:inherit;font-family:var(--display);font-size:.8125rem;font-weight:600;color:var(--bad);background:none;border:0;padding:0;cursor:pointer}
+#p-skabelon .tb-qn.ok{color:var(--s)}
+#p-skabelon .tb-pend{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;padding:.5rem;border-radius:.4rem;border:1px dashed var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--surface))}
+#p-skabelon .tb-pend .tb-none{flex-basis:100%}
 #p-skabelon .tb-refs{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center}
 #p-skabelon .tb-ref{display:inline-flex;align-items:center;font-family:var(--display);font-size:.8125rem;font-weight:700;padding:.05rem .1rem .05rem .45rem;border-radius:1rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 35%,var(--surface))}
 #p-skabelon .tb-ref button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:0 .3rem}
 #p-skabelon .tb-ref button:hover{color:var(--bad)}
 #p-skabelon .tb-none{font-size:.8125rem;color:var(--muted)}
 #p-skabelon .tb-put{font-size:.8125rem;padding:.15rem .55rem;border-radius:1rem}
-#p-skabelon .tb-alt .acts{display:flex;align-items:center;gap:.5rem}
+#p-skabelon .tb-alt .acts{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem}
 #p-skabelon .tb-valgt{font-family:var(--display);font-size:.8125rem;font-weight:600;padding:.25rem .6rem;border-radius:.375rem;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
 #p-skabelon .tb-valgt:hover{border-color:var(--ink);color:var(--ink)}
 #p-skabelon .tb-valgt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 #p-skabelon .tb-alt .acts .danger{font-size:.8125rem;padding:.25rem .55rem}
-#p-skabelon .tb-q summary{cursor:pointer;font-family:var(--display);font-size:.8125rem;font-weight:600;color:var(--bad);list-style:none}
-#p-skabelon .tb-q summary::-webkit-details-marker{display:none}
-#p-skabelon .tb-q summary::after{content:" ▾"}
-#p-skabelon .tb-q[open] summary::after{content:" ▴"}
-#p-skabelon .tb-q.ok summary{color:var(--s)}
-#p-skabelon .tb-q .fb{margin-top:.4rem}
 #p-skabelon .tb-add{font:inherit;font-family:var(--display);font-size:.8125rem;color:var(--muted);background:transparent;border:1px dashed color-mix(in srgb,var(--ink) 30%,transparent);border-radius:.4rem;padding:.55rem;cursor:pointer;text-align:center}
 #p-skabelon .tb-add:hover,#p-skabelon .tb-add.ready{border-color:var(--accent);color:var(--accent)}
+/* kortet, hvor handlingsalternativet skrives */
+#p-skabelon .tb-dlg{border:0;border-radius:.75rem;padding:0;width:min(38rem,calc(100% - 1.5rem));max-height:calc(100dvh - 2rem);background:var(--surface);color:var(--ink);box-shadow:0 20px 50px rgba(16,24,40,.3)}
+#p-skabelon .tb-dlg::backdrop{background:rgba(16,24,40,.45)}
+#p-skabelon .tb-dlg form{display:flex;flex-direction:column;gap:.75rem;padding:1.1rem 1.2rem;border-top:4px solid var(--a)}
+#p-skabelon .tb-dlg .code{font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1}
+#p-skabelon .tb-dlg .qq{font-style:italic;color:var(--muted)}
+#p-skabelon .tb-dlg ul.dr{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
+#p-skabelon .tb-dlg ul.dr li{display:flex;gap:.5rem;align-items:flex-start;font-size:.9375rem;line-height:1.35;padding:.45rem .55rem;border-radius:.4rem;background:color-mix(in srgb,var(--c) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 30%,var(--surface))}
+#p-skabelon .tb-dlg ul.dr b{font-family:var(--display);color:var(--c);flex:none}
+#p-skabelon .tb-dlg ul.dr button{margin-left:auto;border:0;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;padding:0 .2rem}
+#p-skabelon .tb-dlg label{font-family:var(--display);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+#p-skabelon .tb-dlg textarea{font-size:1.0625rem;min-height:5.5em;field-sizing:content}
+#p-skabelon .tb-dlg .row{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+#p-skabelon .tb-dlg .row .go{margin:0}
+#p-skabelon .tb-dlg .msg{color:var(--bad);font-size:.875rem;margin:0}
 #p-skabelon .tb-bar{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);z-index:20;display:flex;gap:.75rem;align-items:center;max-width:calc(100% - 2rem);padding:.55rem .6rem .55rem .9rem;border-radius:.5rem;background:var(--ink);color:#fff;font-size:.875rem;box-shadow:0 6px 20px rgba(16,24,40,.25)}
 #p-skabelon .tb-bar button{font:inherit;font-size:.8125rem;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:.375rem;padding:.3rem .6rem;cursor:pointer;flex:none}
 @media (max-width:40rem){#p-skabelon .tb-grid{grid-template-columns:minmax(0,1fr)}#p-skabelon .tb-corner{display:none}}
@@ -1009,7 +1022,7 @@ a{color:var(--accent)}
   <section class="mod">
     <span class="n">Trin 2 · TOWS</span>
     <h2>Handlingsalternativerne</h2>
-    <p>Jeres SWOT står i kanten af TOWS-matricen: styrker og svagheder øverst, muligheder og trusler til venstre. Træk et punkt ind i det felt, hvor det skal bruges. Så opstår et nyt handlingsalternativ med punktet som henvisning. Træk flere punkter ind på samme alternativ, og skriv, hvad virksomheden skal gøre. Punkter med lav prioritet er nedtonede. Markér til sidst de alternativer, I vælger. De bliver jeres strategi.</p>
+    <p>Jeres SWOT står i kanten af TOWS-matricen: styrker og svagheder øverst, muligheder og trusler til venstre. Kombinér punkterne parvis: træk fx en styrke ind i SO og derefter en mulighed. Så åbner et kort, hvor I skriver, hvad virksomheden skal gøre. Flere punkter kan bagefter trækkes ind på alternativet, og et klik på alternativet åbner kortet igen. Punkter med lav prioritet er nedtonede. Markér til sidst de alternativer, I vælger. De bliver jeres strategi.</p>
     <div id="sk-tows"></div>
   </section>
 
@@ -1976,20 +1989,29 @@ a{color:var(--accent)}
   /* ---------- TOWS-tavle ---------- */
   var QQ={SO:'Brug styrkerne til at udnytte mulighederne',ST:'Brug styrkerne til at håndtere truslerne',WO:'Mindsk svaghederne, og udnyt samtidig mulighederne',WT:'Det kritiske felt: mindsk svaghederne, og undgå truslerne'};
   var sel=null; /* id på det punkt, der er valgt med et tryk */
+  var pend={SO:[],ST:[],WO:[],WT:[]}; /* punkter, der venter på deres modstykke i et felt */
+  var NEED={s:'styrke',w:'svaghed',o:'mulighed',t:'trussel'};
+  function pendHtml(f){
+    var a=pend[f]=pend[f].filter(function(id){return codeOf(id);});
+    if(!a.length)return '';
+    var refs=a.map(codeOf),hasI=refs.some(function(r){return F[r.k].int;});
+    var k=TF[f],miss=hasI?NEED[k[1]]:NEED[k[0]];
+    return '<div class="tb-pend">'+refs.map(function(r){return '<span class="tb-ref" style="--c:var(--'+r.k+')" title="'+esc(r.p.txt)+'">'+r.code+'<button type="button" data-unpend="'+r.p.id+'" data-f="'+f+'" aria-label="Fjern '+r.code+'">×</button></span>';}).join('')+
+      '<span class="tb-none">Træk en '+miss+' hertil for at kombinere.</span></div>';
+  }
   function cellHtml(f){
     var k=TF[f],alts=S.strat.filter(function(st){return st.f===f;});
     return '<div class="tb-cell" data-f="'+f+'" style="--a:var(--'+k[0]+');--b:var(--'+k[1]+')"><header><span class="code"><span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span></span><span class="qq">'+QQ[f]+'</span></header>'+
-      alts.map(altHtml).join('')+'<button type="button" class="tb-add" data-addf="'+f+'"></button></div>';
+      alts.map(altHtml).join('')+pendHtml(f)+'<button type="button" class="tb-add" data-addf="'+f+'"></button></div>';
   }
-  var qOpen={}; /* hvilke alternativers spørgsmål er foldet ud */
   function altHtml(st){
     var refs=st.refs.map(codeOf).filter(Boolean);
     return '<article class="strat tb-alt" data-sid="'+st.id+'" style="--a:var(--'+TF[st.f][0]+')">'+
-      '<textarea rows="2" data-sf="txt" aria-label="Handlingsalternativ i '+st.f+'" placeholder="Hvad skal virksomheden gøre? Begynd med et udsagnsord.">'+esc(st.txt)+'</textarea>'+
-      '<div class="tb-refs">'+(refs.length?refs.map(function(r){return '<span class="tb-ref" style="--c:var(--'+r.k+')" title="'+esc(r.p.txt)+'">'+r.code+'<button type="button" data-unref="'+r.p.id+'" data-sid="'+st.id+'" aria-label="Fjern '+r.code+' fra alternativet">×</button></span>';}).join(''):'<span class="tb-none">Ingen punkter endnu. Træk et punkt hertil.</span>')+
+      '<button type="button" class="tb-txt'+(st.txt.trim()?'':' empty-txt')+'" data-edit="'+st.id+'" title="Klik for at rette">'+(st.txt.trim()?esc(st.txt):'Intet skrevet endnu. Klik for at skrive.')+'</button>'+
+      '<div class="tb-refs">'+(refs.length?refs.map(function(r){return '<span class="tb-ref" style="--c:var(--'+r.k+')" title="'+esc(r.p.txt)+'">'+r.code+'<button type="button" data-unref="'+r.p.id+'" data-sid="'+st.id+'" aria-label="Fjern '+r.code+' fra alternativet">×</button></span>';}).join(''):'<span class="tb-none">Ingen punkter. Træk et punkt hertil.</span>')+
       '<button type="button" class="ghost tb-put" data-put="'+st.id+'" hidden></button></div>'+
-      '<div class="acts"><button type="button" class="tb-valgt" data-valgt="'+st.id+'" aria-pressed="'+(st.valgt?'true':'false')+'">'+(st.valgt?'Valgt':'Markér som valgt')+'</button><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
-      '<details class="tb-q" data-q="'+st.id+'"'+(qOpen[st.id]?' open':'')+' hidden><summary></summary><ul class="fb" data-fb></ul></details></article>';
+      '<div class="acts"><button type="button" class="tb-valgt" data-valgt="'+st.id+'" aria-pressed="'+(st.valgt?'true':'false')+'">'+(st.valgt?'Valgt':'Markér som valgt')+'</button><button type="button" class="tb-qn" data-edit="'+st.id+'" hidden></button><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
+      '</article>';
   }
   function renderTows(){
     var el=document.getElementById('sk-tows');
@@ -2014,32 +2036,80 @@ a{color:var(--accent)}
   function updateSel(){
     var r=sel?codeOf(sel):null;if(!r)sel=null;
     [].forEach.call(document.querySelectorAll('#sk-tows .tb-pt'),function(b){var on=b.dataset.pid===sel;b.classList.toggle('sel',on);b.setAttribute('aria-pressed',on?'true':'false');});
-    [].forEach.call(document.querySelectorAll('#sk-tows .tb-add'),function(b){b.classList.toggle('ready',!!r);b.textContent=r?'+ Nyt alternativ med '+r.code:'+ Slip et punkt her, eller klik for et tomt alternativ';});
+    [].forEach.call(document.querySelectorAll('#sk-tows .tb-add'),function(b){b.classList.toggle('ready',!!r);b.textContent=r?'+ Læg '+r.code+' her':'+ Slip et punkt her';});
     [].forEach.call(document.querySelectorAll('#sk-tows .tb-put'),function(b){var st=findStrat(b.dataset.put);b.hidden=!r||st.refs.indexOf(sel)>-1;if(r)b.textContent='+ Tilføj '+r.code;});
     bar.hidden=!r;
     if(r)bar.querySelector('span').textContent=r.code+' er valgt. Tryk på et felt eller et alternativ.';
-  }
-  function newAlt(f,pid){
-    var st={id:uid(),txt:'',f:f,refs:pid?[pid]:[],valgt:false};S.strat.push(st);sel=null;save();renderTows();updateStatus();
-    var t=document.querySelector('.tb-alt[data-sid="'+st.id+'"] textarea');if(t)t.focus();
   }
   function addRef(st,pid){
     var r=codeOf(pid);if(!r)return;
     if(st.refs.indexOf(pid)>-1){toast(r.code+' er allerede med i alternativet.');return;}
     st.refs.push(pid);sel=null;save();renderTows();updateStatus();
   }
-  /* et punkt sluppet på et alternativ føjes til det, sluppet andre steder i feltet giver et nyt alternativ */
+  /* sluppet på et alternativ: føjes til det. Sluppet i et felt: venter, til der er både et internt og et eksternt punkt, og så åbner kortet */
   function dropOn(target,pid){
     var alt=target.closest('.tb-alt');
-    if(alt)addRef(findStrat(alt.dataset.sid),pid);
-    else{var cell=target.closest('.tb-cell');if(cell)newAlt(cell.dataset.f,pid);}
+    if(alt){addRef(findStrat(alt.dataset.sid),pid);return;}
+    var cell=target.closest('.tb-cell');if(!cell)return;
+    var f=cell.dataset.f,a=pend[f];sel=null;
+    if(a.indexOf(pid)<0)a.push(pid);
+    var refs=a.map(codeOf).filter(Boolean);
+    if(refs.some(function(r){return F[r.k].int;})&&refs.some(function(r){return !F[r.k].int;}))openDlg({f:f,refs:a.slice(),txt:''});
+    renderTows();
   }
   function updateStrat(st){
     var card=document.querySelector('.strat[data-sid="'+st.id+'"]');if(!card)return;
-    var list=checkStrat(st),q=card.querySelector('.tb-q'),has=!!st.txt.trim();
-    card.querySelector('[data-fb]').innerHTML=has?(list.length?qHtml(list,st.id):'<li>'+okHtml()+'</li>'):'';
-    if(q){q.hidden=!has;q.classList.toggle('ok',!list.length);q.querySelector('summary').textContent=list.length?list.length+' spørgsmål fra tjekket':'✓ Ingen spørgsmål';}
+    var n=st.txt.trim()?checkStrat(st).length:0,b=card.querySelector('.tb-qn');
+    b.hidden=!st.txt.trim();b.classList.toggle('ok',!n);b.textContent=n?n+' spørgsmål fra tjekket':'✓ Ingen spørgsmål';
   }
+  /* ---------- kortet til handlingsalternativet ---------- */
+  var dlg=document.createElement('dialog'),D=null,dT;
+  dlg.className='tb-dlg';dlg.setAttribute('aria-labelledby','tb-dlg-h');
+  dlg.innerHTML='<form method="dialog"><header><h3 id="tb-dlg-h" class="code"></h3><p class="qq"></p></header>'+
+    '<div><label>Bygger på</label><ul class="dr"></ul></div>'+
+    '<div style="display:flex;flex-direction:column;gap:.3rem"><label for="tb-dlg-t">Handlingsalternativ</label><textarea id="tb-dlg-t" rows="3" placeholder="Hvad skal virksomheden gøre? Begynd med et udsagnsord. Hvem, hvordan og hvornår?"></textarea></div>'+
+    '<ul class="fb"></ul><p class="msg" hidden>Skriv handlingsalternativet, før du gemmer.</p>'+
+    '<div class="row"><button type="button" class="go" data-d="save">Gem</button><button type="button" class="ghost" data-d="cancel">Fortryd</button></div></form>';
+  document.getElementById('p-skabelon').appendChild(dlg);
+  var dT_=dlg.querySelector('textarea');
+  function dlgDraw(){
+    var k=TF[D.f];
+    dlg.querySelector('form').style.setProperty('--a','var(--'+k[0]+')');
+    dlg.querySelector('.code').innerHTML='<span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span>';
+    dlg.querySelector('.qq').textContent=QQ[D.f];
+    dlg.querySelector('.dr').innerHTML=D.refs.map(codeOf).filter(Boolean).map(function(r){return '<li style="--c:var(--'+r.k+')"><b>'+r.code+'</b><span>'+esc(r.p.txt)+'</span><button type="button" data-dunref="'+r.p.id+'" aria-label="Fjern '+r.code+'">×</button></li>';}).join('')||'<li style="--c:var(--muted)"><span>Ingen punkter.</span></li>';
+    dlgCheck();
+  }
+  function dlgCheck(){
+    if(!D)return;
+    var t=dT_.value.trim(),list=t?checkStrat({txt:t,f:D.f,refs:D.refs}):[];
+    dlg.querySelector('.fb').innerHTML=t?(list.length?qHtml(list,'dlg'):'<li>'+okHtml()+'</li>'):'';
+    if(t)dlg.querySelector('.msg').hidden=true;
+  }
+  function openDlg(d){
+    D=d;dT_.value=d.txt||'';dlg.querySelector('.msg').hidden=true;dlgDraw();
+    if(!dlg.open){if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');}
+    dT_.focus();
+  }
+  function closeDlg(){clearTimeout(dT);if(dlg.open){if(dlg.close)dlg.close();else dlg.removeAttribute('open');}}
+  function dlgSave(){
+    var t=dT_.value.trim();
+    if(!t){dlg.querySelector('.msg').hidden=false;dT_.focus();return;}
+    if(D.sid){var st=findStrat(D.sid);st.txt=t;st.refs=D.refs.slice();st.f=D.f;}
+    else{S.strat.push({id:uid(),txt:t,f:D.f,refs:D.refs.slice(),valgt:false});pend[D.from||D.f]=[];}
+    D=null;closeDlg();save();renderTows();updateStatus();
+  }
+  function dlgCancel(){if(D&&!D.sid)pend[D.from||D.f]=[];D=null;closeDlg();renderTows();}
+  dT_.addEventListener('input',function(){clearTimeout(dT);dT=setTimeout(dlgCheck,500);});
+  dlg.addEventListener('cancel',function(e){e.preventDefault();dlgCancel();});
+  dlg.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    e.stopPropagation();
+    if(b.dataset.d==='save')dlgSave();
+    else if(b.dataset.d==='cancel')dlgCancel();
+    else if(b.dataset.dunref){D.refs=D.refs.filter(function(x){return x!==b.dataset.dunref;});dlgDraw();}
+    else if(b.dataset.tmove){if(!D.sid&&!D.from)D.from=D.f;D.f=b.dataset.tmove;dlgDraw();}
+  });
   function updateTowsField(){
     var el=document.getElementById('sk-tows-fb');if(!el)return;
     var out=[],filled=S.strat.filter(function(s){return s.txt.trim();});
@@ -2144,14 +2214,15 @@ a{color:var(--accent)}
     var pt=e.target.closest('.tb-pt');
     if(pt){sel=sel===pt.dataset.pid?null:pt.dataset.pid;updateSel();return;}
     var b=e.target.closest('button');
-    if(b&&b.dataset.addf){newAlt(b.dataset.addf,sel);return;}
+    if(b&&b.dataset.addf){if(sel)dropOn(b,sel);else toast('Træk et punkt hertil, eller tryk først på et punkt.');return;}
+    if(b&&b.dataset.edit){var se=findStrat(b.dataset.edit);openDlg({sid:se.id,f:se.f,refs:se.refs.slice(),txt:se.txt});return;}
+    if(b&&b.dataset.unpend){var pf=b.dataset.f;pend[pf]=pend[pf].filter(function(x){return x!==b.dataset.unpend;});renderTows();return;}
     if(b&&b.dataset.put){addRef(findStrat(b.dataset.put),sel);return;}
     if(b&&b.dataset.valgt){var sv=findStrat(b.dataset.valgt);sv.valgt=!sv.valgt;b.setAttribute('aria-pressed',sv.valgt?'true':'false');b.textContent=sv.valgt?'Valgt':'Markér som valgt';save();updateTowsField();updateStatus();return;}
     if(b&&b.dataset.unref){var st=findStrat(b.dataset.sid);st.refs=st.refs.filter(function(x){return x!==b.dataset.unref;});save();renderTows();updateStatus();return;}
     /* med et valgt punkt virker et tryk på selve feltet eller alternativet som et slip */
     if(sel&&!b&&!e.target.closest('textarea,input,label,.fb'))dropOn(e.target,sel);
   });
-  tows.addEventListener('toggle',function(e){var d=e.target;if(d.dataset&&d.dataset.q)qOpen[d.dataset.q]=d.open;},true);
   tows.addEventListener('keydown',function(e){
     var pt=e.target.closest&&e.target.closest('.tb-pt');
     if(pt&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pt.click();}
