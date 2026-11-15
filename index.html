@@ -473,6 +473,42 @@ a{color:var(--accent)}
 #p-skabelon .tb-alt .acts .danger{font-size:.8125rem;padding:.25rem .55rem}
 #p-skabelon .tb-add{font:inherit;font-family:var(--display);font-size:.8125rem;color:var(--muted);background:transparent;border:1px dashed color-mix(in srgb,var(--ink) 30%,transparent);border-radius:.4rem;padding:.55rem;cursor:pointer;text-align:center}
 #p-skabelon .tb-add:hover,#p-skabelon .tb-add.ready{border-color:var(--accent);color:var(--accent)}
+/* vurdering på de fem kriterier, i kortet og i trin 3 */
+#p-skabelon .sk-krit{font-size:.9375rem}
+#p-skabelon .vd{display:flex;flex-direction:column;gap:.5rem;border-top:1px solid var(--line);padding-top:.75rem}
+#p-skabelon .vd > summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:1rem;list-style:none;display:flex;gap:.5rem;align-items:baseline}
+#p-skabelon .vd > summary::-webkit-details-marker{display:none}
+#p-skabelon .vd > summary::after{content:"▾";color:var(--muted)}
+#p-skabelon .vd[open] > summary::after{content:"▴"}
+#p-skabelon .vd > summary small{font-weight:500;color:var(--muted);font-size:.8125rem}
+#p-skabelon .vd-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.2rem .75rem;align-items:center;padding:.35rem 0;border-bottom:1px dashed var(--line)}
+#p-skabelon .vd-row b{font-family:var(--display);font-size:.9375rem}
+#p-skabelon .vd-row small{grid-column:1;color:var(--muted);font-size:.8125rem;line-height:1.3}
+#p-skabelon .vd-row .pips{grid-row:1/3;grid-column:2;display:flex;gap:.25rem}
+#p-skabelon .vd-row .pips button{font:inherit;font-family:var(--display);font-size:.8125rem;min-width:2.1rem;padding:.3rem .45rem;border-radius:.375rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+#p-skabelon .vd-row .pips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+#p-skabelon .vd .hint{font-size:.8125rem;color:var(--muted)}
+#p-skabelon .vd textarea{min-height:3.2em;field-sizing:content}
+#p-skabelon .tb-sc{font-family:var(--display);font-size:.8125rem;font-weight:700;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--surface));border-radius:1rem;padding:.05rem .5rem}
+#p-skabelon #sk-rank{display:flex;flex-direction:column;gap:.5rem}
+#p-skabelon .rk{display:grid;grid-template-columns:2.2rem minmax(0,1fr) auto;gap:.6rem .9rem;align-items:start;padding:.7rem .8rem;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--a);border-radius:.5rem;box-shadow:var(--shadow)}
+#p-skabelon .rk.valgt{box-shadow:0 0 0 2px var(--ink)}
+#p-skabelon .rk .no{width:2.2rem;height:2.2rem;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700}
+#p-skabelon .rk.none .no{background:var(--line);color:var(--muted)}
+#p-skabelon .rk .bd{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+#p-skabelon .rk .tx{font-size:1rem;line-height:1.4}
+#p-skabelon .rk .tx .code{font-family:var(--display);font-weight:700;margin-right:.4rem}
+#p-skabelon .rk .bars{display:flex;flex-wrap:wrap;gap:.3rem .8rem;font-family:var(--display);font-size:.75rem;color:var(--muted)}
+#p-skabelon .rk .bars span{display:inline-flex;gap:.3rem;align-items:center}
+#p-skabelon .rk .bars i{display:inline-flex;gap:2px}
+#p-skabelon .rk .bars i::before,#p-skabelon .rk .bars i::after,#p-skabelon .rk .bars i u{content:"";display:inline-block;width:.55rem;height:.55rem;border-radius:2px;background:var(--line);text-decoration:none}
+#p-skabelon .rk .bars i[data-v="1"]::before,#p-skabelon .rk .bars i[data-v="2"]::before,#p-skabelon .rk .bars i[data-v="2"] u,#p-skabelon .rk .bars i[data-v="3"]::before,#p-skabelon .rk .bars i[data-v="3"] u,#p-skabelon .rk .bars i[data-v="3"]::after{background:var(--accent)}
+#p-skabelon .rk .why{font-size:.9375rem;color:var(--muted);font-style:italic;margin:0}
+#p-skabelon .rk .sd{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+#p-skabelon .rk .tot{font-family:var(--display);font-size:1.5rem;font-weight:700;line-height:1;color:var(--ink)}
+#p-skabelon .rk .tot small{font-size:.8125rem;color:var(--muted);font-weight:500}
+#p-skabelon .rk .miss{font-size:.75rem;color:var(--muted);font-family:var(--display)}
+@media (max-width:34rem){#p-skabelon .rk{grid-template-columns:2.2rem minmax(0,1fr)}#p-skabelon .rk .sd{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-end;flex-wrap:wrap}}
 /* kortet, hvor handlingsalternativet skrives */
 #p-skabelon .tb-dlg{border:0;border-radius:.75rem;padding:0;width:min(38rem,calc(100% - 1.5rem));max-height:calc(100dvh - 2rem);background:var(--surface);color:var(--ink);box-shadow:0 20px 50px rgba(16,24,40,.3)}
 #p-skabelon .tb-dlg::backdrop{background:rgba(16,24,40,.45)}
@@ -1021,8 +1057,23 @@ a{color:var(--accent)}
   <section class="mod">
     <span class="n">Trin 2 · TOWS</span>
     <h2>Handlingsalternativerne</h2>
-    <p>Jeres SWOT står i kanten af TOWS-matricen: styrker og svagheder øverst, muligheder og trusler til venstre. Kombinér punkterne parvis: træk fx en styrke ind i SO og derefter en mulighed. Så åbner et kort, hvor I skriver, hvad virksomheden skal gøre. Flere punkter kan bagefter trækkes ind på alternativet, og et klik på alternativet åbner kortet igen. Punkter med lav prioritet er nedtonede. Markér til sidst de alternativer, I vælger. De bliver jeres strategi.</p>
+    <p>Jeres SWOT står i kanten af TOWS-matricen: styrker og svagheder øverst, muligheder og trusler til venstre. Kombinér punkterne parvis: træk fx en styrke ind i SO og derefter en mulighed. Så åbner et kort, hvor I skriver, hvad virksomheden skal gøre. Flere punkter kan bagefter trækkes ind på alternativet, og et klik på alternativet åbner kortet igen. Punkter med lav prioritet er nedtonede. I trin 3 vurderer I alternativerne og vælger dem, der skal være jeres strategi.</p>
     <div id="sk-tows"></div>
+  </section>
+
+  <section class="mod">
+    <span class="n">Trin 3 · Valg</span>
+    <h2>Vurdér og rangordn</h2>
+    <p>Giv hvert handlingsalternativ 1 til 3 point på de fem kriterier fra TOWS-fanen, og skriv kort, hvorfor. Listen sorteres efter samlet score, så de stærkeste alternativer står øverst. Markér til sidst dem, I vælger. De bliver jeres strategi.</p>
+    <ul class="crit sk-krit">
+      <li><b>Mål:</b> bringer det virksomheden nærmere sin mission og vision og dens «hvorfor»?</li>
+      <li><b>Målgrupper, strategi og værdier:</b> passer det til målgrupper og segmenter og til virksomhedens strategi og værdier?</li>
+      <li><b>Ressourcer:</b> har virksomheden penge, medarbejdere og kompetencer til det?</li>
+      <li><b>Vægt:</b> bygger det på punkter med høj prioritet?</li>
+      <li><b>Sammenhæng:</b> trækker det i samme retning som de andre alternativer?</li>
+    </ul>
+    <div id="sk-rank"></div>
+    <ul class="fb" id="sk-rank-fb"></ul>
   </section>
 
   <section class="mod">
@@ -2009,7 +2060,7 @@ a{color:var(--accent)}
       '<button type="button" class="tb-txt'+(st.txt.trim()?'':' empty-txt')+'" data-edit="'+st.id+'" title="Klik for at rette">'+(st.txt.trim()?esc(st.txt):'Intet skrevet endnu. Klik for at skrive.')+'</button>'+
       '<div class="tb-refs">'+(refs.length?refs.map(function(r){return '<span class="tb-ref" style="--c:var(--'+r.k+')" title="'+esc(r.p.txt)+'">'+r.code+'<button type="button" data-unref="'+r.p.id+'" data-sid="'+st.id+'" aria-label="Fjern '+r.code+' fra alternativet">×</button></span>';}).join(''):'<span class="tb-none">Ingen punkter. Træk et punkt hertil.</span>')+
       '<button type="button" class="ghost tb-put" data-put="'+st.id+'" hidden></button></div>'+
-      '<div class="acts"><button type="button" class="tb-valgt" data-valgt="'+st.id+'" aria-pressed="'+(st.valgt?'true':'false')+'">'+(st.valgt?'Valgt':'Markér som valgt')+'</button><button type="button" class="tb-qn" data-edit="'+st.id+'" hidden></button><button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
+      '<div class="acts"><button type="button" class="tb-valgt" data-valgt="'+st.id+'" aria-pressed="'+(st.valgt?'true':'false')+'">'+(st.valgt?'Valgt':'Markér som valgt')+'</button><button type="button" class="tb-qn" data-edit="'+st.id+'" hidden></button>'+(function(){var so=scoreOf(st);return so.n?'<span class="tb-sc" title="Score på de fem kriterier">'+so.t+'/'+so.max+'</span>':'';})()+'<button type="button" class="ghost danger" data-sdel="'+st.id+'" style="margin-left:auto">Slet</button></div>'+
       '</article>';
   }
   function renderTows(){
@@ -2061,13 +2112,30 @@ a{color:var(--accent)}
     var n=st.txt.trim()?checkStrat(st).length:0,b=card.querySelector('.tb-qn');
     b.hidden=!st.txt.trim();b.classList.toggle('ok',!n);b.textContent=n?n+' spørgsmål fra tjekket':'✓ Ingen spørgsmål';
   }
+  /* ---------- vurdering på de fem kriterier ---------- */
+  var KRIT=[['mal','Mål','Bringer det virksomheden nærmere mission, vision og «hvorfor»?'],
+    ['mg','Målgrupper, strategi og værdier','Passer det til målgrupper og segmenter, strategi og værdier?'],
+    ['res','Ressourcer','Har virksomheden penge, medarbejdere og kompetencer til det?'],
+    ['vaegt','Vægt','Bygger det på punkter med høj prioritet?'],
+    ['sam','Sammenhæng','Trækker det i samme retning som de andre alternativer?']];
+  var PIP=['','Lidt','Delvist','I høj grad'];
+  function scoreOf(st){var sc=st.score||{},t=0,n=0;KRIT.forEach(function(c){if(sc[c[0]]){t+=sc[c[0]];n++;}});return {t:t,n:n,max:KRIT.length*3};}
+  function vdHtml(sc,refs){
+    var pr=refs.map(codeOf).filter(Boolean).map(function(r){var p=prio(r.k,r.p);return r.code+': '+(p?p.txt.toLowerCase():'ikke prioriteret');});
+    return KRIT.map(function(c){
+      return '<div class="vd-row"><b>'+c[1]+'</b><small>'+c[2]+(c[0]==='vaegt'&&pr.length?' Prioritet i SWOT: '+esc(pr.join(' · '))+'.':'')+'</small><span class="pips" role="group" aria-label="'+c[1]+'">'+
+        [1,2,3].map(function(v){return '<button type="button" data-krit="'+c[0]+'" data-v="'+v+'" aria-pressed="'+(sc[c[0]]===v?'true':'false')+'" title="'+PIP[v]+'">'+v+'</button>';}).join('')+'</span></div>';
+    }).join('');
+  }
   /* ---------- kortet til handlingsalternativet ---------- */
   var dlg=document.createElement('dialog'),D=null,dT;
   dlg.className='tb-dlg';dlg.setAttribute('aria-labelledby','tb-dlg-h');
   dlg.innerHTML='<form method="dialog"><header><h3 id="tb-dlg-h" class="code"></h3><p class="qq"></p></header>'+
     '<div><label>Bygger på</label><ul class="dr"></ul></div>'+
     '<div style="display:flex;flex-direction:column;gap:.3rem"><label for="tb-dlg-t">Handlingsalternativ</label><textarea id="tb-dlg-t" rows="3" placeholder="Hvad skal virksomheden gøre? Begynd med et udsagnsord. Hvem, hvordan og hvornår?"></textarea></div>'+
-    '<ul class="fb"></ul><p class="msg" hidden>Skriv handlingsalternativet, før du gemmer.</p>'+
+    '<ul class="fb"></ul>'+
+    '<details class="vd"><summary>Vurdering <small></small></summary><div class="vd-rows"></div><div style="display:flex;flex-direction:column;gap:.3rem"><label for="tb-dlg-w">Begrundelse</label><textarea id="tb-dlg-w" rows="2" placeholder="Hvorfor bør virksomheden vælge eller fravælge alternativet? Skriv det vigtigste argument."></textarea></div><p class="hint">1 = lidt, 2 = delvist, 3 = i høj grad. Tryk igen for at fjerne et point.</p></details>'+
+    '<p class="msg" hidden>Skriv handlingsalternativet, før du gemmer.</p>'+
     '<div class="row"><button type="button" class="go" data-d="save">Gem</button><button type="button" class="ghost" data-d="cancel">Fortryd</button></div></form>';
   document.getElementById('p-skabelon').appendChild(dlg);
   var dT_=dlg.querySelector('textarea');
@@ -2076,6 +2144,8 @@ a{color:var(--accent)}
     dlg.querySelector('form').style.setProperty('--a','var(--'+k[0]+')');
     dlg.querySelector('.code').innerHTML='<span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span>';
     dlg.querySelector('.qq').textContent=QQ[D.f];
+    dlg.querySelector('.vd-rows').innerHTML=vdHtml(D.score,D.refs);
+    var so=scoreOf({score:D.score});dlg.querySelector('.vd small').textContent=so.n?so.t+' af '+so.max+' point'+(so.n<KRIT.length?' · '+(KRIT.length-so.n)+' kriterier mangler':''):'ikke vurderet endnu';
     dlg.querySelector('.dr').innerHTML=D.refs.map(codeOf).filter(Boolean).map(function(r){return '<li style="--c:var(--'+r.k+')"><b>'+r.code+'</b><span>'+esc(r.p.txt)+'</span><button type="button" data-dunref="'+r.p.id+'" aria-label="Fjern '+r.code+'">×</button></li>';}).join('')||'<li style="--c:var(--muted)"><span>Ingen punkter.</span></li>';
     dlgCheck();
   }
@@ -2086,16 +2156,18 @@ a{color:var(--accent)}
     if(t)dlg.querySelector('.msg').hidden=true;
   }
   function openDlg(d){
-    D=d;dT_.value=d.txt||'';dlg.querySelector('.msg').hidden=true;dlgDraw();
+    D=d;D.score=Object.assign({},d.score||{});dT_.value=d.txt||'';dlg.querySelector('#tb-dlg-w').value=d.why||'';dlg.querySelector('.vd').open=!!d.rate;dlg.querySelector('.msg').hidden=true;dlgDraw();
     if(!dlg.open){if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');}
-    dT_.focus();
+    if(d.rate)dlg.querySelector('.vd-rows button').focus();else dT_.focus();
   }
+  function openEdit(id,rate){var se=findStrat(id);openDlg({sid:se.id,f:se.f,refs:se.refs.slice(),txt:se.txt,score:se.score,why:se.why,rate:rate});}
   function closeDlg(){clearTimeout(dT);if(dlg.open){if(dlg.close)dlg.close();else dlg.removeAttribute('open');}}
   function dlgSave(){
     var t=dT_.value.trim();
     if(!t){dlg.querySelector('.msg').hidden=false;dT_.focus();return;}
-    if(D.sid){var st=findStrat(D.sid);st.txt=t;st.refs=D.refs.slice();st.f=D.f;}
-    else{S.strat.push({id:uid(),txt:t,f:D.f,refs:D.refs.slice(),valgt:false});pend[D.from||D.f]=[];}
+    var why=dlg.querySelector('#tb-dlg-w').value.trim();
+    if(D.sid){var st=findStrat(D.sid);st.txt=t;st.refs=D.refs.slice();st.f=D.f;st.score=D.score;st.why=why;}
+    else{S.strat.push({id:uid(),txt:t,f:D.f,refs:D.refs.slice(),valgt:false,score:D.score,why:why});pend[D.from||D.f]=[];}
     D=null;closeDlg();save();renderTows();updateStatus();
   }
   function dlgCancel(){if(D&&!D.sid)pend[D.from||D.f]=[];D=null;closeDlg();renderTows();}
@@ -2106,6 +2178,7 @@ a{color:var(--accent)}
     e.stopPropagation();
     if(b.dataset.d==='save')dlgSave();
     else if(b.dataset.d==='cancel')dlgCancel();
+    else if(b.dataset.krit){var kk=b.dataset.krit,vv=+b.dataset.v;if(D.score[kk]===vv)delete D.score[kk];else D.score[kk]=vv;dlgDraw();}
     else if(b.dataset.dunref){D.refs=D.refs.filter(function(x){return x!==b.dataset.dunref;});dlgDraw();}
     else if(b.dataset.tmove){if(!D.sid&&!D.from)D.from=D.f;D.f=b.dataset.tmove;dlgDraw();}
   });
@@ -2117,11 +2190,51 @@ a{color:var(--accent)}
     if(filled.length>=4&&!cnt.ST&&!cnt.WT) out.push({k:'Valg',q:'Ingen alternativer svarer på truslerne. Hvad gør virksomheden, hvis de indtræffer?'});
     var hiT=[];S.pts.t.forEach(function(p,i){var pr=prio('t',p);if(pr&&p.p1==='h'&&p.p2==='h'&&!S.strat.some(function(s){return s.txt.trim()&&s.refs.indexOf(p.id)>-1;}))hiT.push('T'+(i+1));});
     if(filled.length&&hiT.length) out.push({k:'Valg',q:hiT.join(' og ')+' har højeste prioritet, men intet alternativ henviser til '+(hiT.length>1?'dem':'den')+'. Hvordan skal virksomheden møde '+(hiT.length>1?'dem':'den')+'?'});
-    var v=filled.filter(function(s){return s.valgt;}).length;
-    if(filled.length>=3&&!v) out.push({k:'Valg',q:'Ingen alternativer er valgt endnu. Hvilke passer bedst til virksomhedens mål og ressourcer, og hvilke trækker i samme retning?'});
-    if(v>5) out.push({k:'Valg',q:v+' alternativer er valgt. Har virksomheden ressourcer til dem alle? Hvad viser regnskabsanalysen?'});
     el.innerHTML=qHtml(out,'');
+    renderRank();
   }
+  /* ---------- trin 3: rangordning ---------- */
+  function ranked(){
+    var a=S.strat.filter(function(s){return s.txt.trim();}).map(function(s,i){return {st:s,sc:scoreOf(s),i:i};});
+    a.sort(function(x,y){return (y.sc.n?1:0)-(x.sc.n?1:0)||y.sc.t-x.sc.t||x.i-y.i;});
+    return a;
+  }
+  function renderRank(){
+    var el=document.getElementById('sk-rank');if(!el)return;
+    var a=ranked();
+    if(!a.length){el.innerHTML='<p class="empty">Ingen handlingsalternativer endnu. Lav dem i trin 2.</p>';document.getElementById('sk-rank-fb').innerHTML='';return;}
+    var no=0;
+    el.innerHTML=a.map(function(x){
+      var st=x.st,sc=st.score||{},k=TF[st.f],refs=st.refs.map(codeOf).filter(Boolean).map(function(r){return r.code;}).join(', ');
+      var num=x.sc.n?++no:'–';
+      return '<article class="rk'+(x.sc.n?'':' none')+(st.valgt?' valgt':'')+'" data-sid="'+st.id+'" style="--a:var(--'+k[0]+')"><span class="no">'+num+'</span>'+
+        '<div class="bd"><div class="tx"><span class="code"><span class="'+k[0]+'">'+k[0].toUpperCase()+'</span><span class="'+k[1]+'">'+k[1].toUpperCase()+'</span></span>'+esc(st.txt)+(refs?' <span class="miss">('+refs+')</span>':'')+'</div>'+
+        (x.sc.n?'<div class="bars">'+KRIT.map(function(c){return '<span>'+c[1].split(',')[0]+' <i data-v="'+(sc[c[0]]||0)+'"><u></u></i></span>';}).join('')+'</div>':'<span class="miss">Ikke vurderet endnu</span>')+
+        (st.why?'<p class="why">'+esc(st.why)+'</p>':'')+'</div>'+
+        '<div class="sd">'+(x.sc.n?'<span class="tot">'+x.sc.t+'<small> / '+x.sc.max+'</small></span>'+(x.sc.n<KRIT.length?'<span class="miss">'+(KRIT.length-x.sc.n)+' mangler</span>':''):'')+
+        '<button type="button" class="ghost" data-rate="'+st.id+'">'+(x.sc.n?'Ret vurdering':'Vurdér')+'</button>'+
+        '<button type="button" class="tb-valgt" data-valgt="'+st.id+'" aria-pressed="'+(st.valgt?'true':'false')+'">'+(st.valgt?'Valgt':'Markér som valgt')+'</button></div></article>';
+    }).join('');
+    /* spørgsmål til valget */
+    var out=[],un=a.filter(function(x){return !x.sc.n;}).length,part=a.filter(function(x){return x.sc.n&&x.sc.n<KRIT.length;}).length;
+    var v=a.filter(function(x){return x.st.valgt;});
+    if(un) out.push({k:'Valg',q:un+' '+(un===1?'alternativ er':'alternativer er')+' ikke vurderet endnu. Vurdér alle på de fem kriterier, før I vælger.'});
+    if(part) out.push({k:'Valg',q:part+' '+(part===1?'alternativ mangler':'alternativer mangler')+' point på et eller flere kriterier.'});
+    if(a.length>=3&&!v.length) out.push({k:'Valg',q:'Ingen alternativer er valgt endnu. Hvilke passer bedst til virksomhedens mål og ressourcer, og hvilke trækker i samme retning?'});
+    if(v.length>5) out.push({k:'Valg',q:v.length+' alternativer er valgt. Har virksomheden ressourcer til dem alle? Hvad viser regnskabsanalysen?'});
+    var best=a.filter(function(x){return !x.st.valgt&&x.sc.n===KRIT.length;})[0];
+    v.forEach(function(x){
+      if(best&&x.sc.n===KRIT.length&&best.sc.t>x.sc.t) out.push({k:'Valg',q:'«'+short(x.st.txt)+'» er valgt med '+x.sc.t+' point, mens «'+short(best.st.txt)+'» har '+best.sc.t+' point og ikke er valgt. Hvad taler for valget? Skriv det i begrundelsen.'});
+      if(!x.st.why) out.push({k:'Valg',q:'«'+short(x.st.txt)+'» er valgt, men har ingen begrundelse. Hvorfor skal virksomheden gøre netop det?'});
+    });
+    document.getElementById('sk-rank-fb').innerHTML=qHtml(out,'');
+  }
+  function short(t){t=t.trim();return esc(t.length>45?t.slice(0,43)+'…':t);}
+  document.getElementById('sk-rank').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.rate)openEdit(b.dataset.rate,true);
+    else if(b.dataset.valgt){var sv=findStrat(b.dataset.valgt);sv.valgt=!sv.valgt;save();renderTows();updateStatus();}
+  });
 
   function updateStatus(){
     var n=0,open=0;
@@ -2211,7 +2324,7 @@ a{color:var(--accent)}
     if(pt){sel=sel===pt.dataset.pid?null:pt.dataset.pid;updateSel();return;}
     var b=e.target.closest('button');
     if(b&&b.dataset.addf){if(sel)dropOn(b,sel);else toast('Træk et punkt hertil, eller tryk først på et punkt.');return;}
-    if(b&&b.dataset.edit){var se=findStrat(b.dataset.edit);openDlg({sid:se.id,f:se.f,refs:se.refs.slice(),txt:se.txt});return;}
+    if(b&&b.dataset.edit){openEdit(b.dataset.edit,false);return;}
     if(b&&b.dataset.unpend){var pf=b.dataset.f;pend[pf]=pend[pf].filter(function(x){return x!==b.dataset.unpend;});renderTows();return;}
     if(b&&b.dataset.put){addRef(findStrat(b.dataset.put),sel);return;}
     if(b&&b.dataset.valgt){var sv=findStrat(b.dataset.valgt);sv.valgt=!sv.valgt;b.setAttribute('aria-pressed',sv.valgt?'true':'false');b.textContent=sv.valgt?'Valgt':'Markér som valgt';save();updateTowsField();updateStatus();return;}
@@ -2265,6 +2378,18 @@ a{color:var(--accent)}
         a.forEach(function(s){var refs=s.refs.map(codeOf).filter(Boolean).map(function(r){return r.code;});L.push('- '+(s.valgt?'**Valgt:** ':'')+s.txt.trim()+(refs.length?' ('+refs.join(', ')+')':''));});
         L.push('');
       });
+    }
+    var rk=ranked();
+    if(rk.length){
+      L.push('# Vurdering og rangordning','','Score 1-3 på mål, målgrupper/strategi/værdier, ressourcer, vægt og sammenhæng (højst '+KRIT.length*3+' point).','');
+      var no=0;
+      rk.forEach(function(x){
+        var st=x.st,sc=st.score||{};
+        L.push((x.sc.n?(++no)+'. ':'- ')+(st.valgt?'**Valgt:** ':'')+st.txt.trim()+' ('+st.f+')'+(x.sc.n?' · '+x.sc.t+'/'+x.sc.max+' point':' · ikke vurderet'));
+        if(x.sc.n)L.push('   '+KRIT.map(function(c){return c[1]+': '+(sc[c[0]]||'-');}).join(' · '));
+        if(st.why)L.push('   Begrundelse: '+st.why);
+      });
+      L.push('');
     }
     return L.join('\n');
   }
